@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cyqir5hblmcfo"]
+
+[ext_resource type="Texture2D" uid="uid://ch1eqjecub8sf" path="res://assets/map/chapter_1/basemap.png" id="1_basemap"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
+
+[sub_resource type="RectangleShape2D" id="rect_top"]
+size = Vector2(2010, 205)
+
+[sub_resource type="RectangleShape2D" id="rect_bottom_l"]
+size = Vector2(814, 202)
+
+[sub_resource type="RectangleShape2D" id="rect_bottom_r"]
+size = Vector2(818, 207)
+
+[sub_resource type="RectangleShape2D" id="rect_left"]
+size = Vector2(150, 1516)
+
+[sub_resource type="RectangleShape2D" id="rect_right"]
+size = Vector2(150, 1516)
+
+[sub_resource type="RectangleShape2D" id="rect_temple"]
+size = Vector2(406.5, 420)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rig6i"]
+size = Vector2(648, 420)
+
+[node name="Chapter1" type="Node2D" unique_id=974292682]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2077998238]
+position = Vector2(1024, 818)
+texture = ExtResource("1_basemap")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=735925933]
+
+[node name="Top" type="CollisionShape2D" parent="Walls" unique_id=125295059]
+position = Vector2(1024, 122)
+shape = SubResource("rect_top")
+
+[node name="BottomLeft" type="CollisionShape2D" parent="Walls" unique_id=1945887317]
+position = Vector2(427, 1536)
+shape = SubResource("rect_bottom_l")
+
+[node name="BottomRight" type="CollisionShape2D" parent="Walls" unique_id=1306075933]
+position = Vector2(1619, 1538.5)
+shape = SubResource("rect_bottom_r")
+
+[node name="Left" type="CollisionShape2D" parent="Walls" unique_id=1966957837]
+position = Vector2(95, 818)
+shape = SubResource("rect_left")
+
+[node name="Right" type="CollisionShape2D" parent="Walls" unique_id=138263086]
+position = Vector2(1953, 818)
+shape = SubResource("rect_right")
+
+[node name="Temple" type="CollisionShape2D" parent="Walls" unique_id=275453841]
+position = Vector2(1024.5, 1365)
+shape = SubResource("rect_temple")
+
+[node name="Temple2" type="CollisionShape2D" parent="Walls" unique_id=17542352]
+position = Vector2(1018, 1576)
+shape = SubResource("RectangleShape2D_rig6i")
+
+[node name="Player" parent="." unique_id=181157515 instance=ExtResource("2_player")]
+position = Vector2(1024, 750)
