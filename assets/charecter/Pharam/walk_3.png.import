@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkj102qwyisr4"
-path="res://.godot/imported/wall_tall.png-5cf62862d691cdd14b8edaf26101e37c.ctex"
+uid="uid://3gqccy88piy2"
+path="res://.godot/imported/walk_3.png-97afc8fff62ab5669526360337576c8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/wall_tall.png"
-dest_files=["res://.godot/imported/wall_tall.png-5cf62862d691cdd14b8edaf26101e37c.ctex"]
+source_file="res://assets/charecter/Pharam/walk_3.png"
+dest_files=["res://.godot/imported/walk_3.png-97afc8fff62ab5669526360337576c8a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmka76miht6jq"
-path="res://.godot/imported/shrine_red.png-78ea548c3f8d472f4cb69720c02372fb.ctex"
+uid="uid://dwnrxy6063pbb"
+path="res://.godot/imported/walk_6.png-5d084e74b5c95db6b817b8ac1caf0e56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/shrine_red.png"
-dest_files=["res://.godot/imported/shrine_red.png-78ea548c3f8d472f4cb69720c02372fb.ctex"]
+source_file="res://assets/charecter/Pharam/walk_6.png"
+dest_files=["res://.godot/imported/walk_6.png-5d084e74b5c95db6b817b8ac1caf0e56.ctex"]
 
 [params]
 

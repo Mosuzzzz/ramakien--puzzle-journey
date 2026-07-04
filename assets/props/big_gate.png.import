@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqu70trwquegd"
-path="res://.godot/imported/wall_h.png-1f44f490e5809a3cad5a78da5794625f.ctex"
+uid="uid://7pjkm6lmokqq"
+path="res://.godot/imported/big_gate.png-ec7a429c41aa1c80938ae2a99c105147.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/wall_h.png"
-dest_files=["res://.godot/imported/wall_h.png-1f44f490e5809a3cad5a78da5794625f.ctex"]
+source_file="res://assets/props/big_gate.png"
+dest_files=["res://.godot/imported/big_gate.png-ec7a429c41aa1c80938ae2a99c105147.ctex"]
 
 [params]
 

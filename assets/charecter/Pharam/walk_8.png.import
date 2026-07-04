@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckgicj3hbh1kb"
-path="res://.godot/imported/gate_door.png-890af07f83a6d0e7b6ad9bb623f8fae1.ctex"
+uid="uid://c0sgfxwhla7oy"
+path="res://.godot/imported/walk_8.png-0c88a43bac7f7baeb12b2fdacdaf75c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/gate_door.png"
-dest_files=["res://.godot/imported/gate_door.png-890af07f83a6d0e7b6ad9bb623f8fae1.ctex"]
+source_file="res://assets/charecter/Pharam/walk_8.png"
+dest_files=["res://.godot/imported/walk_8.png-0c88a43bac7f7baeb12b2fdacdaf75c2.ctex"]
 
 [params]
 
