@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://cyqir5hblmcfo"]
 
 [ext_resource type="Texture2D" uid="uid://ch1eqjecub8sf" path="res://assets/map/chapter_1/basemap.png" id="1_basemap"]
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
-[ext_resource type="Script" path="res://scenes/test_collision.gd" id="3_test"]
-[ext_resource type="Texture2D" path="res://assets/props/shadow.png" id="99_shadow"]
-[ext_resource type="Texture2D" path="res://assets/props/fountain.png" id="100_fountain"]
-[ext_resource type="Texture2D" path="res://assets/props/statue_a.png" id="101_statue_a"]
-[ext_resource type="Texture2D" path="res://assets/props/shrine_red.png" id="102_shrine_red"]
-[ext_resource type="Texture2D" path="res://assets/props/shrine_blue.png" id="103_shrine_blue"]
-[ext_resource type="Texture2D" path="res://assets/props/shrine_purple.png" id="104_shrine_purple"]
-[ext_resource type="Texture2D" path="res://assets/props/short_wall.png" id="105_short_wall"]
-[ext_resource type="Texture2D" path="res://assets/props/tree_green1.png" id="106_tree_green1"]
-[ext_resource type="Texture2D" path="res://assets/props/tree_palm.png" id="107_tree_palm"]
-[ext_resource type="Texture2D" path="res://assets/props/tree_pink.png" id="108_tree_pink"]
-[ext_resource type="Texture2D" path="res://assets/props/tree_purple.png" id="109_tree_purple"]
-[ext_resource type="Texture2D" path="res://assets/props/banner_red.png" id="110_banner_red"]
+[ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/shadow.png" id="99_shadow"]
+[ext_resource type="Texture2D" uid="uid://bim4iri41lwju" path="res://assets/props/fountain.png" id="100_fountain"]
+[ext_resource type="Texture2D" uid="uid://gypwipds2se7" path="res://assets/props/statue_a.png" id="101_statue_a"]
+[ext_resource type="Texture2D" uid="uid://cmka76miht6jq" path="res://assets/props/shrine_red.png" id="102_shrine_red"]
+[ext_resource type="Texture2D" uid="uid://de866uqyl6it4" path="res://assets/props/shrine_blue.png" id="103_shrine_blue"]
+[ext_resource type="Texture2D" uid="uid://bc5snunb7u1jc" path="res://assets/props/shrine_purple.png" id="104_shrine_purple"]
+[ext_resource type="Texture2D" uid="uid://d2jrgskjct80c" path="res://assets/props/tree_green1.png" id="106_tree_green1"]
+[ext_resource type="Texture2D" uid="uid://ddolu2rjnys5o" path="res://assets/props/tree_palm.png" id="107_tree_palm"]
+[ext_resource type="Texture2D" uid="uid://cf6q7e5mdxngx" path="res://assets/props/tree_pink.png" id="108_tree_pink"]
+[ext_resource type="Texture2D" uid="uid://7ourbe1m4tlv" path="res://assets/props/tree_purple.png" id="109_tree_purple"]
+[ext_resource type="Texture2D" uid="uid://tpeaed3ek5cw" path="res://assets/props/banner_red.png" id="110_banner_red"]
+[ext_resource type="Texture2D" path="res://assets/props/main_temple.png" id="111_main_temple"]
+[ext_resource type="Texture2D" path="res://assets/props/gate_arch.png" id="112_gate_arch"]
 
 [sub_resource type="RectangleShape2D" id="rect_top"]
 size = Vector2(2010, 205)
@@ -46,40 +46,67 @@ size = Vector2(160, 90)
 [sub_resource type="RectangleShape2D" id="rect_shrine_bl"]
 size = Vector2(155, 90)
 
-[sub_resource type="RectangleShape2D" id="rect_shrine_br"]
-size = Vector2(140, 80)
-
 [sub_resource type="CircleShape2D" id="circ_1"]
-radius = 118
+radius = 131.0
+
 [sub_resource type="CircleShape2D" id="circ_2"]
-radius = 22
+radius = 22.0
+
 [sub_resource type="CircleShape2D" id="circ_3"]
-radius = 22
+radius = 22.0
+
 [sub_resource type="CircleShape2D" id="circ_4"]
-radius = 22
+radius = 22.0
+
 [sub_resource type="CircleShape2D" id="circ_5"]
-radius = 22
+radius = 22.0
+
 [sub_resource type="CircleShape2D" id="circ_6"]
-radius = 26
+radius = 26.0
+
 [sub_resource type="CircleShape2D" id="circ_7"]
-radius = 24
+radius = 24.0
+
 [sub_resource type="CircleShape2D" id="circ_8"]
-radius = 22
+radius = 22.0
+
 [sub_resource type="CircleShape2D" id="circ_9"]
-radius = 22
+radius = 22.0
+
 [sub_resource type="CircleShape2D" id="circ_10"]
-radius = 24
+radius = 24.0
+
 [sub_resource type="CircleShape2D" id="circ_11"]
-radius = 23
+radius = 23.0
+
 [sub_resource type="CircleShape2D" id="circ_12"]
-radius = 21
+radius = 21.0
+
 [sub_resource type="CircleShape2D" id="circ_13"]
-radius = 21
+radius = 21.0
+
+[sub_resource type="RectangleShape2D" id="rect_main_temple"]
+size = Vector2(380, 150)
+
+[sub_resource type="CircleShape2D" id="circ_14"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="circ_15"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="circ_16"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="circ_17"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="circ_18"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="circ_19"]
+radius = 24.0
 
 [node name="Chapter1" type="Node2D" unique_id=974292682]
-
-[node name="TestCollision" type="Node" parent="."]
-script = ExtResource("3_test")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2077998238]
 position = Vector2(1024, 818)
@@ -115,267 +142,446 @@ shape = SubResource("rect_temple")
 position = Vector2(1018, 1576)
 shape = SubResource("RectangleShape2D_rig6i")
 
-[node name="Shadows" type="Node2D" parent="."]
+[node name="Shadows" type="Node2D" parent="." unique_id=2007866884]
+modulate = Color(1, 1, 1, 0.55)
 
-[node name="shadow_statue_a_0" type="Sprite2D" parent="Shadows"]
+[node name="shadow_fountain_0" type="Sprite2D" parent="Shadows" unique_id=1897958537]
+position = Vector2(1017.87, 835.75)
+scale = Vector2(1.0614843, 1.0410153)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_main_temple_0" type="Sprite2D" parent="Shadows"]
+position = Vector2(1024, 555)
+scale = Vector2(1.5, 0.45)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_gate_arch_0" type="Sprite2D" parent="Shadows"]
+position = Vector2(270, 805)
+scale = Vector2(0.38, 0.12)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_gate_arch_1" type="Sprite2D" parent="Shadows"]
+position = Vector2(1778, 805)
+scale = Vector2(0.38, 0.12)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_green1_2" type="Sprite2D" parent="Shadows"]
+position = Vector2(250, 330)
+scale = Vector2(0.422, 0.135)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_palm_2" type="Sprite2D" parent="Shadows"]
+position = Vector2(1790, 330)
+scale = Vector2(0.422, 0.135)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_pink_2" type="Sprite2D" parent="Shadows"]
+position = Vector2(1800, 1360)
+scale = Vector2(0.387, 0.124)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_purple_2" type="Sprite2D" parent="Shadows"]
+position = Vector2(240, 1370)
+scale = Vector2(0.387, 0.124)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_green1_3" type="Sprite2D" parent="Shadows"]
+position = Vector2(430, 1410)
+scale = Vector2(0.422, 0.135)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_palm_3" type="Sprite2D" parent="Shadows"]
+position = Vector2(1620, 1410)
+scale = Vector2(0.422, 0.135)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_statue_a_0" type="Sprite2D" parent="Shadows" unique_id=1609199106]
 position = Vector2(1000, 385)
-scale = Vector2(0.1914, 0.0612)
-texture = ExtResource("99_shadow")
-[node name="shadow_statue_a_1" type="Sprite2D" parent="Shadows"]
-position = Vector2(1000, 1225)
-scale = Vector2(0.1914, 0.0612)
-texture = ExtResource("99_shadow")
-[node name="shadow_statue_a_2" type="Sprite2D" parent="Shadows"]
-position = Vector2(545, 805)
-scale = Vector2(0.1914, 0.0612)
-texture = ExtResource("99_shadow")
-[node name="shadow_statue_a_3" type="Sprite2D" parent="Shadows"]
-position = Vector2(1455, 805)
-scale = Vector2(0.1914, 0.0612)
-texture = ExtResource("99_shadow")
-[node name="shadow_shrine_red_0" type="Sprite2D" parent="Shadows"]
-position = Vector2(545, 430)
-scale = Vector2(0.3867, 0.1238)
-texture = ExtResource("99_shadow")
-[node name="shadow_shrine_blue_0" type="Sprite2D" parent="Shadows"]
-position = Vector2(1455, 430)
-scale = Vector2(0.4082, 0.1306)
-texture = ExtResource("99_shadow")
-[node name="shadow_shrine_purple_0" type="Sprite2D" parent="Shadows"]
-position = Vector2(545, 1150)
-scale = Vector2(0.3975, 0.1272)
-texture = ExtResource("99_shadow")
-[node name="shadow_short_wall_0" type="Sprite2D" parent="Shadows"]
-position = Vector2(1455, 1150)
-scale = Vector2(0.3545, 0.1134)
-texture = ExtResource("99_shadow")
-[node name="shadow_tree_green1_0" type="Sprite2D" parent="Shadows"]
-position = Vector2(700, 500)
-scale = Vector2(0.3047, 0.0975)
-texture = ExtResource("99_shadow")
-[node name="shadow_tree_palm_0" type="Sprite2D" parent="Shadows"]
-position = Vector2(1300, 520)
-scale = Vector2(0.2812, 0.0900)
-texture = ExtResource("99_shadow")
-[node name="shadow_tree_pink_0" type="Sprite2D" parent="Shadows"]
-position = Vector2(720, 1080)
-scale = Vector2(0.2578, 0.0825)
-texture = ExtResource("99_shadow")
-[node name="shadow_tree_purple_0" type="Sprite2D" parent="Shadows"]
-position = Vector2(1290, 1090)
-scale = Vector2(0.2578, 0.0825)
-texture = ExtResource("99_shadow")
-[node name="shadow_tree_green1_1" type="Sprite2D" parent="Shadows"]
-position = Vector2(300, 550)
-scale = Vector2(0.2812, 0.0900)
-texture = ExtResource("99_shadow")
-[node name="shadow_tree_palm_1" type="Sprite2D" parent="Shadows"]
-position = Vector2(1700, 560)
-scale = Vector2(0.2695, 0.0863)
-texture = ExtResource("99_shadow")
-[node name="shadow_tree_pink_1" type="Sprite2D" parent="Shadows"]
-position = Vector2(320, 1080)
-scale = Vector2(0.2461, 0.0788)
-texture = ExtResource("99_shadow")
-[node name="shadow_tree_purple_1" type="Sprite2D" parent="Shadows"]
-position = Vector2(1710, 1090)
-scale = Vector2(0.2461, 0.0788)
+scale = Vector2(0.287, 0.092)
 texture = ExtResource("99_shadow")
 
-[node name="YSortRoot" type="Node2D" parent="."]
+[node name="shadow_statue_a_1" type="Sprite2D" parent="Shadows" unique_id=670057471]
+position = Vector2(1019, 1119)
+scale = Vector2(0.287, 0.092)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_statue_a_2" type="Sprite2D" parent="Shadows" unique_id=403640296]
+position = Vector2(545, 805)
+scale = Vector2(0.287, 0.092)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_statue_a_3" type="Sprite2D" parent="Shadows" unique_id=421580471]
+position = Vector2(1455, 805)
+scale = Vector2(0.287, 0.092)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_shrine_red_0" type="Sprite2D" parent="Shadows" unique_id=425314742]
+position = Vector2(567.38, 333.90402)
+scale = Vector2(0.5907813, 0.28050014)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_shrine_blue_0" type="Sprite2D" parent="Shadows" unique_id=840117822]
+position = Vector2(1455, 430)
+scale = Vector2(0.612, 0.196)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_shrine_purple_0" type="Sprite2D" parent="Shadows" unique_id=2032964076]
+position = Vector2(545, 1150)
+scale = Vector2(0.596, 0.191)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_green1_0" type="Sprite2D" parent="Shadows" unique_id=38342005]
+position = Vector2(700, 500)
+scale = Vector2(0.457, 0.146)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_palm_0" type="Sprite2D" parent="Shadows" unique_id=942563721]
+position = Vector2(1300, 520)
+scale = Vector2(0.422, 0.135)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_pink_0" type="Sprite2D" parent="Shadows" unique_id=1710187194]
+position = Vector2(720, 1080)
+scale = Vector2(0.387, 0.124)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_purple_0" type="Sprite2D" parent="Shadows" unique_id=1915582114]
+position = Vector2(1290, 1090)
+scale = Vector2(0.387, 0.124)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_green1_1" type="Sprite2D" parent="Shadows" unique_id=819310144]
+position = Vector2(300, 550)
+scale = Vector2(0.422, 0.135)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_palm_1" type="Sprite2D" parent="Shadows" unique_id=586266138]
+position = Vector2(1700, 560)
+scale = Vector2(0.404, 0.129)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_pink_1" type="Sprite2D" parent="Shadows" unique_id=849711818]
+position = Vector2(320, 1080)
+scale = Vector2(0.369, 0.118)
+texture = ExtResource("99_shadow")
+
+[node name="shadow_tree_purple_1" type="Sprite2D" parent="Shadows" unique_id=1546365231]
+position = Vector2(1710, 1090)
+scale = Vector2(0.369, 0.118)
+texture = ExtResource("99_shadow")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=1139865208]
 y_sort_enabled = true
 
-[node name="fountain_0" type="Node2D" parent="YSortRoot"]
+[node name="main_temple_0" type="Node2D" parent="YSortRoot"]
+position = Vector2(1024, 560)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/main_temple_0"]
+position = Vector2(0, -199)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("111_main_temple")
+
+[node name="gate_arch_0" type="Node2D" parent="YSortRoot"]
+position = Vector2(270, 805)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/gate_arch_0"]
+position = Vector2(0, -62.7)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("112_gate_arch")
+
+[node name="gate_arch_1" type="Node2D" parent="YSortRoot"]
+position = Vector2(1778, 805)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/gate_arch_1"]
+position = Vector2(0, -62.7)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("112_gate_arch")
+
+[node name="tree_green1_2" type="Node2D" parent="YSortRoot"]
+position = Vector2(250, 330)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_green1_2"]
+position = Vector2(0, -71)
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("106_tree_green1")
+
+[node name="tree_palm_2" type="Node2D" parent="YSortRoot"]
+position = Vector2(1790, 330)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_palm_2"]
+position = Vector2(0, -69)
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("107_tree_palm")
+
+[node name="tree_pink_2" type="Node2D" parent="YSortRoot"]
+position = Vector2(1800, 1360)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_pink_2"]
+position = Vector2(0, -57)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("108_tree_pink")
+
+[node name="tree_purple_2" type="Node2D" parent="YSortRoot"]
+position = Vector2(240, 1370)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_purple_2"]
+position = Vector2(0, -62)
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("109_tree_purple")
+
+[node name="tree_green1_3" type="Node2D" parent="YSortRoot"]
+position = Vector2(430, 1410)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_green1_3"]
+position = Vector2(0, -71)
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("106_tree_green1")
+
+[node name="tree_palm_3" type="Node2D" parent="YSortRoot"]
+position = Vector2(1620, 1410)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_palm_3"]
+position = Vector2(0, -69)
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("107_tree_palm")
+
+[node name="fountain_0" type="Node2D" parent="YSortRoot" unique_id=803787580]
 position = Vector2(1000, 810)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/fountain_0"]
-position = Vector2(0, -131.3)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/fountain_0" unique_id=1106482702]
+position = Vector2(24, -34.000015)
 scale = Vector2(0.4333, 0.4333)
 texture = ExtResource("100_fountain")
-[node name="statue_a_0" type="Node2D" parent="YSortRoot"]
+
+[node name="statue_a_0" type="Node2D" parent="YSortRoot" unique_id=1644779266]
 position = Vector2(1000, 385)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/statue_a_0"]
-position = Vector2(0, -49.9)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/statue_a_0" unique_id=695665394]
+position = Vector2(0, -34)
 scale = Vector2(0.2917, 0.2917)
 texture = ExtResource("101_statue_a")
-[node name="statue_a_1" type="Node2D" parent="YSortRoot"]
+
+[node name="statue_a_1" type="Node2D" parent="YSortRoot" unique_id=1822647396]
 position = Vector2(1000, 1225)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/statue_a_1"]
-position = Vector2(0, -49.9)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/statue_a_1" unique_id=1036724239]
+position = Vector2(18, -142.99997)
 scale = Vector2(0.2917, 0.2917)
 texture = ExtResource("101_statue_a")
-[node name="statue_a_2" type="Node2D" parent="YSortRoot"]
+
+[node name="statue_a_2" type="Node2D" parent="YSortRoot" unique_id=2005901212]
 position = Vector2(545, 805)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/statue_a_2"]
-position = Vector2(0, -49.9)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/statue_a_2" unique_id=608020400]
+position = Vector2(1, -40.999977)
 scale = Vector2(0.2917, 0.2917)
 texture = ExtResource("101_statue_a")
-[node name="statue_a_3" type="Node2D" parent="YSortRoot"]
+
+[node name="statue_a_3" type="Node2D" parent="YSortRoot" unique_id=1057582580]
 position = Vector2(1455, 805)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/statue_a_3"]
-position = Vector2(0, -49.9)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/statue_a_3" unique_id=638312549]
+position = Vector2(-1, -35.999977)
 scale = Vector2(0.2917, 0.2917)
 texture = ExtResource("101_statue_a")
-[node name="shrine_red_0" type="Node2D" parent="YSortRoot"]
+
+[node name="shrine_red_0" type="Node2D" parent="YSortRoot" unique_id=348174054]
 position = Vector2(545, 430)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/shrine_red_0"]
-position = Vector2(0, -110.4)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/shrine_red_0" unique_id=1554463618]
+position = Vector2(20, -158)
 scale = Vector2(0.5233, 0.5233)
 texture = ExtResource("102_shrine_red")
-[node name="shrine_blue_0" type="Node2D" parent="YSortRoot"]
+
+[node name="shrine_blue_0" type="Node2D" parent="YSortRoot" unique_id=1478172058]
 position = Vector2(1455, 430)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/shrine_blue_0"]
-position = Vector2(0, -85.4)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/shrine_blue_0" unique_id=1067870014]
+position = Vector2(4.0000005, -56.999973)
 scale = Vector2(0.3299, 0.3299)
 texture = ExtResource("103_shrine_blue")
-[node name="shrine_purple_0" type="Node2D" parent="YSortRoot"]
+
+[node name="shrine_purple_0" type="Node2D" parent="YSortRoot" unique_id=451369170]
 position = Vector2(545, 1150)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/shrine_purple_0"]
-position = Vector2(0, -88.4)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/shrine_purple_0" unique_id=1222475225]
+position = Vector2(4, -67.99998)
 scale = Vector2(0.3715, 0.3715)
 texture = ExtResource("104_shrine_purple")
-[node name="short_wall_0" type="Node2D" parent="YSortRoot"]
-position = Vector2(1455, 1150)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/short_wall_0"]
-position = Vector2(0, -54.3)
-scale = Vector2(0.3618, 0.3618)
-texture = ExtResource("105_short_wall")
-[node name="tree_green1_0" type="Node2D" parent="YSortRoot"]
+[node name="tree_green1_0" type="Node2D" parent="YSortRoot" unique_id=27231895]
 position = Vector2(700, 500)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_green1_0"]
-position = Vector2(0, -71.1)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_green1_0" unique_id=2008560188]
+position = Vector2(-4, -49)
 scale = Vector2(0.3403, 0.3403)
 texture = ExtResource("106_tree_green1")
-[node name="tree_palm_0" type="Node2D" parent="YSortRoot"]
+
+[node name="tree_palm_0" type="Node2D" parent="YSortRoot" unique_id=183166292]
 position = Vector2(1300, 520)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_palm_0"]
-position = Vector2(0, -71.6)
-scale = Vector2(0.3727, 0.3727)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_palm_0" unique_id=589579758]
+position = Vector2(-4, -50)
+scale = Vector2(0.33852378, 0.37645423)
 texture = ExtResource("107_tree_palm")
-[node name="tree_pink_0" type="Node2D" parent="YSortRoot"]
+
+[node name="tree_pink_0" type="Node2D" parent="YSortRoot" unique_id=1253531081]
 position = Vector2(720, 1080)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_pink_0"]
-position = Vector2(0, -57.5)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_pink_0" unique_id=1107539744]
+position = Vector2(-2, -48)
 scale = Vector2(0.3526, 0.3526)
 texture = ExtResource("108_tree_pink")
-[node name="tree_purple_0" type="Node2D" parent="YSortRoot"]
+
+[node name="tree_purple_0" type="Node2D" parent="YSortRoot" unique_id=1529273467]
 position = Vector2(1290, 1090)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_purple_0"]
-position = Vector2(0, -65.2)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_purple_0" unique_id=530048590]
+position = Vector2(0, -47.000046)
 scale = Vector2(0.3767, 0.3767)
 texture = ExtResource("109_tree_purple")
-[node name="tree_green1_1" type="Node2D" parent="YSortRoot"]
+
+[node name="tree_green1_1" type="Node2D" parent="YSortRoot" unique_id=491735328]
 position = Vector2(300, 550)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_green1_1"]
-position = Vector2(0, -65.7)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_green1_1" unique_id=161015968]
+position = Vector2(0, -52.999985)
 scale = Vector2(0.3141, 0.3141)
 texture = ExtResource("106_tree_green1")
-[node name="tree_palm_1" type="Node2D" parent="YSortRoot"]
+
+[node name="tree_palm_1" type="Node2D" parent="YSortRoot" unique_id=594998812]
 position = Vector2(1700, 560)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_palm_1"]
-position = Vector2(0, -68.6)
-scale = Vector2(0.3571, 0.3571)
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_palm_1" unique_id=2105992820]
+position = Vector2(-1, -46)
+scale = Vector2(0.3276182, 0.35302922)
 texture = ExtResource("107_tree_palm")
-[node name="tree_pink_1" type="Node2D" parent="YSortRoot"]
+
+[node name="tree_pink_1" type="Node2D" parent="YSortRoot" unique_id=845882940]
 position = Vector2(320, 1080)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_pink_1"]
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_pink_1" unique_id=1573410273]
 position = Vector2(0, -54.9)
 scale = Vector2(0.3365, 0.3365)
 texture = ExtResource("108_tree_pink")
-[node name="tree_purple_1" type="Node2D" parent="YSortRoot"]
+
+[node name="tree_purple_1" type="Node2D" parent="YSortRoot" unique_id=1502560200]
 position = Vector2(1710, 1090)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_purple_1"]
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/tree_purple_1" unique_id=279511885]
 position = Vector2(0, -62.2)
 scale = Vector2(0.3596, 0.3596)
 texture = ExtResource("109_tree_purple")
-[node name="banner_red_0" type="Node2D" parent="YSortRoot"]
-position = Vector2(925, 175)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/banner_red_0"]
+[node name="banner_red_0" type="Node2D" parent="YSortRoot" unique_id=1162830557]
+position = Vector2(780, 585)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/banner_red_0" unique_id=1694194405]
 position = Vector2(0, -52.6)
 scale = Vector2(0.2007, 0.2007)
 texture = ExtResource("110_banner_red")
-[node name="banner_red_1" type="Node2D" parent="YSortRoot"]
-position = Vector2(1075, 175)
 
-[node name="Sprite" type="Sprite2D" parent="YSortRoot/banner_red_1"]
+[node name="banner_red_1" type="Node2D" parent="YSortRoot" unique_id=103626362]
+position = Vector2(1268, 585)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/banner_red_1" unique_id=189678136]
 position = Vector2(0, -52.6)
 scale = Vector2(0.2007, 0.2007)
 texture = ExtResource("110_banner_red")
 
 [node name="Player" parent="YSortRoot" unique_id=181157515 instance=ExtResource("2_player")]
-position = Vector2(1024, 750)
+position = Vector2(1239, 762)
 
-[node name="PropColliders" type="StaticBody2D" parent="."]
+[node name="PropColliders" type="StaticBody2D" parent="." unique_id=1745153239]
 
-[node name="ShrineTL" type="CollisionShape2D" parent="PropColliders"]
-position = Vector2(545, 400)
+[node name="ShrineTL" type="CollisionShape2D" parent="PropColliders" unique_id=1054548075]
+position = Vector2(562, 318)
 shape = SubResource("rect_shrine_tl")
 
-[node name="ShrineTR" type="CollisionShape2D" parent="PropColliders"]
+[node name="ShrineTR" type="CollisionShape2D" parent="PropColliders" unique_id=595581905]
 position = Vector2(1455, 400)
 shape = SubResource("rect_shrine_tr")
 
-[node name="ShrineBL" type="CollisionShape2D" parent="PropColliders"]
+[node name="ShrineBL" type="CollisionShape2D" parent="PropColliders" unique_id=929790316]
 position = Vector2(545, 1120)
 shape = SubResource("rect_shrine_bl")
 
-[node name="ShrineBR" type="CollisionShape2D" parent="PropColliders"]
-position = Vector2(1455, 1125)
-shape = SubResource("rect_shrine_br")
-
-[node name="Collider_fountain_0" type="CollisionShape2D" parent="PropColliders"]
-position = Vector2(1000, 810)
+[node name="Collider_fountain_0" type="CollisionShape2D" parent="PropColliders" unique_id=1621011059]
+position = Vector2(1019, 821)
 shape = SubResource("circ_1")
-[node name="Collider_statue_a_0" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_statue_a_0" type="CollisionShape2D" parent="PropColliders" unique_id=48011851]
 position = Vector2(1000, 385)
 shape = SubResource("circ_2")
-[node name="Collider_statue_a_1" type="CollisionShape2D" parent="PropColliders"]
-position = Vector2(1000, 1225)
+
+[node name="Collider_statue_a_1" type="CollisionShape2D" parent="PropColliders" unique_id=670946272]
+position = Vector2(1020, 1109)
 shape = SubResource("circ_3")
-[node name="Collider_statue_a_2" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_statue_a_2" type="CollisionShape2D" parent="PropColliders" unique_id=817016882]
 position = Vector2(545, 805)
 shape = SubResource("circ_4")
-[node name="Collider_statue_a_3" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_statue_a_3" type="CollisionShape2D" parent="PropColliders" unique_id=1649007772]
 position = Vector2(1455, 805)
 shape = SubResource("circ_5")
-[node name="Collider_tree_green1_0" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_tree_green1_0" type="CollisionShape2D" parent="PropColliders" unique_id=370379816]
 position = Vector2(700, 500)
 shape = SubResource("circ_6")
-[node name="Collider_tree_palm_0" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_tree_palm_0" type="CollisionShape2D" parent="PropColliders" unique_id=1667544587]
 position = Vector2(1300, 520)
 shape = SubResource("circ_7")
-[node name="Collider_tree_pink_0" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_tree_pink_0" type="CollisionShape2D" parent="PropColliders" unique_id=1437383802]
 position = Vector2(720, 1080)
 shape = SubResource("circ_8")
-[node name="Collider_tree_purple_0" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_tree_purple_0" type="CollisionShape2D" parent="PropColliders" unique_id=295078171]
 position = Vector2(1290, 1090)
 shape = SubResource("circ_9")
-[node name="Collider_tree_green1_1" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_tree_green1_1" type="CollisionShape2D" parent="PropColliders" unique_id=1786577397]
 position = Vector2(300, 550)
 shape = SubResource("circ_10")
-[node name="Collider_tree_palm_1" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_tree_palm_1" type="CollisionShape2D" parent="PropColliders" unique_id=79395366]
 position = Vector2(1700, 560)
 shape = SubResource("circ_11")
-[node name="Collider_tree_pink_1" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_tree_pink_1" type="CollisionShape2D" parent="PropColliders" unique_id=399571180]
 position = Vector2(320, 1080)
 shape = SubResource("circ_12")
-[node name="Collider_tree_purple_1" type="CollisionShape2D" parent="PropColliders"]
+
+[node name="Collider_tree_purple_1" type="CollisionShape2D" parent="PropColliders" unique_id=2051934650]
 position = Vector2(1710, 1090)
 shape = SubResource("circ_13")
+
+[node name="Collider_main_temple_0" type="CollisionShape2D" parent="PropColliders"]
+position = Vector2(1024, 485)
+shape = SubResource("rect_main_temple")
+
+[node name="Collider_tree_green1_2" type="CollisionShape2D" parent="PropColliders"]
+position = Vector2(250, 330)
+shape = SubResource("circ_14")
+
+[node name="Collider_tree_palm_2" type="CollisionShape2D" parent="PropColliders"]
+position = Vector2(1790, 330)
+shape = SubResource("circ_15")
+
+[node name="Collider_tree_pink_2" type="CollisionShape2D" parent="PropColliders"]
+position = Vector2(1800, 1360)
+shape = SubResource("circ_16")
+
+[node name="Collider_tree_purple_2" type="CollisionShape2D" parent="PropColliders"]
+position = Vector2(240, 1370)
+shape = SubResource("circ_17")
+
+[node name="Collider_tree_green1_3" type="CollisionShape2D" parent="PropColliders"]
+position = Vector2(430, 1410)
+shape = SubResource("circ_18")
+
+[node name="Collider_tree_palm_3" type="CollisionShape2D" parent="PropColliders"]
+position = Vector2(1620, 1410)
+shape = SubResource("circ_19")
