@@ -10,6 +10,11 @@ signal died
 
 var current_health: int = max_health
 
+# horizontal offset (texture px) of the drawn character from the frame center,
+# measured from the sprite sheets; used to keep the character centered when flipping
+const CHAR_X_OFF := {"idle": 21.8, "walk": 1.4}
+var _cx: float = 0.0
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: Camera2D = $Camera2D
 
@@ -43,6 +48,8 @@ func _physics_process(_delta: float) -> void:
 			animated_sprite.flip_h = dir.x > 0.0
 	else:
 		_play_animation("idle")
+	# cancel the baked-in offset so the character stays centered over the origin
+	animated_sprite.position.x = _cx if animated_sprite.flip_h else -_cx
 
 func _play_animation(anim_name: String) -> void:
 	if animated_sprite.animation != anim_name:
@@ -50,6 +57,7 @@ func _play_animation(anim_name: String) -> void:
 		var tex := animated_sprite.sprite_frames.get_frame_texture(anim_name, 0)
 		var s := display_height / tex.get_height()
 		animated_sprite.scale = Vector2(s, s)
+		_cx = CHAR_X_OFF.get(anim_name, 0.0) * s
 	animated_sprite.play(anim_name)
 
 func take_damage(amount: int) -> void:
