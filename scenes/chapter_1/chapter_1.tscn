@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cn3h23riok5gi" path="res://assets/map/chapter_1/map.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://byi4btlt0am8g" path="res://scenes/props/banner.tscn" id="3_banner"]
+[ext_resource type="Texture2D" uid="uid://ca1iitg78js6j" path="res://assets/props/Image Background Removed.png" id="4_o8eds"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1254, 78)
@@ -31,10 +33,10 @@ size = Vector2(100, 110)
 size = Vector2(60, 70)
 
 [sub_resource type="RectangleShape2D" id="rect_pond_a"]
-size = Vector2(250, 190)
+size = Vector2(322, 127)
 
 [sub_resource type="RectangleShape2D" id="rect_pond_b"]
-size = Vector2(220, 200)
+size = Vector2(318, 171)
 
 [sub_resource type="RectangleShape2D" id="rect_training"]
 size = Vector2(270, 350)
@@ -48,20 +50,8 @@ size = Vector2(250, 120)
 [sub_resource type="RectangleShape2D" id="rect_puzzle_pen"]
 size = Vector2(145, 140)
 
-[sub_resource type="CircleShape2D" id="circ_fountain"]
-radius = 105.0
-
-[sub_resource type="CircleShape2D" id="circ_banner_1"]
-radius = 9.0
-
-[sub_resource type="CircleShape2D" id="circ_banner_2"]
-radius = 9.0
-
-[sub_resource type="CircleShape2D" id="circ_banner_3"]
-radius = 9.0
-
-[sub_resource type="CircleShape2D" id="circ_banner_4"]
-radius = 9.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdldf"]
+size = Vector2(207, 177)
 
 [sub_resource type="RectangleShape2D" id="rect_statue_bed_l"]
 size = Vector2(65, 90)
@@ -70,7 +60,7 @@ size = Vector2(65, 90)
 size = Vector2(65, 90)
 
 [sub_resource type="CircleShape2D" id="circ_tree_pink"]
-radius = 30.0
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id="circ_tree_green"]
 radius = 30.0
@@ -80,6 +70,22 @@ radius = 30.0
 
 [sub_resource type="RectangleShape2D" id="rect_gate_towers"]
 size = Vector2(270, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayeki"]
+size = Vector2(63, 207)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8eds"]
+size = Vector2(57.265625, 205.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sofv4"]
+size = Vector2(107, 123)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o8eds"]
+radius = 70.028564
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o8eds"]
+radius = 62.0
+height = 180.0
 
 [node name="Chapter1" type="Node2D" unique_id=974292682]
 
@@ -108,16 +114,32 @@ shape = SubResource("rect_wall_right")
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1139865208]
 y_sort_enabled = true
 
+[node name="banner_tl" parent="YSortRoot" unique_id=510000884 instance=ExtResource("3_banner")]
+position = Vector2(468, 590)
+
+[node name="banner_tr" parent="YSortRoot" unique_id=1035146988 instance=ExtResource("3_banner")]
+position = Vector2(787, 590)
+
+[node name="banner_bl" parent="YSortRoot" unique_id=364317047 instance=ExtResource("3_banner")]
+position = Vector2(468, 792)
+
+[node name="banner_br" parent="YSortRoot" unique_id=1302321231 instance=ExtResource("3_banner")]
+position = Vector2(787, 792)
+
+[node name="fountain_statue" type="Node2D" parent="YSortRoot" unique_id=2038428443]
+position = Vector2(631, 622)
+
+[node name="Sprite" type="Sprite2D" parent="YSortRoot/fountain_statue" unique_id=381508435]
+position = Vector2(0, -67.5)
+scale = Vector2(0.2425, 0.2425)
+texture = ExtResource("4_o8eds")
+
 [node name="Player" parent="YSortRoot" unique_id=181157515 instance=ExtResource("2_player")]
-position = Vector2(500, 650)
+position = Vector2(465, 657)
 
 [node name="PropColliders" type="StaticBody2D" parent="." unique_id=1745153239]
 
 [node name="Temple" type="CollisionShape2D" parent="PropColliders" unique_id=1561555175]
-position = Vector2(622, 151.5)
-shape = SubResource("rect_temple")
-
-[node name="Temple" type="CollisionShape2D" parent="PropColliders/Temple" unique_id=291122122]
 position = Vector2(622, 151.5)
 shape = SubResource("rect_temple")
 
@@ -138,23 +160,23 @@ position = Vector2(105, 255)
 shape = SubResource("rect_well")
 
 [node name="PondUpper" type="CollisionShape2D" parent="PropColliders" unique_id=1170135240]
-position = Vector2(205, 575)
+position = Vector2(241, 539.5)
 shape = SubResource("rect_pond_a")
 
 [node name="PondLower" type="CollisionShape2D" parent="PropColliders" unique_id=1330134325]
-position = Vector2(170, 750)
+position = Vector2(219, 735.5)
 shape = SubResource("rect_pond_b")
 
 [node name="TrainingGround" type="CollisionShape2D" parent="PropColliders" unique_id=1943298048]
 position = Vector2(1040, 625)
 shape = SubResource("rect_training")
 
-[node name="WeaponRacks" type="CollisionShape2D" parent="PropColliders" unique_id=430762261]
-position = Vector2(478, 330)
+[node name="TempleGardenLeft" type="CollisionShape2D" parent="PropColliders" unique_id=430762261]
+position = Vector2(478, 328)
 shape = SubResource("rect_racks")
 
-[node name="WeaponRacks" type="CollisionShape2D" parent="PropColliders/WeaponRacks" unique_id=420261747]
-position = Vector2(296, 6)
+[node name="TempleGardenRight" type="CollisionShape2D" parent="PropColliders" unique_id=420261747]
+position = Vector2(774, 334)
 shape = SubResource("rect_racks")
 
 [node name="Market" type="CollisionShape2D" parent="PropColliders" unique_id=759617342]
@@ -166,24 +188,8 @@ position = Vector2(130, 890)
 shape = SubResource("rect_puzzle_pen")
 
 [node name="Fountain" type="CollisionShape2D" parent="PropColliders" unique_id=2061570320]
-position = Vector2(637, 655)
-shape = SubResource("circ_fountain")
-
-[node name="BannerTL" type="CollisionShape2D" parent="PropColliders" unique_id=1731592446]
-position = Vector2(468, 560)
-shape = SubResource("circ_banner_1")
-
-[node name="BannerTR" type="CollisionShape2D" parent="PropColliders" unique_id=1049305174]
-position = Vector2(777, 560)
-shape = SubResource("circ_banner_2")
-
-[node name="BannerBL" type="CollisionShape2D" parent="PropColliders" unique_id=694073641]
-position = Vector2(468, 775)
-shape = SubResource("circ_banner_3")
-
-[node name="BannerBR" type="CollisionShape2D" parent="PropColliders" unique_id=2100044900]
-position = Vector2(777, 775)
-shape = SubResource("circ_banner_4")
+position = Vector2(631, 617.5)
+shape = SubResource("RectangleShape2D_qdldf")
 
 [node name="StatueBedLeft" type="CollisionShape2D" parent="PropColliders" unique_id=1582621329]
 position = Vector2(528, 858)
@@ -208,3 +214,27 @@ shape = SubResource("circ_tree_blue")
 [node name="GateTowers" type="CollisionShape2D" parent="PropColliders" unique_id=1733571816]
 position = Vector2(627, 963)
 shape = SubResource("rect_gate_towers")
+
+[node name="FountainWest" type="CollisionShape2D" parent="PropColliders" unique_id=1330153415]
+position = Vector2(567.5, 633.5)
+shape = SubResource("RectangleShape2D_ayeki")
+
+[node name="FountainEast" type="CollisionShape2D" parent="PropColliders" unique_id=2046107480]
+position = Vector2(680.3672, 630.1875)
+shape = SubResource("RectangleShape2D_o8eds")
+
+[node name="PondUpper" type="CollisionShape2D" parent="." unique_id=1008618107]
+position = Vector2(135.5, 621)
+shape = SubResource("RectangleShape2D_sofv4")
+
+[node name="TreePink" type="CollisionShape2D" parent="." unique_id=1889228848]
+position = Vector2(237, 701)
+shape = SubResource("CircleShape2D_o8eds")
+
+[node name="TreePink2" type="CollisionShape2D" parent="." unique_id=1621330170]
+position = Vector2(359, 726)
+shape = SubResource("CapsuleShape2D_o8eds")
+
+[node name="TreePink3" type="CollisionShape2D" parent="." unique_id=501285490]
+position = Vector2(282, 763)
+shape = SubResource("CapsuleShape2D_o8eds")

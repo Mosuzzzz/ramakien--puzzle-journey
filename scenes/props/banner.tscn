@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://byi4btlt0am8g"]
+
+[ext_resource type="Texture2D" uid="uid://6ve5ldkfnxtt" path="res://assets/props/banner.png" id="1_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e2bh"]
+size = Vector2(28, 14)
+
+[node name="Banner" type="StaticBody2D" unique_id=1687684997]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1201658442]
+position = Vector2(0, -61.7)
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("1_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 252, 356.944)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1950941226]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_4e2bh")

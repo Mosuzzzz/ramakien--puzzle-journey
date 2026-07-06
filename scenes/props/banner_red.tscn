@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c70b2pr44pjdk"]
+
+[ext_resource type="Texture2D" uid="uid://tpeaed3ek5cw" path="res://assets/props/banner_red.png" id="1_tex"]
+
+[sub_resource type="CircleShape2D" id="circ_base"]
+
+[node name="BannerRed" type="StaticBody2D" unique_id=1504429323]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1032787514]
+position = Vector2(0, -52.4)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2071258321]
+position = Vector2(0, -8)
+shape = SubResource("circ_base")
