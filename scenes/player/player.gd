@@ -11,9 +11,11 @@ signal died
 var current_health: int = max_health
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var camera: Camera2D = $Camera2D
 
 func _ready() -> void:
 	current_health = max_health
+	camera.make_current()
 	animated_sprite.animation = ""
 	_play_animation("idle")
 
