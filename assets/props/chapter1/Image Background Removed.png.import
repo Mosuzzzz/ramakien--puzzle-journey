@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmka76miht6jq"
-path="res://.godot/imported/shrine_red.png-78ea548c3f8d472f4cb69720c02372fb.ctex"
+uid="uid://ca1iitg78js6j"
+path="res://.godot/imported/Image Background Removed.png-74f68f745058bcecdadc5466ac6ba0b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/shrine_red.png"
-dest_files=["res://.godot/imported/shrine_red.png-78ea548c3f8d472f4cb69720c02372fb.ctex"]
+source_file="res://assets/props/chapter1/Image Background Removed.png"
+dest_files=["res://.godot/imported/Image Background Removed.png-74f68f745058bcecdadc5466ac6ba0b7.ctex"]
 
 [params]
 

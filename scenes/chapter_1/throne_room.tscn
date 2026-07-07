@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://d1qse86oefoag"]
+
+[ext_resource type="Texture2D" uid="uid://v7yrt1i0ih61" path="res://assets/map/chapter_1/throne_room.png" id="1_room"]
+[ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
+[ext_resource type="Script" uid="uid://dkwfeirb64ukp" path="res://scenes/chapter_1/throne_room.gd" id="4_script"]
+[ext_resource type="PackedScene" path="res://scenes/props/king.tscn" id="5_king"]
+
+[sub_resource type="RectangleShape2D" id="rect_top"]
+size = Vector2(562.32, 141.68)
+
+[sub_resource type="RectangleShape2D" id="rect_left"]
+size = Vector2(29.92, 526.24)
+
+[sub_resource type="RectangleShape2D" id="rect_right"]
+size = Vector2(30.8, 526.24)
+
+[sub_resource type="RectangleShape2D" id="rect_bottom_l"]
+size = Vector2(240.24, 57.2)
+
+[sub_resource type="RectangleShape2D" id="rect_bottom_r"]
+size = Vector2(242, 57.2)
+
+[sub_resource type="RectangleShape2D" id="rect_south_edge"]
+size = Vector2(199.08, 30.9)
+
+[sub_resource type="RectangleShape2D" id="rect_dais_l"]
+size = Vector2(49.28, 105.6)
+
+[sub_resource type="RectangleShape2D" id="rect_dais_r"]
+size = Vector2(49.28, 105.6)
+
+[sub_resource type="RectangleShape2D" id="rect_throne"]
+size = Vector2(107.36, 100.32)
+
+[sub_resource type="RectangleShape2D" id="rect_banner_side"]
+size = Vector2(29.92, 43.12)
+
+[sub_resource type="RectangleShape2D" id="rect_candle_side"]
+size = Vector2(22, 58.08)
+
+[sub_resource type="RectangleShape2D" id="rect_corner_top"]
+size = Vector2(32.56, 66.88)
+
+[sub_resource type="RectangleShape2D" id="rect_table_bottom"]
+size = Vector2(49.28, 43.12)
+
+[sub_resource type="RectangleShape2D" id="rect_plant_bottom"]
+size = Vector2(24.64, 33.44)
+
+[node name="ThroneRoom" type="Node2D" unique_id=1909860668]
+script = ExtResource("4_script")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=305991799]
+position = Vector2(281.16, 263.12)
+scale = Vector2(0.4116544, 0.4572216)
+texture = ExtResource("1_room")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1767016975]
+
+[node name="Top" type="CollisionShape2D" parent="Walls" unique_id=624674217]
+position = Vector2(281.16, 70.84)
+shape = SubResource("rect_top")
+
+[node name="Left" type="CollisionShape2D" parent="Walls" unique_id=1399634315]
+position = Vector2(14.96, 263.12)
+shape = SubResource("rect_left")
+
+[node name="Right" type="CollisionShape2D" parent="Walls" unique_id=1849115456]
+position = Vector2(546.92, 263.12)
+shape = SubResource("rect_right")
+
+[node name="BottomLeft" type="CollisionShape2D" parent="Walls" unique_id=702744515]
+position = Vector2(120.12, 498.08)
+shape = SubResource("rect_bottom_l")
+
+[node name="BottomRight" type="CollisionShape2D" parent="Walls" unique_id=678595905]
+position = Vector2(441.32, 498.08)
+shape = SubResource("rect_bottom_r")
+
+[node name="SouthEdge" type="CollisionShape2D" parent="Walls" unique_id=948059668]
+position = Vector2(277, 500)
+shape = SubResource("rect_south_edge")
+
+[node name="DaisLeft" type="CollisionShape2D" parent="Walls" unique_id=1350147579]
+position = Vector2(204.6, 185.24)
+shape = SubResource("rect_dais_l")
+
+[node name="DaisRight" type="CollisionShape2D" parent="Walls" unique_id=70073021]
+position = Vector2(359.04, 185.24)
+shape = SubResource("rect_dais_r")
+
+[node name="Throne" type="CollisionShape2D" parent="Walls" unique_id=929320660]
+position = Vector2(281.16, 155.32)
+shape = SubResource("rect_throne")
+
+[node name="BannerLeft" type="CollisionShape2D" parent="Walls" unique_id=140355722]
+position = Vector2(42.68, 219.56)
+shape = SubResource("rect_banner_side")
+
+[node name="BannerRight" type="CollisionShape2D" parent="Walls" unique_id=1825134663]
+position = Vector2(519.64, 219.56)
+shape = SubResource("rect_banner_side")
+
+[node name="CandleLeft" type="CollisionShape2D" parent="Walls" unique_id=195646881]
+position = Vector2(55.88, 311.96)
+shape = SubResource("rect_candle_side")
+
+[node name="CandleRight" type="CollisionShape2D" parent="Walls" unique_id=1285928168]
+position = Vector2(506, 311.96)
+shape = SubResource("rect_candle_side")
+
+[node name="CornerTopLeft" type="CollisionShape2D" parent="Walls" unique_id=164219267]
+position = Vector2(59.4, 167.64)
+shape = SubResource("rect_corner_top")
+
+[node name="CornerTopRight" type="CollisionShape2D" parent="Walls" unique_id=1782904358]
+position = Vector2(502.04, 167.64)
+shape = SubResource("rect_corner_top")
+
+[node name="TableBottomLeft" type="CollisionShape2D" parent="Walls" unique_id=1023893586]
+position = Vector2(62.92, 432.96)
+shape = SubResource("rect_table_bottom")
+
+[node name="TableBottomRight" type="CollisionShape2D" parent="Walls" unique_id=727977053]
+position = Vector2(496.76, 432.96)
+shape = SubResource("rect_table_bottom")
+
+[node name="PlantBottomLeft" type="CollisionShape2D" parent="Walls" unique_id=1091277871]
+position = Vector2(101.64, 449.24)
+shape = SubResource("rect_plant_bottom")
+
+[node name="PlantBottomRight" type="CollisionShape2D" parent="Walls" unique_id=1636444895]
+position = Vector2(458.48, 449.24)
+shape = SubResource("rect_plant_bottom")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=928034319]
+y_sort_enabled = true
+
+[node name="King" parent="YSortRoot" unique_id=1141403656 instance=ExtResource("5_king")]
+position = Vector2(281, 185)
+
+[node name="Player" parent="YSortRoot" unique_id=10043806 instance=ExtResource("2_player")]
+position = Vector2(280.72, 440)
+
+[node name="ExitPortal" parent="YSortRoot" unique_id=260481943 instance=ExtResource("3_portal")]
+position = Vector2(281.16, 501.6)
+target_scene = "res://scenes/chapter_1/chapter_1.tscn"
+target_spawn = Vector2(625, 300)
+prompt_text = "กด E เพื่อออกไปลานวัง"

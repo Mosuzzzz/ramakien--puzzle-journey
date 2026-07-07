@@ -6,18 +6,25 @@
 [ext_resource type="Texture2D" uid="uid://ca1iitg78js6j" path="res://assets/props/Image Background Removed.png" id="4_o8eds"]
 [ext_resource type="PackedScene" uid="uid://beb8xnnh620tk" path="res://scenes/props/door.tscn" id="5_ayeki"]
 [ext_resource type="Texture2D" uid="uid://t2vhx3gyb8cb" path="res://assets/props/tree.png" id="6_sofv4"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="7_portal"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1254, 78)
 
 [sub_resource type="RectangleShape2D" id="rect_wall_bottom"]
-size = Vector2(1254, 84)
+size = Vector2(1254, 97)
+
+[sub_resource type="RectangleShape2D" id="rect_map_edge_south"]
+size = Vector2(1254, 30)
 
 [sub_resource type="RectangleShape2D" id="rect_wall_left"]
 size = Vector2(80, 1254)
 
 [sub_resource type="RectangleShape2D" id="rect_wall_right"]
 size = Vector2(81, 1254)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vlpe"]
+size = Vector2(330, 176.5)
 
 [sub_resource type="RectangleShape2D" id="rect_temple"]
 size = Vector2(475, 163)
@@ -121,10 +128,6 @@ size = Vector2(126.75, 69)
 position = Vector2(627, 627)
 texture = ExtResource("1_map")
 
-[node name="Background2" type="Sprite2D" parent="." unique_id=1617480530]
-position = Vector2(627, 627)
-texture = ExtResource("1_map")
-
 [node name="Walls" type="StaticBody2D" parent="." unique_id=735925933]
 
 [node name="Top" type="CollisionShape2D" parent="Walls" unique_id=125295059]
@@ -132,7 +135,7 @@ position = Vector2(627, 37)
 shape = SubResource("rect_wall_top")
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=1945887317]
-position = Vector2(627, 1025)
+position = Vector2(627, 1031.5)
 shape = SubResource("rect_wall_bottom")
 
 [node name="Left" type="CollisionShape2D" parent="Walls" unique_id=1966957837]
@@ -142,6 +145,26 @@ shape = SubResource("rect_wall_left")
 [node name="Right" type="CollisionShape2D" parent="Walls" unique_id=138263086]
 position = Vector2(1214.5, 627)
 shape = SubResource("rect_wall_right")
+
+[node name="Bottom2" type="CollisionShape2D" parent="Walls" unique_id=1575409466]
+position = Vector2(423, 1097.75)
+shape = SubResource("RectangleShape2D_1vlpe")
+
+[node name="Bottom3" type="CollisionShape2D" parent="Walls" unique_id=2052650712]
+position = Vector2(830, 1089)
+shape = SubResource("RectangleShape2D_1vlpe")
+
+[node name="Bottom4" type="CollisionShape2D" parent="Walls" unique_id=1146956768]
+position = Vector2(944, 1218)
+shape = SubResource("RectangleShape2D_1vlpe")
+
+[node name="Bottom5" type="CollisionShape2D" parent="Walls" unique_id=1809567048]
+position = Vector2(334, 1223)
+shape = SubResource("RectangleShape2D_1vlpe")
+
+[node name="SouthEdge" type="CollisionShape2D" parent="Walls"]
+position = Vector2(627, 1264)
+shape = SubResource("rect_map_edge_south")
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1139865208]
 y_sort_enabled = true
@@ -167,10 +190,16 @@ scale = Vector2(0.2425, 0.2425)
 texture = ExtResource("4_o8eds")
 
 [node name="Player" parent="YSortRoot" unique_id=181157515 instance=ExtResource("2_player")]
-position = Vector2(625, 454)
+position = Vector2(630, 1198)
 
 [node name="door_south" parent="YSortRoot" unique_id=819793605 instance=ExtResource("5_ayeki")]
 position = Vector2(628, 1095)
+
+[node name="ThroneRoomPortal" parent="YSortRoot" instance=ExtResource("7_portal")]
+position = Vector2(625, 260)
+target_scene = "res://scenes/chapter_1/throne_room.tscn"
+target_spawn = Vector2(281, 444)
+prompt_text = "กด E เพื่อเข้าท้องพระโรง"
 
 [node name="PropColliders" type="StaticBody2D" parent="." unique_id=1745153239]
 

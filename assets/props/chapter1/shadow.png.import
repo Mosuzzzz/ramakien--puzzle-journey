@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bim4iri41lwju"
-path="res://.godot/imported/fountain.png-158370410e60ae2f1f5dd054c27b3614.ctex"
+uid="uid://cpfrvn3qk8eng"
+path="res://.godot/imported/shadow.png-9e4d77509a576d83f0c338151d25e64d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/fountain.png"
-dest_files=["res://.godot/imported/fountain.png-158370410e60ae2f1f5dd054c27b3614.ctex"]
+source_file="res://assets/props/chapter1/shadow.png"
+dest_files=["res://.godot/imported/shadow.png-9e4d77509a576d83f0c338151d25e64d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca1iitg78js6j"
-path="res://.godot/imported/Image Background Removed.png-6521fb172e2e99d3418870ddf60a5ccb.ctex"
+uid="uid://v7yrt1i0ih61"
+path="res://.godot/imported/throne_room.png-bb67b4015b3995d25d26d1aa051b3564.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/Image Background Removed.png"
-dest_files=["res://.godot/imported/Image Background Removed.png-6521fb172e2e99d3418870ddf60a5ccb.ctex"]
+source_file="res://assets/map/chapter_1/throne_room.png"
+dest_files=["res://.godot/imported/throne_room.png-bb67b4015b3995d25d26d1aa051b3564.ctex"]
 
 [params]
 

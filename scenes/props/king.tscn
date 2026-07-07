@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://chsmvaepno25o"]
+
+[ext_resource type="Texture2D" uid="uid://br85b85p4x8e8" path="res://assets/charecter/King/King_idle.png" id="1_king"]
+[ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="2_shadow"]
+
+[sub_resource type="AtlasTexture" id="k0"]
+atlas = ExtResource("1_king")
+region = Rect2(0, 0, 102, 408)
+
+[sub_resource type="AtlasTexture" id="k1"]
+atlas = ExtResource("1_king")
+region = Rect2(102, 0, 102, 408)
+
+[sub_resource type="AtlasTexture" id="k2"]
+atlas = ExtResource("1_king")
+region = Rect2(204, 0, 102, 408)
+
+[sub_resource type="AtlasTexture" id="k3"]
+atlas = ExtResource("1_king")
+region = Rect2(306, 0, 102, 408)
+
+[sub_resource type="AtlasTexture" id="k4"]
+atlas = ExtResource("1_king")
+region = Rect2(408, 0, 102, 408)
+
+[sub_resource type="AtlasTexture" id="k5"]
+atlas = ExtResource("1_king")
+region = Rect2(510, 0, 102, 408)
+
+[sub_resource type="SpriteFrames" id="frames_king"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("k3")
+}, {
+"duration": 1.0,
+"texture": SubResource("k4")
+}, {
+"duration": 1.0,
+"texture": SubResource("k5")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="King" type="Node2D" unique_id=158156927]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1883883732]
+position = Vector2(0, -24.9)
+scale = Vector2(0.28, 0.28)
+sprite_frames = SubResource("frames_king")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1205995041]
+modulate = Color(1, 1, 1, 0.55)
+position = Vector2(1, 1)
+scale = Vector2(0.11, 0.035)
+texture = ExtResource("2_shadow")

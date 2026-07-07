@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7pjkm6lmokqq"
-path="res://.godot/imported/big_gate.png-ec7a429c41aa1c80938ae2a99c105147.ctex"
+uid="uid://br85b85p4x8e8"
+path="res://.godot/imported/King_idle.png-5150f19cba8e1ff253942e8d1d5f1965.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/big_gate.png"
-dest_files=["res://.godot/imported/big_gate.png-ec7a429c41aa1c80938ae2a99c105147.ctex"]
+source_file="res://assets/charecter/King/King_idle.png"
+dest_files=["res://.godot/imported/King_idle.png-5150f19cba8e1ff253942e8d1d5f1965.ctex"]
 
 [params]
 
