@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t43pixu5p1lh"
-path="res://.godot/imported/main_temple.png-0ca1a9cfb57dfe08dbbcf1444e071d22.ctex"
+uid="uid://bim4iri41lwju"
+path="res://.godot/imported/fountain.png-22ca8e7b42d3abe4f775e872eac1d749.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/props/main_temple.png"
-dest_files=["res://.godot/imported/main_temple.png-0ca1a9cfb57dfe08dbbcf1444e071d22.ctex"]
+source_file="res://assets/props/chapter1/fountain.png"
+dest_files=["res://.godot/imported/fountain.png-22ca8e7b42d3abe4f775e872eac1d749.ctex"]
 
 [params]
 

@@ -3,6 +3,8 @@ extends CharacterBody2D
 signal health_changed(current_health: int, max_health: int)
 signal died
 
+const GameState := preload("res://scenes/game_state.gd")
+
 @export var character_name: String = "Phra Ram"
 @export var speed: float = 150.0
 @export var max_health: int = 100
@@ -20,6 +22,9 @@ var _cx: float = 0.0
 
 func _ready() -> void:
 	current_health = max_health
+	if GameState.next_spawn.is_finite():
+		global_position = GameState.next_spawn
+		GameState.next_spawn = Vector2.INF
 	camera.make_current()
 	animated_sprite.animation = ""
 	_play_animation("idle")
