@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cdjx4w17yt8ex" path="res://assets/map/chapter_2/image.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
+[ext_resource type="PackedScene" path="res://scenes/props/mob.tscn" id="3_mob"]
 
 [sub_resource type="RectangleShape2D" id="rect_top_boundary"]
 size = Vector2(2048, 135)
@@ -23,7 +24,7 @@ size = Vector2(935, 274)
 size = Vector2(328, 140)
 
 [sub_resource type="RectangleShape2D" id="rect_gate_right_wall"]
-size = Vector2(313, 136)
+size = Vector2(313, 143)
 
 [sub_resource type="RectangleShape2D" id="rect_top_left_forest"]
 size = Vector2(380, 140)
@@ -59,10 +60,13 @@ radius = 95.02105
 radius = 95.02105
 
 [sub_resource type="CircleShape2D" id="circle_small"]
-radius = 78.10249
+radius = 73.43705
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mon38"]
 radius = 145.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kmcq"]
+radius = 104.80935
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ql6fc"]
 radius = 86.209045
@@ -70,14 +74,26 @@ radius = 86.209045
 [sub_resource type="CircleShape2D" id="CircleShape2D_jyi5v"]
 radius = 78.10249
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ewys"]
+radius = 78.10249
+
 [sub_resource type="CircleShape2D" id="circle_tiny"]
 radius = 94.641426
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elwof"]
+size = Vector2(184, 130.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7korc"]
+radius = 132.45753
 
 [sub_resource type="CircleShape2D" id="circle_big"]
 radius = 132.45753
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2mjbf"]
 radius = 145.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8ag2"]
+radius = 96.0833
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8let3"]
 radius = 145.0
@@ -101,9 +117,9 @@ radius = 123.25989
 radius = 110.36757
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qj6e0"]
-radius = 34.234486
+radius = 37.054016
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0bj88"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2sge"]
 radius = 79.30952
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pbjye"]
@@ -114,6 +130,21 @@ radius = 104.388695
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4t7t"]
 radius = 94.33981
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0bj88"]
+radius = 79.30952
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yjm72"]
+radius = 157.81319
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lftnd"]
+radius = 144.08678
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjmes"]
+radius = 54.33231
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5i27y"]
+radius = 36.496574
 
 [node name="Chapter2" type="Node2D" unique_id=1456977817]
 
@@ -148,7 +179,7 @@ position = Vector2(769, 210)
 shape = SubResource("rect_gate_left_wall")
 
 [node name="GateWallRight" type="CollisionShape2D" parent="Walls" unique_id=1249744716]
-position = Vector2(1236, 148)
+position = Vector2(1236, 151.5)
 shape = SubResource("rect_gate_right_wall")
 
 [node name="TopLeftForest" type="CollisionShape2D" parent="Walls" unique_id=988594274]
@@ -156,7 +187,7 @@ position = Vector2(445, 170)
 shape = SubResource("rect_top_left_forest")
 
 [node name="TopRightForest" type="CollisionShape2D" parent="Walls" unique_id=1345618608]
-position = Vector2(1648, 209)
+position = Vector2(1650, 238)
 shape = SubResource("rect_top_right_forest")
 
 [node name="UpperRightCornerForest" type="CollisionShape2D" parent="Walls" unique_id=1488858530]
@@ -188,7 +219,7 @@ position = Vector2(516, 257)
 shape = SubResource("CircleShape2D_1j3co")
 
 [node name="WaterfallRocks" type="CollisionShape2D" parent="Walls" unique_id=16201858]
-position = Vector2(551, 590)
+position = Vector2(532, 598)
 shape = SubResource("circle_medium")
 
 [node name="LowerStreamA" type="CollisionShape2D" parent="Walls" unique_id=899235219]
@@ -196,56 +227,56 @@ position = Vector2(598, 1062)
 shape = SubResource("CircleShape2D_533dn")
 
 [node name="LowerStreamB" type="CollisionShape2D" parent="Walls" unique_id=1993702616]
-position = Vector2(513, 1175)
+position = Vector2(503, 1162)
 shape = SubResource("circle_small")
 
 [node name="CentralBigTree" type="CollisionShape2D" parent="Walls" unique_id=1396337743]
-position = Vector2(575, 891)
+position = Vector2(552, 891)
 shape = SubResource("CircleShape2D_mon38")
 
 [node name="CentralTreeSouth" type="CollisionShape2D" parent="Walls" unique_id=748690408]
-position = Vector2(656, 587)
+position = Vector2(658, 587)
 shape = SubResource("circle_medium")
 
 [node name="MidRockRidgeLeft" type="CollisionShape2D" parent="Walls" unique_id=1332264683]
-position = Vector2(618, 1168)
-shape = SubResource("circle_medium")
+position = Vector2(587, 1176)
+shape = SubResource("CircleShape2D_4kmcq")
 
 [node name="MidRockRidgeRight" type="CollisionShape2D" parent="Walls" unique_id=50090958]
 position = Vector2(857, 1125)
 shape = SubResource("CircleShape2D_ql6fc")
 
 [node name="UpperCenterBush" type="CollisionShape2D" parent="Walls" unique_id=815976891]
-position = Vector2(1080, 443)
+position = Vector2(1078, 427)
 shape = SubResource("CircleShape2D_jyi5v")
 
 [node name="UpperCenterRock" type="CollisionShape2D" parent="Walls" unique_id=1672089502]
-position = Vector2(1242, 418)
-shape = SubResource("circle_small")
+position = Vector2(1221, 420)
+shape = SubResource("CircleShape2D_2ewys")
 
 [node name="UpperCenterSmallRock" type="CollisionShape2D" parent="Walls" unique_id=1082622318]
 position = Vector2(1331, 378)
 shape = SubResource("circle_tiny")
 
 [node name="RightCliffUpperA" type="CollisionShape2D" parent="Walls" unique_id=408795030]
-position = Vector2(1382, 438)
+position = Vector2(1396, 436)
 shape = SubResource("circle_medium")
 
 [node name="RightCliffUpperB" type="CollisionShape2D" parent="Walls" unique_id=978660036]
-position = Vector2(1492, 454)
+position = Vector2(1498, 446)
 shape = SubResource("circle_small")
 
 [node name="RightCliffUpperC" type="CollisionShape2D" parent="Walls" unique_id=723191733]
-position = Vector2(1603, 505)
+position = Vector2(1622, 501)
 shape = SubResource("circle_small")
 
 [node name="RightCliffMidA" type="CollisionShape2D" parent="Walls" unique_id=1747062744]
-position = Vector2(1267, 639)
-shape = SubResource("circle_big")
+position = Vector2(1266, 564.25)
+shape = SubResource("RectangleShape2D_elwof")
 
 [node name="RightCliffMidB" type="CollisionShape2D" parent="Walls" unique_id=353564970]
 position = Vector2(1438, 591)
-shape = SubResource("circle_big")
+shape = SubResource("CircleShape2D_7korc")
 
 [node name="RightCliffMidC" type="CollisionShape2D" parent="Walls" unique_id=1978222532]
 position = Vector2(843, 1353)
@@ -268,7 +299,7 @@ position = Vector2(1597, 1231)
 shape = SubResource("circle_medium")
 
 [node name="LowerRightRocksC" type="CollisionShape2D" parent="Walls" unique_id=1647251598]
-position = Vector2(1385, 1050)
+position = Vector2(1370, 1025)
 shape = SubResource("circle_medium")
 
 [node name="LowerRightRocksD" type="CollisionShape2D" parent="Walls" unique_id=756511630]
@@ -280,11 +311,11 @@ position = Vector2(1108, 982)
 shape = SubResource("circle_medium")
 
 [node name="LowerCenterRock" type="CollisionShape2D" parent="Walls" unique_id=1292129398]
-position = Vector2(1234, 1232)
-shape = SubResource("circle_small")
+position = Vector2(1240, 1225)
+shape = SubResource("CircleShape2D_e8ag2")
 
 [node name="LowerCenterBush" type="CollisionShape2D" parent="Walls" unique_id=526206442]
-position = Vector2(1230, 1009)
+position = Vector2(1275, 1019)
 shape = SubResource("circle_small")
 
 [node name="CentralBigTreeUser1" type="CollisionShape2D" parent="Walls" unique_id=1042851905]
@@ -292,7 +323,7 @@ position = Vector2(819, 316)
 shape = SubResource("CircleShape2D_8let3")
 
 [node name="CentralBigTree2" type="CollisionShape2D" parent="Walls" unique_id=357309847]
-position = Vector2(813, 437)
+position = Vector2(774, 468)
 shape = SubResource("CircleShape2D_veea4")
 
 [node name="CentralBigTree3" type="CollisionShape2D" parent="Walls" unique_id=1256549232]
@@ -308,7 +339,7 @@ position = Vector2(1461, 152)
 shape = SubResource("rect_top_right_forest")
 
 [node name="CentralBigTree5" type="CollisionShape2D" parent="Walls" unique_id=527988153]
-position = Vector2(897, 841)
+position = Vector2(894, 834)
 shape = SubResource("CircleShape2D_4jyad")
 
 [node name="MidRockRidgeLeftUser3" type="CollisionShape2D" parent="Walls" unique_id=339882942]
@@ -324,15 +355,15 @@ position = Vector2(287, 711)
 shape = SubResource("CircleShape2D_e4e42")
 
 [node name="MidRockRidgeLeft4" type="CollisionShape2D" parent="Walls" unique_id=973854281]
-position = Vector2(211, 892)
+position = Vector2(250, 939)
 shape = SubResource("CircleShape2D_b50n7")
 
 [node name="MidRockRidgeLeft5" type="CollisionShape2D" parent="Walls" unique_id=748005425]
-position = Vector2(201, 1204)
+position = Vector2(220, 1208)
 shape = SubResource("CircleShape2D_b50n7")
 
 [node name="MidRockRidgeLeft6" type="CollisionShape2D" parent="Walls" unique_id=1565444357]
-position = Vector2(1133, 297)
+position = Vector2(1146, 301)
 shape = SubResource("CircleShape2D_qj6e0")
 
 [node name="UpperCenterSmallRockUser4" type="CollisionShape2D" parent="Walls" unique_id=1802224650]
@@ -341,7 +372,7 @@ shape = SubResource("circle_tiny")
 
 [node name="MidRockRidgeRightUser5" type="CollisionShape2D" parent="Walls" unique_id=1641490106]
 position = Vector2(875, 1065)
-shape = SubResource("CircleShape2D_0bj88")
+shape = SubResource("CircleShape2D_a2sge")
 
 [node name="UpperCenterSmallRock2" type="CollisionShape2D" parent="Walls" unique_id=1311859345]
 position = Vector2(370, 1057)
@@ -387,6 +418,34 @@ shape = SubResource("CircleShape2D_0bj88")
 position = Vector2(443, 1316)
 shape = SubResource("CircleShape2D_qj6e0")
 
+[node name="UpperCenterRock2" type="CollisionShape2D" parent="Walls" unique_id=1901012205]
+position = Vector2(1318, 580)
+shape = SubResource("CircleShape2D_yjm72")
+
+[node name="MidRockRidgeRightUser7" type="CollisionShape2D" parent="Walls" unique_id=1138217614]
+position = Vector2(702, 915)
+shape = SubResource("CircleShape2D_a2sge")
+
+[node name="MidRockRidgeRightUser8" type="CollisionShape2D" parent="Walls" unique_id=596056231]
+position = Vector2(655, 884)
+shape = SubResource("CircleShape2D_lftnd")
+
+[node name="UpperCenterSmallRockUser5" type="CollisionShape2D" parent="Walls" unique_id=1496945750]
+position = Vector2(293, 583)
+shape = SubResource("circle_tiny")
+
+[node name="UpperCenterSmallRock6" type="CollisionShape2D" parent="Walls" unique_id=1260596520]
+position = Vector2(1521, 226)
+shape = SubResource("circle_tiny")
+
+[node name="LowerCenterRock3" type="CollisionShape2D" parent="Walls" unique_id=1921405262]
+position = Vector2(1393, 1127)
+shape = SubResource("CircleShape2D_mjmes")
+
+[node name="CentralBigTree6" type="CollisionShape2D" parent="Walls" unique_id=2144577952]
+position = Vector2(958, 816)
+shape = SubResource("CircleShape2D_5i27y")
+
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1169931713]
 y_sort_enabled = true
 
@@ -399,12 +458,11 @@ prompt_text = "กด E เพื่อกลับวัง"
 [node name="Player" parent="YSortRoot" unique_id=1670645966 instance=ExtResource("2_player")]
 position = Vector2(1024, 1280)
 
-[node name="Camera2D" parent="YSortRoot/Player" index="3"]
-enabled = true
-zoom = Vector2(1.15, 1.15)
-limit_left = 0
-limit_top = 0
-limit_right = 2048
-limit_bottom = 1536
-position_smoothing_enabled = true
-position_smoothing_speed = 6.0
+[node name="Mob1" parent="YSortRoot" instance=ExtResource("3_mob")]
+position = Vector2(1030, 1180)
+
+[node name="Mob2" parent="YSortRoot" instance=ExtResource("3_mob")]
+position = Vector2(1400, 1240)
+
+[node name="Mob3" parent="YSortRoot" instance=ExtResource("3_mob")]
+position = Vector2(980, 640)

@@ -1,0 +1,445 @@
+[gd_scene format=3 uid="uid://c3battlegate"]
+
+[ext_resource type="Texture2D" uid="uid://dw8p83mtxtie" path="res://assets/map/chapter_3/475b6c83-4a0f-4b5d-83f2-bd9037217dd0.png" id="1_map"]
+[ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+
+[sub_resource type="RectangleShape2D" id="rect_wall_top"]
+size = Vector2(1448, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvbg3"]
+size = Vector2(687, 90)
+
+[sub_resource type="RectangleShape2D" id="rect_wall_left"]
+size = Vector2(80, 1086)
+
+[sub_resource type="RectangleShape2D" id="rect_wall_right"]
+size = Vector2(202, 1086)
+
+[sub_resource type="RectangleShape2D" id="rect_gate_block"]
+size = Vector2(419, 179.25)
+
+[sub_resource type="RectangleShape2D" id="rect_upper_left_block"]
+size = Vector2(324.5, 300)
+
+[sub_resource type="RectangleShape2D" id="rect_upper_right_block"]
+size = Vector2(335, 295)
+
+[sub_resource type="RectangleShape2D" id="rect_lower_left_block"]
+size = Vector2(270, 230)
+
+[sub_resource type="RectangleShape2D" id="rect_lower_right_block"]
+size = Vector2(307, 280)
+
+[sub_resource type="CircleShape2D" id="circ_obstacle_large"]
+radius = 92.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53ayk"]
+radius = 167.43059
+
+[sub_resource type="CircleShape2D" id="circ_obstacle_medium"]
+radius = 167.43059
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2t6hx"]
+radius = 87.29834
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7h0s"]
+radius = 39.051247
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8w73"]
+radius = 41.04875
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tw8m1"]
+radius = 41.01219
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_253fu"]
+radius = 40.04997
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkp62"]
+size = Vector2(299, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tw8m1"]
+size = Vector2(69, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_woae5"]
+size = Vector2(76, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ua0d"]
+size = Vector2(56.125, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_253fu"]
+size = Vector2(37, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i43gm"]
+size = Vector2(37, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pg1f"]
+size = Vector2(27, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8w73"]
+size = Vector2(26, 50.09375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc3lg"]
+size = Vector2(149, 57.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6f5c"]
+radius = 107.11676
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30dj7"]
+size = Vector2(107, 49.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53ayk"]
+size = Vector2(118.75, 66)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pg1f"]
+radius = 58.30952
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7h0s"]
+size = Vector2(42, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nbwc"]
+size = Vector2(52, 17)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_de6jc"]
+radius = 33.24154
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioc3c"]
+size = Vector2(69, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6f5c"]
+size = Vector2(56.5, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lkp62"]
+radius = 54.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t6hx"]
+size = Vector2(46, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de6jc"]
+size = Vector2(39, 68.4375)
+
+[sub_resource type="RectangleShape2D" id="rect_wall_bottom"]
+size = Vector2(687, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc1x5"]
+size = Vector2(26.5, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2hnj"]
+size = Vector2(25.5, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5x32x"]
+size = Vector2(26.5, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay2sp"]
+size = Vector2(37, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lnxt"]
+size = Vector2(26.5, 44.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5adn"]
+size = Vector2(37, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udn7k"]
+size = Vector2(37, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kalh"]
+size = Vector2(37, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elwof"]
+size = Vector2(37, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nac7m"]
+size = Vector2(37, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pc3lg"]
+radius = 131.00381
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_30dj7"]
+radius = 42.107006
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojfc8"]
+size = Vector2(21.5, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uxhn"]
+size = Vector2(37, 26)
+
+[node name="Chapter3" type="Node2D" unique_id=530775568]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=134560956]
+position = Vector2(727, 541)
+texture = ExtResource("1_map")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=2072889760]
+
+[node name="TopBoundary" type="CollisionShape2D" parent="Walls" unique_id=1875078957]
+position = Vector2(724, 40)
+shape = SubResource("rect_wall_top")
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="Walls" unique_id=1977544414]
+position = Vector2(343.5, 1041)
+shape = SubResource("RectangleShape2D_dvbg3")
+
+[node name="LeftBoundary" type="CollisionShape2D" parent="Walls" unique_id=344906990]
+position = Vector2(40, 543)
+shape = SubResource("rect_wall_left")
+
+[node name="RightBoundary" type="CollisionShape2D" parent="Walls" unique_id=39028827]
+position = Vector2(1347, 543)
+shape = SubResource("rect_wall_right")
+
+[node name="BattleGateBlock" type="CollisionShape2D" parent="Walls" unique_id=389743797]
+position = Vector2(722, 170)
+shape = SubResource("rect_gate_block")
+
+[node name="UpperLeftBlock" type="CollisionShape2D" parent="Walls" unique_id=994100393]
+position = Vector2(178, 238)
+shape = SubResource("rect_upper_left_block")
+
+[node name="UpperRightBlock" type="CollisionShape2D" parent="Walls" unique_id=669934895]
+position = Vector2(1214, 243)
+shape = SubResource("rect_upper_right_block")
+
+[node name="LowerLeftBlock" type="CollisionShape2D" parent="Walls" unique_id=1814435712]
+position = Vector2(218, 884)
+shape = SubResource("rect_lower_left_block")
+
+[node name="LowerRightBlock" type="CollisionShape2D" parent="Walls" unique_id=1463857320]
+position = Vector2(1226.5, 865)
+shape = SubResource("rect_lower_right_block")
+
+[node name="CenterObstacleA" type="CollisionShape2D" parent="Walls" unique_id=1018758345]
+position = Vector2(542, 784)
+shape = SubResource("circ_obstacle_large")
+
+[node name="CenterObstacleB" type="CollisionShape2D" parent="Walls" unique_id=640898508]
+position = Vector2(1088, 562)
+shape = SubResource("circ_obstacle_large")
+
+[node name="LeftObstacle" type="CollisionShape2D" parent="Walls" unique_id=768261974]
+position = Vector2(217, 658)
+shape = SubResource("CircleShape2D_53ayk")
+
+[node name="RightObstacle" type="CollisionShape2D" parent="Walls" unique_id=1742281382]
+position = Vector2(1238, 695)
+shape = SubResource("circ_obstacle_medium")
+
+[node name="LeftObstacle2" type="CollisionShape2D" parent="Walls" unique_id=1134240543]
+position = Vector2(119, 441)
+shape = SubResource("CircleShape2D_2t6hx")
+
+[node name="CenterObstacleA2" type="CollisionShape2D" parent="Walls" unique_id=1693766829]
+position = Vector2(413, 721)
+shape = SubResource("circ_obstacle_large")
+
+[node name="CenterObstacleA3" type="CollisionShape2D" parent="Walls" unique_id=46054232]
+position = Vector2(441, 608)
+shape = SubResource("circ_obstacle_large")
+
+[node name="CenterObstacleA5" type="CollisionShape2D" parent="Walls" unique_id=1833414484]
+position = Vector2(336, 353)
+shape = SubResource("circ_obstacle_large")
+
+[node name="CenterObstacleA4" type="CollisionShape2D" parent="Walls" unique_id=981459084]
+position = Vector2(521, 696)
+shape = SubResource("circ_obstacle_large")
+
+[node name="CenterObstacleA6" type="CollisionShape2D" parent="Walls" unique_id=658671521]
+position = Vector2(429, 404)
+shape = SubResource("CircleShape2D_m7h0s")
+
+[node name="CenterObstacleA7" type="CollisionShape2D" parent="Walls" unique_id=2002311654]
+position = Vector2(361, 564)
+shape = SubResource("circ_obstacle_large")
+
+[node name="CenterObstacleA8" type="CollisionShape2D" parent="Walls" unique_id=1711110106]
+position = Vector2(1121, 344)
+shape = SubResource("circ_obstacle_large")
+
+[node name="CenterObstacleA9" type="CollisionShape2D" parent="Walls" unique_id=109022785]
+position = Vector2(528, 435)
+shape = SubResource("CircleShape2D_e8w73")
+
+[node name="CenterObstacleA10" type="CollisionShape2D" parent="Walls" unique_id=1775595664]
+position = Vector2(1002, 404)
+shape = SubResource("CircleShape2D_tw8m1")
+
+[node name="CenterObstacleA11" type="CollisionShape2D" parent="Walls" unique_id=870099151]
+position = Vector2(937, 428)
+shape = SubResource("CircleShape2D_253fu")
+
+[node name="CenterObstacleB2" type="CollisionShape2D" parent="Walls" unique_id=948856613]
+position = Vector2(927, 689)
+shape = SubResource("circ_obstacle_large")
+
+[node name="CenterObstacleB3" type="CollisionShape2D" parent="Walls" unique_id=228980198]
+position = Vector2(1014, 652)
+shape = SubResource("circ_obstacle_large")
+
+[node name="BattleGateBlock2" type="CollisionShape2D" parent="Walls" unique_id=1371135038]
+position = Vector2(367, 170)
+shape = SubResource("RectangleShape2D_lkp62")
+
+[node name="CenterObstacleA12" type="CollisionShape2D" parent="Walls" unique_id=209853631]
+position = Vector2(432, 283)
+shape = SubResource("CircleShape2D_m7h0s")
+
+[node name="BattleGateBlock3" type="CollisionShape2D" parent="Walls" unique_id=1635830881]
+position = Vector2(1079, 177)
+shape = SubResource("RectangleShape2D_lkp62")
+
+[node name="BattleGateBlock4" type="CollisionShape2D" parent="Walls" unique_id=1322677674]
+position = Vector2(862, 325)
+shape = SubResource("RectangleShape2D_tw8m1")
+
+[node name="BattleGateBlock5" type="CollisionShape2D" parent="Walls" unique_id=1255325023]
+position = Vector2(590, 321)
+shape = SubResource("RectangleShape2D_woae5")
+
+[node name="BattleGateBlock6" type="CollisionShape2D" parent="Walls" unique_id=1443052677]
+position = Vector2(485.9375, 293)
+shape = SubResource("RectangleShape2D_7ua0d")
+
+[node name="BattleGateBlock7" type="CollisionShape2D" parent="Walls" unique_id=1818729100]
+position = Vector2(619.5, 442)
+shape = SubResource("RectangleShape2D_253fu")
+
+[node name="BattleGateBlock8" type="CollisionShape2D" parent="Walls" unique_id=1691155183]
+position = Vector2(819, 440)
+shape = SubResource("RectangleShape2D_i43gm")
+
+[node name="BattleGateBlock9" type="CollisionShape2D" parent="Walls" unique_id=159776579]
+position = Vector2(815, 553.875)
+shape = SubResource("RectangleShape2D_4pg1f")
+
+[node name="BattleGateBlock10" type="CollisionShape2D" parent="Walls" unique_id=1101213879]
+position = Vector2(634, 545.9531)
+shape = SubResource("RectangleShape2D_e8w73")
+
+[node name="BattleGateBlock11" type="CollisionShape2D" parent="Walls" unique_id=276053457]
+position = Vector2(510, 964)
+shape = SubResource("RectangleShape2D_pc3lg")
+
+[node name="CenterObstacleA13" type="CollisionShape2D" parent="Walls" unique_id=1114984550]
+position = Vector2(1025, 989)
+shape = SubResource("CircleShape2D_l6f5c")
+
+[node name="BattleGateBlock12" type="CollisionShape2D" parent="Walls" unique_id=698262967]
+position = Vector2(846.5, 967)
+shape = SubResource("RectangleShape2D_30dj7")
+
+[node name="BattleGateBlock13" type="CollisionShape2D" parent="Walls" unique_id=101440557]
+position = Vector2(826, 809)
+shape = SubResource("RectangleShape2D_53ayk")
+
+[node name="CenterObstacleA14" type="CollisionShape2D" parent="Walls" unique_id=988628309]
+position = Vector2(1204, 512)
+shape = SubResource("CircleShape2D_4pg1f")
+
+[node name="BattleGateBlock14" type="CollisionShape2D" parent="Walls" unique_id=1642953702]
+position = Vector2(850, 527)
+shape = SubResource("RectangleShape2D_m7h0s")
+
+[node name="BattleGateBlock15" type="CollisionShape2D" parent="Walls" unique_id=2045458772]
+position = Vector2(597, 521.5)
+shape = SubResource("RectangleShape2D_0nbwc")
+
+[node name="CenterObstacleA15" type="CollisionShape2D" parent="Walls" unique_id=1401066430]
+position = Vector2(1029, 839)
+shape = SubResource("CircleShape2D_de6jc")
+
+[node name="BattleGateBlock16" type="CollisionShape2D" parent="Walls" unique_id=1509898789]
+position = Vector2(1012, 299)
+shape = SubResource("RectangleShape2D_ioc3c")
+
+[node name="BattleGateBlock17" type="CollisionShape2D" parent="Walls" unique_id=410495637]
+position = Vector2(448, 507)
+shape = SubResource("RectangleShape2D_l6f5c")
+
+[node name="CenterObstacleA16" type="CollisionShape2D" parent="Walls" unique_id=1287308411]
+position = Vector2(949, 573)
+shape = SubResource("CircleShape2D_lkp62")
+
+[node name="BattleGateBlock18" type="CollisionShape2D" parent="Walls" unique_id=871022868]
+position = Vector2(639, 749)
+shape = SubResource("RectangleShape2D_2t6hx")
+
+[node name="BattleGateBlock19" type="CollisionShape2D" parent="Walls" unique_id=2113711528]
+position = Vector2(826, 686.78125)
+shape = SubResource("RectangleShape2D_de6jc")
+
+[node name="CenterObstacleA17" type="CollisionShape2D" parent="Walls" unique_id=1580821490]
+position = Vector2(895, 786)
+shape = SubResource("CircleShape2D_de6jc")
+
+[node name="BottomBoundary2" type="CollisionShape2D" parent="Walls" unique_id=430212542]
+position = Vector2(1024, 1036)
+shape = SubResource("rect_wall_bottom")
+
+[node name="BattleGateBlock20" type="CollisionShape2D" parent="Walls" unique_id=169240059]
+position = Vector2(629.5, 636.5)
+shape = SubResource("RectangleShape2D_yc1x5")
+
+[node name="BattleGateBlock21" type="CollisionShape2D" parent="Walls" unique_id=2147323031]
+position = Vector2(811.25, 645)
+shape = SubResource("RectangleShape2D_t2hnj")
+
+[node name="BattleGateBlock22" type="CollisionShape2D" parent="Walls" unique_id=2051289902]
+position = Vector2(533.75, 557)
+shape = SubResource("RectangleShape2D_5x32x")
+
+[node name="BattleGateBlock23" type="CollisionShape2D" parent="Walls" unique_id=1610988936]
+position = Vector2(887, 452)
+shape = SubResource("RectangleShape2D_ay2sp")
+
+[node name="BattleGateBlock24" type="CollisionShape2D" parent="Walls" unique_id=769866373]
+position = Vector2(488, 530)
+shape = SubResource("RectangleShape2D_8lnxt")
+
+[node name="BattleGateBlock25" type="CollisionShape2D" parent="Walls" unique_id=460624883]
+position = Vector2(475, 444)
+shape = SubResource("RectangleShape2D_s5adn")
+
+[node name="BattleGateBlock26" type="CollisionShape2D" parent="Walls" unique_id=686825445]
+position = Vector2(1342.5, 978)
+shape = SubResource("RectangleShape2D_253fu")
+
+[node name="BattleGateBlock27" type="CollisionShape2D" parent="Walls" unique_id=363525968]
+position = Vector2(386, 417)
+shape = SubResource("RectangleShape2D_udn7k")
+
+[node name="BattleGateBlock28" type="CollisionShape2D" parent="Walls" unique_id=1101413278]
+position = Vector2(1128, 421)
+shape = SubResource("RectangleShape2D_6kalh")
+
+[node name="BattleGateBlock29" type="CollisionShape2D" parent="Walls" unique_id=1045889508]
+position = Vector2(979, 438)
+shape = SubResource("RectangleShape2D_elwof")
+
+[node name="BattleGateBlock30" type="CollisionShape2D" parent="Walls" unique_id=104082719]
+position = Vector2(1032, 418)
+shape = SubResource("RectangleShape2D_nac7m")
+
+[node name="LeftObstacle3" type="CollisionShape2D" parent="Walls" unique_id=782823920]
+position = Vector2(265, 896)
+shape = SubResource("CircleShape2D_pc3lg")
+
+[node name="CenterObstacleA18" type="CollisionShape2D" parent="Walls" unique_id=1697601303]
+position = Vector2(481, 417)
+shape = SubResource("CircleShape2D_30dj7")
+
+[node name="BattleGateBlock31" type="CollisionShape2D" parent="Walls" unique_id=757172888]
+position = Vector2(302.25, 435)
+shape = SubResource("RectangleShape2D_ojfc8")
+
+[node name="BattleGateBlock32" type="CollisionShape2D" parent="Walls" unique_id=1610052733]
+position = Vector2(964, 290)
+shape = SubResource("RectangleShape2D_tw8m1")
+
+[node name="BattleGateBlock33" type="CollisionShape2D" parent="Walls" unique_id=1275266471]
+position = Vector2(557, 455)
+shape = SubResource("RectangleShape2D_8uxhn")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=1306578682]
+y_sort_enabled = true
+
+[node name="Player" parent="YSortRoot" unique_id=1960272009 instance=ExtResource("2_player")]
+position = Vector2(724, 930)
