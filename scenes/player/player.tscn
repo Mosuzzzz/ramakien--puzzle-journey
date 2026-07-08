@@ -1,41 +1,41 @@
 [gd_scene format=3 uid="uid://dx7q74sr1516b"]
 
 [ext_resource type="Script" uid="uid://dry2alg1vo2u2" path="res://scenes/player/player.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://bcpmj33uvvl6e" path="res://assets/charecter/Pharam/Idle.png" id="2_gmlin"]
 [ext_resource type="Texture2D" uid="uid://cssvuxukkwknx" path="res://assets/charecter/Pharam/run.png" id="3_gmlin"]
+[ext_resource type="Texture2D" uid="uid://b25xvbo2ann7" path="res://assets/charecter/Pharam/main_character.png" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="4_shadow"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
-atlas = ExtResource("2_gmlin")
-region = Rect2(0, 0, 256, 255)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
-atlas = ExtResource("2_gmlin")
-region = Rect2(256, 0, 256, 255)
+atlas = ExtResource("3_lvxji")
+region = Rect2(0, 0, 76, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
-atlas = ExtResource("2_gmlin")
-region = Rect2(512, 0, 256, 255)
+atlas = ExtResource("3_lvxji")
+region = Rect2(76, 0, 76, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
-atlas = ExtResource("2_gmlin")
-region = Rect2(768, 0, 256, 255)
+atlas = ExtResource("3_lvxji")
+region = Rect2(152, 0, 76, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
-atlas = ExtResource("2_gmlin")
-region = Rect2(1024, 0, 256, 255)
+atlas = ExtResource("3_lvxji")
+region = Rect2(228, 0, 76, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5gtgg"]
-atlas = ExtResource("2_gmlin")
-region = Rect2(1280, 0, 256, 255)
+atlas = ExtResource("3_lvxji")
+region = Rect2(304, 0, 76, 204)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ydkj"]
-atlas = ExtResource("2_gmlin")
-region = Rect2(1536, 0, 256, 255)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
+atlas = ExtResource("3_lvxji")
+region = Rect2(380, 0, 76, 204)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3j4b4"]
-atlas = ExtResource("2_gmlin")
-region = Rect2(1792, 0, 256, 255)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcs02"]
+atlas = ExtResource("3_lvxji")
+region = Rect2(456, 0, 76, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
+atlas = ExtResource("3_lvxji")
+region = Rect2(532, 0, 76, 204)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
 atlas = ExtResource("3_gmlin")
@@ -61,9 +61,6 @@ region = Rect2(875, 0, 175, 170)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lvxji")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_p47bc")
 }, {
 "duration": 1.0,
@@ -79,12 +76,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_5gtgg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8ydkj")
+"texture": SubResource("AtlasTexture_ugbui")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3j4b4")
+"texture": SubResource("AtlasTexture_fcs02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myrg7")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"idle",
 "speed": 6.0
 }, {
@@ -116,6 +116,7 @@ radius = 9.0
 script = ExtResource("1_script")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1742627637]
+visible = false
 modulate = Color(1, 1, 1, 0.55)
 position = Vector2(0, 5)
 scale = Vector2(0.135, 0.043)
@@ -125,8 +126,9 @@ texture = ExtResource("4_shadow")
 position = Vector2(-2, -15)
 scale = Vector2(0.39411765, 0.39411765)
 sprite_frames = SubResource("SpriteFrames_pharam")
-animation = &"walk"
-autoplay = "idle"
+animation = &"idle"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=556953112]
 shape = SubResource("CircleShape2D_p")
