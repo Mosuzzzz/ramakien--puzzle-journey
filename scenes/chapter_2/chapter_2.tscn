@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cdjx4w17yt8ex" path="res://assets/map/chapter_2/image.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
 
 [sub_resource type="RectangleShape2D" id="rect_top_boundary"]
 size = Vector2(2048, 135)
@@ -388,6 +389,12 @@ shape = SubResource("CircleShape2D_qj6e0")
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1169931713]
 y_sort_enabled = true
+
+[node name="Chapter1Portal" parent="YSortRoot" instance=ExtResource("3_portal")]
+position = Vector2(1005, 250)
+target_scene = "res://scenes/chapter_1/chapter_1.tscn"
+target_spawn = Vector2(627, 1175)
+prompt_text = "กด E เพื่อกลับวัง"
 
 [node name="Player" parent="YSortRoot" unique_id=1670645966 instance=ExtResource("2_player")]
 position = Vector2(1024, 1280)

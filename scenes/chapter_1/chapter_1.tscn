@@ -195,6 +195,12 @@ position = Vector2(630, 1198)
 [node name="door_south" parent="YSortRoot" unique_id=819793605 instance=ExtResource("5_ayeki")]
 position = Vector2(628, 1095)
 
+[node name="Chapter2Portal" parent="YSortRoot" instance=ExtResource("7_portal")]
+position = Vector2(627, 1230)
+target_scene = "res://scenes/chapter_2/chapter_2.tscn"
+target_spawn = Vector2(1005, 320)
+prompt_text = "กด E เพื่อเข้าป่า"
+
 [node name="ThroneRoomPortal" parent="YSortRoot" instance=ExtResource("7_portal")]
 position = Vector2(625, 260)
 target_scene = "res://scenes/chapter_1/throne_room.tscn"
