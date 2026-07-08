@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://icon.svg" id="1_icon"]
+[ext_resource type="Script" path="res://scenes/props/mob.gd" id="2_script"]
+
+[sub_resource type="CircleShape2D" id="circ_body"]
+radius = 10.0
+
+[node name="Mob" type="CharacterBody2D"]
+script = ExtResource("2_script")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_icon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("circ_body")
