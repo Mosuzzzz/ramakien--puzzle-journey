@@ -28,9 +28,49 @@ func _ready() -> void:
 	if GameState.next_spawn.is_finite():
 		global_position = GameState.next_spawn
 		GameState.next_spawn = Vector2.INF
+	_configure_camera_for_map()
 	camera.make_current()
 	animated_sprite.animation = ""
 	_play_animation("idle")
+
+func _configure_camera_for_map() -> void:
+	var scene := get_tree().current_scene
+	if scene == null:
+		return
+
+	var background := scene.find_child("Background", true, false) as Sprite2D
+	if background == null or background.texture == null:
+		return
+
+	var rect: Rect2 = background.get_rect()
+	var corners: Array[Vector2] = [
+		background.to_global(rect.position),
+		background.to_global(rect.position + Vector2(rect.size.x, 0.0)),
+		background.to_global(rect.position + Vector2(0.0, rect.size.y)),
+		background.to_global(rect.position + rect.size),
+	]
+
+	var min_pos: Vector2 = corners[0]
+	var max_pos: Vector2 = corners[0]
+	for corner: Vector2 in corners:
+		min_pos.x = minf(min_pos.x, corner.x)
+		min_pos.y = minf(min_pos.y, corner.y)
+		max_pos.x = maxf(max_pos.x, corner.x)
+		max_pos.y = maxf(max_pos.y, corner.y)
+
+	camera.limit_left = floori(min_pos.x)
+	camera.limit_top = floori(min_pos.y)
+	camera.limit_right = ceili(max_pos.x)
+	camera.limit_bottom = ceili(max_pos.y)
+
+	var map_size: Vector2 = max_pos - min_pos
+	var viewport_size: Vector2 = get_viewport_rect().size
+	var minimum_zoom: float = maxf(
+		viewport_size.x / maxf(map_size.x, 1.0),
+		viewport_size.y / maxf(map_size.y, 1.0)
+	)
+	var zoom_value: float = maxf(maxf(camera.zoom.x, camera.zoom.y), minimum_zoom)
+	camera.zoom = Vector2(zoom_value, zoom_value)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE and not _shooting:
@@ -40,6 +80,7 @@ func _input(event: InputEvent) -> void:
 		DisplayServer.window_set_mode(
 			DisplayServer.WINDOW_MODE_WINDOWED if is_fullscreen else DisplayServer.WINDOW_MODE_FULLSCREEN
 		)
+		call_deferred("_configure_camera_for_map")
 
 func _physics_process(_delta: float) -> void:
 	if _shooting:
