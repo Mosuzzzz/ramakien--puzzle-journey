@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://vnv2qobopi3d" path="res://assets/map/chapter_2/image.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/mob.tscn" id="3_mob"]
 
 [sub_resource type="RectangleShape2D" id="rect_top_boundary"]
 size = Vector2(1448, 95.4492)
@@ -709,3 +710,12 @@ y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1670645966 instance=ExtResource("2_player")]
 position = Vector2(679, 897)
+
+[node name="Mob1" parent="YSortRoot" instance=ExtResource("3_mob")]
+position = Vector2(1030, 1180)
+
+[node name="Mob2" parent="YSortRoot" instance=ExtResource("3_mob")]
+position = Vector2(1400, 1240)
+
+[node name="Mob3" parent="YSortRoot" instance=ExtResource("3_mob")]
+position = Vector2(980, 640)
