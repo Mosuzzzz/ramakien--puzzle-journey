@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br85b85p4x8e8"
-path="res://.godot/imported/King_idle.png-5150f19cba8e1ff253942e8d1d5f1965.ctex"
+uid="uid://bherc2nymuloy"
+path="res://.godot/imported/yak_run.png-7ac42cad5fc4da98e5afbc4bd1c6a482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/King/King_idle.png"
-dest_files=["res://.godot/imported/King_idle.png-5150f19cba8e1ff253942e8d1d5f1965.ctex"]
+source_file="res://assets/charecter/mob/yak_run.png"
+dest_files=["res://.godot/imported/yak_run.png-7ac42cad5fc4da98e5afbc4bd1c6a482.ctex"]
 
 [params]
 
