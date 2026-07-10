@@ -8,6 +8,9 @@ const ArrowScene := preload("res://scenes/props/arrow.tscn")
 
 @export var character_name: String = "Phra Ram"
 @export var speed: float = 150.0
+@export var dash_speed: float = 480.0
+@export var dash_duration: float = 0.18
+@export var dash_cooldown: float = 0.55
 @export var max_health: int = 100
 @export var display_height: float = 60.0
 
@@ -19,6 +22,9 @@ const CHAR_X_OFF := {"idle": 0.0, "walk": 0.0, "shoot": 0.0}
 var _cx: float = 0.0
 var _face_right := false
 var _shooting := false
+var _dash_direction := Vector2.LEFT
+var _dash_time_left := 0.0
+var _dash_cooldown_left := 0.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: Camera2D = $Camera2D
@@ -75,6 +81,8 @@ func _configure_camera_for_map() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE and not _shooting:
 		_shoot()
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_Q and not _shooting:
+		_start_dash()
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F11:
 		var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 		DisplayServer.window_set_mode(
@@ -85,6 +93,7 @@ func _input(event: InputEvent) -> void:
 func _physics_process(_delta: float) -> void:
 	if _shooting:
 		return
+	_dash_cooldown_left = maxf(_dash_cooldown_left - _delta, 0.0)
 	var dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	dir += Vector2(
 		float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
@@ -92,21 +101,40 @@ func _physics_process(_delta: float) -> void:
 	)
 	if dir.length() > 1.0:
 		dir = dir.normalized()
-	velocity = dir * speed
+	if _dash_time_left > 0.0:
+		_dash_time_left = maxf(_dash_time_left - _delta, 0.0)
+		velocity = _dash_direction * dash_speed
+	else:
+		velocity = dir * speed
 	move_and_slide()
 
-	if dir.length() > 0.0:
+	if _dash_time_left > 0.0 or dir.length() > 0.0:
 		_play_animation("walk")
-		if dir.x != 0.0:
-			_face_right = dir.x > 0.0
+		var facing_direction := _dash_direction if _dash_time_left > 0.0 else dir
+		if facing_direction.x != 0.0:
+			_face_right = facing_direction.x > 0.0
 	else:
 		_play_animation("idle")
 	animated_sprite.flip_h = _face_right
 	# cancel the baked-in offset so the character stays centered over the origin
 	animated_sprite.position.x = _cx if animated_sprite.flip_h else -_cx
 
+func _start_dash() -> void:
+	if _dash_cooldown_left > 0.0:
+		return
+
+	var input_direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_direction += Vector2(
+		float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
+		float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W))
+	)
+	_dash_direction = input_direction.normalized() if input_direction.length() > 0.0 else (Vector2.RIGHT if _face_right else Vector2.LEFT)
+	_dash_time_left = dash_duration
+	_dash_cooldown_left = dash_cooldown
+
 func _shoot() -> void:
 	_shooting = true
+	_dash_time_left = 0.0
 	velocity = Vector2.ZERO
 	_play_animation("shoot")
 	# the shooting sheet faces right while the other sheets face left

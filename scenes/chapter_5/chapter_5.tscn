@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cf1v8vwfmwqv1"]
+
+[ext_resource type="Texture2D" uid="uid://blb82p8smqn6q" path="res://assets/map/chapter_5/08e55717-0517-4299-be49-f9443675cc33.png" id="1_map"]
+[ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+
+[sub_resource type="RectangleShape2D" id="TopWall"]
+size = Vector2(1774, 64)
+
+[sub_resource type="RectangleShape2D" id="BottomWall"]
+size = Vector2(1774, 380)
+
+[sub_resource type="RectangleShape2D" id="LeftWall"]
+size = Vector2(64, 887)
+
+[sub_resource type="RectangleShape2D" id="RightWall"]
+size = Vector2(64, 887)
+
+[node name="Chapter5" type="Node2D" unique_id=42638117]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=521177600]
+position = Vector2(883, 447)
+texture = ExtResource("1_map")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1249163845]
+
+[node name="Top" type="CollisionShape2D" parent="Walls" unique_id=438583601]
+position = Vector2(885, 528)
+shape = SubResource("TopWall")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=297817916]
+position = Vector2(882, 769)
+shape = SubResource("BottomWall")
+
+[node name="Left" type="CollisionShape2D" parent="Walls" unique_id=979396718]
+position = Vector2(-32, 443.5)
+shape = SubResource("LeftWall")
+
+[node name="Right" type="CollisionShape2D" parent="Walls" unique_id=612486965]
+position = Vector2(1806, 443.5)
+shape = SubResource("RightWall")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=353550459]
+y_sort_enabled = true
+
+[node name="Player" parent="YSortRoot" unique_id=1149714052 instance=ExtResource("2_player")]
+position = Vector2(65, 574)
