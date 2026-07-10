@@ -194,6 +194,8 @@ position = Vector2(630, 1198)
 
 [node name="door_south" parent="YSortRoot" unique_id=819793605 instance=ExtResource("5_ayeki")]
 position = Vector2(628, 1095)
+exit_scene = "res://scenes/chapter_2/chapter_2.tscn"
+exit_spawn = Vector2(734, 150)
 
 [node name="ThroneRoomPortal" parent="YSortRoot" instance=ExtResource("7_portal")]
 position = Vector2(625, 260)
