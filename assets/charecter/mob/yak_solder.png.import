@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://driii74b0coq2"
-path="res://.godot/imported/pharam.png-aa3b0db05d683acfa5975ae1dc2e9d07.ctex"
+uid="uid://ciy8eydejpjic"
+path="res://.godot/imported/yak_solder.png-f8a545d99dbe545632ab69a12cce38ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/pharam.png"
-dest_files=["res://.godot/imported/pharam.png-aa3b0db05d683acfa5975ae1dc2e9d07.ctex"]
+source_file="res://assets/charecter/mob/yak_solder.png"
+dest_files=["res://.godot/imported/yak_solder.png-f8a545d99dbe545632ab69a12cce38ec.ctex"]
 
 [params]
 

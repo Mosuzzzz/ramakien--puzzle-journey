@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://vnv2qobopi3d" path="res://assets/map/chapter_2/image.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scenes/test_mobrun2.gd" id="99_test"]
 [ext_resource type="PackedScene" path="res://scenes/props/mob.tscn" id="3_mob"]
 [ext_resource type="PackedScene" path="res://scenes/props/sida.tscn" id="4_sida"]
 
@@ -279,6 +280,9 @@ radius = 38.013157
 radius = 44.181442
 
 [node name="Chapter2" type="Node2D" unique_id=1456977817]
+
+[node name="TestMobRun2" type="Node" parent="."]
+script = ExtResource("99_test")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1024807685]
 position = Vector2(721, 541)
