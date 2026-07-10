@@ -1,0 +1,738 @@
+[gd_scene format=3 uid="uid://chqga4iula7v5"]
+
+[ext_resource type="Texture2D" uid="uid://bi6wsjh0ebspu" path="res://assets/map/chapter_6/5b20ebef-9df5-44a2-aff5-9662fcb11279.png" id="1_map"]
+[ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+
+[sub_resource type="RectangleShape2D" id="TopWall"]
+size = Vector2(1448, 356)
+
+[sub_resource type="RectangleShape2D" id="BottomWall"]
+size = Vector2(1448, 67)
+
+[sub_resource type="RectangleShape2D" id="LeftWall"]
+size = Vector2(298, 1086)
+
+[sub_resource type="RectangleShape2D" id="RightWall"]
+size = Vector2(294, 1086)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8pb3o"]
+radius = 97.0
+height = 200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18dia"]
+radius = 118.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ujw4d"]
+radius = 82.0
+height = 166.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hox84"]
+radius = 82.0
+height = 166.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4dvl"]
+radius = 82.0
+height = 166.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvi4p"]
+radius = 82.0
+height = 166.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pdsy5"]
+radius = 89.0
+height = 180.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wkmy"]
+radius = 45.099888
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nkxgy"]
+radius = 47.169907
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0kom2"]
+radius = 82.0
+height = 166.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j0mip"]
+radius = 82.0
+height = 166.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5kxk"]
+radius = 118.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7bi4"]
+radius = 118.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h81rs"]
+radius = 30.265491
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6jfy3"]
+radius = 21.023796
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sud0"]
+radius = 15.0
+height = 182.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4sm2i"]
+radius = 97.0
+height = 200.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvg16"]
+radius = 97.0
+height = 218.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8dcy8"]
+radius = 104.0
+height = 212.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnott"]
+radius = 17.0
+height = 278.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_63p2j"]
+radius = 30.265491
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7bi4"]
+radius = 48.0
+height = 162.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_h81rs"]
+a = Vector2(46, -74)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_738ru"]
+a = Vector2(96, -55)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vs1yt"]
+a = Vector2(96, -55)
+b = Vector2(84, -84)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_h243j"]
+a = Vector2(46, -74)
+b = Vector2(84, -84)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7tqga"]
+a = Vector2(52, -75)
+b = Vector2(-22, -127)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_h6f8e"]
+a = Vector2(52, -75)
+b = Vector2(65, -86)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fa8n5"]
+a = Vector2(27, -148)
+b = Vector2(65, -86)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_kblla"]
+a = Vector2(27, -148)
+b = Vector2(-8, -154)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lqknu"]
+a = Vector2(-22, -127)
+b = Vector2(-8, -154)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pu2gq"]
+radius = 82.0
+height = 166.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_be7io"]
+radius = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jw647"]
+radius = 70.11419
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4lo6p"]
+radius = 70.11419
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_svmuc"]
+radius = 47.095646
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8wvs8"]
+radius = 22.090721
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pl62f"]
+radius = 47.095646
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7u01"]
+radius = 22.090721
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chcne"]
+radius = 22.090721
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_up08d"]
+radius = 22.090721
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcy87"]
+radius = 19.104973
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1ke4j"]
+a = Vector2(24, -148)
+b = Vector2(102, -123)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jn3tu"]
+a = Vector2(24, -148)
+b = Vector2(30, -180)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_l0gat"]
+a = Vector2(103, -158)
+b = Vector2(30, -180)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ocuia"]
+radius = 82.0
+height = 166.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8pb3o"]
+radius = 30.265491
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yy0vk"]
+radius = 17.029387
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8mcai"]
+a = Vector2(103, -158)
+b = Vector2(102, -123)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_l8v0u"]
+a = Vector2(103, -158)
+b = Vector2(102, -123)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4cdvi"]
+a = Vector2(183, -149)
+b = Vector2(102, -123)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_n6t2k"]
+a = Vector2(183, -149)
+b = Vector2(178, -183)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_sfm5w"]
+a = Vector2(104, -159)
+b = Vector2(178, -183)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8obb"]
+radius = 55.00909
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kbk00"]
+radius = 55.00909
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_od7ai"]
+radius = 55.00909
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0onw"]
+radius = 55.00909
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mermu"]
+radius = 55.00909
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5norb"]
+radius = 55.00909
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c6ij0"]
+radius = 55.00909
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_anf3q"]
+radius = 13.0
+height = 82.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_prqi6"]
+radius = 40.60788
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_15py7"]
+radius = 108.29589
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujw4d"]
+radius = 20.09975
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hox84"]
+radius = 13.038404
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0q8ej"]
+radius = 66.0
+
+[node name="Chapter6" type="Node2D" unique_id=1858561390]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=284751441]
+position = Vector2(724, 543)
+texture = ExtResource("1_map")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=832573541]
+
+[node name="Top" type="CollisionShape2D" parent="Walls" unique_id=967442070]
+position = Vector2(724, 121)
+shape = SubResource("TopWall")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=1250171251]
+position = Vector2(724, 1116.5)
+shape = SubResource("BottomWall")
+
+[node name="Left" type="CollisionShape2D" parent="Walls" unique_id=856089763]
+position = Vector2(85, 543)
+shape = SubResource("LeftWall")
+
+[node name="Right" type="CollisionShape2D" parent="Walls" unique_id=1570100964]
+position = Vector2(1364, 556)
+shape = SubResource("RightWall")
+
+[node name="Left2" type="CollisionShape2D" parent="Walls" unique_id=253371984]
+position = Vector2(309, 755)
+shape = SubResource("CapsuleShape2D_8pb3o")
+
+[node name="Left3" type="CollisionShape2D" parent="Walls" unique_id=840186846]
+position = Vector2(912, 791)
+shape = SubResource("CircleShape2D_18dia")
+
+[node name="Left4" type="CollisionShape2D" parent="Walls" unique_id=1905682144]
+position = Vector2(392, 629)
+shape = SubResource("CapsuleShape2D_ujw4d")
+
+[node name="Left5" type="CollisionShape2D" parent="Walls" unique_id=890403387]
+position = Vector2(462, 657)
+shape = SubResource("CapsuleShape2D_hox84")
+
+[node name="Left6" type="CollisionShape2D" parent="Walls" unique_id=918919452]
+position = Vector2(259, 623)
+shape = SubResource("CapsuleShape2D_t4dvl")
+
+[node name="Left7" type="CollisionShape2D" parent="Walls" unique_id=1253577488]
+position = Vector2(502, 685)
+shape = SubResource("CapsuleShape2D_cvi4p")
+
+[node name="Left8" type="CollisionShape2D" parent="Walls" unique_id=29827470]
+position = Vector2(1173, 622)
+shape = SubResource("CapsuleShape2D_pdsy5")
+
+[node name="Left9" type="CollisionShape2D" parent="Walls" unique_id=925813092]
+position = Vector2(815, 928)
+shape = SubResource("CircleShape2D_2wkmy")
+
+[node name="Left10" type="CollisionShape2D" parent="Walls" unique_id=71467297]
+position = Vector2(860, 885)
+shape = SubResource("CircleShape2D_nkxgy")
+
+[node name="Left11" type="CollisionShape2D" parent="Walls" unique_id=460480233]
+position = Vector2(959, 686)
+shape = SubResource("CapsuleShape2D_0kom2")
+
+[node name="Left12" type="CollisionShape2D" parent="Walls" unique_id=880933947]
+position = Vector2(1014, 642)
+shape = SubResource("CapsuleShape2D_j0mip")
+
+[node name="Left13" type="CollisionShape2D" parent="Walls" unique_id=449428173]
+position = Vector2(1063, 626)
+shape = SubResource("CapsuleShape2D_j0mip")
+
+[node name="Left14" type="CollisionShape2D" parent="Walls" unique_id=1416263600]
+position = Vector2(1029, 730)
+shape = SubResource("CircleShape2D_k5kxk")
+
+[node name="Left15" type="CollisionShape2D" parent="Walls" unique_id=1902360260]
+position = Vector2(1166, 697)
+shape = SubResource("CircleShape2D_a7bi4")
+
+[node name="Left16" type="CollisionShape2D" parent="Walls" unique_id=1244863973]
+position = Vector2(1014, 969)
+shape = SubResource("CircleShape2D_h81rs")
+
+[node name="Left17" type="CollisionShape2D" parent="Walls" unique_id=218149132]
+position = Vector2(1058, 862)
+shape = SubResource("CircleShape2D_6jfy3")
+
+[node name="Left18" type="CollisionShape2D" parent="Walls" unique_id=841313106]
+position = Vector2(1160, 891)
+shape = SubResource("CapsuleShape2D_6sud0")
+
+[node name="Left19" type="CollisionShape2D" parent="Walls" unique_id=228668495]
+position = Vector2(424, 771)
+shape = SubResource("CapsuleShape2D_4sm2i")
+
+[node name="Left20" type="CollisionShape2D" parent="Walls" unique_id=1761894625]
+position = Vector2(574, 908)
+shape = SubResource("CapsuleShape2D_rvg16")
+
+[node name="Left21" type="CollisionShape2D" parent="Walls" unique_id=35865236]
+position = Vector2(501, 856)
+shape = SubResource("CapsuleShape2D_8dcy8")
+
+[node name="Left22" type="CollisionShape2D" parent="Walls" unique_id=1196378217]
+position = Vector2(385, 969)
+shape = SubResource("CapsuleShape2D_qnott")
+
+[node name="Left23" type="CollisionShape2D" parent="Walls" unique_id=935167977]
+position = Vector2(987, 1063)
+shape = SubResource("CircleShape2D_63p2j")
+
+[node name="Left24" type="CollisionShape2D" parent="Walls" unique_id=1460616397]
+position = Vector2(1140, 1045)
+shape = SubResource("CapsuleShape2D_a7bi4")
+
+[node name="Left25" type="CollisionShape2D" parent="Walls" unique_id=546173560]
+position = Vector2(778, 655)
+shape = SubResource("SegmentShape2D_h81rs")
+
+[node name="Left26" type="CollisionShape2D" parent="Walls" unique_id=1445951188]
+position = Vector2(778, 655)
+shape = SubResource("SegmentShape2D_738ru")
+
+[node name="Left27" type="CollisionShape2D" parent="Walls" unique_id=928302221]
+position = Vector2(778, 655)
+shape = SubResource("SegmentShape2D_vs1yt")
+
+[node name="Left28" type="CollisionShape2D" parent="Walls" unique_id=1707062588]
+position = Vector2(778, 655)
+shape = SubResource("SegmentShape2D_h243j")
+
+[node name="Left29" type="CollisionShape2D" parent="Walls" unique_id=2026958088]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_7tqga")
+
+[node name="Left30" type="CollisionShape2D" parent="Walls" unique_id=630819391]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_h6f8e")
+
+[node name="Left31" type="CollisionShape2D" parent="Walls" unique_id=1598496331]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_fa8n5")
+
+[node name="Left32" type="CollisionShape2D" parent="Walls" unique_id=302216367]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_kblla")
+
+[node name="Left33" type="CollisionShape2D" parent="Walls" unique_id=843076244]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_lqknu")
+
+[node name="Left34" type="CollisionShape2D" parent="Walls" unique_id=1131049906]
+position = Vector2(304, 366)
+shape = SubResource("CapsuleShape2D_pu2gq")
+
+[node name="Left35" type="CollisionShape2D" parent="Walls" unique_id=790124197]
+position = Vector2(374, 449)
+shape = SubResource("CircleShape2D_be7io")
+
+[node name="Left36" type="CollisionShape2D" parent="Walls" unique_id=1641806896]
+position = Vector2(501, 465)
+shape = SubResource("CircleShape2D_jw647")
+
+[node name="Left37" type="CollisionShape2D" parent="Walls" unique_id=1893783624]
+position = Vector2(526, 474)
+shape = SubResource("CircleShape2D_4lo6p")
+
+[node name="Left38" type="CollisionShape2D" parent="Walls" unique_id=1404692698]
+position = Vector2(428, 459)
+shape = SubResource("CircleShape2D_svmuc")
+
+[node name="Left39" type="CollisionShape2D" parent="Walls" unique_id=1302774570]
+position = Vector2(340, 492)
+shape = SubResource("CircleShape2D_8wvs8")
+
+[node name="Left40" type="CollisionShape2D" parent="Walls" unique_id=1349968787]
+position = Vector2(386, 433)
+shape = SubResource("CircleShape2D_pl62f")
+
+[node name="Left41" type="CollisionShape2D" parent="Walls" unique_id=293197076]
+position = Vector2(513, 408)
+shape = SubResource("CircleShape2D_p7u01")
+
+[node name="Left42" type="CollisionShape2D" parent="Walls" unique_id=543938168]
+position = Vector2(564, 426)
+shape = SubResource("CircleShape2D_chcne")
+
+[node name="Left43" type="CollisionShape2D" parent="Walls" unique_id=572824884]
+position = Vector2(243, 422)
+shape = SubResource("CircleShape2D_up08d")
+
+[node name="Left44" type="CollisionShape2D" parent="Walls" unique_id=1628237681]
+position = Vector2(630, 496)
+shape = SubResource("CircleShape2D_jcy87")
+
+[node name="Left45" type="CollisionShape2D" parent="Walls" unique_id=1575042122]
+position = Vector2(816, 495)
+shape = SubResource("CircleShape2D_jcy87")
+
+[node name="Left46" type="CollisionShape2D" parent="Walls" unique_id=1504488242]
+position = Vector2(540, 517)
+shape = SubResource("SegmentShape2D_1ke4j")
+
+[node name="Left47" type="CollisionShape2D" parent="Walls" unique_id=1768231822]
+position = Vector2(540, 517)
+shape = SubResource("SegmentShape2D_jn3tu")
+
+[node name="Left48" type="CollisionShape2D" parent="Walls" unique_id=110957338]
+position = Vector2(540, 517)
+shape = SubResource("SegmentShape2D_l0gat")
+
+[node name="Walls" type="StaticBody2D" parent="Walls" unique_id=217535762]
+
+[node name="Top" type="CollisionShape2D" parent="Walls/Walls" unique_id=663082118]
+position = Vector2(724, 114)
+shape = SubResource("TopWall")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls/Walls" unique_id=1383650242]
+position = Vector2(724, 1116.5)
+shape = SubResource("BottomWall")
+
+[node name="Left" type="CollisionShape2D" parent="Walls/Walls" unique_id=417486468]
+position = Vector2(85, 543)
+shape = SubResource("LeftWall")
+
+[node name="Right" type="CollisionShape2D" parent="Walls/Walls" unique_id=1524452571]
+position = Vector2(1364, 556)
+shape = SubResource("RightWall")
+
+[node name="Left2" type="CollisionShape2D" parent="Walls/Walls" unique_id=583162002]
+position = Vector2(309, 755)
+shape = SubResource("CapsuleShape2D_8pb3o")
+
+[node name="Left3" type="CollisionShape2D" parent="Walls/Walls" unique_id=309944099]
+position = Vector2(1025, 714)
+shape = SubResource("CircleShape2D_18dia")
+
+[node name="Left4" type="CollisionShape2D" parent="Walls/Walls" unique_id=857742910]
+position = Vector2(392, 629)
+shape = SubResource("CapsuleShape2D_ujw4d")
+
+[node name="Left5" type="CollisionShape2D" parent="Walls/Walls" unique_id=415658698]
+position = Vector2(462, 657)
+shape = SubResource("CapsuleShape2D_hox84")
+
+[node name="Left6" type="CollisionShape2D" parent="Walls/Walls" unique_id=2035028362]
+position = Vector2(259, 623)
+shape = SubResource("CapsuleShape2D_t4dvl")
+
+[node name="Left7" type="CollisionShape2D" parent="Walls/Walls" unique_id=270349179]
+position = Vector2(502, 685)
+shape = SubResource("CapsuleShape2D_cvi4p")
+
+[node name="Left8" type="CollisionShape2D" parent="Walls/Walls" unique_id=1020072793]
+position = Vector2(1173, 622)
+shape = SubResource("CapsuleShape2D_pdsy5")
+
+[node name="Left9" type="CollisionShape2D" parent="Walls/Walls" unique_id=1331206684]
+position = Vector2(815, 928)
+shape = SubResource("CircleShape2D_2wkmy")
+
+[node name="Left10" type="CollisionShape2D" parent="Walls/Walls" unique_id=1060624915]
+position = Vector2(860, 885)
+shape = SubResource("CircleShape2D_nkxgy")
+
+[node name="Left11" type="CollisionShape2D" parent="Walls/Walls" unique_id=799367621]
+position = Vector2(959, 686)
+shape = SubResource("CapsuleShape2D_0kom2")
+
+[node name="Left12" type="CollisionShape2D" parent="Walls/Walls" unique_id=1176926807]
+position = Vector2(1014, 642)
+shape = SubResource("CapsuleShape2D_j0mip")
+
+[node name="Left13" type="CollisionShape2D" parent="Walls/Walls" unique_id=950618384]
+position = Vector2(1063, 626)
+shape = SubResource("CapsuleShape2D_ocuia")
+
+[node name="Left14" type="CollisionShape2D" parent="Walls/Walls" unique_id=382631402]
+position = Vector2(1029, 730)
+shape = SubResource("CircleShape2D_k5kxk")
+
+[node name="Left15" type="CollisionShape2D" parent="Walls/Walls" unique_id=369519805]
+position = Vector2(1166, 697)
+shape = SubResource("CircleShape2D_a7bi4")
+
+[node name="Left16" type="CollisionShape2D" parent="Walls/Walls" unique_id=894428160]
+position = Vector2(1014, 969)
+shape = SubResource("CircleShape2D_8pb3o")
+
+[node name="Left17" type="CollisionShape2D" parent="Walls/Walls" unique_id=1314920602]
+position = Vector2(1058, 862)
+shape = SubResource("CircleShape2D_6jfy3")
+
+[node name="Left18" type="CollisionShape2D" parent="Walls/Walls" unique_id=1535746840]
+position = Vector2(1160, 891)
+shape = SubResource("CapsuleShape2D_6sud0")
+
+[node name="Left19" type="CollisionShape2D" parent="Walls/Walls" unique_id=504606191]
+position = Vector2(424, 771)
+shape = SubResource("CapsuleShape2D_4sm2i")
+
+[node name="Left20" type="CollisionShape2D" parent="Walls/Walls" unique_id=549918218]
+position = Vector2(574, 908)
+shape = SubResource("CapsuleShape2D_rvg16")
+
+[node name="Left21" type="CollisionShape2D" parent="Walls/Walls" unique_id=824883997]
+position = Vector2(501, 856)
+shape = SubResource("CapsuleShape2D_8dcy8")
+
+[node name="Left22" type="CollisionShape2D" parent="Walls/Walls" unique_id=1456770981]
+position = Vector2(385, 969)
+shape = SubResource("CapsuleShape2D_qnott")
+
+[node name="Left23" type="CollisionShape2D" parent="Walls/Walls" unique_id=473782629]
+position = Vector2(987, 1063)
+shape = SubResource("CircleShape2D_63p2j")
+
+[node name="Left24" type="CollisionShape2D" parent="Walls/Walls" unique_id=444151030]
+position = Vector2(1140, 1045)
+shape = SubResource("CapsuleShape2D_a7bi4")
+
+[node name="Left25" type="CollisionShape2D" parent="Walls/Walls" unique_id=1771607383]
+position = Vector2(778, 655)
+shape = SubResource("SegmentShape2D_h81rs")
+
+[node name="Left26" type="CollisionShape2D" parent="Walls/Walls" unique_id=1959855998]
+position = Vector2(778, 655)
+shape = SubResource("SegmentShape2D_738ru")
+
+[node name="Left27" type="CollisionShape2D" parent="Walls/Walls" unique_id=1926410899]
+position = Vector2(778, 655)
+shape = SubResource("SegmentShape2D_vs1yt")
+
+[node name="Left28" type="CollisionShape2D" parent="Walls/Walls" unique_id=591472268]
+position = Vector2(778, 655)
+shape = SubResource("SegmentShape2D_h243j")
+
+[node name="Left29" type="CollisionShape2D" parent="Walls/Walls" unique_id=1015672608]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_7tqga")
+
+[node name="Left30" type="CollisionShape2D" parent="Walls/Walls" unique_id=1507176098]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_h6f8e")
+
+[node name="Left31" type="CollisionShape2D" parent="Walls/Walls" unique_id=1694369667]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_fa8n5")
+
+[node name="Left32" type="CollisionShape2D" parent="Walls/Walls" unique_id=92043931]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_kblla")
+
+[node name="Left33" type="CollisionShape2D" parent="Walls/Walls" unique_id=277764424]
+position = Vector2(597, 728)
+shape = SubResource("SegmentShape2D_lqknu")
+
+[node name="Left34" type="CollisionShape2D" parent="Walls/Walls" unique_id=1349786466]
+position = Vector2(304, 366)
+shape = SubResource("CapsuleShape2D_pu2gq")
+
+[node name="Left35" type="CollisionShape2D" parent="Walls/Walls" unique_id=385122223]
+position = Vector2(374, 449)
+shape = SubResource("CircleShape2D_be7io")
+
+[node name="Left36" type="CollisionShape2D" parent="Walls/Walls" unique_id=1686637370]
+position = Vector2(501, 465)
+shape = SubResource("CircleShape2D_jw647")
+
+[node name="Left37" type="CollisionShape2D" parent="Walls/Walls" unique_id=1737973905]
+position = Vector2(526, 474)
+shape = SubResource("CircleShape2D_4lo6p")
+
+[node name="Left38" type="CollisionShape2D" parent="Walls/Walls" unique_id=764549271]
+position = Vector2(428, 459)
+shape = SubResource("CircleShape2D_svmuc")
+
+[node name="Left39" type="CollisionShape2D" parent="Walls/Walls" unique_id=367068134]
+position = Vector2(340, 492)
+shape = SubResource("CircleShape2D_8wvs8")
+
+[node name="Left40" type="CollisionShape2D" parent="Walls/Walls" unique_id=1809968272]
+position = Vector2(386, 433)
+shape = SubResource("CircleShape2D_pl62f")
+
+[node name="Left41" type="CollisionShape2D" parent="Walls/Walls" unique_id=1970200162]
+position = Vector2(513, 408)
+shape = SubResource("CircleShape2D_p7u01")
+
+[node name="Left42" type="CollisionShape2D" parent="Walls/Walls" unique_id=841062569]
+position = Vector2(564, 426)
+shape = SubResource("CircleShape2D_chcne")
+
+[node name="Left43" type="CollisionShape2D" parent="Walls/Walls" unique_id=1150875763]
+position = Vector2(243, 422)
+shape = SubResource("CircleShape2D_up08d")
+
+[node name="Left44" type="CollisionShape2D" parent="Walls/Walls" unique_id=575123816]
+position = Vector2(630, 496)
+shape = SubResource("CircleShape2D_jcy87")
+
+[node name="Left45" type="CollisionShape2D" parent="Walls/Walls" unique_id=2055080849]
+position = Vector2(816, 495)
+shape = SubResource("CircleShape2D_yy0vk")
+
+[node name="Left46" type="CollisionShape2D" parent="Walls/Walls" unique_id=1932675311]
+position = Vector2(540, 517)
+shape = SubResource("SegmentShape2D_1ke4j")
+
+[node name="Left47" type="CollisionShape2D" parent="Walls/Walls" unique_id=1730520110]
+position = Vector2(540, 517)
+shape = SubResource("SegmentShape2D_jn3tu")
+
+[node name="Left48" type="CollisionShape2D" parent="Walls/Walls" unique_id=976029953]
+position = Vector2(540, 517)
+shape = SubResource("SegmentShape2D_8mcai")
+
+[node name="Left49" type="CollisionShape2D" parent="Walls/Walls" unique_id=2127675804]
+position = Vector2(702, 517)
+shape = SubResource("SegmentShape2D_l8v0u")
+
+[node name="Left50" type="CollisionShape2D" parent="Walls/Walls" unique_id=166050883]
+position = Vector2(702, 517)
+shape = SubResource("SegmentShape2D_4cdvi")
+
+[node name="Left51" type="CollisionShape2D" parent="Walls/Walls" unique_id=1570318260]
+position = Vector2(702, 517)
+shape = SubResource("SegmentShape2D_n6t2k")
+
+[node name="Left52" type="CollisionShape2D" parent="Walls/Walls" unique_id=894131067]
+position = Vector2(702, 517)
+shape = SubResource("SegmentShape2D_sfm5w")
+
+[node name="Left53" type="CollisionShape2D" parent="Walls/Walls" unique_id=896542109]
+position = Vector2(927, 487)
+shape = SubResource("CircleShape2D_u8obb")
+
+[node name="Left54" type="CollisionShape2D" parent="Walls/Walls" unique_id=885272886]
+position = Vector2(972, 466)
+shape = SubResource("CircleShape2D_kbk00")
+
+[node name="Left55" type="CollisionShape2D" parent="Walls/Walls" unique_id=38355858]
+position = Vector2(1022, 454)
+shape = SubResource("CircleShape2D_od7ai")
+
+[node name="Left56" type="CollisionShape2D" parent="Walls/Walls" unique_id=243596787]
+position = Vector2(1085, 454)
+shape = SubResource("CircleShape2D_f0onw")
+
+[node name="Left57" type="CollisionShape2D" parent="Walls/Walls" unique_id=1784720188]
+position = Vector2(1083, 399)
+shape = SubResource("CircleShape2D_mermu")
+
+[node name="Left58" type="CollisionShape2D" parent="Walls/Walls" unique_id=1587111927]
+position = Vector2(1143, 400)
+shape = SubResource("CircleShape2D_5norb")
+
+[node name="Left59" type="CollisionShape2D" parent="Walls/Walls" unique_id=665524321]
+position = Vector2(1206, 392)
+shape = SubResource("CircleShape2D_c6ij0")
+
+[node name="Left60" type="CollisionShape2D" parent="Walls/Walls" unique_id=879081287]
+position = Vector2(934, 416)
+shape = SubResource("CapsuleShape2D_anf3q")
+
+[node name="Left61" type="CollisionShape2D" parent="Walls/Walls" unique_id=1805418655]
+position = Vector2(941, 307)
+shape = SubResource("CircleShape2D_prqi6")
+
+[node name="Left62" type="CollisionShape2D" parent="Walls/Walls" unique_id=323046744]
+position = Vector2(454, 265)
+shape = SubResource("CircleShape2D_15py7")
+
+[node name="Left63" type="CollisionShape2D" parent="Walls/Walls" unique_id=1370056336]
+position = Vector2(830, 987)
+shape = SubResource("CircleShape2D_ujw4d")
+
+[node name="Left64" type="CollisionShape2D" parent="Walls/Walls" unique_id=953990788]
+position = Vector2(640, 736)
+shape = SubResource("CircleShape2D_hox84")
+
+[node name="Left49" type="CollisionShape2D" parent="Walls" unique_id=842887333]
+position = Vector2(1013, 342)
+shape = SubResource("CircleShape2D_0q8ej")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=692145576]
+y_sort_enabled = true
+
+[node name="Player" parent="YSortRoot" unique_id=330999147 instance=ExtResource("2_player")]
+position = Vector2(725, 1017)

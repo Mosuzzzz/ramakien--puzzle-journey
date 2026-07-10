@@ -1,9 +1,11 @@
 extends StaticBody2D
 
-# ponytail: E teleports the player to the other side of the gate;
-# swap _cross() for a scene transition when chapter 2 exists
+const GameState := preload("res://scenes/game_state.gd")
+
 @export var north_spot := Vector2(0, -180)
 @export var south_spot := Vector2(0, 30)
+@export_file("*.tscn") var exit_scene: String = ""
+@export var exit_spawn := Vector2.ZERO
 
 var _player: Node2D = null
 
@@ -33,6 +35,10 @@ func _is_inside() -> bool:
 	return _player.global_position.y < global_position.y - 65.0
 
 func _cross() -> void:
+	if _is_inside() and exit_scene != "":
+		GameState.next_spawn = exit_spawn
+		get_tree().change_scene_to_file.call_deferred(exit_scene)
+		return
 	_player.global_position = global_position + (south_spot if _is_inside() else north_spot)
 	_update_prompt()
 

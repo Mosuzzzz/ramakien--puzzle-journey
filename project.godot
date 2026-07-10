@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ramakien_Puzzle_Journey"
-run/main_scene="res://scenes/chapter_1/chapter_1.tscn"
+run/main_scene="res://scenes/chapter_2/chapter_2.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [display]
