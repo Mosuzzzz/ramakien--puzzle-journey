@@ -1,9 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cjdl5khb5p7r8"]
 
 [ext_resource type="Texture2D" uid="uid://cfiojawsqre3u" path="res://assets/charecter/Sida/idle.png" id="1_sida"]
-[ext_resource type="Texture2D" uid="uid://b3ej868urvhr7" path="res://assets/charecter/Sida/run.png" id="2_run"]
+[ext_resource type="Texture2D" uid="uid://cq7cchke8nr3h" path="res://assets/charecter/Sida/run.png" id="2_run"]
 [ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="3_shadow"]
-[ext_resource type="Script" path="res://scenes/props/sida.gd" id="4_script"]
+[ext_resource type="Script" uid="uid://cs8nggv7xlnx5" path="res://scenes/props/sida.gd" id="4_script"]
 
 [sub_resource type="AtlasTexture" id="s0"]
 atlas = ExtResource("1_sida")
@@ -37,69 +37,75 @@ region = Rect2(474.5, 20, 56, 165)
 atlas = ExtResource("1_sida")
 region = Rect2(545.5, 20, 56, 165)
 
-[sub_resource type="AtlasTexture" id="r0"]
-atlas = ExtResource("2_run")
-region = Rect2(38.5, 172, 216, 382)
-
 [sub_resource type="AtlasTexture" id="r1"]
 atlas = ExtResource("2_run")
-region = Rect2(267.5, 175, 216, 382)
+region = Rect2(76, 0, 76, 145)
+margin = Rect2(93.2, 34, 117, 44)
 
 [sub_resource type="AtlasTexture" id="r2"]
 atlas = ExtResource("2_run")
-region = Rect2(488.5, 174, 216, 382)
+region = Rect2(152, 0, 76, 145)
+margin = Rect2(92.9, 35, 117, 45)
 
 [sub_resource type="AtlasTexture" id="r3"]
 atlas = ExtResource("2_run")
-region = Rect2(707.5, 173, 216, 382)
+region = Rect2(228, 0, 76, 145)
+margin = Rect2(75.3, 42, 104, 52)
 
 [sub_resource type="AtlasTexture" id="r4"]
 atlas = ExtResource("2_run")
-region = Rect2(938, 173, 216, 382)
+region = Rect2(304, 0, 76, 145)
+margin = Rect2(93.5, 36, 116, 46)
 
 [sub_resource type="AtlasTexture" id="r5"]
 atlas = ExtResource("2_run")
-region = Rect2(1169, 173, 216, 382)
+region = Rect2(380, 0, 76, 145)
+margin = Rect2(88.6, 42, 117, 52)
 
 [sub_resource type="AtlasTexture" id="r6"]
 atlas = ExtResource("2_run")
-region = Rect2(1391, 176, 216, 382)
+region = Rect2(456, 0, 76, 145)
+margin = Rect2(90, 41, 123, 51)
 
 [sub_resource type="AtlasTexture" id="r7"]
 atlas = ExtResource("2_run")
-region = Rect2(1610.5, 179, 216, 382)
+region = Rect2(532, 0, 76, 145)
+margin = Rect2(87.9, 42, 114, 52)
 
 [sub_resource type="AtlasTexture" id="r8"]
 atlas = ExtResource("2_run")
-region = Rect2(25, 644, 216, 382)
+region = Rect2(0, 145, 76, 145)
+margin = Rect2(85.2, 30, 87, 40)
 
 [sub_resource type="AtlasTexture" id="r9"]
 atlas = ExtResource("2_run")
-region = Rect2(252.5, 644, 216, 382)
+region = Rect2(76, 145, 76, 145)
+margin = Rect2(87.9, 31, 101, 41)
 
 [sub_resource type="AtlasTexture" id="r10"]
 atlas = ExtResource("2_run")
-region = Rect2(480, 644, 216, 382)
+region = Rect2(152, 145, 76, 145)
+margin = Rect2(87.5, 30, 107, 40)
 
 [sub_resource type="AtlasTexture" id="r11"]
 atlas = ExtResource("2_run")
-region = Rect2(710, 644, 216, 382)
+region = Rect2(228, 145, 76, 145)
+margin = Rect2(90.1, 30, 112, 40)
 
 [sub_resource type="AtlasTexture" id="r12"]
 atlas = ExtResource("2_run")
-region = Rect2(937, 643, 216, 382)
+region = Rect2(304, 145, 76, 145)
+margin = Rect2(83.2, 34, 97, 44)
 
 [sub_resource type="AtlasTexture" id="r13"]
 atlas = ExtResource("2_run")
-region = Rect2(1170, 646, 216, 382)
+region = Rect2(380, 145, 76, 145)
+margin = Rect2(77.1, 35, 97, 45)
 
 [sub_resource type="AtlasTexture" id="r14"]
 atlas = ExtResource("2_run")
-region = Rect2(1390.5, 644, 216, 382)
-
-[sub_resource type="AtlasTexture" id="r15"]
-atlas = ExtResource("2_run")
-region = Rect2(1611, 644, 216, 382)
+region = Rect2(456, 145, 76, 145)
+margin = Rect2(89.8, 31, 116, 41)
 
 [sub_resource type="SpriteFrames" id="frames_sida"]
 animations = [{
@@ -133,9 +139,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("r0")
-}, {
 "duration": 1.0,
 "texture": SubResource("r1")
 }, {
@@ -177,33 +180,32 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("r14")
-}, {
-"duration": 1.0,
-"texture": SubResource("r15")
 }],
 "loop": 1,
 "name": &"run",
-"speed": 12.0
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="circ_body"]
 radius = 8.0
 
-[node name="Sida" type="CharacterBody2D"]
+[node name="Sida" type="CharacterBody2D" unique_id=1241224610]
 script = ExtResource("4_script")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1488992932]
 modulate = Color(1, 1, 1, 0.55)
 position = Vector2(0, 1)
 scale = Vector2(0.08, 0.026)
 texture = ExtResource("3_shadow")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1695177937]
 position = Vector2(0, -27.9)
 scale = Vector2(0.36, 0.36)
 sprite_frames = SubResource("frames_sida")
 animation = &"idle"
 autoplay = "idle"
+frame = 1
+frame_progress = 0.12404429
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1207832097]
 shape = SubResource("circ_body")
