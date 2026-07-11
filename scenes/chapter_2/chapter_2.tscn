@@ -717,12 +717,12 @@ position = Vector2(679, 897)
 position = Vector2(981, 554)
 
 [node name="Mob1" parent="YSortRoot" unique_id=2085602222 instance=ExtResource("3_mob")]
-position = Vector2(1030, 1180)
+position = Vector2(372, 915)
 
 [node name="Mob2" parent="YSortRoot" unique_id=388536931 instance=ExtResource("3_mob")]
-position = Vector2(1400, 1240)
+position = Vector2(1164, 807)
 
-[node name="Chapter1Portal" parent="YSortRoot" instance=ExtResource("5_portal")]
+[node name="Chapter1Portal" parent="YSortRoot" unique_id=1243868220 instance=ExtResource("5_portal")]
 position = Vector2(734, 110)
 target_scene = "res://scenes/chapter_1/chapter_1.tscn"
 target_spawn = Vector2(628, 915)

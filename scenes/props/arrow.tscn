@@ -17,3 +17,4 @@ texture = ExtResource("1_tex")
 shape = SubResource("rect_arrow")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
