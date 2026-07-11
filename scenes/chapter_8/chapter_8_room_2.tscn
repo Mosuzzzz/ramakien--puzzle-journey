@@ -1,0 +1,401 @@
+[gd_scene format=3 uid="uid://bxgfcne6nex6c"]
+
+[ext_resource type="Texture2D" uid="uid://cgubsaqmqisi4" path="res://assets/map/chapter_8/5f1af6f8-0d65-429c-b0dc-651535dd4cb4.png" id="1_room"]
+[ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
+
+[sub_resource type="RectangleShape2D" id="TopWall"]
+size = Vector2(1448, 267)
+
+[sub_resource type="RectangleShape2D" id="BottomWall"]
+size = Vector2(1448, 195)
+
+[sub_resource type="RectangleShape2D" id="SideWall"]
+size = Vector2(80, 1086)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hj00v"]
+radius = 78.0
+height = 202.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gv07w"]
+radius = 73.0
+height = 220.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4q6o3"]
+radius = 31.0
+height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0x3xq"]
+radius = 65.0
+height = 162.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x3xq"]
+size = Vector2(96.5, 60)
+
+[sub_resource type="RectangleShape2D" id="Desk"]
+size = Vector2(191.75, 81)
+
+[sub_resource type="RectangleShape2D" id="WeaponRack"]
+size = Vector2(163.5, 70.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06ejr"]
+size = Vector2(149.5, 93.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yon53"]
+radius = 25.0
+height = 68.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvkpl"]
+radius = 25.0
+height = 90.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryaaq"]
+radius = 25.0
+height = 90.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t45j8"]
+radius = 24.0
+height = 68.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf0ui"]
+radius = 24.0
+height = 68.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7tr0"]
+radius = 24.0
+height = 88.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j6cu2"]
+radius = 24.0
+height = 112.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd87t"]
+size = Vector2(52.25, 50)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuc0h"]
+radius = 41.0
+height = 142.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5blg6"]
+radius = 36.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_et0rd"]
+radius = 36.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pp8ea"]
+radius = 36.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ho8c8"]
+radius = 73.0
+height = 242.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aq8op"]
+radius = 31.0
+height = 92.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l738k"]
+radius = 51.0
+height = 128.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wowfi"]
+radius = 12.0
+height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ovdb4"]
+radius = 12.0
+height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rfp5r"]
+radius = 51.0
+height = 128.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntjik"]
+radius = 12.0
+height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q5vyc"]
+radius = 73.0
+height = 220.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jt125"]
+radius = 73.0
+height = 702.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4yi0"]
+radius = 38.0
+height = 132.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gpv88"]
+radius = 38.0
+height = 132.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_on5j7"]
+radius = 38.0
+height = 132.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lp8bm"]
+radius = 27.0
+height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_amjdc"]
+radius = 27.0
+height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt2lb"]
+radius = 27.0
+height = 178.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhhvp"]
+radius = 30.0
+height = 114.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yyrgw"]
+radius = 49.0
+height = 98.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_op8od"]
+size = Vector2(242.75, 87)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qk1py"]
+radius = 21.0
+height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06ejr"]
+radius = 27.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nd87t"]
+radius = 27.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_op8od"]
+radius = 27.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wbt48"]
+radius = 27.0
+height = 54.0
+
+[node name="Chapter8Room2" type="Node2D" unique_id=1045258585]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2097379591]
+position = Vector2(724, 543)
+texture = ExtResource("1_room")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1427233573]
+
+[node name="Top" type="CollisionShape2D" parent="Walls" unique_id=530011275]
+position = Vector2(724, 133.5)
+shape = SubResource("TopWall")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=1856182997]
+position = Vector2(724, 988.5)
+shape = SubResource("BottomWall")
+
+[node name="Left" type="CollisionShape2D" parent="Walls" unique_id=154524249]
+position = Vector2(40, 543)
+shape = SubResource("SideWall")
+
+[node name="Right" type="CollisionShape2D" parent="Walls" unique_id=198459365]
+position = Vector2(1408, 543)
+shape = SubResource("SideWall")
+
+[node name="CentralAltar" type="CollisionShape2D" parent="Walls" unique_id=1774232379]
+position = Vector2(1164, 192)
+shape = SubResource("CapsuleShape2D_hj00v")
+
+[node name="UpperLeftStorage" type="CollisionShape2D" parent="Walls" unique_id=1216961002]
+position = Vector2(278, 186)
+shape = SubResource("CapsuleShape2D_gv07w")
+
+[node name="UpperRightStorage" type="CollisionShape2D" parent="Walls" unique_id=906452404]
+position = Vector2(1242, 393)
+shape = SubResource("CapsuleShape2D_4q6o3")
+
+[node name="RoundTable" type="CollisionShape2D" parent="Walls" unique_id=363318608]
+position = Vector2(399, 445)
+shape = SubResource("CapsuleShape2D_0x3xq")
+
+[node name="RightDivider" type="CollisionShape2D" parent="Walls" unique_id=523516011]
+position = Vector2(1069.75, 586)
+shape = SubResource("RectangleShape2D_0x3xq")
+
+[node name="LowerLeftDesk" type="CollisionShape2D" parent="Walls" unique_id=2019472613]
+position = Vector2(344.25, 694.5)
+shape = SubResource("Desk")
+
+[node name="LowerRightRack" type="CollisionShape2D" parent="Walls" unique_id=641376190]
+position = Vector2(1135.25, 746.75)
+shape = SubResource("WeaponRack")
+
+[node name="LowerRightRack2" type="CollisionShape2D" parent="Walls" unique_id=1705984976]
+position = Vector2(1095.25, 630)
+shape = SubResource("RectangleShape2D_06ejr")
+
+[node name="LowerRightRack3" type="CollisionShape2D" parent="Walls" unique_id=1474698735]
+position = Vector2(1240, 897)
+shape = SubResource("CapsuleShape2D_yon53")
+
+[node name="LowerRightRack4" type="CollisionShape2D" parent="Walls" unique_id=1440765026]
+position = Vector2(1305, 851)
+shape = SubResource("CapsuleShape2D_uvkpl")
+
+[node name="LowerRightRack5" type="CollisionShape2D" parent="Walls" unique_id=992472799]
+position = Vector2(1297, 769)
+shape = SubResource("CapsuleShape2D_ryaaq")
+
+[node name="LowerRightRack6" type="CollisionShape2D" parent="Walls" unique_id=1304327110]
+position = Vector2(1281, 740)
+shape = SubResource("CapsuleShape2D_t45j8")
+
+[node name="LowerRightRack7" type="CollisionShape2D" parent="Walls" unique_id=1562022518]
+position = Vector2(1299, 677)
+shape = SubResource("CapsuleShape2D_uf0ui")
+
+[node name="LowerRightRack8" type="CollisionShape2D" parent="Walls" unique_id=677897975]
+position = Vector2(1267, 635)
+shape = SubResource("CapsuleShape2D_p7tr0")
+
+[node name="LowerRightRack9" type="CollisionShape2D" parent="Walls" unique_id=1370559468]
+position = Vector2(1245, 565)
+shape = SubResource("CapsuleShape2D_j6cu2")
+
+[node name="LowerRightRack10" type="CollisionShape2D" parent="Walls" unique_id=862556097]
+position = Vector2(1242, 509)
+shape = SubResource("CapsuleShape2D_j6cu2")
+
+[node name="RightDivider2" type="CollisionShape2D" parent="Walls" unique_id=117266473]
+position = Vector2(1153.875, 485)
+shape = SubResource("RectangleShape2D_nd87t")
+
+[node name="LowerRightRack11" type="CollisionShape2D" parent="Walls" unique_id=367417240]
+position = Vector2(1078, 422)
+shape = SubResource("CapsuleShape2D_xuc0h")
+
+[node name="LowerRightRack12" type="CollisionShape2D" parent="Walls" unique_id=1154823149]
+position = Vector2(1047, 381)
+shape = SubResource("CapsuleShape2D_5blg6")
+
+[node name="LowerRightRack13" type="CollisionShape2D" parent="Walls" unique_id=105755951]
+position = Vector2(1083, 390)
+shape = SubResource("CapsuleShape2D_et0rd")
+
+[node name="LowerRightRack14" type="CollisionShape2D" parent="Walls" unique_id=1134673552]
+position = Vector2(1129, 418)
+shape = SubResource("CapsuleShape2D_pp8ea")
+
+[node name="CentralAltar2" type="CollisionShape2D" parent="Walls" unique_id=1028739613]
+position = Vector2(1252, 231)
+shape = SubResource("CapsuleShape2D_ho8c8")
+
+[node name="UpperRightStorage2" type="CollisionShape2D" parent="Walls" unique_id=1616209502]
+position = Vector2(1051, 241)
+shape = SubResource("CapsuleShape2D_aq8op")
+
+[node name="UpperRightStorage3" type="CollisionShape2D" parent="Walls" unique_id=538287614]
+position = Vector2(919, 229)
+shape = SubResource("CapsuleShape2D_l738k")
+
+[node name="UpperRightStorage4" type="CollisionShape2D" parent="Walls" unique_id=1332438002]
+position = Vector2(841, 239)
+shape = SubResource("CapsuleShape2D_wowfi")
+
+[node name="UpperRightStorage5" type="CollisionShape2D" parent="Walls" unique_id=368262386]
+position = Vector2(605, 243)
+shape = SubResource("CapsuleShape2D_ovdb4")
+
+[node name="UpperRightStorage6" type="CollisionShape2D" parent="Walls" unique_id=344258297]
+position = Vector2(524, 229)
+shape = SubResource("CapsuleShape2D_rfp5r")
+
+[node name="UpperRightStorage7" type="CollisionShape2D" parent="Walls" unique_id=1964422194]
+position = Vector2(406, 226)
+shape = SubResource("CapsuleShape2D_ntjik")
+
+[node name="UpperLeftStorage2" type="CollisionShape2D" parent="Walls" unique_id=1314025713]
+position = Vector2(200, 209)
+shape = SubResource("CapsuleShape2D_q5vyc")
+
+[node name="UpperLeftStorage3" type="CollisionShape2D" parent="Walls" unique_id=654402271]
+position = Vector2(91, 558)
+shape = SubResource("CapsuleShape2D_jt125")
+
+[node name="UpperLeftStorage4" type="CollisionShape2D" parent="Walls" unique_id=852614041]
+position = Vector2(190, 373)
+shape = SubResource("CapsuleShape2D_y4yi0")
+
+[node name="UpperLeftStorage5" type="CollisionShape2D" parent="Walls" unique_id=1363447988]
+position = Vector2(163, 478)
+shape = SubResource("CapsuleShape2D_gpv88")
+
+[node name="UpperLeftStorage6" type="CollisionShape2D" parent="Walls" unique_id=1222535600]
+position = Vector2(165, 547)
+shape = SubResource("CapsuleShape2D_on5j7")
+
+[node name="UpperLeftStorage7" type="CollisionShape2D" parent="Walls" unique_id=1044466036]
+position = Vector2(209, 595)
+shape = SubResource("CapsuleShape2D_lp8bm")
+
+[node name="UpperLeftStorage8" type="CollisionShape2D" parent="Walls" unique_id=1329193142]
+position = Vector2(349, 643)
+shape = SubResource("CapsuleShape2D_amjdc")
+
+[node name="UpperLeftStorage9" type="CollisionShape2D" parent="Walls" unique_id=668195074]
+position = Vector2(162, 786)
+shape = SubResource("CapsuleShape2D_gt2lb")
+
+[node name="UpperLeftStorage10" type="CollisionShape2D" parent="Walls" unique_id=1852751307]
+position = Vector2(212, 878)
+shape = SubResource("CapsuleShape2D_uhhvp")
+
+[node name="UpperLeftStorage11" type="CollisionShape2D" parent="Walls" unique_id=1256984666]
+position = Vector2(557, 891)
+shape = SubResource("CapsuleShape2D_yyrgw")
+
+[node name="UpperLeftStorage12" type="CollisionShape2D" parent="Walls" unique_id=233041866]
+position = Vector2(888, 891)
+shape = SubResource("CapsuleShape2D_yyrgw")
+
+[node name="LowerLeftDesk2" type="CollisionShape2D" parent="Walls" unique_id=2071926751]
+position = Vector2(723.625, 911)
+shape = SubResource("RectangleShape2D_op8od")
+
+[node name="UpperLeftStorage13" type="CollisionShape2D" parent="Walls" unique_id=1646292288]
+position = Vector2(1077, 716)
+shape = SubResource("CapsuleShape2D_qk1py")
+
+[node name="RoundTable2" type="CollisionShape2D" parent="Walls" unique_id=1789923086]
+position = Vector2(464, 412)
+shape = SubResource("CapsuleShape2D_06ejr")
+
+[node name="RoundTable3" type="CollisionShape2D" parent="Walls" unique_id=768265701]
+position = Vector2(450, 495)
+shape = SubResource("CapsuleShape2D_nd87t")
+
+[node name="RoundTable4" type="CollisionShape2D" parent="Walls" unique_id=519288468]
+position = Vector2(357, 492)
+shape = SubResource("CapsuleShape2D_nd87t")
+
+[node name="RoundTable5" type="CollisionShape2D" parent="Walls" unique_id=516878107]
+position = Vector2(331, 431)
+shape = SubResource("CapsuleShape2D_op8od")
+
+[node name="RoundTable6" type="CollisionShape2D" parent="Walls" unique_id=2001615685]
+position = Vector2(389, 376)
+shape = SubResource("CapsuleShape2D_wbt48")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=908599267]
+y_sort_enabled = true
+
+[node name="Player" parent="YSortRoot" unique_id=1327547910 instance=ExtResource("2_player")]
+position = Vector2(724, 812)
+
+
+[node name="ExitToChapter8" parent="." instance=ExtResource("3_portal")]
+position = Vector2(724, 850)
+target_scene = "res://scenes/chapter_8/chapter_8.tscn"
+target_spawn = Vector2(804, 520)
+prompt_text = "กด E เพื่อออกจากห้อง"
