@@ -5,6 +5,7 @@ extends Area2D
 
 var direction := Vector2.RIGHT
 var shooter: Node2D = null
+var _spent := false
 
 func _ready() -> void:
 	# arrow sprite points right; mirror when flying left
@@ -17,8 +18,15 @@ func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	if body == shooter:
+	_try_hit(body)
+
+func _on_area_entered(area: Area2D) -> void:
+	_try_hit(area.get_parent())
+
+func _try_hit(target: Node) -> void:
+	if _spent or target == shooter:
 		return
-	if body.has_method("take_damage"):
-		body.take_damage(damage)
-	queue_free()
+	if target.has_method("take_damage"):
+		_spent = true
+		target.take_damage(damage)
+		queue_free()

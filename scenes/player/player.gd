@@ -25,6 +25,7 @@ var _shooting := false
 var _dash_direction := Vector2.LEFT
 var _dash_time_left := 0.0
 var _dash_cooldown_left := 0.0
+var _hit_flash_tween: Tween
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: Camera2D = $Camera2D
@@ -163,6 +164,11 @@ func _play_animation(anim_name: String) -> void:
 
 func take_damage(amount: int) -> void:
 	current_health = clampi(current_health - amount, 0, max_health)
+	if is_instance_valid(_hit_flash_tween):
+		_hit_flash_tween.kill()
+	animated_sprite.modulate = Color(1, 0.2, 0.2)
+	_hit_flash_tween = create_tween()
+	_hit_flash_tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.2)
 	health_changed.emit(current_health, max_health)
 	if current_health == 0:
 		died.emit()
