@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://blb82p8smqn6q" path="res://assets/map/chapter_5/08e55717-0517-4299-be49-f9443675cc33.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
+[ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1774, 64)
@@ -44,3 +46,19 @@ y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1149714052 instance=ExtResource("2_player")]
 position = Vector2(65, 574)
+
+[node name="Chapter6Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+position = Vector2(1735, 574)
+target_scene = "res://scenes/chapter_6/chapter_6.tscn"
+target_spawn = Vector2(725, 995)
+
+[node name="Chapter4Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+position = Vector2(28, 574)
+target_scene = "res://scenes/chapter_4/chapter_4.tscn"
+target_spawn = Vector2(712, 250)
+
+[node name="Mob1" parent="YSortRoot" instance=ExtResource("91_mob")]
+position = Vector2(600, 574)
+
+[node name="Mob2" parent="YSortRoot" instance=ExtResource("91_mob")]
+position = Vector2(1200, 574)

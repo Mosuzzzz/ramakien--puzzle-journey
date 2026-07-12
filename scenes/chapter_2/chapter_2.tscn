@@ -839,7 +839,7 @@ prompt_text = "กด E เพื่อกลับลานวัง"
 [node name="Chapter3Portal" parent="YSortRoot" unique_id=964546436 instance=ExtResource("5_portal")]
 position = Vector2(670, 1000)
 target_scene = "res://scenes/chapter_3/chapter_3.tscn"
-target_spawn = Vector2(724, 930)
+target_spawn = Vector2(545, 860)
 prompt_text = "กด E เพื่อไปด่านต่อไป"
 
 [node name="Mob3" parent="YSortRoot" unique_id=1253520576 instance=ExtResource("3_mob")]

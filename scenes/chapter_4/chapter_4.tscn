@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cjeq217n8txlf" path="res://assets/props/chapter4/tree.PNG" id="2_mi2ku"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://dub35yko41y8t" path="res://assets/props/chapter4/camp_fire.PNG" id="4_bttof"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1448, 80)
@@ -743,3 +744,13 @@ texture = ExtResource("4_bttof")
 [node name="Tree" type="Sprite2D" parent="." unique_id=1939637844]
 position = Vector2(727, 541)
 texture = ExtResource("2_mi2ku")
+
+[node name="Chapter5Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+position = Vector2(712, 205)
+target_scene = "res://scenes/chapter_5/chapter_5.tscn"
+target_spawn = Vector2(85, 574)
+
+[node name="Chapter3Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+position = Vector2(702, 1048)
+target_scene = "res://scenes/chapter_3/chapter_3.tscn"
+target_spawn = Vector2(1110, 990)

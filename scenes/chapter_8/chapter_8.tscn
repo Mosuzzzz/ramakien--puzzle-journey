@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cwdbtk8s3eryx"]
 
-[ext_resource type="Texture2D" uid="uid://d3cdb3p6ef7yf" path="res://assets/map/Chapter_8/9e55faee-5e66-4531-9012-a5e7179d171f.png" id="1_map"]
+[ext_resource type="Texture2D" uid="uid://d3cdb3p6ef7yf" path="res://assets/map/chapter_8/9e55faee-5e66-4531-9012-a5e7179d171f.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
+[ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1024.000043, 126.519342)
@@ -382,3 +383,22 @@ target_scene = "res://scenes/chapter_8/chapter_8_room_4.tscn"
 target_spawn = Vector2(723, 778)
 prompt_text = "กด E เพื่อเข้าห้อง"
 interaction_size = Vector2(220, 260)
+
+[node name="Chapter9Portal" parent="YSortRoot" instance=ExtResource("3_portal")]
+position = Vector2(505, 90)
+target_scene = "res://scenes/chapter_9/chapter_9.tscn"
+target_spawn = Vector2(718, 995)
+
+[node name="Chapter7Portal" parent="YSortRoot" instance=ExtResource("3_portal")]
+position = Vector2(507, 1490)
+target_scene = "res://scenes/chapter_7/chapter_7.tscn"
+target_spawn = Vector2(724, 505)
+
+[node name="Mob1" parent="YSortRoot" instance=ExtResource("91_mob")]
+position = Vector2(505, 1150)
+
+[node name="Mob2" parent="YSortRoot" instance=ExtResource("91_mob")]
+position = Vector2(460, 750)
+
+[node name="Mob3" parent="YSortRoot" instance=ExtResource("91_mob")]
+position = Vector2(550, 450)
