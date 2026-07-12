@@ -142,7 +142,7 @@ radius = 67.00746
 radius = 54.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_utqoc"]
-radius = 69.260376
+radius = 54.230988
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wut3o"]
 radius = 112.71612
@@ -497,7 +497,7 @@ position = Vector2(1230, 659)
 shape = SubResource("CircleShape2D_lkp62")
 
 [node name="BattleGateBlock18" type="CollisionShape2D" parent="Walls" unique_id=871022868]
-position = Vector2(654, 959)
+position = Vector2(638, 950)
 shape = SubResource("CircleShape2D_utqoc")
 
 [node name="BattleGateBlock19" type="CollisionShape2D" parent="Walls" unique_id=2113711528]
