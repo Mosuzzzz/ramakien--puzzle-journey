@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bka77322in0gd" path="res://assets/props/chapter2/green_tree.PNG" id="7_3d714"]
 [ext_resource type="Texture2D" uid="uid://cty6fnd2qp2hn" path="res://assets/props/chapter2/pink_tree.PNG" id="7_8let3"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_2v6fu"]
-a = Vector2(-42.084717, -36.12317)
-b = Vector2(188.58215, 22.578003)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e8ag2"]
+a = Vector2(-42.53296, -38.313812)
+b = Vector2(189.80688, 21.87091)
 
 [sub_resource type="RectangleShape2D" id="rect_top_boundary"]
 size = Vector2(1448, 95.4492)
@@ -224,6 +224,10 @@ b = Vector2(-94, 59)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tua0"]
 size = Vector2(8, 29.078125)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2v6fu"]
+a = Vector2(-8, -50)
+b = Vector2(38, 14)
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ogi1r"]
 a = Vector2(23, 31)
 b = Vector2(40, 13)
@@ -343,7 +347,7 @@ texture = ExtResource("1_map")
 [node name="UpperCenterRock25" type="CollisionShape2D" parent="wall" unique_id=180269062]
 position = Vector2(820, 287.99997)
 rotation = -0.2617994
-shape = SubResource("SegmentShape2D_2v6fu")
+shape = SubResource("SegmentShape2D_e8ag2")
 
 [node name="TopBoundary" type="CollisionShape2D" parent="wall" unique_id=1414233402]
 position = Vector2(724, 47.7246)
@@ -626,7 +630,7 @@ position = Vector2(370, 856)
 shape = SubResource("CircleShape2D_qj6e0")
 
 [node name="UpperCenterRock6" type="CollisionShape2D" parent="wall" unique_id=1983689180]
-position = Vector2(801, 124)
+position = Vector2(802, 118)
 shape = SubResource("CircleShape2D_2v6fu")
 
 [node name="UpperCenterRock7" type="CollisionShape2D" parent="wall" unique_id=710567981]
