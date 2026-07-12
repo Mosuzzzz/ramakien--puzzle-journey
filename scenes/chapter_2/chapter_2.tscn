@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://ca4ywjncmeoe3" path="res://assets/props/chapter2/tree_stump.PNG" id="2_veea4"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="3_mob"]
-[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="4_sida"]
+[ext_resource type="PackedScene" path="res://scenes/props/sida.tscn" id="4_sida"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="5_portal"]
 [ext_resource type="Texture2D" uid="uid://j66uccdff81n" path="res://assets/props/chapter2/face_rock.PNG" id="6_2mjbf"]
 [ext_resource type="Texture2D" uid="uid://bka77322in0gd" path="res://assets/props/chapter2/green_tree.PNG" id="7_3d714"]

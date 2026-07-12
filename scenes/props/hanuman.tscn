@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://clqaeprs66fvn"]
+
+[ext_resource type="Texture2D" uid="uid://bn3dwt5g2n7go" path="res://assets/charecter/Hanuman/Idle.png" id="1_idle"]
+[ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="2_shadow"]
+[ext_resource type="Texture2D" uid="uid://dry5l3og13m6c" path="res://assets/charecter/Hanuman/run.png" id="3_run"]
+[ext_resource type="Script" uid="uid://t8dthhv8xwlh" path="res://scenes/props/hanuman.gd" id="4_script"]
+[ext_resource type="Texture2D" uid="uid://ce71g84qbbudd" path="res://assets/charecter/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview-removebg-preview.png" id="5_1d1c8"]
+[ext_resource type="Texture2D" uid="uid://cwic3lq7f4mn5" path="res://assets/charecter/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview.png" id="5_q5mao"]
+[ext_resource type="Texture2D" uid="uid://dqmq60bmtpi52" path="res://assets/charecter/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview (1).png" id="6_1d1c8"]
+
+[sub_resource type="AtlasTexture" id="idle_0"]
+atlas = ExtResource("1_idle")
+region = Rect2(0, 0, 1044.25, 1040)
+
+[sub_resource type="AtlasTexture" id="idle_1"]
+atlas = ExtResource("1_idle")
+region = Rect2(1046, 0, 1044.25, 1040)
+
+[sub_resource type="AtlasTexture" id="idle_2"]
+atlas = ExtResource("1_idle")
+region = Rect2(2059, 0, 1044.25, 1040)
+
+[sub_resource type="AtlasTexture" id="idle_3"]
+atlas = ExtResource("1_idle")
+region = Rect2(3120, 0, 1044.25, 1040)
+
+[sub_resource type="AtlasTexture" id="idle_4"]
+atlas = ExtResource("1_idle")
+region = Rect2(4145, 0, 1044.25, 1040)
+
+[sub_resource type="AtlasTexture" id="idle_5"]
+atlas = ExtResource("1_idle")
+region = Rect2(5188, 0, 1044.25, 1040)
+
+[sub_resource type="AtlasTexture" id="idle_6"]
+atlas = ExtResource("1_idle")
+region = Rect2(6228, 0, 1044.25, 1040)
+
+[sub_resource type="AtlasTexture" id="idle_7"]
+atlas = ExtResource("1_idle")
+region = Rect2(7253, 0, 1044.25, 1040)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m8g7"]
+atlas = ExtResource("3_run")
+region = Rect2(111, 0, 111, 187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7li0"]
+atlas = ExtResource("3_run")
+region = Rect2(222, 0, 111, 187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b02y"]
+atlas = ExtResource("5_1d1c8")
+region = Rect2(294, 182, 98, 182)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5mao"]
+atlas = ExtResource("5_q5mao")
+region = Rect2(387, 184, 96, 174)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m32ob"]
+atlas = ExtResource("3_run")
+region = Rect2(333, 170, 111, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqdmy"]
+atlas = ExtResource("6_1d1c8")
+region = Rect2(201, 184, 99, 174)
+
+[sub_resource type="SpriteFrames" id="hanuman_frames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_7")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m8g7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7li0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b02y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5mao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m32ob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqdmy")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="hanuman_collision"]
+radius = 11.0
+height = 34.0
+
+[node name="Hanuman" type="CharacterBody2D" unique_id=2119416647]
+collision_layer = 0
+script = ExtResource("4_script")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1823047924]
+modulate = Color(1, 1, 1, 0.5)
+position = Vector2(0, -1)
+scale = Vector2(0.12, 0.04)
+texture = ExtResource("2_shadow")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=206650256]
+position = Vector2(0, -39)
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("hanuman_frames")
+animation = &"run"
+autoplay = "idle"
+frame = 4
+frame_progress = 0.595675
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1472276358]
+position = Vector2(0, -17)
+shape = SubResource("hanuman_collision")
