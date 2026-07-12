@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://r57nr1rt7fsg" path="res://assets/props/chapter6/pole_right.PNG" id="3_hox84"]
 [ext_resource type="Texture2D" uid="uid://2tfiacjapdrq" path="res://assets/props/chapter6/pole_left.PNG" id="4_t4dvl"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
+[ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvi4p"]
 size = Vector2(1448, 356)
@@ -553,3 +555,21 @@ texture = ExtResource("3_hox84")
 [node name="PoleLeft" type="Sprite2D" parent="." unique_id=1098628050]
 position = Vector2(724, 540)
 texture = ExtResource("4_t4dvl")
+
+[node name="Chapter7Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+position = Vector2(724, 330)
+target_scene = "res://scenes/chapter_7/chapter_7.tscn"
+target_spawn = Vector2(722, 975)
+
+[node name="Chapter5Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+position = Vector2(725, 1050)
+target_scene = "res://scenes/chapter_5/chapter_5.tscn"
+target_spawn = Vector2(1700, 574)
+
+[node name="YakCaptain" parent="YSortRoot" instance=ExtResource("91_mob")]
+position = Vector2(724, 445)
+max_health = 80
+contact_damage = 15
+display_height = 90.0
+speed = 70.0
+aggro_range = 260.0

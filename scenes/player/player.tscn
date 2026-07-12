@@ -223,6 +223,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_p"]
 radius = 9.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_bg"]
+bg_color = Color(0, 0, 0, 0.55)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_fill"]
+bg_color = Color(0.83, 0.22, 0.2, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [node name="Player" type="CharacterBody2D" unique_id=818280317]
 script = ExtResource("1_script")
 
@@ -249,3 +263,25 @@ limit_top = 0
 limit_right = 1254
 limit_bottom = 1254
 position_smoothing_enabled = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 236.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hud_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hud_fill")
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="HUD"]
+offset_left = 26.0
+offset_top = 17.0
+offset_right = 226.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+text = "HP"

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bce0iufpupogs" path="res://assets/props/chapter3/tree4.PNG" id="4_m7h0s"]
 [ext_resource type="Texture2D" uid="uid://byh28l31q4b2m" path="res://assets/props/chapter3/tree3.PNG" id="6_tw8m1"]
 [ext_resource type="Texture2D" uid="uid://ismj7103co5u" path="res://assets/props/chapter3/tree2.PNG" id="7_253fu"]
+[ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1448, 80)
@@ -837,7 +838,7 @@ position = Vector2(519, 853)
 position = Vector2(856, 477)
 
 [node name="Chapter2Portal" parent="YSortRoot" unique_id=964546437 instance=ExtResource("3_portal")]
-position = Vector2(724, 970)
+position = Vector2(490, 868)
 target_scene = "res://scenes/chapter_2/chapter_2.tscn"
 target_spawn = Vector2(670, 950)
 prompt_text = "กด E เพื่อกลับไปด่านก่อนหน้า"
@@ -859,3 +860,14 @@ texture = ExtResource("6_tw8m1")
 [node name="Tree2" type="Sprite2D" parent="." unique_id=886566210]
 position = Vector2(727, 545)
 texture = ExtResource("7_253fu")
+
+[node name="Chapter4Portal" parent="YSortRoot" instance=ExtResource("3_portal")]
+position = Vector2(1150, 1000)
+target_scene = "res://scenes/chapter_4/chapter_4.tscn"
+target_spawn = Vector2(648, 877)
+
+[node name="Mob1" parent="YSortRoot" instance=ExtResource("91_mob")]
+position = Vector2(540, 770)
+
+[node name="Mob2" parent="YSortRoot" instance=ExtResource("91_mob")]
+position = Vector2(1055, 583)

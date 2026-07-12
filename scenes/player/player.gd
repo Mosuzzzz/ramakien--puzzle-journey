@@ -26,12 +26,16 @@ var _dash_direction := Vector2.LEFT
 var _dash_time_left := 0.0
 var _dash_cooldown_left := 0.0
 var _hit_flash_tween: Tween
+var _dead := false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: Camera2D = $Camera2D
+@onready var _health_bar: ProgressBar = $HUD/HealthBar
 
 func _ready() -> void:
 	current_health = max_health
+	_health_bar.max_value = max_health
+	_health_bar.value = current_health
 	if GameState.next_spawn.is_finite():
 		global_position = GameState.next_spawn
 		GameState.next_spawn = Vector2.INF
@@ -163,7 +167,10 @@ func _play_animation(anim_name: String) -> void:
 	animated_sprite.play(anim_name)
 
 func take_damage(amount: int) -> void:
+	if _dead:
+		return
 	current_health = clampi(current_health - amount, 0, max_health)
+	_health_bar.value = current_health
 	if is_instance_valid(_hit_flash_tween):
 		_hit_flash_tween.kill()
 	animated_sprite.modulate = Color(1, 0.2, 0.2)
@@ -172,7 +179,21 @@ func take_damage(amount: int) -> void:
 	health_changed.emit(current_health, max_health)
 	if current_health == 0:
 		died.emit()
+		_die()
 
 func heal(amount: int) -> void:
 	current_health = clampi(current_health + amount, 0, max_health)
+	_health_bar.value = current_health
 	health_changed.emit(current_health, max_health)
+
+func _die() -> void:
+	_dead = true
+	_shooting = true  # reuses the input lock so the body stays put while fading
+	velocity = Vector2.ZERO
+	if is_instance_valid(_hit_flash_tween):
+		_hit_flash_tween.kill()
+	var fade := create_tween()
+	fade.tween_property(animated_sprite, "modulate", Color(1, 0.2, 0.2, 0.0), 0.7)
+	await fade.finished
+	GameState.next_spawn = Vector2.INF
+	get_tree().reload_current_scene()
