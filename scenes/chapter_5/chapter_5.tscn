@@ -36,7 +36,7 @@ position = Vector2(-32, 443.5)
 shape = SubResource("LeftWall")
 
 [node name="Right" type="CollisionShape2D" parent="Walls" unique_id=612486965]
-position = Vector2(1806, 443.5)
+position = Vector2(1802, 443.5)
 shape = SubResource("RightWall")
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=353550459]
