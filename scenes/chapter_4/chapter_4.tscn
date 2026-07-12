@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://c4junglepath"]
 
 [ext_resource type="Texture2D" uid="uid://bethotvquy3eo" path="res://assets/map/chapter_4/image.png" id="1_map"]
+[ext_resource type="Texture2D" uid="uid://cvop62dxnhq5v" path="res://assets/props/chapter4/pole.PNG" id="2_bttof"]
+[ext_resource type="Texture2D" uid="uid://cjeq217n8txlf" path="res://assets/props/chapter4/tree.PNG" id="2_mi2ku"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://dub35yko41y8t" path="res://assets/props/chapter4/camp_fire.PNG" id="4_bttof"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1448, 80)
@@ -148,7 +151,7 @@ radius = 54.230988
 radius = 112.71612
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vaqs"]
-size = Vector2(270.5, 31)
+size = Vector2(279.25, 31)
 
 [sub_resource type="RectangleShape2D" id="rect_wall_bottom"]
 size = Vector2(612.5, 64)
@@ -237,9 +240,6 @@ radius = 38.118237
 [sub_resource type="CircleShape2D" id="CircleShape2D_qwfhq"]
 radius = 125.035995
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5ya01"]
-radius = 88.52683
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_8630v"]
 radius = 51.156624
 
@@ -299,6 +299,12 @@ radius = 24.020824
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bwlu6"]
 radius = 24.020824
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi2ku"]
+size = Vector2(279.25, 12.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mi2ku"]
+radius = 37.054016
 
 [node name="Chapter4" type="Node2D" unique_id=530775568]
 
@@ -505,7 +511,7 @@ position = Vector2(1060, 381)
 shape = SubResource("CircleShape2D_wut3o")
 
 [node name="CenterObstacleA17" type="CollisionShape2D" parent="Walls" unique_id=1580821490]
-position = Vector2(515.75, 1070.5)
+position = Vector2(523.625, 1079)
 shape = SubResource("RectangleShape2D_3vaqs")
 
 [node name="BottomBoundary2" type="CollisionShape2D" parent="Walls" unique_id=430212542]
@@ -628,10 +634,6 @@ shape = SubResource("CircleShape2D_n5e2b")
 position = Vector2(74, 368)
 shape = SubResource("CircleShape2D_qwfhq")
 
-[node name="LeftObstacle4" type="CollisionShape2D" parent="Walls" unique_id=652359902]
-position = Vector2(480, 1063)
-shape = SubResource("CircleShape2D_5ya01")
-
 [node name="LeftObstacle5" type="CollisionShape2D" parent="Walls" unique_id=1312792033]
 position = Vector2(274, 1037)
 shape = SubResource("CircleShape2D_8630v")
@@ -716,8 +718,28 @@ shape = SubResource("CircleShape2D_251r0")
 position = Vector2(612, 319)
 shape = SubResource("CircleShape2D_bwlu6")
 
+[node name="CenterObstacleA31" type="CollisionShape2D" parent="Walls" unique_id=522160415]
+position = Vector2(731, 1090)
+shape = SubResource("RectangleShape2D_mi2ku")
+
+[node name="BottomBoundary3" type="CollisionShape2D" parent="Walls" unique_id=1832229343]
+position = Vector2(525, 1071)
+shape = SubResource("CircleShape2D_mi2ku")
+
+[node name="Pole" type="Sprite2D" parent="Walls" unique_id=2139067927]
+position = Vector2(727, 541)
+texture = ExtResource("2_bttof")
+
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1306578682]
 y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1960272009 instance=ExtResource("2_player")]
 position = Vector2(691, 863)
+
+[node name="CampFire" type="Sprite2D" parent="." unique_id=2122264671]
+position = Vector2(727, 541)
+texture = ExtResource("4_bttof")
+
+[node name="Tree" type="Sprite2D" parent="." unique_id=1939637844]
+position = Vector2(727, 541)
+texture = ExtResource("2_mi2ku")
