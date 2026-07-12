@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dmpemvlxvhsqk" path="res://assets/map/chapter_3/dfef34c6-771b-469c-aac3-64166cc8cc33.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1448, 80)
@@ -530,7 +531,7 @@ position = Vector2(322, 561)
 shape = SubResource("CircleShape2D_iqqne")
 
 [node name="BattleGateBlock25" type="CollisionShape2D" parent="Walls" unique_id=460624883]
-position = Vector2(1104, 176)
+position = Vector2(1111, 201)
 shape = SubResource("RectangleShape2D_s5adn")
 
 [node name="BattleGateBlock26" type="CollisionShape2D" parent="Walls" unique_id=686825445]
@@ -717,4 +718,10 @@ shape = SubResource("CircleShape2D_bwlu6")
 y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1960272009 instance=ExtResource("2_player")]
-position = Vector2(724, 930)
+position = Vector2(1183, 334)
+
+[node name="Chapter2Portal" parent="YSortRoot" unique_id=964546437 instance=ExtResource("3_portal")]
+position = Vector2(724, 970)
+target_scene = "res://scenes/chapter_2/chapter_2.tscn"
+target_spawn = Vector2(670, 950)
+prompt_text = "กด E เพื่อกลับไปด่านก่อนหน้า"

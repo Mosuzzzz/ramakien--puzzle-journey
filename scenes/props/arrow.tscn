@@ -1,20 +1,22 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://biwrlpjj31utl"]
 
-[ext_resource type="Texture2D" path="res://assets/props/arrow.png" id="1_tex"]
-[ext_resource type="Script" path="res://scenes/props/arrow.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://byxtuinspfdvo" path="res://assets/props/arrow.png" id="1_tex"]
+[ext_resource type="Script" uid="uid://cdl1b56bb6sfm" path="res://scenes/props/arrow.gd" id="2_script"]
 
 [sub_resource type="RectangleShape2D" id="rect_arrow"]
 size = Vector2(30, 8)
 
-[node name="Arrow" type="Area2D"]
+[node name="Arrow" type="Area2D" unique_id=1009926839]
 script = ExtResource("2_script")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1741804922]
+position = Vector2(0, -12)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_tex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1203291237]
+position = Vector2(0, -12)
 shape = SubResource("rect_arrow")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

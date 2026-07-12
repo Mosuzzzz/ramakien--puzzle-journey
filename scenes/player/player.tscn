@@ -228,17 +228,16 @@ script = ExtResource("1_script")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1742627637]
 modulate = Color(1, 1, 1, 0.55)
-position = Vector2(0, 5)
-scale = Vector2(0.135, 0.043)
+position = Vector2(7.1525574e-07, -7)
+scale = Vector2(0.12828125, 0.044531252)
 texture = ExtResource("4_shadow")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1220771692]
-position = Vector2(0, -17)
+position = Vector2(1, -32)
 scale = Vector2(0.2353, 0.2353)
 sprite_frames = SubResource("SpriteFrames_pharam")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.6008655
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=556953112]
 shape = SubResource("CircleShape2D_p")
