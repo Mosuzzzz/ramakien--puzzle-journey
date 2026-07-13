@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 148.5  # 1% slower than the player (150)
+@export var speed: float = 120.0  # slower than the player (150)
 @export var follow_distance: float = 45.0
 # scale factor: character renders at display_height * (char_px / region_px)
 @export var display_height: float = 59.4
