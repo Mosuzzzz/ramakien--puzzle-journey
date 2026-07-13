@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u36w1mf7lgmv"
-path="res://.godot/imported/yak_attack.png-c762684238bab3d757e6436f320b8e33.ctex"
+uid="uid://c65b26f8eu35k"
+path="res://.godot/imported/yak_attack_fitted.png-b679791cd81f5345c2619c5a93396f0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/mob/yak_attack.png"
-dest_files=["res://.godot/imported/yak_attack.png-c762684238bab3d757e6436f320b8e33.ctex"]
+source_file="res://assets/character/mob/yak_attack_fitted.png"
+dest_files=["res://.godot/imported/yak_attack_fitted.png-b679791cd81f5345c2619c5a93396f0c.ctex"]
 
 [params]
 

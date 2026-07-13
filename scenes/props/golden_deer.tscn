@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://d2ifsn7i14dss"]
+
+[ext_resource type="Texture2D" uid="uid://cy4x5uli7n13t" path="res://assets/character/Goldendeer/idle.png" id="1_deer"]
+[ext_resource type="Texture2D" uid="uid://ddngd5agy7gq" path="res://assets/character/Goldendeer/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png" id="2_mbymr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw3ue"]
+atlas = ExtResource("1_deer")
+region = Rect2(0, 0, 197, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f31f3"]
+atlas = ExtResource("1_deer")
+region = Rect2(161, 0, 161, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8muqn"]
+atlas = ExtResource("1_deer")
+region = Rect2(300, 0, 150, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pesxi"]
+atlas = ExtResource("1_deer")
+region = Rect2(32, 0, 137, 218)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kme2y"]
+atlas = ExtResource("2_mbymr")
+region = Rect2(6, 3, 97, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo1sq"]
+atlas = ExtResource("2_mbymr")
+region = Rect2(112, 3, 97, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6v4k"]
+atlas = ExtResource("2_mbymr")
+region = Rect2(207, 3, 97, 210)
+
+[sub_resource type="SpriteFrames" id="golden_deer_frames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw3ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f31f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8muqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pesxi")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kme2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo1sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6v4k")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 6.0
+}]
+
+[node name="GoldenDeer" type="Node2D" unique_id=2064433926]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1940689629]
+position = Vector2(0, -33)
+scale = Vector2(0.32, 0.32)
+sprite_frames = SubResource("golden_deer_frames")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.79447275

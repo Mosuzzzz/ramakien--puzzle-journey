@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwic3lq7f4mn5"
-path="res://.godot/imported/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview.png-495dfbd65afc738dcbff5a9fd24845c8.ctex"
+uid="uid://cfiojawsqre3u"
+path="res://.godot/imported/idle.png-a3b73c3c8e8f787fb5ad7a54634e4af1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview.png"
-dest_files=["res://.godot/imported/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview.png-495dfbd65afc738dcbff5a9fd24845c8.ctex"]
+source_file="res://assets/character/Sida/idle.png"
+dest_files=["res://.godot/imported/idle.png-a3b73c3c8e8f787fb5ad7a54634e4af1.ctex"]
 
 [params]
 

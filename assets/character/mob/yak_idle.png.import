@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dry5l3og13m6c"
-path="res://.godot/imported/run.png-badfe4e45d4cb03eb99da48ca941df30.ctex"
+uid="uid://b1h2j02nkwww1"
+path="res://.godot/imported/yak_idle.png-388e1c331507d095eb88c6437d8e122e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/Hanuman/run.png"
-dest_files=["res://.godot/imported/run.png-badfe4e45d4cb03eb99da48ca941df30.ctex"]
+source_file="res://assets/character/mob/yak_idle.png"
+dest_files=["res://.godot/imported/yak_idle.png-388e1c331507d095eb88c6437d8e122e.ctex"]
 
 [params]
 

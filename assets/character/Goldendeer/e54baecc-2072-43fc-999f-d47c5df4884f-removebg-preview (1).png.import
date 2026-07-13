@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn3dwt5g2n7go"
-path="res://.godot/imported/Idle.png-665f740e613cde86d8738936e51ec886.ctex"
+uid="uid://ddngd5agy7gq"
+path="res://.godot/imported/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png-976d7d9f0f5f3cc2c334afcc3a84bd92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/Hanuman/Idle.png"
-dest_files=["res://.godot/imported/Idle.png-665f740e613cde86d8738936e51ec886.ctex"]
+source_file="res://assets/character/Goldendeer/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png"
+dest_files=["res://.godot/imported/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png-976d7d9f0f5f3cc2c334afcc3a84bd92.ctex"]
 
 [params]
 

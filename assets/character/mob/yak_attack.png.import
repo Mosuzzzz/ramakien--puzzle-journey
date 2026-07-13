@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqmq60bmtpi52"
-path="res://.godot/imported/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview (1).png-61f5f14c9a562be3780fdee8905080ee.ctex"
+uid="uid://u36w1mf7lgmv"
+path="res://.godot/imported/yak_attack.png-5503046dae0cf03863e6a4723a61fc63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview (1).png"
-dest_files=["res://.godot/imported/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview (1).png-61f5f14c9a562be3780fdee8905080ee.ctex"]
+source_file="res://assets/character/mob/yak_attack.png"
+dest_files=["res://.godot/imported/yak_attack.png-5503046dae0cf03863e6a4723a61fc63.ctex"]
 
 [params]
 

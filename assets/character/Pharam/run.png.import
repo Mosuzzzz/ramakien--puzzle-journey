@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce71g84qbbudd"
-path="res://.godot/imported/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview-removebg-preview.png-2ec1c4f47ce2e04f89f1991eb74d88fd.ctex"
+uid="uid://p8cesln2djd7"
+path="res://.godot/imported/run.png-6e24a3ac4c78336ed59bd54637290045.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview-removebg-preview.png"
-dest_files=["res://.godot/imported/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview-removebg-preview.png-2ec1c4f47ce2e04f89f1991eb74d88fd.ctex"]
+source_file="res://assets/character/Pharam/run.png"
+dest_files=["res://.godot/imported/run.png-6e24a3ac4c78336ed59bd54637290045.ctex"]
 
 [params]
 

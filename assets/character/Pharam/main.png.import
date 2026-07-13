@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4lv8vnp6kioa"
-path="res://.godot/imported/shotting.png-0278fb9add07ae4a4dadbc1009f45bca.ctex"
+uid="uid://p3dqnrke6hyh"
+path="res://.godot/imported/main.png-6b66ef9d903f0c4eebeff7c696b8c3b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/Pharam/shotting.png"
-dest_files=["res://.godot/imported/shotting.png-0278fb9add07ae4a4dadbc1009f45bca.ctex"]
+source_file="res://assets/character/Pharam/main.png"
+dest_files=["res://.godot/imported/main.png-6b66ef9d903f0c4eebeff7c696b8c3b3.ctex"]
 
 [params]
 

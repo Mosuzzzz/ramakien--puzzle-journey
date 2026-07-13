@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciy8eydejpjic"
-path="res://.godot/imported/yak_solder.png-f8a545d99dbe545632ab69a12cce38ec.ctex"
+uid="uid://ce71g84qbbudd"
+path="res://.godot/imported/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview-removebg-preview.png-0284456d1477419b75854a2131b25277.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/mob/yak_solder.png"
-dest_files=["res://.godot/imported/yak_solder.png-f8a545d99dbe545632ab69a12cce38ec.ctex"]
+source_file="res://assets/character/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview-removebg-preview.png"
+dest_files=["res://.godot/imported/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview-removebg-preview.png-0284456d1477419b75854a2131b25277.ctex"]
 
 [params]
 

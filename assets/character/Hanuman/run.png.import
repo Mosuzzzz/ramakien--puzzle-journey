@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv5ogbom6celt"
-path="res://.godot/imported/yak_walk.png-b284e5ac34ffd5f8207b053497b207fa.ctex"
+uid="uid://dry5l3og13m6c"
+path="res://.godot/imported/run.png-2803a3b1fb06a7214acc0db4eedcaf2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/mob/yak_walk.png"
-dest_files=["res://.godot/imported/yak_walk.png-b284e5ac34ffd5f8207b053497b207fa.ctex"]
+source_file="res://assets/character/Hanuman/run.png"
+dest_files=["res://.godot/imported/run.png-2803a3b1fb06a7214acc0db4eedcaf2b.ctex"]
 
 [params]
 
