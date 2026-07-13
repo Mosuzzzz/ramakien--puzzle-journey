@@ -4,12 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://ca4ywjncmeoe3" path="res://assets/props/chapter2/tree_stump.PNG" id="2_veea4"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="3_mob"]
-[ext_resource type="PackedScene" path="res://scenes/props/sida.tscn" id="4_sida"]
+[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="4_sida"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="5_portal"]
 [ext_resource type="Texture2D" uid="uid://j66uccdff81n" path="res://assets/props/chapter2/face_rock.PNG" id="6_2mjbf"]
 [ext_resource type="Texture2D" uid="uid://bka77322in0gd" path="res://assets/props/chapter2/green_tree.PNG" id="7_3d714"]
 [ext_resource type="Texture2D" uid="uid://cty6fnd2qp2hn" path="res://assets/props/chapter2/pink_tree.PNG" id="7_8let3"]
 [ext_resource type="PackedScene" path="res://scenes/props/golden_deer.tscn" id="8_deer"]
+[ext_resource type="PackedScene" uid="uid://4kx8tqw0140u" path="res://scenes/props/phalak.tscn" id="9_phalak"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e8ag2"]
 a = Vector2(-42.53296, -38.313812)
@@ -85,7 +86,7 @@ radius = 55.2209
 radius = 41.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7korc"]
-radius = 72.64132
+radius = 60.00833
 
 [sub_resource type="CircleShape2D" id="circle_big"]
 radius = 93.6516
@@ -447,7 +448,7 @@ position = Vector2(1268, 451)
 shape = SubResource("circle_small")
 
 [node name="RightCliffMidB" type="CollisionShape2D" parent="wall" unique_id=353564970]
-position = Vector2(1098, 473)
+position = Vector2(1108, 476)
 shape = SubResource("CircleShape2D_7korc")
 
 [node name="RightCliffMidC" type="CollisionShape2D" parent="wall" unique_id=1978222532]
@@ -827,6 +828,9 @@ position = Vector2(981, 554)
 
 [node name="GoldenDeer" parent="YSortRoot" unique_id=1431240380 instance=ExtResource("8_deer")]
 position = Vector2(721, 844)
+
+[node name="Phalak" parent="YSortRoot" unique_id=316981769 instance=ExtResource("9_phalak")]
+position = Vector2(1035, 554)
 
 [node name="Mob1" parent="YSortRoot" unique_id=2085602222 instance=ExtResource("3_mob")]
 position = Vector2(426, 922)
