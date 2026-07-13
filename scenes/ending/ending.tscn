@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scenes/ending/ending.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="2_cinzel"]
+[ext_resource type="FontFile" uid="uid://dw473uskjkhs" path="res://assets/fonts/Merriweather-Variable.ttf" id="3_merri"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="4_sarabun"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="5_sarabun_b"]
+
+[sub_resource type="FontVariation" id="font_title"]
+base_font = ExtResource("2_cinzel")
+fallbacks = Array[Font]([ExtResource("5_sarabun_b")])
+variation_opentype = {2003265652: 700}
+
+[sub_resource type="FontVariation" id="font_body"]
+base_font = ExtResource("3_merri")
+fallbacks = Array[Font]([ExtResource("4_sarabun")])
 
 [node name="Ending" type="Node2D"]
 script = ExtResource("1_script")
@@ -32,6 +45,7 @@ alignment = 1
 
 [node name="Title" type="Label" parent="UI/Center"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("font_title")
 theme_override_font_sizes/font_size = 52
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
 text = "ภารกิจสำเร็จ!"
@@ -39,6 +53,7 @@ horizontal_alignment = 1
 
 [node name="Sub" type="Label" parent="UI/Center"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("font_body")
 theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(1, 1, 1, 0.92)
 text = "พระรามฝ่ากรุงลงกา ช่วยนางสีดากลับคืนมาได้สำเร็จ"
@@ -46,6 +61,7 @@ horizontal_alignment = 1
 
 [node name="End" type="Label" parent="UI/Center"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("font_title")
 theme_override_font_sizes/font_size = 30
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 0.85)
 text = "~ The End ~"
@@ -53,6 +69,7 @@ horizontal_alignment = 1
 
 [node name="Hint" type="Label" parent="UI/Center"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("font_body")
 theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(1, 1, 1, 0.55)
 text = "กด ENTER เพื่อเริ่มการเดินทางใหม่"

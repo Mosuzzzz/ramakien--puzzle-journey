@@ -174,6 +174,13 @@ The player escapes from Lanka while enemy mobs appear in the way.
 - Health / Progress Display
 - Win / Lose Screen
 
+### 8.1 Typography / Fonts
+Based on the UI/UX & Assets Guide, the closest matching font is **Cinzel**, especially for button labels and headings.
+
+- **Buttons** (e.g., START / CONTINUE / SETTINGS): Cinzel SemiBold or Cinzel Bold
+- **Headings** (e.g., UI/UX & ASSETS GUIDE): Cinzel Bold
+- **Body text / Dialogue**: close to Merriweather or Georgia
+
 ## 9. Audio Requirements
 - Background music with Thai fantasy style.
 - Movement and interaction sound effects.
