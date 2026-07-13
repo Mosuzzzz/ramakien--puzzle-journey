@@ -39,73 +39,63 @@ region = Rect2(545.5, 20, 56, 165)
 
 [sub_resource type="AtlasTexture" id="r1"]
 atlas = ExtResource("2_run")
-region = Rect2(76, 0, 76, 145)
-margin = Rect2(93.2, 34, 117, 44)
+region = Rect2(31.5, 41, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r2"]
 atlas = ExtResource("2_run")
-region = Rect2(152, 0, 76, 145)
-margin = Rect2(92.9, 35, 117, 45)
+region = Rect2(108, 41, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r3"]
 atlas = ExtResource("2_run")
-region = Rect2(228, 0, 76, 145)
-margin = Rect2(75.3, 42, 104, 52)
+region = Rect2(185.5, 41, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r4"]
 atlas = ExtResource("2_run")
-region = Rect2(304, 0, 76, 145)
-margin = Rect2(93.5, 36, 116, 46)
+region = Rect2(263, 41, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r5"]
 atlas = ExtResource("2_run")
-region = Rect2(380, 0, 76, 145)
-margin = Rect2(88.6, 42, 117, 52)
+region = Rect2(339.5, 41, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r6"]
 atlas = ExtResource("2_run")
-region = Rect2(456, 0, 76, 145)
-margin = Rect2(90, 41, 123, 51)
+region = Rect2(419, 41, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r7"]
 atlas = ExtResource("2_run")
-region = Rect2(532, 0, 76, 145)
-margin = Rect2(87.9, 42, 114, 52)
+region = Rect2(495.5, 41, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r8"]
 atlas = ExtResource("2_run")
-region = Rect2(0, 145, 76, 145)
-margin = Rect2(85.2, 30, 87, 40)
+region = Rect2(30.5, 204, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r9"]
 atlas = ExtResource("2_run")
-region = Rect2(76, 145, 76, 145)
-margin = Rect2(87.9, 31, 101, 41)
+region = Rect2(105.5, 204, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r10"]
 atlas = ExtResource("2_run")
-region = Rect2(152, 145, 76, 145)
-margin = Rect2(87.5, 30, 107, 40)
+region = Rect2(178, 204, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r11"]
 atlas = ExtResource("2_run")
-region = Rect2(228, 145, 76, 145)
-margin = Rect2(90.1, 30, 112, 40)
+region = Rect2(253, 204, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r12"]
 atlas = ExtResource("2_run")
-region = Rect2(304, 145, 76, 145)
-margin = Rect2(83.2, 34, 97, 44)
+region = Rect2(328, 204, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r13"]
 atlas = ExtResource("2_run")
-region = Rect2(380, 145, 76, 145)
-margin = Rect2(77.1, 35, 97, 45)
+region = Rect2(404, 204, 48, 130)
 
 [sub_resource type="AtlasTexture" id="r14"]
 atlas = ExtResource("2_run")
-region = Rect2(456, 145, 76, 145)
-margin = Rect2(89.8, 31, 116, 41)
+region = Rect2(476, 204, 48, 130)
+
+[sub_resource type="AtlasTexture" id="r15"]
+atlas = ExtResource("2_run")
+region = Rect2(542, 204, 48, 130)
 
 [sub_resource type="SpriteFrames" id="frames_sida"]
 animations = [{
@@ -136,7 +126,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -180,10 +170,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("r14")
+}, {
+"duration": 1.0,
+"texture": SubResource("r15")
 }],
 "loop": 1,
 "name": &"run",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="circ_body"]
