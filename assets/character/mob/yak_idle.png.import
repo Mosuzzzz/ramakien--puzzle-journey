@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1h2j02nkwww1"
-path="res://.godot/imported/yak_idle.png-bd438a4f2174a30b883eafe69a6294cf.ctex"
+path="res://.godot/imported/yak_idle.png-388e1c331507d095eb88c6437d8e122e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/mob/yak_idle.png"
-dest_files=["res://.godot/imported/yak_idle.png-bd438a4f2174a30b883eafe69a6294cf.ctex"]
+source_file="res://assets/character/mob/yak_idle.png"
+dest_files=["res://.godot/imported/yak_idle.png-388e1c331507d095eb88c6437d8e122e.ctex"]
 
 [params]
 

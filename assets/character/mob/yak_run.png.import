@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bherc2nymuloy"
-path="res://.godot/imported/yak_run.png-7ac42cad5fc4da98e5afbc4bd1c6a482.ctex"
+path="res://.godot/imported/yak_run.png-49827ea084dc94846a6892ff4e4f5f95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/mob/yak_run.png"
-dest_files=["res://.godot/imported/yak_run.png-7ac42cad5fc4da98e5afbc4bd1c6a482.ctex"]
+source_file="res://assets/character/mob/yak_run.png"
+dest_files=["res://.godot/imported/yak_run.png-49827ea084dc94846a6892ff4e4f5f95.ctex"]
 
 [params]
 

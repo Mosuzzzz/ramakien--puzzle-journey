@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciy8eydejpjic"
-path="res://.godot/imported/yak_solder.png-f8a545d99dbe545632ab69a12cce38ec.ctex"
+path="res://.godot/imported/yak_solder.png-e7c8275f5440fad0fd0da8cd417266c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/charecter/mob/yak_solder.png"
-dest_files=["res://.godot/imported/yak_solder.png-f8a545d99dbe545632ab69a12cce38ec.ctex"]
+source_file="res://assets/character/mob/yak_solder.png"
+dest_files=["res://.godot/imported/yak_solder.png-e7c8275f5440fad0fd0da8cd417266c3.ctex"]
 
 [params]
 

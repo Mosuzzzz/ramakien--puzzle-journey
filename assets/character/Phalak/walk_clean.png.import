@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p3dqnrke6hyh"
-path="res://.godot/imported/main.png-6b66ef9d903f0c4eebeff7c696b8c3b3.ctex"
+uid="uid://rmsv2jw7b30"
+path="res://.godot/imported/walk_clean.png-714bcd8d98c979eb8a602c04409dfc8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/Pharam/main.png"
-dest_files=["res://.godot/imported/main.png-6b66ef9d903f0c4eebeff7c696b8c3b3.ctex"]
+source_file="res://assets/character/Phalak/walk_clean.png"
+dest_files=["res://.godot/imported/walk_clean.png-714bcd8d98c979eb8a602c04409dfc8e.ctex"]
 
 [params]
 

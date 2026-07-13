@@ -238,6 +238,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="Player" type="CharacterBody2D" unique_id=818280317]
+collision_layer = 2
 script = ExtResource("1_script")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1742627637]

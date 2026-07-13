@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://4kx8tqw0140u"]
+
+[ext_resource type="Texture2D" uid="uid://b8ujik7qwapv1" path="res://assets/character/Phalak/idle_clean.png" id="1_phalak"]
+[ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="2_shadow"]
+[ext_resource type="Texture2D" path="res://assets/character/Phalak/walk_clean.png" id="3_walk"]
+[ext_resource type="Script" path="res://scenes/props/phalak.gd" id="4_script"]
+
+[sub_resource type="AtlasTexture" id="p0"]
+atlas = ExtResource("1_phalak")
+region = Rect2(44.3, 56, 80, 152)
+
+[sub_resource type="AtlasTexture" id="p1"]
+atlas = ExtResource("1_phalak")
+region = Rect2(139.9, 56, 80, 152)
+
+[sub_resource type="AtlasTexture" id="p2"]
+atlas = ExtResource("1_phalak")
+region = Rect2(234.4, 56, 80, 152)
+
+[sub_resource type="AtlasTexture" id="p3"]
+atlas = ExtResource("1_phalak")
+region = Rect2(328.7, 56, 80, 152)
+
+[sub_resource type="AtlasTexture" id="p4"]
+atlas = ExtResource("1_phalak")
+region = Rect2(418.4, 56, 80, 152)
+
+[sub_resource type="AtlasTexture" id="p5"]
+atlas = ExtResource("1_phalak")
+region = Rect2(514.3, 56, 80, 152)
+
+[sub_resource type="AtlasTexture" id="w0"]
+atlas = ExtResource("3_walk")
+region = Rect2(1, 54, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w1"]
+atlas = ExtResource("3_walk")
+region = Rect2(105, 54, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w2"]
+atlas = ExtResource("3_walk")
+region = Rect2(207, 54, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w3"]
+atlas = ExtResource("3_walk")
+region = Rect2(307, 54, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w4"]
+atlas = ExtResource("3_walk")
+region = Rect2(410, 54, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w5"]
+atlas = ExtResource("3_walk")
+region = Rect2(508, 54, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w6"]
+atlas = ExtResource("3_walk")
+region = Rect2(5, 232, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w7"]
+atlas = ExtResource("3_walk")
+region = Rect2(106, 232, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w8"]
+atlas = ExtResource("3_walk")
+region = Rect2(209, 232, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w9"]
+atlas = ExtResource("3_walk")
+region = Rect2(310, 232, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w10"]
+atlas = ExtResource("3_walk")
+region = Rect2(411, 232, 90, 152)
+
+[sub_resource type="AtlasTexture" id="w11"]
+atlas = ExtResource("3_walk")
+region = Rect2(508, 232, 90, 152)
+
+[sub_resource type="CircleShape2D" id="circ_body"]
+radius = 8.0
+
+[sub_resource type="SpriteFrames" id="frames_phalak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("p5")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("w4")
+}, {
+"duration": 1.0,
+"texture": SubResource("w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w8")
+}, {
+"duration": 1.0,
+"texture": SubResource("w9")
+}, {
+"duration": 1.0,
+"texture": SubResource("w10")
+}, {
+"duration": 1.0,
+"texture": SubResource("w11")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="Phalak" type="CharacterBody2D" unique_id=1462114690]
+collision_layer = 0
+script = ExtResource("4_script")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=876956269]
+modulate = Color(1, 1, 1, 0.55)
+position = Vector2(0, 1)
+scale = Vector2(0.08, 0.026)
+texture = ExtResource("2_shadow")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1029276036]
+position = Vector2(0, -25.9)
+scale = Vector2(0.365, 0.365)
+sprite_frames = SubResource("frames_phalak")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.48607692
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("circ_body")

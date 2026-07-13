@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p3dqnrke6hyh"
-path="res://.godot/imported/main.png-6b66ef9d903f0c4eebeff7c696b8c3b3.ctex"
+uid="uid://dmdn87lr0ossp"
+path="res://.godot/imported/idle.png-fabd8c12de0292b9470c289070ee2db3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/Pharam/main.png"
-dest_files=["res://.godot/imported/main.png-6b66ef9d903f0c4eebeff7c696b8c3b3.ctex"]
+source_file="res://assets/character/Phalak/idle.png"
+dest_files=["res://.godot/imported/idle.png-fabd8c12de0292b9470c289070ee2db3.ctex"]
 
 [params]
 
