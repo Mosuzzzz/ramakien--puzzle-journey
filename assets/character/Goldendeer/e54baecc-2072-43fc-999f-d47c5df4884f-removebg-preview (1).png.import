@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p3dqnrke6hyh"
-path="res://.godot/imported/main.png-6b66ef9d903f0c4eebeff7c696b8c3b3.ctex"
+uid="uid://ddngd5agy7gq"
+path="res://.godot/imported/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png-976d7d9f0f5f3cc2c334afcc3a84bd92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/Pharam/main.png"
-dest_files=["res://.godot/imported/main.png-6b66ef9d903f0c4eebeff7c696b8c3b3.ctex"]
+source_file="res://assets/character/Goldendeer/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png"
+dest_files=["res://.godot/imported/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png-976d7d9f0f5f3cc2c334afcc3a84bd92.ctex"]
 
 [params]
 

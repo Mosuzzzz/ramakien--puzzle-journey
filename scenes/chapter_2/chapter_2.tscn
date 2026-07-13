@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://j66uccdff81n" path="res://assets/props/chapter2/face_rock.PNG" id="6_2mjbf"]
 [ext_resource type="Texture2D" uid="uid://bka77322in0gd" path="res://assets/props/chapter2/green_tree.PNG" id="7_3d714"]
 [ext_resource type="Texture2D" uid="uid://cty6fnd2qp2hn" path="res://assets/props/chapter2/pink_tree.PNG" id="7_8let3"]
+[ext_resource type="PackedScene" path="res://scenes/props/golden_deer.tscn" id="8_deer"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e8ag2"]
 a = Vector2(-42.53296, -38.313812)
@@ -819,10 +820,13 @@ shape = SubResource("SegmentShape2D_7korc")
 y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1670645966 instance=ExtResource("2_player")]
-position = Vector2(679, 897)
+position = Vector2(732, 191)
 
 [node name="Sida" parent="YSortRoot" unique_id=927315536 instance=ExtResource("4_sida")]
 position = Vector2(981, 554)
+
+[node name="GoldenDeer" parent="YSortRoot" unique_id=1431240380 instance=ExtResource("8_deer")]
+position = Vector2(721, 844)
 
 [node name="Mob1" parent="YSortRoot" unique_id=2085602222 instance=ExtResource("3_mob")]
 position = Vector2(426, 922)
