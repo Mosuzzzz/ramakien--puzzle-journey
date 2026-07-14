@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://j66uccdff81n" path="res://assets/props/chapter2/face_rock.PNG" id="6_2mjbf"]
 [ext_resource type="Texture2D" uid="uid://bka77322in0gd" path="res://assets/props/chapter2/green_tree.PNG" id="7_3d714"]
 [ext_resource type="Texture2D" uid="uid://cty6fnd2qp2hn" path="res://assets/props/chapter2/pink_tree.PNG" id="7_8let3"]
-[ext_resource type="PackedScene" path="res://scenes/props/golden_deer.tscn" id="8_deer"]
+[ext_resource type="PackedScene" uid="uid://d2ifsn7i14dss" path="res://scenes/props/golden_deer.tscn" id="8_deer"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e8ag2"]
 a = Vector2(-42.53296, -38.313812)
@@ -300,10 +300,6 @@ b = Vector2(137.94788, -82.09372)
 a = Vector2(241.29694, 3.5740967)
 b = Vector2(300.73608, 17.430176)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_pbjye"]
-a = Vector2(321.77332, 93.46588)
-b = Vector2(300.73608, 17.430176)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d714"]
 size = Vector2(7.2105713, 196.9576)
 
@@ -336,6 +332,10 @@ b = Vector2(151.93768, -91.80377)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_7korc"]
 a = Vector2(211, -91)
 b = Vector2(31, 60)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pbjye"]
+a = Vector2(321.77332, 93.46588)
+b = Vector2(300.73608, 17.430176)
 
 [node name="Chapter2" type="Node2D" unique_id=1456977817]
 
@@ -771,11 +771,6 @@ position = Vector2(820, 287.99997)
 rotation = -0.2617994
 shape = SubResource("SegmentShape2D_0bj88")
 
-[node name="UpperCenterRock35" type="CollisionShape2D" parent="wall" unique_id=467037621]
-position = Vector2(820, 287.99997)
-rotation = -0.2617994
-shape = SubResource("SegmentShape2D_pbjye")
-
 [node name="LowerRightForest2" type="CollisionShape2D" parent="wall" unique_id=1234063819]
 position = Vector2(909.7526, 920.7346)
 rotation = -2.1720545
@@ -816,6 +811,12 @@ shape = SubResource("SegmentShape2D_2ewys")
 position = Vector2(1069, 823)
 shape = SubResource("SegmentShape2D_7korc")
 
+[node name="UpperCenterRock35" type="CollisionShape2D" parent="wall" unique_id=467037621]
+position = Vector2(820, 288)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("SegmentShape2D_pbjye")
+
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1169931713]
 y_sort_enabled = true
 
@@ -830,9 +831,27 @@ position = Vector2(721, 844)
 
 [node name="Mob1" parent="YSortRoot" unique_id=2085602222 instance=ExtResource("3_mob")]
 position = Vector2(426, 922)
+speed = null
+aggro_range = null
+contact_damage = null
+max_health = null
+display_height = null
+can_move = null
+attack_range = null
+attack_cooldown = null
+attack_hit_padding = null
 
 [node name="Mob2" parent="YSortRoot" unique_id=388536931 instance=ExtResource("3_mob")]
 position = Vector2(1164, 807)
+speed = null
+aggro_range = null
+contact_damage = null
+max_health = null
+display_height = null
+can_move = null
+attack_range = null
+attack_cooldown = null
+attack_hit_padding = null
 
 [node name="Chapter1Portal" parent="YSortRoot" unique_id=1243868220 instance=ExtResource("5_portal")]
 position = Vector2(734, 110)
@@ -848,6 +867,15 @@ prompt_text = "กด E เพื่อไปด่านต่อไป"
 
 [node name="Mob3" parent="YSortRoot" unique_id=1253520576 instance=ExtResource("3_mob")]
 position = Vector2(980, 640)
+speed = null
+aggro_range = null
+contact_damage = null
+max_health = null
+display_height = null
+can_move = null
+attack_range = null
+attack_cooldown = null
+attack_hit_padding = null
 
 [node name="FaceRock" type="Sprite2D" parent="YSortRoot" unique_id=964546435]
 position = Vector2(721, 540)

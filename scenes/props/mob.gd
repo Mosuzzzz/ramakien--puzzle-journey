@@ -13,7 +13,7 @@ extends CharacterBody2D
 # which way each sprite sheet faces natively; flip_h mirrors it when facing the other way
 const ANIM_FACES_RIGHT := {"idle": false, "run": false, "walk": true, "attack": true}
 # Attack cells include generous transparent effect space around the character.
-const ANIM_DISPLAY_SCALE := {"walk": 0.88, "attack": 1.796}
+const ANIM_DISPLAY_SCALE := {"walk": 0.88, "attack": 1.796, "Attack": 1.28}
 # per-animation sprite offset that keeps the feet on the same baseline
 const ANIM_SPRITE_Y := {"walk": -10.5, "attack": -35.0}
 const ATTACK_HIT_FRAME := 4
@@ -53,25 +53,42 @@ func _start_attack() -> void:
 	_hit_cooldown = attack_cooldown
 	velocity = Vector2.ZERO
 	_face_right = _player.global_position.x > global_position.x
-	_play("attack")
+	var attack_animation := _play("attack")
+	var frame_count := _sprite.sprite_frames.get_frame_count(attack_animation)
+	var hit_frame: int = mini(ATTACK_HIT_FRAME, frame_count - 1)
 	# Follow the actual animation frame so damage stays aligned if its FPS changes.
-	while _sprite.animation == &"attack" and _sprite.frame < ATTACK_HIT_FRAME:
+	while _sprite.animation == attack_animation and _sprite.frame < hit_frame:
 		await _sprite.frame_changed
 	if is_instance_valid(_player) and _player.has_method("take_damage"):
 		if (_player.global_position - global_position).length() <= attack_range + attack_hit_padding:
 			_player.take_damage(contact_damage)
-	await _sprite.animation_finished
+	if _sprite.sprite_frames.get_animation_loop(attack_animation):
+		await get_tree().create_timer(0.1).timeout
+	else:
+		await _sprite.animation_finished
 	_attacking = false
 
-func _play(anim: String) -> void:
+func _animation_for(requested: StringName) -> StringName:
+	if _sprite.sprite_frames.has_animation(requested):
+		return requested
+	if requested == &"walk" and _sprite.sprite_frames.has_animation(&"run"):
+		return &"run"
+	if requested == &"attack" and _sprite.sprite_frames.has_animation(&"Attack"):
+		return &"Attack"
+	return &"idle"
+
+func _play(requested: StringName) -> StringName:
+	var anim := _animation_for(requested)
 	if _sprite.animation != anim:
 		_sprite.animation = anim
 		var tex := _sprite.sprite_frames.get_frame_texture(anim, 0)
-		var s: float = display_height * ANIM_DISPLAY_SCALE.get(anim, 1.0) / tex.get_height()
-		_sprite.scale = Vector2(s, s)
-		_sprite.position.y = ANIM_SPRITE_Y.get(anim, -14.0)
+		if tex != null:
+			var s: float = display_height * ANIM_DISPLAY_SCALE.get(anim, 1.0) / tex.get_height()
+			_sprite.scale = Vector2(s, s)
+		_sprite.position.y = ANIM_SPRITE_Y.get(anim, _sprite.position.y)
 	_sprite.flip_h = _face_right != ANIM_FACES_RIGHT.get(anim, false)
 	_sprite.play(anim)
+	return anim
 
 func take_damage(amount: int) -> void:
 	_flash_hit()
