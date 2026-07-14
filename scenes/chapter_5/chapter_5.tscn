@@ -1,9 +1,11 @@
-[gd_scene format=3 uid="uid://cf1v8vwfmwqv1"]
+[gd_scene format=3 uid="uid://rtc351ebqg4i"]
 
 [ext_resource type="Texture2D" uid="uid://blb82p8smqn6q" path="res://assets/map/chapter_5/08e55717-0517-4299-be49-f9443675cc33.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://btriis1qtfnm4" path="res://scenes/chapter_5/rock_chapter5.PNG" id="7_p0vbt"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
+[ext_resource type="PackedScene" uid="uid://dilmgn5n35nb2" path="res://scenes/props/miyarap.tscn" id="92_miyarap"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1774, 64)
@@ -26,7 +28,7 @@ texture = ExtResource("1_map")
 [node name="Walls" type="StaticBody2D" parent="." unique_id=1249163845]
 
 [node name="Top" type="CollisionShape2D" parent="Walls" unique_id=438583601]
-position = Vector2(885, 528)
+position = Vector2(885, 524)
 shape = SubResource("TopWall")
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=297817916]
@@ -47,18 +49,26 @@ y_sort_enabled = true
 [node name="Player" parent="YSortRoot" unique_id=1149714052 instance=ExtResource("2_player")]
 position = Vector2(65, 574)
 
-[node name="Chapter6Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+[node name="Chapter6Portal" parent="YSortRoot" unique_id=206403356 instance=ExtResource("90_portal")]
 position = Vector2(1735, 574)
 target_scene = "res://scenes/chapter_6/chapter_6.tscn"
 target_spawn = Vector2(725, 995)
 
-[node name="Chapter4Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+[node name="Chapter4Portal" parent="YSortRoot" unique_id=1675960875 instance=ExtResource("90_portal")]
 position = Vector2(28, 574)
 target_scene = "res://scenes/chapter_4/chapter_4.tscn"
 target_spawn = Vector2(712, 250)
 
-[node name="Mob1" parent="YSortRoot" instance=ExtResource("91_mob")]
+[node name="Mob1" parent="YSortRoot" unique_id=1282609856 instance=ExtResource("91_mob")]
 position = Vector2(600, 574)
 
-[node name="Mob2" parent="YSortRoot" instance=ExtResource("91_mob")]
+[node name="Mob2" parent="YSortRoot" unique_id=797283434 instance=ExtResource("91_mob")]
 position = Vector2(1200, 574)
+
+[node name="Miyarap" parent="YSortRoot" unique_id=584649960 instance=ExtResource("92_miyarap")]
+position = Vector2(900, 560)
+
+[node name="RockChapter5" type="Sprite2D" parent="." unique_id=1730289702]
+position = Vector2(884, 450)
+scale = Vector2(1.106875, 1.08875)
+texture = ExtResource("7_p0vbt")
