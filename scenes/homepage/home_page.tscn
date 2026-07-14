@@ -1,0 +1,220 @@
+[gd_scene format=3 uid="uid://d4gaxscs0brjw"]
+
+[ext_resource type="Script" uid="uid://bsx6i4612wgs1" path="res://scenes/homepage/home_page.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ccg4q53rnwpi0" path="res://assets/homepage/bg/HOME_BG.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://b56hepwwhvpbh" path="res://assets/homepage/logo/Logo.PNG" id="3_logo"]
+[ext_resource type="Texture2D" path="res://assets/homepage/lable/lable_clean.png" id="4_ui"]
+[ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="5_cinzel"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="6_sarabun"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="7_sarabun_b"]
+
+[sub_resource type="FontVariation" id="font_cinzel_bold"]
+base_font = ExtResource("5_cinzel")
+fallbacks = Array[Font]([ExtResource("7_sarabun_b")])
+variation_opentype = {2003265652: 700}
+
+[sub_resource type="FontVariation" id="font_cinzel_semibold"]
+base_font = ExtResource("5_cinzel")
+fallbacks = Array[Font]([ExtResource("6_sarabun")])
+variation_opentype = {2003265652: 600}
+
+[sub_resource type="AtlasTexture" id="atlas_btn_start"]
+atlas = ExtResource("4_ui")
+region = Rect2(17, 151, 278, 66)
+
+[sub_resource type="AtlasTexture" id="atlas_btn_quit"]
+atlas = ExtResource("4_ui")
+region = Rect2(17, 583, 277, 66)
+
+[sub_resource type="StyleBoxTexture" id="start_normal"]
+content_margin_left = 44.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+texture = SubResource("atlas_btn_start")
+
+[sub_resource type="StyleBoxTexture" id="start_hover"]
+content_margin_left = 44.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+texture = SubResource("atlas_btn_start")
+modulate_color = Color(1.18, 1.18, 1.1, 1)
+
+[sub_resource type="StyleBoxTexture" id="start_pressed"]
+content_margin_left = 44.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = SubResource("atlas_btn_start")
+modulate_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="StyleBoxTexture" id="quit_normal"]
+content_margin_left = 44.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+texture = SubResource("atlas_btn_quit")
+
+[sub_resource type="StyleBoxTexture" id="quit_hover"]
+content_margin_left = 44.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+texture = SubResource("atlas_btn_quit")
+modulate_color = Color(1.18, 1.1, 1.1, 1)
+
+[sub_resource type="StyleBoxTexture" id="quit_pressed"]
+content_margin_left = 44.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = SubResource("atlas_btn_quit")
+modulate_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_focus"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.95, 0.7, 0.85)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="LabelSettings" id="hint_label"]
+font = ExtResource("6_sarabun")
+font_size = 16
+font_color = Color(1, 1, 1, 0.8)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.7)
+
+[sub_resource type="LabelSettings" id="version_label"]
+font = SubResource("font_cinzel_semibold")
+font_size = 13
+font_color = Color(1, 1, 1, 0.55)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.6)
+
+[node name="HomePage" type="Control" unique_id=834778796]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1226173713]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Logo" type="TextureRect" parent="." unique_id=2091713569]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -466.0
+offset_top = 26.0
+offset_right = -37.0
+offset_bottom = 300.0
+grow_horizontal = 2
+texture = ExtResource("3_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=519872638]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -238.0
+offset_right = 140.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="StartButton" type="Button" parent="Menu" unique_id=1894225114]
+custom_minimum_size = Vector2(280, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.55, 1)
+theme_override_colors/font_focus_color = Color(1, 0.95, 0.7, 1)
+theme_override_colors/font_pressed_color = Color(0.95, 0.8, 0.45, 1)
+theme_override_colors/font_hover_color = Color(1, 0.97, 0.75, 1)
+theme_override_fonts/font = SubResource("font_cinzel_bold")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("start_normal")
+theme_override_styles/pressed = SubResource("start_pressed")
+theme_override_styles/hover = SubResource("start_hover")
+theme_override_styles/focus = SubResource("btn_focus")
+text = "START"
+
+[node name="QuitButton" type="Button" parent="Menu" unique_id=1080403444]
+custom_minimum_size = Vector2(280, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.55, 1)
+theme_override_colors/font_focus_color = Color(1, 0.95, 0.7, 1)
+theme_override_colors/font_pressed_color = Color(0.95, 0.8, 0.45, 1)
+theme_override_colors/font_hover_color = Color(1, 0.97, 0.75, 1)
+theme_override_fonts/font = SubResource("font_cinzel_bold")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("quit_normal")
+theme_override_styles/pressed = SubResource("quit_pressed")
+theme_override_styles/hover = SubResource("quit_hover")
+theme_override_styles/focus = SubResource("btn_focus")
+text = "QUIT"
+
+[node name="Hint" type="Label" parent="." unique_id=441417374]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -48.0
+offset_right = 220.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "กด ENTER เพื่อเริ่มการเดินทาง"
+label_settings = SubResource("hint_label")
+horizontal_alignment = 1
+
+[node name="Version" type="Label" parent="." unique_id=657363499]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -34.0
+offset_right = -14.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ramakien: Puzzle Journey"
+label_settings = SubResource("version_label")
+horizontal_alignment = 2
+
+[connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/QuitButton" to="." method="_on_quit_pressed"]
