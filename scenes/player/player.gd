@@ -45,7 +45,10 @@ func _ready() -> void:
 	_play_animation("idle")
 
 func _configure_camera_for_map() -> void:
-	var scene := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return
+	var scene := tree.current_scene
 	if scene == null:
 		return
 

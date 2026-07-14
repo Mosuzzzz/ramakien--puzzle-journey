@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bms760mviu6fo" path="res://assets/map/chapter_9/cc2c52e6-715e-4936-9815-788d9a610648.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
-[ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
+[ext_resource type="PackedScene" uid="uid://doorx52srbvl5" path="res://scenes/props/thosakan.tscn" id="91_mob"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1448, 299)
@@ -325,21 +325,19 @@ y_sort_enabled = true
 [node name="Player" parent="YSortRoot" unique_id=643082494 instance=ExtResource("2_player")]
 position = Vector2(718, 1022)
 
-[node name="EndingPortal" parent="YSortRoot" instance=ExtResource("90_portal")]
+[node name="EndingPortal" parent="YSortRoot" unique_id=1366143209 instance=ExtResource("90_portal")]
 position = Vector2(724, 330)
 target_scene = "res://scenes/ending/ending.tscn"
-target_spawn = Vector2(0, 0)
 prompt_text = "กด E - จบภารกิจ"
 
-[node name="Chapter8Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+[node name="Chapter8Portal" parent="YSortRoot" unique_id=544627573 instance=ExtResource("90_portal")]
 position = Vector2(718, 1058)
 target_scene = "res://scenes/chapter_8/chapter_8.tscn"
 target_spawn = Vector2(505, 145)
 
-[node name="Thotsakan" parent="YSortRoot" instance=ExtResource("91_mob")]
-position = Vector2(724, 560)
-max_health = 120
-contact_damage = 20
-display_height = 110.0
-speed = 60.0
+[node name="Thotsakan" parent="YSortRoot" unique_id=1064336537 instance=ExtResource("91_mob")]
+position = Vector2(753, 597)
 aggro_range = 300.0
+contact_damage = 20
+max_health = 180
+display_height = 200.0
