@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://hvvx5wa5teo6" path="res://scenes/props/miyarap.gd" id="3_script"]
 [ext_resource type="Texture2D" uid="uid://c060sgkcngbx0" path="res://assets/character/miyarap/attack_clean.png" id="4_attack"]
 [ext_resource type="Texture2D" uid="uid://dg8w6r42x4q5d" path="res://assets/character/miyarap/summon_clean.png" id="5_summon"]
+[ext_resource type="Texture2D" uid="uid://byurci5qnpebc" path="res://assets/character/miyarap/stun_clean.png" id="6_stun"]
 
 [sub_resource type="AtlasTexture" id="a2"]
 atlas = ExtResource("4_attack")
@@ -86,13 +87,73 @@ region = Rect2(951, 611, 358, 298)
 atlas = ExtResource("1_miyarap")
 region = Rect2(1394, 611, 358, 298)
 
+[sub_resource type="AtlasTexture" id="st0"]
+atlas = ExtResource("6_stun")
+region = Rect2(0, 0, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st1"]
+atlas = ExtResource("6_stun")
+region = Rect2(134, 0, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st2"]
+atlas = ExtResource("6_stun")
+region = Rect2(268, 0, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st3"]
+atlas = ExtResource("6_stun")
+region = Rect2(402, 0, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st4"]
+atlas = ExtResource("6_stun")
+region = Rect2(0, 107, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st5"]
+atlas = ExtResource("6_stun")
+region = Rect2(134, 107, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st6"]
+atlas = ExtResource("6_stun")
+region = Rect2(268, 107, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st7"]
+atlas = ExtResource("6_stun")
+region = Rect2(402, 107, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st8"]
+atlas = ExtResource("6_stun")
+region = Rect2(0, 214, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st9"]
+atlas = ExtResource("6_stun")
+region = Rect2(134, 214, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st10"]
+atlas = ExtResource("6_stun")
+region = Rect2(268, 214, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st11"]
+atlas = ExtResource("6_stun")
+region = Rect2(402, 214, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st12"]
+atlas = ExtResource("6_stun")
+region = Rect2(0, 321, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st13"]
+atlas = ExtResource("6_stun")
+region = Rect2(134, 321, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st14"]
+atlas = ExtResource("6_stun")
+region = Rect2(268, 321, 134, 107)
+
+[sub_resource type="AtlasTexture" id="st15"]
+atlas = ExtResource("6_stun")
+region = Rect2(402, 321, 134, 107)
+
 [sub_resource type="AtlasTexture" id="s0"]
 atlas = ExtResource("5_summon")
 region = Rect2(34, 28, 390, 304)
-
-[sub_resource type="AtlasTexture" id="s3"]
-atlas = ExtResource("5_summon")
-region = Rect2(1299, 28, 390, 304)
 
 [sub_resource type="AtlasTexture" id="s4"]
 atlas = ExtResource("5_summon")
@@ -109,14 +170,6 @@ region = Rect2(886, 352, 390, 304)
 [sub_resource type="AtlasTexture" id="s7"]
 atlas = ExtResource("5_summon")
 region = Rect2(1320, 352, 390, 304)
-
-[sub_resource type="AtlasTexture" id="s8"]
-atlas = ExtResource("5_summon")
-region = Rect2(36, 619, 390, 304)
-
-[sub_resource type="AtlasTexture" id="s9"]
-atlas = ExtResource("5_summon")
-region = Rect2(476, 619, 390, 304)
 
 [sub_resource type="SpriteFrames" id="frames_miyarap"]
 animations = [{
@@ -198,10 +251,60 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("s0")
+"texture": SubResource("st0")
 }, {
 "duration": 1.0,
-"texture": SubResource("s3")
+"texture": SubResource("st1")
+}, {
+"duration": 1.0,
+"texture": SubResource("st2")
+}, {
+"duration": 1.0,
+"texture": SubResource("st3")
+}, {
+"duration": 1.0,
+"texture": SubResource("st4")
+}, {
+"duration": 1.0,
+"texture": SubResource("st5")
+}, {
+"duration": 1.0,
+"texture": SubResource("st6")
+}, {
+"duration": 1.0,
+"texture": SubResource("st7")
+}, {
+"duration": 1.0,
+"texture": SubResource("st8")
+}, {
+"duration": 1.0,
+"texture": SubResource("st9")
+}, {
+"duration": 1.0,
+"texture": SubResource("st10")
+}, {
+"duration": 1.0,
+"texture": SubResource("st11")
+}, {
+"duration": 1.0,
+"texture": SubResource("st12")
+}, {
+"duration": 1.0,
+"texture": SubResource("st13")
+}, {
+"duration": 1.0,
+"texture": SubResource("st14")
+}, {
+"duration": 1.0,
+"texture": SubResource("st15")
+}],
+"loop": 0,
+"name": &"stun",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("s0")
 }, {
 "duration": 1.0,
 "texture": SubResource("s4")
@@ -216,30 +319,12 @@ animations = [{
 "texture": SubResource("s7")
 }, {
 "duration": 1.0,
-"texture": SubResource("s8")
-}, {
-"duration": 1.0,
-"texture": SubResource("s9")
-}, {
-"duration": 1.0,
-"texture": SubResource("s8")
-}, {
-"duration": 1.0,
 "texture": SubResource("s6")
 }, {
 "duration": 1.0,
-"texture": SubResource("s5")
-}, {
-"duration": 1.0,
-"texture": SubResource("s4")
-}, {
-"duration": 1.0,
-"texture": SubResource("s3")
-}, {
-"duration": 1.0,
-"texture": SubResource("s0")
+"texture": SubResource("s7")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"summon",
 "speed": 5.0
 }]
@@ -263,8 +348,10 @@ texture = ExtResource("2_shadow")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1644732533]
 position = Vector2(0, -55)
 sprite_frames = SubResource("frames_miyarap")
-animation = &"idle"
+animation = &"stun"
 autoplay = "idle"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=403286823]
 shape = SubResource("circ_body")

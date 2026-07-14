@@ -9,38 +9,41 @@ const WaveScene := preload("res://scenes/props/wave.tscn")
 @export var attack_cooldown: float = 1.6
 @export var summon_range: float = 220.0
 @export var display_height: float = 130.0
+# accumulated damage taken before he staggers into the stun pose
+@export var stun_threshold: float = 60.0
 
 # ground-slam impact lands here in the trimmed 12-frame attack clip
 const ATTACK_HIT_FRAME := 5
-# spawn minions once the ghosts are fully formed (index of s9 in the
-# ping-pong summon sequence: s0,s3,s4,s5,s6,s7,s8,s9,s8,s6,s5,s4,s3,s0)
-const SUMMON_SPAWN_FRAME := 7
-# the attack/summon sheets have more transparent padding around the body than idle,
+# spawn minions on the last frame of the 6-frame summon clip (s0,s4,s5,s6,s7,s8)
+const SUMMON_SPAWN_FRAME := 5
+# the attack/summon/stun sheets have more transparent padding around the body than idle,
 # so they need extra scale to make the character read the same size on-screen
-const ANIM_DISPLAY_SCALE := {"attack": 1.1, "summon": 1.03}
+const ANIM_DISPLAY_SCALE := {"attack": 1.1, "summon": 1.03, "stun": 0.97}
 
 var _health: int = max_health
 var _hit_cooldown: float = 0.0
 var _player: Node2D
 var _attacking := false
 var _has_summoned := false
+var _stagger_damage: float = 0.0
 var _hit_flash_tween: Tween
 
 @onready var _sprite: AnimatedSprite2D = $Sprite
 
-var _base_scale: float
 
 func _ready() -> void:
 	_health = max_health
 	_player = get_parent().get_node_or_null("Player")
-	var idle_tex := _sprite.sprite_frames.get_frame_texture("idle", 0)
-	_base_scale = display_height / idle_tex.get_height()
-	_sprite.scale = Vector2(_base_scale, _base_scale)
 	_play("idle")
 
 func _physics_process(delta: float) -> void:
 	_hit_cooldown = maxf(_hit_cooldown - delta, 0.0)
-	if _player == null or _attacking:
+	if _attacking:
+		return
+	if _stagger_damage >= stun_threshold:
+		_start_stun()
+		return
+	if _player == null:
 		return
 	var dist := (_player.global_position - global_position).length()
 	if not _has_summoned and dist < summon_range:
@@ -48,8 +51,30 @@ func _physics_process(delta: float) -> void:
 		return
 	if _hit_cooldown > 0.0:
 		return
-	if dist < attack_range:
+	if dist < attack_range and _is_on_screen():
 		_start_attack()
+
+func _is_on_screen() -> bool:
+	var cam := get_viewport().get_camera_2d()
+	if cam == null:
+		return true
+	var screen_size: Vector2 = get_viewport_rect().size / cam.zoom
+	var cam_pos: Vector2 = cam.get_screen_center_position()
+	var visible_rect := Rect2(cam_pos - screen_size / 2.0, screen_size)
+	return visible_rect.has_point(global_position)
+
+func _start_stun() -> void:
+	_attacking = true
+	_stagger_damage = 0.0
+	# stun clip ends collapsed asleep, so: collapse (1.6s) -> hold (0.5s) ->
+	# play back in reverse to get up (1.6s) = ~3.7s total
+	_play("stun")
+	await _sprite.animation_finished
+	await get_tree().create_timer(0.5).timeout
+	_sprite.play(&"stun", -1.0)
+	await _sprite.animation_finished
+	_attacking = false
+	_play("idle")
 
 func _start_summon() -> void:
 	_attacking = true
@@ -59,7 +84,7 @@ func _start_summon() -> void:
 		await _sprite.frame_changed
 	_spawn_minion(Vector2(-95, 10))
 	_spawn_minion(Vector2(95, 10))
-	# summon loops, so cut to idle immediately or it'll loop back and replay the gesture
+	await _sprite.animation_finished
 	_attacking = false
 	_play("idle")
 
@@ -93,6 +118,7 @@ func _start_attack() -> void:
 func take_damage(amount: int) -> void:
 	_flash_hit()
 	_health -= amount
+	_stagger_damage += amount
 	if _health <= 0:
 		await get_tree().create_timer(0.12).timeout
 		queue_free()
@@ -108,6 +134,10 @@ func _flash_hit() -> void:
 func _play(anim: String) -> void:
 	if _sprite.animation != anim:
 		_sprite.animation = anim
-		var s: float = _base_scale * float(ANIM_DISPLAY_SCALE.get(anim, 1.0))
-		_sprite.scale = Vector2(s, s)
+	# scale from THIS animation's own frame height — the sheets have
+	# different resolutions (stun tiles are 107px vs idle's 298px);
+	# set unconditionally so autoplay/editor state can't leave a stale scale
+	var tex := _sprite.sprite_frames.get_frame_texture(anim, 0)
+	var s: float = display_height * float(ANIM_DISPLAY_SCALE.get(anim, 1.0)) / tex.get_height()
+	_sprite.scale = Vector2(s, s)
 	_sprite.play(anim)

@@ -28,7 +28,7 @@ texture = ExtResource("1_map")
 [node name="Walls" type="StaticBody2D" parent="." unique_id=1249163845]
 
 [node name="Top" type="CollisionShape2D" parent="Walls" unique_id=438583601]
-position = Vector2(885, 524)
+position = Vector2(885, 526)
 shape = SubResource("TopWall")
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=297817916]
@@ -67,6 +67,7 @@ position = Vector2(1200, 574)
 
 [node name="Miyarap" parent="YSortRoot" unique_id=584649960 instance=ExtResource("92_miyarap")]
 position = Vector2(900, 560)
+display_height = 200.0
 
 [node name="RockChapter5" type="Sprite2D" parent="." unique_id=1730289702]
 position = Vector2(884, 450)
