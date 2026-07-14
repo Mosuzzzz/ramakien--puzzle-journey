@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://baj1cqvtmj8wb"]
+
+[ext_resource type="Texture2D" uid="uid://3k7mtam848xn" path="res://assets/character/miyarap/wave_clean.png" id="1_wave"]
+[ext_resource type="Script" uid="uid://ba43pt3742hc6" path="res://scenes/props/wave.gd" id="2_script"]
+
+[sub_resource type="AtlasTexture" id="w0"]
+atlas = ExtResource("1_wave")
+region = Rect2(8, 26, 410, 306)
+
+[sub_resource type="AtlasTexture" id="w1"]
+atlas = ExtResource("1_wave")
+region = Rect2(426, 26, 410, 306)
+
+[sub_resource type="AtlasTexture" id="w2"]
+atlas = ExtResource("1_wave")
+region = Rect2(851, 26, 410, 306)
+
+[sub_resource type="AtlasTexture" id="w3"]
+atlas = ExtResource("1_wave")
+region = Rect2(1289, 26, 410, 306)
+
+[sub_resource type="AtlasTexture" id="w4"]
+atlas = ExtResource("1_wave")
+region = Rect2(19, 348, 410, 306)
+
+[sub_resource type="AtlasTexture" id="w5"]
+atlas = ExtResource("1_wave")
+region = Rect2(452, 348, 410, 306)
+
+[sub_resource type="AtlasTexture" id="w6"]
+atlas = ExtResource("1_wave")
+region = Rect2(880, 350, 410, 306)
+
+[sub_resource type="AtlasTexture" id="w7"]
+atlas = ExtResource("1_wave")
+region = Rect2(1332, 350, 410, 306)
+
+[sub_resource type="SpriteFrames" id="frames_wave"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("w4")
+}, {
+"duration": 1.0,
+"texture": SubResource("w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("w7")
+}],
+"loop": 0,
+"name": &"roll",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="rect_wave"]
+size = Vector2(150, 18)
+
+[node name="Wave" type="Area2D" unique_id=1586071105]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("2_script")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=776758639]
+position = Vector2(0, -35)
+scale = Vector2(0.36, 0.36)
+sprite_frames = SubResource("frames_wave")
+animation = &"roll"
+autoplay = "roll"
+frame_progress = 0.9338113
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1587237072]
+position = Vector2(0, -2.5)
+shape = SubResource("rect_wave")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

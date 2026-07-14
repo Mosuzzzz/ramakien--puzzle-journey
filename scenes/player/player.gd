@@ -25,6 +25,7 @@ var _shooting := false
 var _dash_direction := Vector2.LEFT
 var _dash_time_left := 0.0
 var _dash_cooldown_left := 0.0
+var _knockback_velocity := Vector2.ZERO
 var _hit_flash_tween: Tween
 var _dead := false
 
@@ -102,6 +103,11 @@ func _physics_process(_delta: float) -> void:
 	if _shooting:
 		return
 	_dash_cooldown_left = maxf(_dash_cooldown_left - _delta, 0.0)
+	if _knockback_velocity.length() > 4.0:
+		velocity = _knockback_velocity
+		_knockback_velocity = _knockback_velocity.move_toward(Vector2.ZERO, 1100.0 * _delta)
+		move_and_slide()
+		return
 	var dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	dir += Vector2(
 		float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
@@ -168,6 +174,10 @@ func _play_animation(anim_name: String) -> void:
 		animated_sprite.scale = Vector2(s, s)
 		_cx = CHAR_X_OFF.get(anim_name, 0.0) * s
 	animated_sprite.play(anim_name)
+
+func apply_knockback(dir: Vector2, force: float) -> void:
+	if dir.length() > 0.0:
+		_knockback_velocity = dir.normalized() * force
 
 func take_damage(amount: int) -> void:
 	if _dead:
