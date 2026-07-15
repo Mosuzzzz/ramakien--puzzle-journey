@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0usbno3ovrul"
-path="res://.godot/imported/Image Background Removed (4).png-cfffd953c439fd5b18108bf05986130a.ctex"
+uid="uid://c8oko43jb0o4f"
+path="res://.godot/imported/icon_x_1.png-7f3088e57657a948e7f1e1340beacc63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/props/Image Background Removed (4).png"
-dest_files=["res://.godot/imported/Image Background Removed (4).png-cfffd953c439fd5b18108bf05986130a.ctex"]
+source_file="res://assets/homepage/lable/pieces/icon_x_1.png"
+dest_files=["res://.godot/imported/icon_x_1.png-7f3088e57657a948e7f1e1340beacc63.ctex"]
 
 [params]
 

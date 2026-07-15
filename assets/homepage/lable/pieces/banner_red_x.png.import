@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d04geyxxd8nd2"
-path="res://.godot/imported/lable_clean.png-2409c67fa8e01349b4a9551216e9ad49.ctex"
+uid="uid://cnnr8lmdpj45"
+path="res://.godot/imported/banner_red_x.png-2655986a7a2aac2e674393e9e5261778.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/homepage/lable/lable_clean.png"
-dest_files=["res://.godot/imported/lable_clean.png-2409c67fa8e01349b4a9551216e9ad49.ctex"]
+source_file="res://assets/homepage/lable/pieces/banner_red_x.png"
+dest_files=["res://.godot/imported/banner_red_x.png-2655986a7a2aac2e674393e9e5261778.ctex"]
 
 [params]
 
