@@ -40,6 +40,13 @@ func _on_area_entered(area: Area2D) -> void:
 func _try_hit(target: Node) -> void:
 	if _spent or target == shooter:
 		return
+	# boss weapon: rolls over his own minions, only the player gets hit
+	if target.name != "Player":
+		return
+	# dashing phases through: don't damage AND don't spend the wave on it
+	var dash_left = target.get("_dash_time_left")
+	if dash_left != null and dash_left > 0.0:
+		return
 	if target.has_method("take_damage"):
 		_spent = true
 		target.take_damage(damage)
