@@ -176,12 +176,16 @@ func _play_animation(anim_name: String) -> void:
 	animated_sprite.play(anim_name)
 
 func apply_knockback(dir: Vector2, force: float) -> void:
+	if _dash_time_left > 0.0:
+		return  # dash dodges the shove along with the damage
 	if dir.length() > 0.0:
 		_knockback_velocity = dir.normalized() * force
 
 func take_damage(amount: int) -> void:
 	if _dead:
 		return
+	if _dash_time_left > 0.0:
+		return  # i-frames: dashing dodges all damage
 	current_health = clampi(current_health - amount, 0, max_health)
 	_health_bar.value = current_health
 	if is_instance_valid(_hit_flash_tween):

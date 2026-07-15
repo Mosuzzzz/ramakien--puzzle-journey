@@ -7,10 +7,11 @@ const WaveScene := preload("res://scenes/props/wave.tscn")
 @export var contact_damage: int = 25
 @export var attack_range: float = 90.0
 @export var attack_cooldown: float = 1.6
-@export var summon_range: float = 220.0
 @export var display_height: float = 130.0
 # accumulated damage taken before he staggers into the stun pose
 @export var stun_threshold: float = 60.0
+# stop summoning while this many of his minions are still alive
+@export var max_minions: int = 4
 
 # ground-slam impact lands here in the trimmed 12-frame attack clip
 const ATTACK_HIT_FRAME := 5
@@ -24,8 +25,9 @@ var _health: int = max_health
 var _hit_cooldown: float = 0.0
 var _player: Node2D
 var _attacking := false
-var _has_summoned := false
+var _stunned := false
 var _stagger_damage: float = 0.0
+var _minions: Array = []
 var _hit_flash_tween: Tween
 
 @onready var _sprite: AnimatedSprite2D = $Sprite
@@ -43,16 +45,19 @@ func _physics_process(delta: float) -> void:
 	if _stagger_damage >= stun_threshold:
 		_start_stun()
 		return
-	if _player == null:
+	if _player == null or _hit_cooldown > 0.0:
 		return
-	var dist := (_player.global_position - global_position).length()
-	if not _has_summoned and dist < summon_range:
+	if not _is_on_screen():
+		return
+	# as soon as he's in frame: randomly waves or summon, every cooldown
+	if randi() % 2 == 0 and _alive_minion_count() < max_minions:
 		_start_summon()
-		return
-	if _hit_cooldown > 0.0:
-		return
-	if dist < attack_range and _is_on_screen():
+	else:
 		_start_attack()
+
+func _alive_minion_count() -> int:
+	_minions = _minions.filter(func(m): return is_instance_valid(m))
+	return _minions.size()
 
 func _is_on_screen() -> bool:
 	var cam := get_viewport().get_camera_2d()
@@ -65,6 +70,7 @@ func _is_on_screen() -> bool:
 
 func _start_stun() -> void:
 	_attacking = true
+	_stunned = true
 	_stagger_damage = 0.0
 	# stun clip ends collapsed asleep, so: collapse (1.6s) -> hold (0.5s) ->
 	# play back in reverse to get up (1.6s) = ~3.7s total
@@ -73,12 +79,13 @@ func _start_stun() -> void:
 	await get_tree().create_timer(0.5).timeout
 	_sprite.play(&"stun", -1.0)
 	await _sprite.animation_finished
+	_stunned = false
 	_attacking = false
 	_play("idle")
 
 func _start_summon() -> void:
 	_attacking = true
-	_has_summoned = true
+	_hit_cooldown = attack_cooldown
 	_play("summon")
 	while _sprite.animation == &"summon" and _sprite.frame < SUMMON_SPAWN_FRAME:
 		await _sprite.frame_changed
@@ -92,6 +99,7 @@ func _spawn_minion(offset: Vector2) -> void:
 	var minion := MobScene.instantiate()
 	get_parent().add_child(minion)
 	minion.global_position = global_position + offset
+	_minions.append(minion)
 
 func _spawn_wave(dir: Vector2) -> void:
 	var wave := WaveScene.instantiate()
@@ -116,6 +124,8 @@ func _start_attack() -> void:
 	_play("idle")
 
 func take_damage(amount: int) -> void:
+	if _stunned:
+		return  # immune while stunned
 	_flash_hit()
 	_health -= amount
 	_stagger_damage += amount
