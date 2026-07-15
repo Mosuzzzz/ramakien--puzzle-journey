@@ -340,4 +340,4 @@ position = Vector2(753, 597)
 aggro_range = 300.0
 contact_damage = 20
 max_health = 180
-display_height = 200.0
+display_height = 240.0

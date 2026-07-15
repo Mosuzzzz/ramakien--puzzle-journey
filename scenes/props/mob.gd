@@ -13,7 +13,12 @@ extends CharacterBody2D
 # which way each sprite sheet faces natively; flip_h mirrors it when facing the other way
 const ANIM_FACES_RIGHT := {"idle": false, "run": false, "walk": true, "attack": true}
 # Attack cells include generous transparent effect space around the character.
-const ANIM_DISPLAY_SCALE := {"walk": 0.88, "attack": 1.796, "Attack": 1.28}
+const ANIM_DISPLAY_SCALE := {
+	"walk": 0.88,
+	"attack": 1.796,
+	"Attack": 1.0,
+	"Jump attack": 1.2,
+}
 # per-animation sprite offset that keeps the feet on the same baseline
 const ANIM_SPRITE_Y := {"walk": -10.5, "attack": -35.0}
 const ATTACK_HIT_FRAME := 4
