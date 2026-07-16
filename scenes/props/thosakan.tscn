@@ -319,5 +319,5 @@ shape = SubResource("body_collision")
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1687881635]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1517873196]
-position = Vector2(-15, 49)
+position = Vector2(-25, 15)
 shape = SubResource("hurtbox_collision")
