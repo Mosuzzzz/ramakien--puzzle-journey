@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
 [ext_resource type="Script" uid="uid://dkwfeirb64ukp" path="res://scenes/chapter_1/throne_room.gd" id="4_script"]
 [ext_resource type="PackedScene" path="res://scenes/props/king.tscn" id="5_king"]
+[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="6_sida"]
+[ext_resource type="PackedScene" path="res://scenes/props/talkable.tscn" id="7_talkable"]
 
 [sub_resource type="RectangleShape2D" id="rect_top"]
 size = Vector2(562.32, 141.68)
@@ -142,6 +144,15 @@ position = Vector2(281, 185)
 
 [node name="Player" parent="YSortRoot" unique_id=10043806 instance=ExtResource("2_player")]
 position = Vector2(280.72, 440)
+
+[node name="Sida" parent="YSortRoot" instance=ExtResource("6_sida")]
+position = Vector2(350, 430)
+
+[node name="Talkable" parent="YSortRoot/Sida" instance=ExtResource("7_talkable")]
+position = Vector2(0, -20)
+speaker_name = "นางสีดา"
+lines = Array[String](["ไม่ว่าเสด็จพ่อจะมีบัญชาใด หม่อมฉันก็จะติดตามพระองค์ไปทุกหนแห่ง", "แม้ต้องเผชิญความยากลำบากในป่า หม่อมฉันก็ไม่หวั่นเลยสักนิด"])
+prompt_text = "กด E เพื่อคุยกับนางสีดา"
 
 [node name="ExitPortal" parent="YSortRoot" unique_id=260481943 instance=ExtResource("3_portal")]
 position = Vector2(281.16, 501.6)
