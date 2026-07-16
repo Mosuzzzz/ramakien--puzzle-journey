@@ -3,19 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://cn3h23riok5gi" path="res://assets/map/chapter_1/map.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://byi4btlt0am8g" path="res://scenes/props/banner.tscn" id="3_banner"]
-[ext_resource type="Texture2D" uid="uid://ca1iitg78js6j" path="res://assets/props/Image Background Removed.png" id="4_o8eds"]
+[ext_resource type="Texture2D" uid="uid://ca1iitg78js6j" path="res://assets/props/chapter1/Image Background Removed.png" id="4_o8eds"]
 [ext_resource type="PackedScene" uid="uid://beb8xnnh620tk" path="res://scenes/props/door.tscn" id="5_ayeki"]
-[ext_resource type="Texture2D" uid="uid://t2vhx3gyb8cb" path="res://assets/props/tree.png" id="6_sofv4"]
+[ext_resource type="Texture2D" uid="uid://t2vhx3gyb8cb" path="res://assets/props/chapter1/tree.png" id="6_sofv4"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="7_portal"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1254, 78)
 
 [sub_resource type="RectangleShape2D" id="rect_wall_bottom"]
-size = Vector2(1254, 97)
-
-[sub_resource type="RectangleShape2D" id="rect_map_edge_south"]
-size = Vector2(1254, 30)
+size = Vector2(1254, 110)
 
 [sub_resource type="RectangleShape2D" id="rect_wall_left"]
 size = Vector2(80, 1254)
@@ -25,6 +22,9 @@ size = Vector2(81, 1254)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vlpe"]
 size = Vector2(330, 176.5)
+
+[sub_resource type="RectangleShape2D" id="rect_map_edge_south"]
+size = Vector2(1254, 30)
 
 [sub_resource type="RectangleShape2D" id="rect_temple"]
 size = Vector2(475, 163)
@@ -135,7 +135,7 @@ position = Vector2(627, 37)
 shape = SubResource("rect_wall_top")
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=1945887317]
-position = Vector2(627, 1031.5)
+position = Vector2(627, 1038)
 shape = SubResource("rect_wall_bottom")
 
 [node name="Left" type="CollisionShape2D" parent="Walls" unique_id=1966957837]
@@ -162,7 +162,7 @@ shape = SubResource("RectangleShape2D_1vlpe")
 position = Vector2(334, 1223)
 shape = SubResource("RectangleShape2D_1vlpe")
 
-[node name="SouthEdge" type="CollisionShape2D" parent="Walls"]
+[node name="SouthEdge" type="CollisionShape2D" parent="Walls" unique_id=777293440]
 position = Vector2(627, 1264)
 shape = SubResource("rect_map_edge_south")
 
@@ -190,14 +190,14 @@ scale = Vector2(0.2425, 0.2425)
 texture = ExtResource("4_o8eds")
 
 [node name="Player" parent="YSortRoot" unique_id=181157515 instance=ExtResource("2_player")]
-position = Vector2(630, 1198)
+position = Vector2(624, 978)
 
 [node name="door_south" parent="YSortRoot" unique_id=819793605 instance=ExtResource("5_ayeki")]
 position = Vector2(628, 1095)
 exit_scene = "res://scenes/chapter_2/chapter_2.tscn"
 exit_spawn = Vector2(734, 150)
 
-[node name="ThroneRoomPortal" parent="YSortRoot" instance=ExtResource("7_portal")]
+[node name="ThroneRoomPortal" parent="YSortRoot" unique_id=1041830134 instance=ExtResource("7_portal")]
 position = Vector2(625, 260)
 target_scene = "res://scenes/chapter_1/throne_room.tscn"
 target_spawn = Vector2(281, 444)
