@@ -1,7 +1,7 @@
 extends Control
 
 const GameState := preload("res://scenes/game_state.gd")
-const FIRST_CHAPTER := "res://scenes/chapter_1/chapter_1.tscn"
+const FIRST_CHAPTER := "res://scenes/prologue/prologue.tscn"
 
 @onready var _start_button: Button = $Menu/StartButton
 
@@ -15,6 +15,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_start_pressed() -> void:
 	GameState.next_spawn = Vector2.INF
+	GameState.chapter_1_intro_played = false
 	get_tree().change_scene_to_file(FIRST_CHAPTER)
 
 func _on_quit_pressed() -> void:

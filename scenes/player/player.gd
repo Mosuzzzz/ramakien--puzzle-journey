@@ -88,6 +88,8 @@ func _configure_camera_for_map() -> void:
 	camera.zoom = Vector2(zoom_value, zoom_value)
 
 func _input(event: InputEvent) -> void:
+	if Dialogue.is_active:
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE and not _shooting:
 		_shoot()
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_Q and not _shooting:
@@ -101,6 +103,11 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if _shooting:
+		return
+	if Dialogue.is_active:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		_play_animation("idle")
 		return
 	_dash_cooldown_left = maxf(_dash_cooldown_left - _delta, 0.0)
 	if _knockback_velocity.length() > 4.0:

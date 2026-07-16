@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://br85b85p4x8e8" path="res://assets/charecter/King/King_idle.png" id="1_king"]
 [ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="2_shadow"]
+[ext_resource type="PackedScene" path="res://scenes/props/talkable.tscn" id="3_talkable"]
 
 [sub_resource type="AtlasTexture" id="k0"]
 atlas = ExtResource("1_king")
@@ -67,3 +68,12 @@ modulate = Color(1, 1, 1, 0.55)
 position = Vector2(1, 1)
 scale = Vector2(0.11, 0.035)
 texture = ExtResource("2_shadow")
+
+[node name="Talkable" parent="." instance=ExtResource("3_talkable")]
+position = Vector2(0, 40)
+speaker_name = "ท้าวทศรถ"
+lines = Array[String](["พระราม... ลูกรักของพ่อ เข้ามาใกล้ ๆ เถิด สิ่งที่พ่อจะพูดต่อไปนี้ ทำให้ใจพ่อสลายเป็นเสี่ยง ๆ", "เมื่อครู่นางไกยเกษีมาทวงสัญญาเก่าที่พ่อเคยให้ไว้สองประการ ก่อนพิธีอภิเษกของลูกจะเริ่มขึ้นเสียอีก", "นางขอให้พระพรตได้ขึ้นครองราชย์แทนลูก และขอให้ลูกออกจากกรุงไปใช้ชีวิตเป็นฤาษีในป่าเป็นเวลาสิบสี่ปี", "พ่อเป็นกษัตริย์ จะผิดคำสัตย์ไม่ได้... ลูกจะให้อภัยพ่อได้ไหม"])
+prompt_text = "กด E เพื่อเข้าเฝ้า"
+prompt_offset = Vector2(-90, -160)
+quest_after = "ออกเดินทางจากกรุงอโยธยาทางประตูทิศใต้"
+narration_after = Array[String](["พระรามรับฟังพระบัญชาด้วยใจสงบ มิได้แสดงความโกรธหรือขัดขืนแต่อย่างใด", "เพราะท่านเชื่อว่า การรักษาคำสัตย์ของกษัตริย์สำคัญยิ่งกว่าความสุขส่วนตน", "พระลักษณ์ขอร่วมเดินทางไปรับใช้พี่ชาย ส่วนนางสีดายืนยันว่าจะติดตามพระสวามีไปทุกหนแห่ง"])

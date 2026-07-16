@@ -1,11 +1,13 @@
 extends Area2D
 
-const GameState := preload("res://scenes/game_state.gd")
-
-@export_file("*.tscn") var target_scene: String
-@export var target_spawn := Vector2.ZERO
-@export var prompt_text := "กด E"
+@export var speaker_name: String = ""
+@export var lines: Array[String] = []
+@export var prompt_text := "กด E เพื่อพูดคุย"
 @export var interaction_size := Vector2(110, 60)
+@export var prompt_offset := Vector2(-90, -80)
+@export var quest_after: String = ""
+@export var narration_after: Array[String] = []
+@export var narration_after_title: String = ""
 
 var _player: Node2D = null
 
@@ -30,17 +32,25 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 	if _player:
-		_prompt.global_position = _player.global_position + Vector2(-90, -68)
+		_prompt.global_position = _player.global_position + prompt_offset
+		_prompt.visible = not Dialogue.is_active
 
 func _input(event: InputEvent) -> void:
 	if not _player or Dialogue.is_active:
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
-		_use_portal()
+		_interact()
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		_use_portal()
+		_interact()
 
-func _use_portal() -> void:
-	GameState.next_spawn = target_spawn
-	get_tree().change_scene_to_file.call_deferred(target_scene)
+func _interact() -> void:
+	Dialogue.start(speaker_name, lines)
+	if quest_after != "" or not narration_after.is_empty():
+		Dialogue.finished.connect(_on_dialogue_finished, CONNECT_ONE_SHOT)
 	get_viewport().set_input_as_handled()
+
+func _on_dialogue_finished() -> void:
+	if quest_after != "":
+		Quest.set_quest(quest_after)
+	if not narration_after.is_empty():
+		Dialogue.start_narration(narration_after, narration_after_title)
