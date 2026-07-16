@@ -22,6 +22,7 @@ const CHAR_X_OFF := {"idle": 0.0, "walk": 0.0, "shoot": 0.0}
 var _cx: float = 0.0
 var _face_right := false
 var _shooting := false
+var _shoot_direction := Vector2.RIGHT
 var _dash_direction := Vector2.LEFT
 var _dash_time_left := 0.0
 var _dash_cooldown_left := 0.0
@@ -150,20 +151,42 @@ func _shoot() -> void:
 	_shooting = true
 	_dash_time_left = 0.0
 	velocity = Vector2.ZERO
-	_play_animation("shoot")
-	# the shooting sheet faces right while the other sheets face left
+	_shoot_direction = _aim_direction()
+	if _shoot_direction.y < 0.0:
+		_play_animation("shoot_up")
+	else:
+		_play_animation("shoot")
+	# the shooting sheets face right while the other sheets face left
 	animated_sprite.flip_h = not _face_right
-	# loose the arrow on the RELEASE frame (frame 5 of 8 at 12 fps)
-	await get_tree().create_timer(4.0 / 12.0).timeout
+	# loose the arrow on the RELEASE frame (frame 4 of 6, or 5 of 8 for the side shot, at 12 fps)
+	var release_frame := 3 if _shoot_direction.y < 0.0 else 4
+	await get_tree().create_timer(release_frame / 12.0).timeout
 	_spawn_arrow()
 	await animated_sprite.animation_finished
 	_shooting = false
 
+# down/left/right reuse the side shoot animation; only up has its own artwork.
+# aiming up fires at a forward diagonal (toward facing direction) rather than straight up.
+func _aim_direction() -> Vector2:
+	var input_direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_direction += Vector2(
+		float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
+		float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W))
+	)
+	if absf(input_direction.y) > absf(input_direction.x):
+		if input_direction.y > 0.0:
+			return Vector2.DOWN
+		return Vector2(0.6 if _face_right else -0.6, -1.0).normalized()
+	return Vector2.RIGHT if _face_right else Vector2.LEFT
+
 func _spawn_arrow() -> void:
 	var arrow := ArrowScene.instantiate()
-	arrow.direction = Vector2.RIGHT if _face_right else Vector2.LEFT
+	arrow.direction = _shoot_direction
 	arrow.shooter = self
-	arrow.global_position = global_position + Vector2(14.0 if _face_right else -14.0, -20.0)
+	var offset := Vector2(14.0 if _face_right else -14.0, -20.0)
+	if _shoot_direction.x == 0.0:
+		offset = Vector2(0.0, -20.0 + 14.0 * _shoot_direction.y)
+	arrow.global_position = global_position + offset
 	get_parent().add_child(arrow)
 
 func _play_animation(anim_name: String) -> void:

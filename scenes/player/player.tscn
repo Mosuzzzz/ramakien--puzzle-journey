@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b25xvbo2ann7" path="res://assets/charecter/Pharam/main_character.png" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="4_shadow"]
 [ext_resource type="Texture2D" uid="uid://c4lv8vnp6kioa" path="res://assets/charecter/Pharam/shotting.png" id="4_shoot"]
+[ext_resource type="Texture2D" path="res://assets/character/Pharam/shoot_up_sheet.png" id="5_shootup"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
 atlas = ExtResource("3_lvxji")
@@ -69,6 +70,30 @@ region = Rect2(340.5, 202, 110, 175)
 [sub_resource type="AtlasTexture" id="AtlasTexture_shoot8"]
 atlas = ExtResource("4_shoot")
 region = Rect2(456.5, 205, 110, 175)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shootup1"]
+atlas = ExtResource("5_shootup")
+region = Rect2(0, 0, 260, 455)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shootup2"]
+atlas = ExtResource("5_shootup")
+region = Rect2(260, 0, 260, 455)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shootup3"]
+atlas = ExtResource("5_shootup")
+region = Rect2(520, 0, 260, 455)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shootup4"]
+atlas = ExtResource("5_shootup")
+region = Rect2(780, 0, 260, 455)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shootup5"]
+atlas = ExtResource("5_shootup")
+region = Rect2(1040, 0, 260, 455)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shootup6"]
+atlas = ExtResource("5_shootup")
+region = Rect2(1300, 0, 260, 455)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_walk2"]
 atlas = ExtResource("3_gmlin")
@@ -176,6 +201,29 @@ animations = [{
 }],
 "loop": 0,
 "name": &"shoot",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shootup1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shootup2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shootup3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shootup4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shootup5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shootup6")
+}],
+"loop": 0,
+"name": &"shoot_up",
 "speed": 12.0
 }, {
 "frames": [{

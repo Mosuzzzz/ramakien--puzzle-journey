@@ -8,9 +8,8 @@ var shooter: Node2D = null
 var _spent := false
 
 func _ready() -> void:
-	# arrow sprite points right; mirror when flying left
-	if direction.x < 0:
-		$Sprite.flip_h = true
+	# arrow sprite points right by default; rotate to match any of the 4 directions
+	rotation = direction.angle()
 	await get_tree().create_timer(2.0).timeout
 	queue_free()
 
