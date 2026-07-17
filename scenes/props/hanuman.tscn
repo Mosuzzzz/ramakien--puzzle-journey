@@ -2,11 +2,29 @@
 
 [ext_resource type="Texture2D" uid="uid://bn3dwt5g2n7go" path="res://assets/character/Hanuman/Idle.png" id="1_idle"]
 [ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="2_shadow"]
+[ext_resource type="Texture2D" uid="uid://djcjbt4k6n7k0" path="res://assets/character/Hanuman/image-removebg-preview.png" id="3_m7li0"]
 [ext_resource type="Texture2D" uid="uid://dry5l3og13m6c" path="res://assets/character/Hanuman/run.png" id="3_run"]
+[ext_resource type="Texture2D" uid="uid://cn5xbd0uop7wl" path="res://assets/character/Hanuman/image-removebg-preview สำเนา.png" id="4_2b02y"]
 [ext_resource type="Script" uid="uid://t8dthhv8xwlh" path="res://scenes/props/hanuman.gd" id="4_script"]
 [ext_resource type="Texture2D" uid="uid://ce71g84qbbudd" path="res://assets/character/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview-removebg-preview.png" id="5_1d1c8"]
 [ext_resource type="Texture2D" uid="uid://cwic3lq7f4mn5" path="res://assets/character/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview.png" id="5_q5mao"]
 [ext_resource type="Texture2D" uid="uid://dqmq60bmtpi52" path="res://assets/character/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview (1).png" id="6_1d1c8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22cdg"]
+atlas = ExtResource("3_m7li0")
+region = Rect2(0, 0, 265, 315)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pyl8"]
+atlas = ExtResource("3_m7li0")
+region = Rect2(271, 0, 271, 315)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31kt2"]
+atlas = ExtResource("3_m7li0")
+region = Rect2(544, 0, 248, 315)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8qdr"]
+atlas = ExtResource("4_2b02y")
+region = Rect2(0, 0, 272, 305)
 
 [sub_resource type="AtlasTexture" id="idle_0"]
 atlas = ExtResource("1_idle")
@@ -66,6 +84,23 @@ region = Rect2(201, 184, 99, 174)
 
 [sub_resource type="SpriteFrames" id="hanuman_frames"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22cdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pyl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31kt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8qdr")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("idle_0")
@@ -137,9 +172,10 @@ texture = ExtResource("2_shadow")
 position = Vector2(0, -39)
 scale = Vector2(0.075, 0.075)
 sprite_frames = SubResource("hanuman_frames")
-animation = &"run"
+animation = &"attack"
 autoplay = "idle"
-frame = 2
+frame = 3
+frame_progress = 0.98256797
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1472276358]
