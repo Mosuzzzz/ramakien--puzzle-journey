@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://doq6qq6ibqvko"]
+
+[ext_resource type="Texture2D" path="res://assets/cutscene/chapter_3/ChatGPT Image 16 ก.ค. 2569 14_12_39.png" id="1_sheet"]
+
+[sub_resource type="Shader" id="Shader_remove_white"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 source = texture(TEXTURE, UV);
+	float distance_from_white = distance(source.rgb, vec3(1.0));
+	float mask = smoothstep(0.025, 0.13, distance_from_white);
+	COLOR = vec4(source.rgb, source.a * mask);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_remove_white"]
+shader = SubResource("Shader_remove_white")
+
+[sub_resource type="AtlasTexture" id="Atlas_neutral"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 0, 627, 627)
+
+[node name="PhraRamPortrait" type="Control" unique_id=883007165]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -545.0
+offset_right = 508.0
+offset_bottom = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Portrait" type="TextureRect" parent="." unique_id=1893936035]
+material = SubResource("ShaderMaterial_remove_white")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("Atlas_neutral")
+expand_mode = 1
+stretch_mode = 5
