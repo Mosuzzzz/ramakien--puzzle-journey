@@ -333,7 +333,7 @@ animations = [{
 radius = 30.0
 
 [sub_resource type="RectangleShape2D" id="rect_hurtbox"]
-size = Vector2(80, 130)
+size = Vector2(250, 200)
 
 [node name="Miyarap" type="CharacterBody2D" unique_id=1]
 collision_layer = 0
@@ -359,5 +359,5 @@ shape = SubResource("circ_body")
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1511214656]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=401488320]
-position = Vector2(0, -60)
+position = Vector2(0, -55)
 shape = SubResource("rect_hurtbox")

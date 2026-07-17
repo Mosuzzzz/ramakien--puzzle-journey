@@ -6,7 +6,7 @@ const WaveScene := preload("res://scenes/props/wave.tscn")
 @export var max_health: int = 220
 @export var contact_damage: int = 25
 @export var attack_range: float = 90.0
-@export var attack_cooldown: float = 1.6
+@export var attack_cooldown: float = 2.8
 @export var display_height: float = 130.0
 # accumulated damage taken before he staggers into the stun pose
 @export var stun_threshold: float = 60.0
