@@ -13,6 +13,10 @@
 [ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="10_cutscene_font"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="11_cutscene_bold"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/homepage/lable/pieces/title_scroll_banner.png" id="12_title_banner"]
+[ext_resource type="Texture2D" uid="uid://22mhd3iqta8w" path="res://assets/cutscene/chapter_3/ChatGPT Image 17 ก.ค. 2569 17_41_47.png" id="13_second_cutscene"]
+[ext_resource type="Script" uid="uid://c7vrsa0plqf8n" path="res://scenes/chapter_3/chapter_3.gd" id="14_chapter_script"]
+[ext_resource type="Script" uid="uid://bslmhp4f7lrvr" path="res://scenes/cutscene/chapter_3_post_battle_cutscene.gd" id="15_post_cutscene_script"]
+[ext_resource type="Texture2D" uid="uid://hki7xnt08xde" path="res://assets/cutscene/chapter_3/ChatGPT Image 17 ก.ค. 2569 21_57_50.png" id="16_final_cutscene"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
@@ -370,6 +374,7 @@ a = Vector2(-79, -406)
 b = Vector2(-61, -494)
 
 [node name="Chapter3" type="Node2D" unique_id=530775568]
+script = ExtResource("14_chapter_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=134560956]
 position = Vector2(727, 545)
@@ -414,11 +419,11 @@ position = Vector2(1369, 1014)
 shape = SubResource("rect_lower_right_block")
 
 [node name="CenterObstacleA" type="CollisionShape2D" parent="Walls" unique_id=1018758345]
-position = Vector2(760, 1019)
+position = Vector2(758, 1030)
 shape = SubResource("CircleShape2D_dvbg3")
 
 [node name="CenterObstacleB" type="CollisionShape2D" parent="Walls" unique_id=640898508]
-position = Vector2(1181, 648)
+position = Vector2(1184, 644)
 shape = SubResource("CircleShape2D_ay2sp")
 
 [node name="LeftObstacle" type="CollisionShape2D" parent="Walls" unique_id=768261974]
@@ -426,7 +431,7 @@ position = Vector2(115, 742)
 shape = SubResource("CircleShape2D_53ayk")
 
 [node name="RightObstacle" type="CollisionShape2D" parent="Walls" unique_id=1742281382]
-position = Vector2(1078, 831)
+position = Vector2(1071, 843)
 shape = SubResource("circ_obstacle_medium")
 
 [node name="LeftObstacle2" type="CollisionShape2D" parent="Walls" unique_id=1134240543]
@@ -466,7 +471,7 @@ position = Vector2(714, 276)
 shape = SubResource("CircleShape2D_253fu")
 
 [node name="CenterObstacleB2" type="CollisionShape2D" parent="Walls" unique_id=948856613]
-position = Vector2(962, 792)
+position = Vector2(964, 802)
 shape = SubResource("CircleShape2D_ioc3c")
 
 [node name="CenterObstacleB3" type="CollisionShape2D" parent="Walls" unique_id=228980198]
@@ -602,7 +607,7 @@ position = Vector2(1390.25, 595.5)
 shape = SubResource("RectangleShape2D_6kalh")
 
 [node name="BattleGateBlock29" type="CollisionShape2D" parent="Walls" unique_id=1045889508]
-position = Vector2(1150, 633)
+position = Vector2(1145, 633)
 shape = SubResource("CircleShape2D_o0dh5")
 
 [node name="BattleGateBlock30" type="CollisionShape2D" parent="Walls" unique_id=104082719]
@@ -840,6 +845,8 @@ y_sort_enabled = true
 position = Vector2(1192, 351)
 
 [node name="Hanuman" parent="YSortRoot" unique_id=1566560080 instance=ExtResource("4_hanuman")]
+visible = false
+process_mode = 4
 position = Vector2(856, 477)
 
 [node name="Chapter2Portal" parent="YSortRoot" unique_id=964546437 instance=ExtResource("3_portal")]
@@ -902,7 +909,7 @@ texture = ExtResource("8_cutscene_image")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="BackgroundDim" type="ColorRect" parent="Chapter3CutsceneLayer/Chapter3Cutscene"]
+[node name="BackgroundDim" type="ColorRect" parent="Chapter3CutsceneLayer/Chapter3Cutscene" unique_id=1984348210]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -912,22 +919,21 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
 
-[node name="TitleBanner" type="NinePatchRect" parent="Chapter3CutsceneLayer/Chapter3Cutscene"]
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter3CutsceneLayer/Chapter3Cutscene" unique_id=1201073884]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_left = 0.19
 anchor_right = 0.81
 offset_top = 36.0
 offset_bottom = 132.0
 grow_horizontal = 2
-mouse_filter = 2
 texture = ExtResource("12_title_banner")
 patch_margin_left = 92
 patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
 
-[node name="Title" type="Label" parent="Chapter3CutsceneLayer/Chapter3Cutscene/TitleBanner"]
+[node name="Title" type="Label" parent="Chapter3CutsceneLayer/Chapter3Cutscene/TitleBanner" unique_id=1825680621]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -943,23 +949,22 @@ text = "เบาะแสจากพญาชฎายุ"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter3CutsceneLayer/Chapter3Cutscene"]
+[node name="Dialogue" type="Label" parent="Chapter3CutsceneLayer/Chapter3Cutscene" unique_id=152140912]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_left = 0.07
 anchor_top = 0.62
 anchor_right = 0.93
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
 theme_override_constants/line_spacing = 6
-theme_override_constants/outline_size = 4
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("10_cutscene_font")
 theme_override_font_sizes/font_size = 30
 text = "พระลักษมณ์: “พี่ราม ดูตรงนั้นสิ! มีนกตัวใหญ่บาดเจ็บอยู่”"
@@ -967,17 +972,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ContinuePrompt" type="Label" parent="Chapter3CutsceneLayer/Chapter3Cutscene"]
+[node name="ContinuePrompt" type="Label" parent="Chapter3CutsceneLayer/Chapter3Cutscene" unique_id=364405096]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = -1
 anchor_left = 0.3
+anchor_top = 1.0
 anchor_right = 0.7
 anchor_bottom = 1.0
 offset_top = -62.0
 offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 0
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.9, 0.87, 0.78, 0.9)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -986,3 +991,144 @@ theme_override_fonts/font = ExtResource("10_cutscene_font")
 theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="Chapter3CutsceneLayer/Chapter3Cutscene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="PostBattleCutscene" type="Control" parent="Chapter3CutsceneLayer" unique_id=90720626]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_post_cutscene_script")
+
+[node name="PostBattleImage" type="TextureRect" parent="Chapter3CutsceneLayer/PostBattleCutscene" unique_id=1459708483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_second_cutscene")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FinalCutsceneImage" type="TextureRect" parent="Chapter3CutsceneLayer/PostBattleCutscene"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("16_final_cutscene")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PostBattleDim" type="ColorRect" parent="Chapter3CutsceneLayer/PostBattleCutscene" unique_id=23223469]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.34)
+
+[node name="PostBattleTitleBanner" type="NinePatchRect" parent="Chapter3CutsceneLayer/PostBattleCutscene" unique_id=733186209]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19
+anchor_right = 0.81
+offset_top = 36.0
+offset_bottom = 132.0
+grow_horizontal = 2
+texture = ExtResource("12_title_banner")
+patch_margin_left = 92
+patch_margin_top = 16
+patch_margin_right = 92
+patch_margin_bottom = 16
+
+[node name="PostBattleTitle" type="Label" parent="Chapter3CutsceneLayer/PostBattleCutscene/PostBattleTitleBanner" unique_id=1565033892]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_right = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.12, 0.045, 1)
+theme_override_fonts/font = ExtResource("11_cutscene_bold")
+theme_override_font_sizes/font_size = 32
+text = "ใต้ต้นไม้ใหญ่"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PostBattleDialogue" type="Label" parent="Chapter3CutsceneLayer/PostBattleCutscene" unique_id=981126790]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.62
+anchor_right = 0.93
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
+theme_override_constants/line_spacing = 6
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("10_cutscene_font")
+theme_override_font_sizes/font_size = 30
+text = "คำบรรยาย: หลังจากพระรามและพระลักษณ์จัดการพวกยักษ์ระหว่างทางได้ ทั้งสองเดินมาถึงใต้ต้นไม้ใหญ่กลางป่า"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PostBattlePrompt" type="Label" parent="Chapter3CutsceneLayer/PostBattleCutscene" unique_id=1787329211]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.0
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.87, 0.78, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("10_cutscene_font")
+theme_override_font_sizes/font_size = 19
+text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
+horizontal_alignment = 1
+
+[node name="PostBattleFadeOverlay" type="ColorRect" parent="Chapter3CutsceneLayer/PostBattleCutscene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

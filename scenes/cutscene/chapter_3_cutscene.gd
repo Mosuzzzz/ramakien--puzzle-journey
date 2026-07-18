@@ -23,13 +23,41 @@ var _dialogue_index := 0
 var _transitioning := false
 var _finished := false
 
+@onready var _cutscene_image: TextureRect = $CutsceneImage
+@onready var _background_dim: ColorRect = $BackgroundDim
+@onready var _title_banner: NinePatchRect = $TitleBanner
 @onready var _dialogue_label: Label = $Dialogue
 @onready var _prompt_label: Label = $ContinuePrompt
+@onready var _fade_overlay: ColorRect = $FadeOverlay
 
 
 func _ready() -> void:
 	get_tree().paused = true
 	_show_dialogue(0, false)
+	_play_intro_transition()
+
+
+func _play_intro_transition() -> void:
+	_transitioning = true
+	var content: Array[CanvasItem] = [
+		_cutscene_image,
+		_background_dim,
+		_title_banner,
+		_dialogue_label,
+		_prompt_label,
+	]
+	for item: CanvasItem in content:
+		item.hide()
+	_fade_overlay.color.a = 0.0
+	var darken := create_tween()
+	darken.tween_property(_fade_overlay, "color:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
+	await darken.finished
+	for item: CanvasItem in content:
+		item.show()
+	var reveal := create_tween()
+	reveal.tween_property(_fade_overlay, "color:a", 0.0, 1.0).set_trans(Tween.TRANS_SINE)
+	await reveal.finished
+	_transitioning = false
 
 
 func _input(event: InputEvent) -> void:
@@ -71,11 +99,7 @@ func _finish_cutscene() -> void:
 		return
 	_finished = true
 	get_tree().paused = false
-	var cutscene_layer := get_parent()
-	if cutscene_layer is CanvasLayer:
-		cutscene_layer.queue_free()
-	else:
-		queue_free()
+	queue_free()
 
 
 func _exit_tree() -> void:
