@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://doorx52srbvl5"]
 
 [ext_resource type="Script" uid="uid://bqnxfrwctuoy0" path="res://scenes/props/thosakan.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/life_bar/hp_bar_empty.png" id="90_boss_bar_empty"]
+[ext_resource type="Texture2D" path="res://assets/ui/life_bar/hp_bar_full.png" id="91_boss_bar_full"]
 [ext_resource type="Texture2D" uid="uid://chbfserdu1jpq" path="res://assets/character/ThoSaKan/ภาพถ่ายหน้าจอ_2569-07-15_เวลา_10.09.28-removebg-preview.png" id="2_s55cl"]
 [ext_resource type="Texture2D" uid="uid://whacdfbreli1" path="res://assets/character/ThoSaKan/ภาพถ่ายหน้าจอ_2569-07-15_เวลา_10.11.26-removebg-preview.png" id="3_txikd"]
 [ext_resource type="Texture2D" uid="uid://ci4ufp5lqyuu4" path="res://assets/character/ThoSaKan/ภาพถ่ายหน้าจอ_2569-07-15_เวลา_09.50.33-removebg-preview.png" id="4_wqbs8"]
@@ -321,3 +323,37 @@ shape = SubResource("body_collision")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1517873196]
 position = Vector2(-25, 15)
 shape = SubResource("hurtbox_collision")
+
+[node name="BossHUD" type="CanvasLayer" parent="." unique_id=903312771]
+
+[node name="BossBar" type="TextureProgressBar" parent="BossHUD" unique_id=449281550]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 103.0
+grow_horizontal = 2
+max_value = 100.0
+value = 100.0
+texture_under = ExtResource("90_boss_bar_empty")
+texture_progress = ExtResource("91_boss_bar_full")
+
+[node name="BossName" type="Label" parent="BossHUD" unique_id=618234907]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 46.0
+offset_right = 130.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "ทศกัณฐ์"
+horizontal_alignment = 1
+vertical_alignment = 1

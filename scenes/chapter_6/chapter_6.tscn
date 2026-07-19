@@ -559,7 +559,7 @@ texture = ExtResource("4_t4dvl")
 [node name="Chapter7Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
 position = Vector2(724, 330)
 target_scene = "res://scenes/chapter_7/chapter_7.tscn"
-target_spawn = Vector2(722, 975)
+target_spawn = Vector2(1083, 1462.5)
 
 [node name="Chapter5Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
 position = Vector2(725, 1050)

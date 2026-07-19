@@ -16,8 +16,11 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
+Settings="*res://scenes/ui/settings.gd"
 Dialogue="*res://scenes/ui/dialogue_manager.tscn"
 Quest="*res://scenes/ui/quest_log.tscn"
+PauseMenu="*res://scenes/ui/pause_menu.tscn"
+Inv="*res://scenes/ui/inventory.tscn"
 
 [display]
 

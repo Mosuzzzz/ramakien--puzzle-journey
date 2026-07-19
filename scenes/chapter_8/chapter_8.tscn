@@ -392,7 +392,7 @@ target_spawn = Vector2(718, 995)
 [node name="Chapter7Portal" parent="YSortRoot" instance=ExtResource("3_portal")]
 position = Vector2(507, 1490)
 target_scene = "res://scenes/chapter_7/chapter_7.tscn"
-target_spawn = Vector2(724, 505)
+target_spawn = Vector2(1086, 757.5)
 
 [node name="Mob1" parent="YSortRoot" instance=ExtResource("91_mob")]
 position = Vector2(505, 1150)

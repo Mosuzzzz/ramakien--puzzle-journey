@@ -13,8 +13,14 @@ const ArrowScene := preload("res://scenes/props/arrow.tscn")
 @export var dash_cooldown: float = 0.55
 @export var max_health: int = 100
 @export var display_height: float = 60.0
+@export var potion_heal: int = 30
 
 var current_health: int = max_health
+
+# fractions of the player_bar texture width where the red pill begins/ends
+# (the gold flame ends take up the rest)
+const BAR_FILL_START := 0.027
+const BAR_FILL_END := 0.97
 
 # horizontal offset (texture px) of the drawn character from the frame center,
 # measured from the sprite sheets; used to keep the character centered when flipping
@@ -31,12 +37,19 @@ var _dead := false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: Camera2D = $Camera2D
-@onready var _health_bar: ProgressBar = $HUD/HealthBar
+@onready var _health_bar: TextureProgressBar = $HUD/HealthBar
+@onready var _hp_label: Label = $HUD/HPLabel
+@onready var _potion_count: Label = $HUD/PotionCount
 
 func _ready() -> void:
 	current_health = max_health
-	_health_bar.max_value = max_health
-	_health_bar.value = current_health
+	_update_health_bar()
+	_update_hp_label()
+	_update_potion_label()
+	Inv.changed.connect(_update_potion_label)
+	PauseMenu.set_hud_visible(true)
+	Inv.set_hud_visible(true)
+	Quest.set_hud_visible(true)
 	if GameState.next_spawn.is_finite():
 		global_position = GameState.next_spawn
 		GameState.next_spawn = Vector2.INF
@@ -94,11 +107,10 @@ func _input(event: InputEvent) -> void:
 		_shoot()
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_Q and not _shooting:
 		_start_dash()
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_Z:
+		_use_potion()
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F11:
-		var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
-		DisplayServer.window_set_mode(
-			DisplayServer.WINDOW_MODE_WINDOWED if is_fullscreen else DisplayServer.WINDOW_MODE_FULLSCREEN
-		)
+		Settings.toggle_fullscreen()
 		call_deferred("_configure_camera_for_map")
 
 func _physics_process(_delta: float) -> void:
@@ -194,7 +206,8 @@ func take_damage(amount: int) -> void:
 	if _dash_time_left > 0.0:
 		return  # i-frames: dashing dodges all damage
 	current_health = clampi(current_health - amount, 0, max_health)
-	_health_bar.value = current_health
+	_update_health_bar()
+	_update_hp_label()
 	if is_instance_valid(_hit_flash_tween):
 		_hit_flash_tween.kill()
 	animated_sprite.modulate = Color(1, 0.2, 0.2)
@@ -207,8 +220,25 @@ func take_damage(amount: int) -> void:
 
 func heal(amount: int) -> void:
 	current_health = clampi(current_health + amount, 0, max_health)
-	_health_bar.value = current_health
+	_update_health_bar()
+	_update_hp_label()
 	health_changed.emit(current_health, max_health)
+
+func _update_health_bar() -> void:
+	var frac := float(current_health) / float(max_health)
+	_health_bar.value = _health_bar.max_value * lerpf(BAR_FILL_START, BAR_FILL_END, frac)
+
+func _update_hp_label() -> void:
+	_hp_label.text = "HP %d/%d" % [current_health, max_health]
+
+func _use_potion() -> void:
+	if _dead or current_health >= max_health:
+		return
+	if Inv.remove_item("potion"):
+		heal(potion_heal)
+
+func _update_potion_label() -> void:
+	_potion_count.text = str(Inv.count("potion"))
 
 func _die() -> void:
 	_dead = true

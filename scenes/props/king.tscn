@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://chsmvaepno25o"]
 
-[ext_resource type="Texture2D" uid="uid://br85b85p4x8e8" path="res://assets/charecter/King/King_idle.png" id="1_king"]
+[ext_resource type="Texture2D" uid="uid://br85b85p4x8e8" path="res://assets/character/King/King_idle.png" id="1_king"]
 [ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="2_shadow"]
 [ext_resource type="PackedScene" path="res://scenes/props/talkable.tscn" id="3_talkable"]
 
