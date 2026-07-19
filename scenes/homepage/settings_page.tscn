@@ -1,0 +1,141 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scenes/homepage/settings_page.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ccg4q53rnwpi0" path="res://assets/ui/bg/HOME_BG.png" id="2_bg"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_gear.png" id="3_gear"]
+[ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="4_cinzel"]
+[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="5_panel_bg"]
+[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/icon_arrow_left.png" id="6_btn_back"]
+
+[sub_resource type="StyleBoxTexture" id="panel_bg"]
+content_margin_left = 45.0
+content_margin_top = 35.0
+content_margin_right = 45.0
+content_margin_bottom = 35.0
+texture = ExtResource("5_panel_bg")
+texture_margin_left = 45.0
+texture_margin_top = 35.0
+texture_margin_right = 45.0
+texture_margin_bottom = 35.0
+
+[sub_resource type="StyleBoxTexture" id="back_normal"]
+content_margin_left = 20.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("6_btn_back")
+
+[sub_resource type="StyleBoxTexture" id="back_pressed"]
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+texture = ExtResource("6_btn_back")
+modulate_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="StyleBoxTexture" id="back_hover"]
+content_margin_left = 20.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("6_btn_back")
+modulate_color = Color(1.15, 1.15, 1.1, 1)
+
+[node name="SettingsPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -160.0
+offset_right = 200.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_bg")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="GearIcon" type="TextureRect" parent="Panel/VBox/TitleRow"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("3_gear")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Panel/VBox/TitleRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cinzel")
+theme_override_font_sizes/font_size = 26
+text = "SETTINGS"
+vertical_alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="FullscreenCheck" type="CheckButton" parent="Panel/VBox"]
+layout_mode = 2
+text = "เต็มจอ (Fullscreen)"
+
+[node name="FontRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FontLabel" type="Label" parent="Panel/VBox/FontRow"]
+layout_mode = 2
+text = "ขนาดตัวอักษร"
+vertical_alignment = 1
+
+[node name="FontOption" type="OptionButton" parent="Panel/VBox/FontRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(129, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("back_normal")
+theme_override_styles/pressed = SubResource("back_pressed")
+theme_override_styles/hover = SubResource("back_hover")
+
+[connection signal="value_changed" from="Panel/VBox/VolumeSlider" to="." method="_on_volume_changed"]
+[connection signal="toggled" from="Panel/VBox/FullscreenCheck" to="." method="_on_fullscreen_toggled"]
+[connection signal="item_selected" from="Panel/VBox/FontRow/FontOption" to="." method="_on_font_selected"]
+[connection signal="pressed" from="Panel/VBox/BackButton" to="." method="_on_back_pressed"]

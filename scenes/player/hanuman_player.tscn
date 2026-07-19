@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dqmq60bmtpi52" path="res://assets/character/Hanuman/9f7f1157-0882-4cf4-b565-7c5b34bd1b00-removebg-preview (1).png" id="6_run4"]
 [ext_resource type="Texture2D" path="res://assets/character/Hanuman/attack_sheet.png" id="7_attack"]
 [ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="8_shadow"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_potion_red.png" id="10_potion_icon"]
+[ext_resource type="Texture2D" path="res://assets/ui/life_bar/player_bar_empty.png" id="11_hp_bar_empty"]
+[ext_resource type="Texture2D" path="res://assets/ui/life_bar/player_bar_full.png" id="12_hp_bar_full"]
 
 [sub_resource type="AtlasTexture" id="idle_0"]
 atlas = ExtResource("2_idle")
@@ -149,20 +152,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hanuman"]
 radius = 9.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_bg"]
-bg_color = Color(0, 0, 0, 0.55)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_fill"]
-bg_color = Color(0.83, 0.22, 0.2, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
 [node name="Hanuman" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_script")
@@ -193,22 +182,90 @@ position_smoothing_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" type="ProgressBar" parent="HUD"]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 236.0
-offset_bottom = 40.0
-theme_override_styles/background = SubResource("StyleBoxFlat_hud_bg")
-theme_override_styles/fill = SubResource("StyleBoxFlat_hud_fill")
+[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
 max_value = 100.0
 value = 100.0
-show_percentage = false
+texture_under = ExtResource("11_hp_bar_empty")
+texture_progress = ExtResource("12_hp_bar_full")
 
 [node name="HPLabel" type="Label" parent="HUD"]
-offset_left = 26.0
-offset_top = 17.0
-offset_right = 226.0
-offset_bottom = 39.0
-theme_override_font_sizes/font_size = 13
-theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -47.0
+offset_right = 130.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(1, 1, 1, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 text = "HP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PotionIcon" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -96.0
+offset_right = -28.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("10_potion_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PotionCount" type="Label" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -46.0
+offset_right = -28.0
+offset_bottom = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 1, 1, 0.95)
+text = "3"
+horizontal_alignment = 1
+
+[node name="PotionKey" type="Label" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -28.0
+offset_right = -28.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+text = "Z"
+horizontal_alignment = 1

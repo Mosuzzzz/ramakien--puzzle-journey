@@ -5,9 +5,9 @@
 [ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="3_sarabun"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="4_sarabun_b"]
 [ext_resource type="FontFile" uid="uid://dw473uskjkhs" path="res://assets/fonts/Merriweather-Variable.ttf" id="5_merri"]
-[ext_resource type="Texture2D" path="res://assets/homepage/lable/pieces/dialog_box_plain.png" id="6_box"]
-[ext_resource type="Texture2D" uid="uid://dt2tcug60dxbm" path="res://assets/homepage/lable/pieces/dialog_title_tab.png" id="7_tag"]
-[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/homepage/lable/pieces/title_scroll_banner.png" id="8_scroll"]
+[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="6_box"]
+[ext_resource type="Texture2D" uid="uid://dt2tcug60dxbm" path="res://assets/ui/lable/pieces1/dialog_title_tab.png" id="7_tag"]
+[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="8_scroll"]
 
 [sub_resource type="FontVariation" id="font_name"]
 fallbacks = Array[Font]([ExtResource("4_sarabun_b")])

@@ -21,10 +21,21 @@ var _is_narration: bool = false
 @onready var _bg_image: TextureRect = $Narration/BgImage
 @onready var _bg_tint: ColorRect = $Narration/BgTint
 
+var _base_text_size := 0
+var _base_narration_size := 0
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_box.hide()
 	_narration.hide()
+	_base_text_size = _text_label.label_settings.font_size
+	_base_narration_size = _narration_label.label_settings.font_size
+	_apply_font_scale()
+	Settings.font_scale_changed.connect(_apply_font_scale)
+
+func _apply_font_scale() -> void:
+	_text_label.label_settings.font_size = roundi(_base_text_size * Settings.font_scale())
+	_narration_label.label_settings.font_size = roundi(_base_narration_size * Settings.font_scale())
 
 func start(speaker: String, lines: Array[String]) -> void:
 	if lines.is_empty():

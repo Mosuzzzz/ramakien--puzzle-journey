@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://d4gaxscs0brjw"]
 
 [ext_resource type="Script" uid="uid://bsx6i4612wgs1" path="res://scenes/homepage/home_page.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://ccg4q53rnwpi0" path="res://assets/homepage/bg/HOME_BG.png" id="2_bg"]
-[ext_resource type="Texture2D" uid="uid://b56hepwwhvpbh" path="res://assets/homepage/logo/Logo.PNG" id="3_logo"]
-[ext_resource type="Texture2D" uid="uid://bsdap8odu3xqx" path="res://assets/homepage/lable/pieces/banner_green_star.png" id="4_btn_start"]
+[ext_resource type="Texture2D" uid="uid://ccg4q53rnwpi0" path="res://assets/ui/bg/HOME_BG.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://b56hepwwhvpbh" path="res://assets/ui/logo/Logo.PNG" id="3_logo"]
+[ext_resource type="Texture2D" uid="uid://bsdap8odu3xqx" path="res://assets/ui/lable/pieces1/banner_green_star.png" id="4_btn_start"]
 [ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="5_cinzel"]
 [ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="6_sarabun"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="7_sarabun_b"]
-[ext_resource type="Texture2D" uid="uid://cnnr8lmdpj45" path="res://assets/homepage/lable/pieces/banner_red_x.png" id="8_btn_quit"]
+[ext_resource type="Texture2D" uid="uid://cnnr8lmdpj45" path="res://assets/ui/lable/pieces1/banner_red_x.png" id="8_btn_quit"]
+[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/banner_red_gear.png" id="9_btn_settings"]
 
 [sub_resource type="FontVariation" id="font_cinzel_bold"]
 fallbacks = Array[Font]([ExtResource("7_sarabun_b")])
@@ -62,6 +63,29 @@ content_margin_top = 8.0
 content_margin_right = 16.0
 content_margin_bottom = 10.0
 texture = ExtResource("8_btn_quit")
+modulate_color = Color(1.18, 1.1, 1.1, 1)
+
+[sub_resource type="StyleBoxTexture" id="settings_normal"]
+content_margin_left = 44.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+texture = ExtResource("9_btn_settings")
+
+[sub_resource type="StyleBoxTexture" id="settings_pressed"]
+content_margin_left = 44.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("9_btn_settings")
+modulate_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="StyleBoxTexture" id="settings_hover"]
+content_margin_left = 44.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+texture = ExtResource("9_btn_settings")
 modulate_color = Color(1.18, 1.1, 1.1, 1)
 
 [sub_resource type="StyleBoxFlat" id="btn_focus"]
@@ -162,6 +186,21 @@ theme_override_styles/hover = SubResource("start_hover")
 theme_override_styles/focus = SubResource("no_focus")
 text = "START"
 
+[node name="SettingsButton" type="Button" parent="Menu" unique_id=692810345]
+custom_minimum_size = Vector2(280, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.55, 1)
+theme_override_colors/font_focus_color = Color(1, 0.95, 0.7, 1)
+theme_override_colors/font_pressed_color = Color(0.95, 0.8, 0.45, 1)
+theme_override_colors/font_hover_color = Color(1, 0.97, 0.75, 1)
+theme_override_fonts/font = SubResource("font_cinzel_bold")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("settings_normal")
+theme_override_styles/pressed = SubResource("settings_pressed")
+theme_override_styles/hover = SubResource("settings_hover")
+theme_override_styles/focus = SubResource("btn_focus")
+text = "SETTINGS"
+
 [node name="QuitButton" type="Button" parent="Menu" unique_id=1080403444]
 custom_minimum_size = Vector2(280, 62)
 layout_mode = 2
@@ -209,4 +248,5 @@ label_settings = SubResource("version_label")
 horizontal_alignment = 2
 
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/SettingsButton" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Menu/QuitButton" to="." method="_on_quit_pressed"]

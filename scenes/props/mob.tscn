@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://djdl6e7sagbjf"]
 
 [ext_resource type="Script" uid="uid://cofvgpeyolxk2" path="res://scenes/props/mob.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://o6k2icmq2o0b" path="res://assets/charecter/mob/yak_idle_clean.png" id="2_yak"]
-[ext_resource type="Texture2D" uid="uid://bherc2nymuloy" path="res://assets/charecter/mob/yak_run.png" id="3_run"]
-[ext_resource type="Texture2D" uid="uid://bv5ogbom6celt" path="res://assets/charecter/mob/yak_walk.png" id="4_walk"]
-[ext_resource type="Texture2D" uid="uid://c65b26f8eu35k" path="res://assets/charecter/mob/yak_attack_fitted.png" id="5_attack"]
+[ext_resource type="Texture2D" uid="uid://o6k2icmq2o0b" path="res://assets/character/mob/yak_idle_clean.png" id="2_yak"]
+[ext_resource type="Texture2D" uid="uid://bherc2nymuloy" path="res://assets/character/mob/yak_run.png" id="3_run"]
+[ext_resource type="Texture2D" uid="uid://bv5ogbom6celt" path="res://assets/character/mob/yak_walk.png" id="4_walk"]
+[ext_resource type="Texture2D" uid="uid://c65b26f8eu35k" path="res://assets/character/mob/yak_attack_fitted.png" id="5_attack"]
 
 [sub_resource type="AtlasTexture" id="attack_atlas_0"]
 atlas = ExtResource("5_attack")

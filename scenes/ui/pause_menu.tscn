@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_gear.png" id="2_gear"]
+[ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="3_cinzel"]
+[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="4_panel_bg"]
+[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/icon_play.png" id="5_btn_resume"]
+[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/icon_x_1.png" id="6_btn_menu"]
+
+[sub_resource type="StyleBoxTexture" id="panel_bg"]
+content_margin_left = 45.0
+content_margin_top = 35.0
+content_margin_right = 45.0
+content_margin_bottom = 35.0
+texture = ExtResource("4_panel_bg")
+texture_margin_left = 45.0
+texture_margin_top = 35.0
+texture_margin_right = 45.0
+texture_margin_bottom = 35.0
+
+[sub_resource type="StyleBoxTexture" id="resume_normal"]
+content_margin_left = 20.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("5_btn_resume")
+
+[sub_resource type="StyleBoxTexture" id="resume_hover"]
+content_margin_left = 20.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("5_btn_resume")
+modulate_color = Color(1.15, 1.15, 1.1, 1)
+
+[sub_resource type="StyleBoxTexture" id="menu_normal"]
+content_margin_left = 20.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("6_btn_menu")
+
+[sub_resource type="StyleBoxTexture" id="menu_hover"]
+content_margin_left = 20.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("6_btn_menu")
+modulate_color = Color(1.15, 1.15, 1.1, 1)
+
+[node name="PauseMenu" type="CanvasLayer"]
+layer = 10
+process_mode = 3
+script = ExtResource("1_script")
+
+[node name="GearButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 60.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_gear")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+mouse_filter = 1
+
+[node name="Panel" type="PanelContainer" parent="Dim"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -160.0
+offset_right = 200.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_bg")
+
+[node name="VBox" type="VBoxContainer" parent="Dim/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleRow" type="HBoxContainer" parent="Dim/Panel/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="GearIcon" type="TextureRect" parent="Dim/Panel/VBox/TitleRow"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_gear")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Dim/Panel/VBox/TitleRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cinzel")
+theme_override_font_sizes/font_size = 26
+text = "SETTINGS"
+vertical_alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="Dim/Panel/VBox"]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="Dim/Panel/VBox"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="FullscreenCheck" type="CheckButton" parent="Dim/Panel/VBox"]
+layout_mode = 2
+text = "เต็มจอ (Fullscreen)"
+
+[node name="FontRow" type="HBoxContainer" parent="Dim/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FontLabel" type="Label" parent="Dim/Panel/VBox/FontRow"]
+layout_mode = 2
+text = "ขนาดตัวอักษร"
+vertical_alignment = 1
+
+[node name="FontOption" type="OptionButton" parent="Dim/Panel/VBox/FontRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonsRow" type="HBoxContainer" parent="Dim/Panel/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="ResumeButton" type="Button" parent="Dim/Panel/VBox/ButtonsRow"]
+custom_minimum_size = Vector2(129, 49)
+layout_mode = 2
+theme_override_styles/normal = SubResource("resume_normal")
+theme_override_styles/hover = SubResource("resume_hover")
+
+[node name="MenuButton" type="Button" parent="Dim/Panel/VBox/ButtonsRow"]
+custom_minimum_size = Vector2(129, 49)
+layout_mode = 2
+theme_override_styles/normal = SubResource("menu_normal")
+theme_override_styles/hover = SubResource("menu_hover")
+
+[connection signal="pressed" from="GearButton" to="." method="_toggle"]
+[connection signal="value_changed" from="Dim/Panel/VBox/VolumeSlider" to="." method="_on_volume_changed"]
+[connection signal="toggled" from="Dim/Panel/VBox/FullscreenCheck" to="." method="_on_fullscreen_toggled"]
+[connection signal="item_selected" from="Dim/Panel/VBox/FontRow/FontOption" to="." method="_on_font_selected"]
+[connection signal="pressed" from="Dim/Panel/VBox/ButtonsRow/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Dim/Panel/VBox/ButtonsRow/MenuButton" to="." method="_on_menu_pressed"]

@@ -17,6 +17,11 @@ extends "res://scenes/props/mob.gd"
 @export_range(0.05, 0.95, 0.05) var skill_trigger_health_ratio: float = 0.2
 @export_range(0.05, 1.0, 0.05) var skill_restore_health_ratio: float = 0.6
 
+# fractions of the boss hp_bar texture width where the red pill begins/ends
+# (the yaksha heads take up the rest)
+const BOSS_FILL_START := 0.171
+const BOSS_FILL_END := 0.825
+
 const JUMP_ANIMATION := &"Jump attack"
 const PULL_ANIMATION_LOWER := &"pull attack"
 const PULL_ANIMATION_TITLE := &"Pull attack"
@@ -48,11 +53,14 @@ var _last_player_health := -1
 var _skill_active := false
 var _skill_used := false
 
+@onready var _boss_bar: TextureProgressBar = $BossHUD/BossBar
+
 
 func _ready() -> void:
 	if always_chase_player:
 		aggro_range = INF
 	super._ready()
+	_update_boss_bar()
 	if not _sprite.animation_finished.is_connected(_on_sprite_animation_finished):
 		_sprite.animation_finished.connect(_on_sprite_animation_finished)
 	if not _sprite.animation_looped.is_connected(_on_sprite_animation_looped):
@@ -111,6 +119,7 @@ func take_damage(amount: int) -> void:
 		return
 	_flash_hit()
 	_health = maxi(_health - amount, 0)
+	_update_boss_bar()
 	_boss_health_stale_time = 0.0
 
 	# This is a one-time second phase. It also saves Thosakan if one hit crosses
@@ -141,8 +150,14 @@ func _begin_heal_skill() -> void:
 	_jump_recovery_time_left = 0.0
 	velocity = Vector2.ZERO
 	_health = clampi(roundi(float(max_health) * skill_restore_health_ratio), 1, max_health)
+	_update_boss_bar()
 	_play(SKILL_ANIMATION)
 	_sprite.speed_scale = 1.0
+
+
+func _update_boss_bar() -> void:
+	var frac := float(_health) / float(maxi(max_health, 1))
+	_boss_bar.value = _boss_bar.max_value * lerpf(BOSS_FILL_START, BOSS_FILL_END, frac)
 
 
 func _begin_random_special_attack() -> void:

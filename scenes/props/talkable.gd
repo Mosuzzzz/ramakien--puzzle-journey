@@ -6,6 +6,7 @@ extends Area2D
 @export var interaction_size := Vector2(110, 60)
 @export var prompt_offset := Vector2(-90, -80)
 @export var quest_after: String = ""
+@export var quest_after_detail: String = ""
 @export var narration_after: Array[String] = []
 @export var narration_after_title: String = ""
 
@@ -51,6 +52,6 @@ func _interact() -> void:
 
 func _on_dialogue_finished() -> void:
 	if quest_after != "":
-		Quest.set_quest(quest_after)
+		Quest.set_quest(quest_after, quest_after_detail)
 	if not narration_after.is_empty():
 		Dialogue.start_narration(narration_after, narration_after_title)
