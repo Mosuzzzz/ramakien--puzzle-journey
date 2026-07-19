@@ -5,6 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://cjeq217n8txlf" path="res://assets/props/chapter4/tree.PNG" id="2_mi2ku"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://dub35yko41y8t" path="res://assets/props/chapter4/camp_fire.PNG" id="4_bttof"]
+[ext_resource type="Texture2D" uid="uid://bpwjan7xud52t" path="res://assets/cutscene/chapter_4/ChatGPT Image 19 ก.ค. 2569 00_05_08.png" id="5_cutscene_image"]
+[ext_resource type="Script" uid="uid://bn15761xnrrb8" path="res://scenes/cutscene/chapter_4_cutscene.gd" id="6_cutscene_script"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="7_cutscene_font"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="8_cutscene_bold"]
+[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/homepage/lable/pieces/title_scroll_banner.png" id="9_title_banner"]
+[ext_resource type="Texture2D" uid="uid://88bksdtarcbr" path="res://assets/cutscene/chapter_4/ChatGPT Image 19 ก.ค. 2569 12_30_55.png" id="10_second_cutscene_image"]
+[ext_resource type="Texture2D" uid="uid://uk8mmj65i1f8" path="res://assets/cutscene/chapter_4/ChatGPT Image 19 ก.ค. 2569 13_02_40.png" id="11_third_cutscene_image"]
+[ext_resource type="Texture2D" uid="uid://ckw25c75w2wv2" path="res://assets/cutscene/chapter_4/ChatGPT Image 19 ก.ค. 2569 13_35_10.png" id="12_fourth_cutscene_image"]
+[ext_resource type="Texture2D" uid="uid://upe4kljbkyld" path="res://assets/cutscene/chapter_4/ChatGPT Image 19 ก.ค. 2569 13_43_25.png" id="13_fifth_cutscene_image"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
@@ -737,6 +746,16 @@ y_sort_enabled = true
 [node name="Player" parent="YSortRoot" unique_id=1960272009 instance=ExtResource("2_player")]
 position = Vector2(691, 863)
 
+[node name="Chapter5Portal" parent="YSortRoot" unique_id=582289677 instance=ExtResource("90_portal")]
+position = Vector2(712, 205)
+target_scene = "res://scenes/chapter_5/chapter_5.tscn"
+target_spawn = Vector2(85, 574)
+
+[node name="Chapter3Portal" parent="YSortRoot" unique_id=469271962 instance=ExtResource("90_portal")]
+position = Vector2(702, 1048)
+target_scene = "res://scenes/chapter_3/chapter_3.tscn"
+target_spawn = Vector2(1110, 990)
+
 [node name="CampFire" type="Sprite2D" parent="." unique_id=2122264671]
 position = Vector2(727, 541)
 texture = ExtResource("4_bttof")
@@ -745,12 +764,171 @@ texture = ExtResource("4_bttof")
 position = Vector2(727, 541)
 texture = ExtResource("2_mi2ku")
 
-[node name="Chapter5Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
-position = Vector2(712, 205)
-target_scene = "res://scenes/chapter_5/chapter_5.tscn"
-target_spawn = Vector2(85, 574)
+[node name="Chapter4CutsceneLayer" type="CanvasLayer" parent="." unique_id=883736704]
+layer = 100
 
-[node name="Chapter3Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
-position = Vector2(702, 1048)
-target_scene = "res://scenes/chapter_3/chapter_3.tscn"
-target_spawn = Vector2(1110, 990)
+[node name="Chapter4Cutscene" type="Control" parent="Chapter4CutsceneLayer" unique_id=2051997490]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_cutscene_script")
+
+[node name="CutsceneImage" type="TextureRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=1207970685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_cutscene_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SecondCutsceneImage" type="TextureRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=289450120]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_second_cutscene_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ThirdCutsceneImage" type="TextureRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=1052863654]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_third_cutscene_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FourthCutsceneImage" type="TextureRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=874525961]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_fourth_cutscene_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FifthCutsceneImage" type="TextureRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_fifth_cutscene_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundDim" type="ColorRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=1570788047]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.34)
+
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=932701723]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19
+anchor_right = 0.81
+offset_top = 36.0
+offset_bottom = 132.0
+grow_horizontal = 2
+texture = ExtResource("9_title_banner")
+patch_margin_left = 92
+patch_margin_top = 16
+patch_margin_right = 92
+patch_margin_bottom = 16
+
+[node name="Title" type="Label" parent="Chapter4CutsceneLayer/Chapter4Cutscene/TitleBanner" unique_id=965817736]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_right = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.12, 0.045, 1)
+theme_override_fonts/font = ExtResource("8_cutscene_bold")
+theme_override_font_sizes/font_size = 32
+text = "สร้างสะพานสู่กรุงลงกา"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogue" type="Label" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=776729463]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.62
+anchor_right = 0.93
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
+theme_override_constants/line_spacing = 6
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_cutscene_font")
+theme_override_font_sizes/font_size = 30
+text = "คำบรรยาย: หลังจากหนุมานถวายตัวรับใช้พระราม เขาออกเดินทางไปทั่วผืนป่าและขุนเขา"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinuePrompt" type="Label" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=884148532]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.0
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.87, 0.78, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_cutscene_font")
+theme_override_font_sizes/font_size = 19
+text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
+horizontal_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=1788766194]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
