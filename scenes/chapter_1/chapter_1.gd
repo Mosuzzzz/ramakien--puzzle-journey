@@ -6,4 +6,5 @@ func _ready() -> void:
 	if GameState.chapter_1_intro_played:
 		return
 	GameState.chapter_1_intro_played = true
-	Quest.set_quest("เข้าเฝ้าท้าวทศรถ")
+	var throne_room_portal := $YSortRoot/ThroneRoomPortal as Node2D
+	Quest.set_quest("เข้าเฝ้าท้าวทศรถ", "", throne_room_portal.global_position)

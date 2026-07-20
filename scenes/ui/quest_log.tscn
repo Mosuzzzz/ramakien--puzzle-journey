@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_scroll.png" id="7_quest_icon"]
 [ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="8_page_bg"]
 [ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/icon_x_1.png" id="9_close"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_warning.png" id="10_marker"]
 
 [sub_resource type="FontVariation" id="font_title"]
 fallbacks = Array[Font]([ExtResource("4_sarabun_b")])
@@ -63,6 +64,20 @@ offset_right = 64.0
 offset_bottom = 254.0
 texture_normal = ExtResource("7_quest_icon")
 ignore_texture_size = true
+stretch_mode = 5
+
+[node name="QuestMarker" type="Control" parent="."]
+mouse_filter = 2
+size = Vector2(36, 36)
+
+[node name="Icon" type="TextureRect" parent="QuestMarker"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_marker")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="PageDim" type="ColorRect" parent="."]

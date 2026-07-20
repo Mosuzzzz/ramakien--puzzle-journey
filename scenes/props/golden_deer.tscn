@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cy4x5uli7n13t" path="res://assets/character/Goldendeer/idle.png" id="1_deer"]
 [ext_resource type="Texture2D" uid="uid://ddngd5agy7gq" path="res://assets/character/Goldendeer/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png" id="2_mbymr"]
+[ext_resource type="Script" path="res://scenes/props/golden_deer.gd" id="3_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw3ue"]
 atlas = ExtResource("1_deer")
@@ -65,7 +66,14 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="GoldenDeer" type="Node2D" unique_id=2064433926]
+[sub_resource type="CircleShape2D" id="circ_body"]
+
+[sub_resource type="RectangleShape2D" id="rect_hurtbox"]
+size = Vector2(40, 60)
+
+[node name="GoldenDeer" type="CharacterBody2D" unique_id=2064433926]
+collision_layer = 0
+script = ExtResource("3_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1940689629]
 position = Vector2(0, -33)
@@ -74,3 +82,12 @@ sprite_frames = SubResource("golden_deer_frames")
 animation = &"run"
 autoplay = "idle"
 frame_progress = 0.79447275
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("circ_body")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -27)
+shape = SubResource("rect_hurtbox")
