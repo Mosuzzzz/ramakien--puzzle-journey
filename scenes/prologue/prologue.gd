@@ -1,5 +1,7 @@
 extends Node2D
 
+const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
+
 const NEXT_SCENE := "res://scenes/chapter_1/chapter_1.tscn"
 const TITLE := "โชคชะตาแห่งอโยธยา"
 
@@ -51,7 +53,16 @@ var _segments: Array[Dictionary] = [
 var _segment_index := 0
 
 func _ready() -> void:
+	CutsceneSkip.attach(self, _skip)
 	_play_next_segment()
+
+func _skip() -> void:
+	if Dialogue.finished.is_connected(_play_next_segment):
+		Dialogue.finished.disconnect(_play_next_segment)
+	if Dialogue.finished.is_connected(_on_finished):
+		Dialogue.finished.disconnect(_on_finished)
+	Dialogue._close()
+	_on_finished()
 
 func _play_next_segment() -> void:
 	if _segment_index >= _segments.size():

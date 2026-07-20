@@ -1,5 +1,7 @@
 extends Control
 
+const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
+
 const DIALOGUES: Array[String] = [
 	"คำบรรยาย: หลังจากหนุมานถวายตัวรับใช้พระราม เขาออกเดินทางไปทั่วผืนป่าและขุนเขา",
 	"คำบรรยาย: หนุมานรวบรวมเหล่าวานรจากทุกสารทิศ ให้มาร่วมเป็นกำลังแก่พระราม",
@@ -74,6 +76,7 @@ func _ready() -> void:
 	_fourth_cutscene_image.hide()
 	_fifth_cutscene_image.hide()
 	_show_dialogue(0, false)
+	CutsceneSkip.attach(self, _finish_cutscene)
 	_play_intro_transition()
 
 
@@ -101,6 +104,8 @@ func _play_intro_transition() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouse:
+		return  # let the GUI (skip button) receive clicks; the tree is paused anyway
 	get_viewport().set_input_as_handled()
 	if _transitioning or _finished:
 		return

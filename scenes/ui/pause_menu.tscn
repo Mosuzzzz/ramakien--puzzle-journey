@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_gear.png" id="2_gear"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="4_panel_bg"]
 [ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/icon_play.png" id="5_btn_resume"]
 [ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/icon_x_1.png" id="6_btn_menu"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="7_sarabun_b"]
 
 [sub_resource type="StyleBoxTexture" id="panel_bg"]
 content_margin_left = 45.0
@@ -19,31 +20,47 @@ texture_margin_right = 45.0
 texture_margin_bottom = 35.0
 
 [sub_resource type="StyleBoxTexture" id="resume_normal"]
-content_margin_left = 20.0
+content_margin_left = 50.0
 content_margin_top = 6.0
-content_margin_right = 8.0
+content_margin_right = 26.0
 content_margin_bottom = 8.0
 texture = ExtResource("5_btn_resume")
 
+[sub_resource type="StyleBoxTexture" id="resume_pressed"]
+content_margin_left = 50.0
+content_margin_top = 8.0
+content_margin_right = 26.0
+content_margin_bottom = 6.0
+texture = ExtResource("5_btn_resume")
+modulate_color = Color(0.8, 0.8, 0.8, 1)
+
 [sub_resource type="StyleBoxTexture" id="resume_hover"]
-content_margin_left = 20.0
+content_margin_left = 50.0
 content_margin_top = 6.0
-content_margin_right = 8.0
+content_margin_right = 26.0
 content_margin_bottom = 8.0
 texture = ExtResource("5_btn_resume")
 modulate_color = Color(1.15, 1.15, 1.1, 1)
 
 [sub_resource type="StyleBoxTexture" id="menu_normal"]
-content_margin_left = 20.0
+content_margin_left = 50.0
 content_margin_top = 6.0
-content_margin_right = 8.0
+content_margin_right = 26.0
 content_margin_bottom = 8.0
 texture = ExtResource("6_btn_menu")
 
+[sub_resource type="StyleBoxTexture" id="menu_pressed"]
+content_margin_left = 50.0
+content_margin_top = 8.0
+content_margin_right = 26.0
+content_margin_bottom = 6.0
+texture = ExtResource("6_btn_menu")
+modulate_color = Color(0.8, 0.8, 0.8, 1)
+
 [sub_resource type="StyleBoxTexture" id="menu_hover"]
-content_margin_left = 20.0
+content_margin_left = 50.0
 content_margin_top = 6.0
-content_margin_right = 8.0
+content_margin_right = 26.0
 content_margin_bottom = 8.0
 texture = ExtResource("6_btn_menu")
 modulate_color = Color(1.15, 1.15, 1.1, 1)
@@ -147,15 +164,23 @@ alignment = 1
 theme_override_constants/separation = 16
 
 [node name="ResumeButton" type="Button" parent="Dim/Panel/VBox/ButtonsRow"]
-custom_minimum_size = Vector2(129, 49)
+custom_minimum_size = Vector2(145, 50)
 layout_mode = 2
+text = "เล่นต่อ"
+theme_override_fonts/font = ExtResource("7_sarabun_b")
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("resume_normal")
+theme_override_styles/pressed = SubResource("resume_pressed")
 theme_override_styles/hover = SubResource("resume_hover")
 
 [node name="MenuButton" type="Button" parent="Dim/Panel/VBox/ButtonsRow"]
-custom_minimum_size = Vector2(129, 49)
+custom_minimum_size = Vector2(145, 50)
 layout_mode = 2
+text = "หน้าหลัก"
+theme_override_fonts/font = ExtResource("7_sarabun_b")
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("menu_normal")
+theme_override_styles/pressed = SubResource("menu_pressed")
 theme_override_styles/hover = SubResource("menu_hover")
 
 [connection signal="pressed" from="GearButton" to="." method="_toggle"]

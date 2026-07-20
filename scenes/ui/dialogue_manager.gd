@@ -79,6 +79,8 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if get_viewport().gui_get_hovered_control() is Button:
+			return  # click belongs to a UI button (e.g. cutscene skip), don't advance
 		_advance()
 		get_viewport().set_input_as_handled()
 
