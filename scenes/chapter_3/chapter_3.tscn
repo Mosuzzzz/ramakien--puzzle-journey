@@ -13,10 +13,10 @@
 [ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="10_cutscene_font"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="11_cutscene_bold"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/homepage/lable/pieces/title_scroll_banner.png" id="12_title_banner"]
-[ext_resource type="Texture2D" uid="uid://22mhd3iqta8w" path="res://assets/cutscene/chapter_3/ChatGPT Image 17 ก.ค. 2569 17_41_47.png" id="13_second_cutscene"]
+[ext_resource type="Texture2D" uid="uid://bigsl8kpgqnnk" path="res://assets/cutscene/chapter_3/ChatGPT Image 20 ก.ค. 2569 12_05_23.png" id="13_second_cutscene"]
 [ext_resource type="Script" uid="uid://c7vrsa0plqf8n" path="res://scenes/chapter_3/chapter_3.gd" id="14_chapter_script"]
 [ext_resource type="Script" uid="uid://bslmhp4f7lrvr" path="res://scenes/cutscene/chapter_3_post_battle_cutscene.gd" id="15_post_cutscene_script"]
-[ext_resource type="Texture2D" uid="uid://hki7xnt08xde" path="res://assets/cutscene/chapter_3/ChatGPT Image 17 ก.ค. 2569 21_57_50.png" id="16_final_cutscene"]
+[ext_resource type="Texture2D" uid="uid://c8qfo7ra2aw8h" path="res://assets/cutscene/chapter_3/ChatGPT Image 20 ก.ค. 2569 11_55_10.png" id="16_final_cutscene"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
