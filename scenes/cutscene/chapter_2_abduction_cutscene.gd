@@ -2,10 +2,28 @@ extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
 
-const DIALOGUES: Array[String] = [
+# used when the deer is felled by an arrow (map 1's escape-shot path)
+const ARROW_OPENING: Array[String] = [
 	"คำบรรยาย: ทันทีที่ศรของพระรามพุ่งเข้าปะทะ กวางทองก็ร้องด้วยความเจ็บปวด ก่อนร่างจะแปรเปลี่ยนกลายเป็นยักษ์มารีศ",
 	"มารีศ: “พระลักษมณ์... ช่วยพี่ด้วย!”",
 	"คำบรรยาย: มารีศร้องเลียนเสียงพระรามเป็นครั้งสุดท้าย ก่อนจะสิ้นใจกลางป่า",
+]
+
+# used when the deer is finally cornered after the chase (map 2's quiz path)
+const CATCH_OPENING: Array[String] = [
+	"คำบรรยาย: พระรามไล่ตามจนในที่สุดก็เข้าใกล้กวางทองได้สำเร็จ",
+	"พระราม: “ในที่สุด... เจ้าก็หนีไปไม่พ้นแล้ว!”",
+	"คำบรรยาย: แต่ทันใดนั้น ร่างของกวางทองก็เรืองแสงและแปรเปลี่ยนกลายเป็นยักษ์ตนหนึ่งต่อหน้าต่อตา",
+	"พระราม: “นี่มัน... ไม่ใช่กวางธรรมดา!”",
+	"คำบรรยาย: พระรามตกใจ แต่ตั้งสติได้ทันที รีบน้าวศรและยิงออกไปโดยพลัน",
+	"มารีศ: “ฮ่า ฮ่า ฮ่า! เจ้าคิดว่าจะเอาชนะข้าได้ง่าย ๆ อย่างนั้นหรือ พระราม!”",
+	"พระราม: “เจ้าคือใครกันแน่?”",
+	"มารีศ: “ข้าคือมารีศ ผู้รับใช้ทศกัณฐ์แห่งกรุงลงกา!”",
+	"มารีศ: “พระลักษมณ์... ช่วยพี่ด้วย!”",
+	"คำบรรยาย: มารีศร้องเลียนเสียงพระรามเป็นครั้งสุดท้าย ก่อนจะสิ้นใจกลางป่า",
+]
+
+const SHARED_TAIL: Array[String] = [
 	"คำบรรยาย: ที่อาศรม นางสีดาได้ยินเสียงร้องนั้นก็ตกใจ เชื่อว่าพระรามกำลังตกอยู่ในอันตราย",
 	"นางสีดา: “พระลักษมณ์! นั่นเสียงพระราม รีบไปช่วยท่านเถิด!”",
 	"พระลักษมณ์: “พี่นางอย่าเพิ่งตกใจไป นี่อาจเป็นกลอุบายของเหล่ายักษ์ก็ได้ พี่รามท่านเก่งกาจ คงไม่เป็นไรดอก”",
@@ -27,6 +45,7 @@ signal finished
 var _active := false
 var _dialogue_index := 0
 var _transitioning := false
+var _dialogues: Array[String] = []
 
 @onready var _background_dim: ColorRect = $BackgroundDim
 @onready var _title_banner: NinePatchRect = $TitleBanner
@@ -40,7 +59,9 @@ func _ready() -> void:
 	CutsceneSkip.attach(self, _finish_cutscene)
 
 
-func show_cutscene() -> void:
+## catch_method: "arrow" (shot dead) or "catch" (cornered after the chase)
+func show_cutscene(catch_method: String = "arrow") -> void:
+	_dialogues = (ARROW_OPENING if catch_method == "arrow" else CATCH_OPENING) + SHARED_TAIL
 	_active = true
 	_transitioning = true
 	_dialogue_index = 0
@@ -79,7 +100,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _advance_dialogue() -> void:
-	if _dialogue_index + 1 >= DIALOGUES.size():
+	if _dialogue_index + 1 >= _dialogues.size():
 		_finish_cutscene()
 	else:
 		_show_dialogue(_dialogue_index + 1, true)
@@ -87,16 +108,16 @@ func _advance_dialogue() -> void:
 
 func _show_dialogue(index: int, animated: bool) -> void:
 	_dialogue_index = index
-	_prompt_label.text = "กด E เพื่อออกติดตามทศกัณฐ์ ▼" if index == DIALOGUES.size() - 1 else "กด E เพื่อดำเนินเรื่องต่อ ▼"
+	_prompt_label.text = "กด E เพื่อออกติดตามทศกัณฐ์ ▼" if index == _dialogues.size() - 1 else "กด E เพื่อดำเนินเรื่องต่อ ▼"
 	if not animated:
-		_dialogue_label.text = DIALOGUES[_dialogue_index]
+		_dialogue_label.text = _dialogues[_dialogue_index]
 		return
 
 	_transitioning = true
 	var fade_out := create_tween()
 	fade_out.tween_property(_dialogue_label, "modulate:a", 0.0, 0.12)
 	await fade_out.finished
-	_dialogue_label.text = DIALOGUES[_dialogue_index]
+	_dialogue_label.text = _dialogues[_dialogue_index]
 	var fade_in := create_tween()
 	fade_in.tween_property(_dialogue_label, "modulate:a", 1.0, 0.18)
 	await fade_in.finished

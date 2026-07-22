@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://c2forestdeep"]
+
+[ext_resource type="Script" uid="uid://d4c128xegh05x" path="res://scenes/chapter_2/chapter_2_second.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ddpd0hm4u8sng" path="res://assets/map/chapter_2/second_map.png" id="2_map"]
+[ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://d2ifsn7i14dss" path="res://scenes/props/golden_deer.tscn" id="4_deer"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="5_portal"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="6_cutscene_font"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="7_cutscene_bold"]
+[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="8_title_banner"]
+[ext_resource type="Script" uid="uid://3au27m7j7v4o" path="res://scenes/cutscene/chapter_2_abduction_cutscene.gd" id="9_abduction_script"]
+[ext_resource type="PackedScene" path="res://scenes/ui/question_quiz.tscn" id="10_quiz"]
+
+[sub_resource type="RectangleShape2D" id="rect_forest_top"]
+size = Vector2(5643, 360)
+
+[sub_resource type="RectangleShape2D" id="rect_forest_bottom"]
+size = Vector2(5643, 396)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5gtgg"]
+a = Vector2(-923.5, 263)
+b = Vector2(649, 288)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_oxa2l"]
+a = Vector2(-290, 242)
+b = Vector2(32, 215)
+
+[node name="Chapter2Second" type="Node2D" unique_id=1085396948]
+script = ExtResource("1_script")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1221484079]
+texture_repeat = 2
+position = Vector2(-1881, 0)
+texture = ExtResource("2_map")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 5643, 836)
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=754424852]
+
+[node name="TopForest" type="CollisionShape2D" parent="Walls" unique_id=536604910]
+position = Vector2(940.5, 180)
+shape = SubResource("rect_forest_top")
+
+[node name="BottomForest" type="CollisionShape2D" parent="Walls" unique_id=1346861754]
+position = Vector2(940.5, 638)
+shape = SubResource("rect_forest_bottom")
+
+[node name="line" type="CollisionShape2D" parent="Walls" unique_id=1022932872]
+position = Vector2(932, 179)
+shape = SubResource("SegmentShape2D_5gtgg")
+
+[node name="line2" type="CollisionShape2D" parent="Walls" unique_id=1091249019]
+position = Vector2(1867, 225)
+shape = SubResource("SegmentShape2D_oxa2l")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=1806047626]
+y_sort_enabled = true
+
+[node name="Player" parent="YSortRoot" unique_id=740827320 instance=ExtResource("3_player")]
+position = Vector2(120, 395)
+
+[node name="GoldenDeer" parent="YSortRoot" unique_id=1080922050 instance=ExtResource("4_deer")]
+position = Vector2(1250, 398)
+invulnerable = true
+
+[node name="ReturnPortal" parent="YSortRoot" unique_id=1673770608 instance=ExtResource("5_portal")]
+position = Vector2(45, 395)
+target_scene = "res://scenes/chapter_2/chapter_2.tscn"
+target_spawn = Vector2(1300, 541)
+prompt_text = "กด E เพื่อกลับไปยังอาศรม"
+
+[node name="QuestionQuiz" parent="." unique_id=2134883277 instance=ExtResource("10_quiz")]
+
+[node name="Chapter2AbductionCutsceneLayer" type="CanvasLayer" parent="." unique_id=52999391]
+layer = 100
+
+[node name="AbductionCutscene" type="Control" parent="Chapter2AbductionCutsceneLayer" unique_id=199016633]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_abduction_script")
+
+[node name="BackgroundDim" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=88390485]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.34)
+
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=2024335569]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19
+anchor_right = 0.81
+offset_top = 36.0
+offset_bottom = 132.0
+grow_horizontal = 2
+texture = ExtResource("8_title_banner")
+patch_margin_left = 92
+patch_margin_top = 16
+patch_margin_right = 92
+patch_margin_bottom = 16
+
+[node name="Title" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene/TitleBanner" unique_id=1415064208]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_right = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.12, 0.045, 1)
+theme_override_fonts/font = ExtResource("7_cutscene_bold")
+theme_override_font_sizes/font_size = 32
+text = "การลักพาตัวนางสีดา"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogue" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=972110679]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.62
+anchor_right = 0.93
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
+theme_override_constants/line_spacing = 6
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_cutscene_font")
+theme_override_font_sizes/font_size = 30
+text = "คำบรรยาย: ทันทีที่ศรของพระรามพุ่งเข้าปะทะ กวางทองก็ร้องด้วยความเจ็บปวด ก่อนร่างจะแปรเปลี่ยนกลายเป็นยักษ์มารีศ"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinuePrompt" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=840619511]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.0
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.87, 0.78, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_cutscene_font")
+theme_override_font_sizes/font_size = 19
+text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
+horizontal_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=2129566696]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

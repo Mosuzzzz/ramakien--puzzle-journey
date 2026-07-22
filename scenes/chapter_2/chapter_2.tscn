@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c2forestpath"]
 
-[ext_resource type="Script" path="res://scenes/chapter_2/chapter_2.gd" id="0_script"]
+[ext_resource type="Script" uid="uid://bq1t22ybbxuhj" path="res://scenes/chapter_2/chapter_2.gd" id="0_script"]
 [ext_resource type="Texture2D" uid="uid://4m7nu22rpid" path="res://assets/map/chapter_2/map.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://ca4ywjncmeoe3" path="res://assets/props/chapter2/tree_stump.PNG" id="2_veea4"]
@@ -10,14 +10,19 @@
 [ext_resource type="Texture2D" uid="uid://j66uccdff81n" path="res://assets/props/chapter2/face_rock.PNG" id="6_2mjbf"]
 [ext_resource type="Texture2D" uid="uid://bka77322in0gd" path="res://assets/props/chapter2/green_tree.PNG" id="7_3d714"]
 [ext_resource type="Texture2D" uid="uid://cty6fnd2qp2hn" path="res://assets/props/chapter2/pink_tree.PNG" id="7_8let3"]
-[ext_resource type="PackedScene" path="res://scenes/props/golden_deer.tscn" id="8_deer"]
+[ext_resource type="PackedScene" uid="uid://d2ifsn7i14dss" path="res://scenes/props/golden_deer.tscn" id="8_deer"]
 [ext_resource type="PackedScene" uid="uid://4kx8tqw0140u" path="res://scenes/props/phalak.tscn" id="9_phalak"]
 [ext_resource type="PackedScene" path="res://scenes/props/talkable.tscn" id="10_talkable"]
 [ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="11_cutscene_font"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="12_cutscene_bold"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="13_title_banner"]
-[ext_resource type="Script" path="res://scenes/cutscene/chapter_2_cutscene.gd" id="14_intro_script"]
-[ext_resource type="Script" path="res://scenes/cutscene/chapter_2_abduction_cutscene.gd" id="15_abduction_script"]
+[ext_resource type="Script" uid="uid://dfjacstx4l47a" path="res://scenes/cutscene/chapter_2_cutscene.gd" id="14_intro_script"]
+[ext_resource type="Script" uid="uid://3au27m7j7v4o" path="res://scenes/cutscene/chapter_2_abduction_cutscene.gd" id="15_abduction_script"]
+[ext_resource type="Script" uid="uid://do2rlpr3yp2f5" path="res://scenes/cutscene/chapter_2_deer_cutscene.gd" id="16_deer_script"]
+[ext_resource type="PackedScene" path="res://scenes/props/puzzle_trigger.tscn" id="17_puzzle_trigger"]
+[ext_resource type="PackedScene" path="res://scenes/ui/matching_puzzle.tscn" id="18_matching_puzzle"]
+[ext_resource type="Texture2D" uid="uid://d1koq3jwpbgxu" path="res://assets/cutscene/chapter_2/first.png" id="19_first_image"]
+[ext_resource type="Texture2D" uid="uid://cb6clikeugxys" path="res://assets/cutscene/chapter_2/second.png" id="20_second_image"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e8ag2"]
 a = Vector2(-42.53296, -38.313812)
@@ -30,7 +35,7 @@ size = Vector2(1448, 95.4492)
 size = Vector2(146.1719, 1086)
 
 [sub_resource type="RectangleShape2D" id="rect_right_boundary"]
-size = Vector2(148.4766, 968.6328)
+size = Vector2(148.4766, 472.21478)
 
 [sub_resource type="RectangleShape2D" id="rect_bottom_left"]
 size = Vector2(622.1875, 147.0625)
@@ -52,9 +57,6 @@ size = Vector2(113.70506, 115.76561)
 
 [sub_resource type="RectangleShape2D" id="rect_upper_right_corner"]
 size = Vector2(140.10547, 116.6602)
-
-[sub_resource type="RectangleShape2D" id="rect_right_mid_forest"]
-size = Vector2(116.6602, 374.2871)
 
 [sub_resource type="RectangleShape2D" id="rect_lower_right_forest"]
 size = Vector2(175.44922, 197.06543)
@@ -94,9 +96,6 @@ radius = 41.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7korc"]
 radius = 60.00833
-
-[sub_resource type="CircleShape2D" id="circle_big"]
-radius = 93.6516
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ki7a"]
 radius = 36.05551
@@ -345,6 +344,28 @@ b = Vector2(31, 60)
 a = Vector2(321.77332, 93.46588)
 b = Vector2(300.73608, 17.430176)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8ag2"]
+size = Vector2(125.993774, 121.56055)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2sge"]
+size = Vector2(179.2383, 514.1074)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yjm72"]
+a = Vector2(151, -23)
+b = Vector2(227, -62)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lftnd"]
+a = Vector2(339, -36)
+b = Vector2(227, -62)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mjmes"]
+a = Vector2(150, -21)
+b = Vector2(248, 64)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_a2sge"]
+a = Vector2(385, -37)
+b = Vector2(227, -62)
+
 [node name="Chapter2" type="Node2D" unique_id=1456977817]
 script = ExtResource("0_script")
 
@@ -368,7 +389,7 @@ position = Vector2(75.91405, 533.1016)
 shape = SubResource("rect_left_boundary")
 
 [node name="RightBoundary" type="CollisionShape2D" parent="wall" unique_id=130638106]
-position = Vector2(1373.7617, 533.1016)
+position = Vector2(1372, 277)
 shape = SubResource("rect_right_boundary")
 
 [node name="BottomLeftBoundary" type="CollisionShape2D" parent="wall" unique_id=1652217276]
@@ -398,10 +419,6 @@ shape = SubResource("RectangleShape2D_1j3co")
 [node name="UpperRightCornerForest" type="CollisionShape2D" parent="wall" unique_id=1488858530]
 position = Vector2(1298.0527, 212.1094)
 shape = SubResource("rect_upper_right_corner")
-
-[node name="RightMidForest" type="CollisionShape2D" parent="wall" unique_id=1171257428]
-position = Vector2(1305, 645)
-shape = SubResource("rect_right_mid_forest")
 
 [node name="LowerRightForest" type="CollisionShape2D" parent="wall" unique_id=760580465]
 position = Vector2(1076.7246, 960.5327)
@@ -452,7 +469,7 @@ position = Vector2(894, 408)
 shape = SubResource("CircleShape2D_jyi5v")
 
 [node name="RightCliffUpperC" type="CollisionShape2D" parent="wall" unique_id=723191733]
-position = Vector2(1268, 451)
+position = Vector2(1301, 487)
 shape = SubResource("circle_small")
 
 [node name="RightCliffMidB" type="CollisionShape2D" parent="wall" unique_id=353564970]
@@ -462,10 +479,6 @@ shape = SubResource("CircleShape2D_7korc")
 [node name="RightCliffMidC" type="CollisionShape2D" parent="wall" unique_id=1978222532]
 position = Vector2(596, 975)
 shape = SubResource("circle_medium")
-
-[node name="RightTreeCluster" type="CollisionShape2D" parent="wall" unique_id=649951899]
-position = Vector2(1255, 599)
-shape = SubResource("circle_big")
 
 [node name="LowerRightPond" type="CollisionShape2D" parent="wall" unique_id=1410080795]
 position = Vector2(1102, 654)
@@ -570,10 +583,6 @@ shape = SubResource("SeparationRayShape2D_1j3co")
 [node name="RightCliffMidCUser7" type="CollisionShape2D" parent="wall" unique_id=596193644]
 position = Vector2(463, 997)
 shape = SubResource("circle_medium")
-
-[node name="RightTreeCluster2" type="CollisionShape2D" parent="wall" unique_id=1919009538]
-position = Vector2(1304, 500)
-shape = SubResource("CircleShape2D_g4t7t")
 
 [node name="RightTreeCluster3" type="CollisionShape2D" parent="wall" unique_id=219890725]
 position = Vector2(1350, 395)
@@ -826,6 +835,34 @@ rotation = -0.2617994
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("SegmentShape2D_pbjye")
 
+[node name="BottomRightBoundary2" type="CollisionShape2D" parent="wall" unique_id=2129889886]
+position = Vector2(677.9969, 1066)
+shape = SubResource("RectangleShape2D_e8ag2")
+
+[node name="RightCliffUpperC2" type="CollisionShape2D" parent="wall" unique_id=1651541613]
+position = Vector2(1296, 452)
+shape = SubResource("circle_small")
+
+[node name="RightBoundary2" type="CollisionShape2D" parent="wall" unique_id=711489425]
+position = Vector2(1356.6191, 826.0537)
+shape = SubResource("RectangleShape2D_a2sge")
+
+[node name="UpperCenterRock42" type="CollisionShape2D" parent="wall" unique_id=816511203]
+position = Vector2(997, 607)
+shape = SubResource("SegmentShape2D_yjm72")
+
+[node name="UpperCenterRock43" type="CollisionShape2D" parent="wall" unique_id=497962230]
+position = Vector2(997, 607)
+shape = SubResource("SegmentShape2D_lftnd")
+
+[node name="UpperCenterRock44" type="CollisionShape2D" parent="wall" unique_id=1128623649]
+position = Vector2(1021, 678)
+shape = SubResource("SegmentShape2D_mjmes")
+
+[node name="UpperCenterRock45" type="CollisionShape2D" parent="wall" unique_id=1049178314]
+position = Vector2(1061, 586)
+shape = SubResource("SegmentShape2D_a2sge")
+
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1169931713]
 y_sort_enabled = true
 
@@ -835,19 +872,30 @@ position = Vector2(732, 191)
 [node name="Sida" parent="YSortRoot" unique_id=927315536 instance=ExtResource("4_sida")]
 position = Vector2(981, 554)
 
-[node name="Talkable" parent="YSortRoot/Sida" instance=ExtResource("10_talkable")]
+[node name="Talkable" parent="YSortRoot/Sida" unique_id=369622869 instance=ExtResource("10_talkable")]
 position = Vector2(0, -20)
 speaker_name = "นางสีดา"
 lines = Array[String](["อาศรมเล็ก ๆ แห่งนี้แม้เรียบง่าย แต่หม่อมฉันก็รู้สึกอบอุ่นใจทุกครั้งที่ได้อยู่พร้อมหน้าพระสวามีและพี่ลักษณ์", "พระสวามี กวางตัวนั้นงดงามนัก ขนของมันเป็นประกายราวกับทองคำ หากจับมาได้ ข้าจะเลี้ยงไว้เป็นเพื่อนนะเพคะ"])
 prompt_text = "กด E เพื่อคุยกับนางสีดา"
 
 [node name="GoldenDeer" parent="YSortRoot" unique_id=1431240380 instance=ExtResource("8_deer")]
-position = Vector2(721, 844)
+position = Vector2(1199, 498)
+flee_target = Vector2(1540, 541)
+escape_on_arrival = true
+
+[node name="ForestGate" parent="YSortRoot" instance=ExtResource("5_portal")]
+position = Vector2(1410, 541)
+target_scene = "res://scenes/chapter_2/chapter_2_second.tscn"
+target_spawn = Vector2(120, 395)
+interaction_size = Vector2(90, 130)
+auto = true
+locked = true
+locked_prompt_text = "ยังไม่มีเหตุให้เข้าไปในป่าลึก"
 
 [node name="Phalak" parent="YSortRoot" unique_id=316981769 instance=ExtResource("9_phalak")]
 position = Vector2(1035, 554)
 
-[node name="Talkable" parent="YSortRoot/Phalak" instance=ExtResource("10_talkable")]
+[node name="Talkable" parent="YSortRoot/Phalak" unique_id=887555574 instance=ExtResource("10_talkable")]
 position = Vector2(0, -20)
 speaker_name = "พระลักษณ์"
 lines = Array[String](["ในที่สุดเราก็ได้พักผ่อนที่อาศรมแห่งนี้ พี่รามคิดว่าเราจะอยู่ที่นี่ได้นานแค่ไหนนะ", "ป่านี้ดูสงบดี แต่ข้าก็ยังไม่วางใจนัก ท่านพี่ระวังตัวด้วยนะ"])
@@ -907,6 +955,13 @@ attack_hit_padding = null
 position = Vector2(721, 540)
 texture = ExtResource("6_2mjbf")
 
+[node name="AshramHome" type="Marker2D" parent="YSortRoot" unique_id=1778512451]
+position = Vector2(1000, 600)
+
+[node name="PuzzleTrigger" parent="YSortRoot" unique_id=1798531351 instance=ExtResource("17_puzzle_trigger")]
+position = Vector2(900, 500)
+prompt_text = "กด E เพื่อสำรวจหาของใช้"
+
 [node name="PinkTree" type="Sprite2D" parent="." unique_id=718484091]
 position = Vector2(724, 539)
 texture = ExtResource("7_8let3")
@@ -921,10 +976,10 @@ texture = ExtResource("2_veea4")
 region_enabled = true
 region_rect = Rect2(0, 0, 1448, 872.2483)
 
-[node name="Chapter2IntroCutsceneLayer" type="CanvasLayer" parent="."]
+[node name="Chapter2IntroCutsceneLayer" type="CanvasLayer" parent="." unique_id=1303567525]
 layer = 100
 
-[node name="Chapter2Cutscene" type="Control" parent="Chapter2IntroCutsceneLayer"]
+[node name="Chapter2Cutscene" type="Control" parent="Chapter2IntroCutsceneLayer" unique_id=292883451]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -934,7 +989,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("14_intro_script")
 
-[node name="BackgroundDim" type="ColorRect" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene"]
+[node name="CutsceneImage" type="TextureRect" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=897523360]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("19_first_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundDim" type="ColorRect" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=964184654]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -944,7 +1011,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
 
-[node name="TitleBanner" type="NinePatchRect" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene"]
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=448305018]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.19
@@ -958,7 +1025,7 @@ patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
 
-[node name="Title" type="Label" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene/TitleBanner"]
+[node name="Title" type="Label" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene/TitleBanner" unique_id=389702102]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -974,7 +1041,7 @@ text = "บทที่ 2: กวางทองและการลักพ�
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene"]
+[node name="Dialogue" type="Label" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=1394284863]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.07
@@ -997,7 +1064,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ContinuePrompt" type="Label" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene"]
+[node name="ContinuePrompt" type="Label" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=293420770]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -1019,7 +1086,7 @@ theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
 
-[node name="FadeOverlay" type="ColorRect" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene"]
+[node name="FadeOverlay" type="ColorRect" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=1021308568]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1029,10 +1096,10 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Chapter2AbductionCutsceneLayer" type="CanvasLayer" parent="."]
+[node name="Chapter2AbductionCutsceneLayer" type="CanvasLayer" parent="." unique_id=1871779692]
 layer = 100
 
-[node name="AbductionCutscene" type="Control" parent="Chapter2AbductionCutsceneLayer"]
+[node name="AbductionCutscene" type="Control" parent="Chapter2AbductionCutsceneLayer" unique_id=80451594]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -1042,7 +1109,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_abduction_script")
 
-[node name="BackgroundDim" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene"]
+[node name="BackgroundDim" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=2138075405]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1052,7 +1119,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
 
-[node name="TitleBanner" type="NinePatchRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene"]
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1269155402]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.19
@@ -1066,7 +1133,7 @@ patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
 
-[node name="Title" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene/TitleBanner"]
+[node name="Title" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene/TitleBanner" unique_id=997391759]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1082,7 +1149,7 @@ text = "การลักพาตัวนางสีดา"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene"]
+[node name="Dialogue" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1509547943]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.07
@@ -1105,7 +1172,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ContinuePrompt" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene"]
+[node name="ContinuePrompt" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1927598680]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -1127,7 +1194,7 @@ theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
 
-[node name="FadeOverlay" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene"]
+[node name="FadeOverlay" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1629458318]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1136,3 +1203,125 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="Chapter2DeerCutsceneLayer" type="CanvasLayer" parent="." unique_id=343938522]
+layer = 100
+
+[node name="Chapter2DeerCutscene" type="Control" parent="Chapter2DeerCutsceneLayer" unique_id=480171026]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_deer_script")
+
+[node name="CutsceneImage" type="TextureRect" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=1100633007]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("20_second_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundDim" type="ColorRect" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=949564121]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.34)
+
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=585819140]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19
+anchor_right = 0.81
+offset_top = 36.0
+offset_bottom = 132.0
+grow_horizontal = 2
+texture = ExtResource("13_title_banner")
+patch_margin_left = 92
+patch_margin_top = 16
+patch_margin_right = 92
+patch_margin_bottom = 16
+
+[node name="Title" type="Label" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene/TitleBanner" unique_id=1019466223]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_right = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.12, 0.045, 1)
+theme_override_fonts/font = ExtResource("12_cutscene_bold")
+theme_override_font_sizes/font_size = 32
+text = "กวางทองแห่งอาศรม"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogue" type="Label" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=1952907396]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.62
+anchor_right = 0.93
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
+theme_override_constants/line_spacing = 6
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("11_cutscene_font")
+theme_override_font_sizes/font_size = 30
+text = "คำบรรยาย: วันหนึ่ง มีกวางทองขนสีทองอร่ามวิ่งผ่านหน้าอาศรมไป งดงามจนทุกคนต่างพากันมอง"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinuePrompt" type="Label" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=494826897]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.0
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.87, 0.78, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("11_cutscene_font")
+theme_override_font_sizes/font_size = 19
+text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
+horizontal_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=465605883]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="MatchingPuzzle" parent="." unique_id=1087447439 instance=ExtResource("18_matching_puzzle")]

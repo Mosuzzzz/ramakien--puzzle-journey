@@ -3,14 +3,15 @@ extends Control
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
 
 const DIALOGUES: Array[String] = [
-	"คำบรรยาย: พระราม พระลักษมณ์ และนางสีดา สร้างอาศรมเล็ก ๆ อยู่กลางป่าใหญ่ ใช้ชีวิตอย่างเรียบง่ายและสงบสุข",
+	"คำบรรยาย: วันหนึ่ง มีกวางทองขนสีทองอร่ามวิ่งผ่านหน้าอาศรมไป งดงามจนทุกคนต่างพากันมอง",
+	"นางสีดา: “พระสวามี กวางตัวนั้นงดงามนัก หากจับมาได้ ข้าจะเลี้ยงไว้เป็นเพื่อนนะเพคะ”",
 ]
 
 signal finished
 
+var _active := false
 var _dialogue_index := 0
 var _transitioning := false
-var _finished := false
 
 @onready var _cutscene_image: TextureRect = $CutsceneImage
 @onready var _background_dim: ColorRect = $BackgroundDim
@@ -21,18 +22,25 @@ var _finished := false
 
 
 func _ready() -> void:
-	get_tree().paused = true
-	_show_dialogue(0, false)
+	hide()
 	CutsceneSkip.attach(self, _finish_cutscene)
-	_play_intro_transition()
 
 
-func _play_intro_transition() -> void:
+func show_cutscene() -> void:
+	_active = true
 	_transitioning = true
+	_dialogue_index = 0
+	_show_dialogue(0, false)
 	var content: Array[CanvasItem] = [_cutscene_image, _background_dim, _title_banner, _dialogue_label, _prompt_label]
 	for item: CanvasItem in content:
 		item.hide()
 	_fade_overlay.color.a = 0.0
+	show()
+	get_tree().paused = true
+	_play_intro_transition(content)
+
+
+func _play_intro_transition(content: Array[CanvasItem]) -> void:
 	var darken := create_tween()
 	darken.tween_property(_fade_overlay, "color:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
 	await darken.finished
@@ -45,10 +53,12 @@ func _play_intro_transition() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not _active:
+		return
 	if event is InputEventMouse:
 		return  # let the GUI (skip button) receive clicks; the tree is paused anyway
 	get_viewport().set_input_as_handled()
-	if _transitioning or _finished:
+	if _transitioning:
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
 		_advance_dialogue()
@@ -63,7 +73,7 @@ func _advance_dialogue() -> void:
 
 func _show_dialogue(index: int, animated: bool) -> void:
 	_dialogue_index = index
-	_prompt_label.text = "กด E เพื่อเริ่มออกสำรวจ ▼" if index == DIALOGUES.size() - 1 else "กด E เพื่อดำเนินเรื่องต่อ ▼"
+	_prompt_label.text = "กด E เพื่อไล่ตามกวางทอง ▼" if index == DIALOGUES.size() - 1 else "กด E เพื่อดำเนินเรื่องต่อ ▼"
 	if not animated:
 		_dialogue_label.text = DIALOGUES[_dialogue_index]
 		return
@@ -80,18 +90,12 @@ func _show_dialogue(index: int, animated: bool) -> void:
 
 
 func _finish_cutscene() -> void:
-	if _finished:
-		return
-	_finished = true
+	_active = false
+	hide()
 	get_tree().paused = false
 	finished.emit()
-	var cutscene_layer := get_parent()
-	if cutscene_layer is CanvasLayer:
-		cutscene_layer.queue_free()
-	else:
-		queue_free()
 
 
 func _exit_tree() -> void:
-	if get_tree() != null:
+	if _active and get_tree() != null:
 		get_tree().paused = false

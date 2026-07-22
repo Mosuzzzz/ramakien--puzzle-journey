@@ -5,18 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://b25xvbo2ann7" path="res://assets/character/Pharam/main_character.png" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://cpfrvn3qk8eng" path="res://assets/props/chapter1/shadow.png" id="4_shadow"]
 [ext_resource type="Texture2D" uid="uid://c4lv8vnp6kioa" path="res://assets/character/Pharam/shotting.png" id="4_shoot"]
-[ext_resource type="Script" path="res://scenes/ui/minimap.gd" id="5_minimap"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_potion_red.png" id="7_potion_icon"]
-[ext_resource type="Texture2D" path="res://assets/ui/life_bar/player_bar_empty.png" id="8_hp_bar_empty"]
-[ext_resource type="Texture2D" path="res://assets/ui/life_bar/player_bar_full.png" id="9_hp_bar_full"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
-atlas = ExtResource("3_lvxji")
-region = Rect2(6, 27, 80, 175)
+[ext_resource type="Script" uid="uid://djfkt7k8uspqe" path="res://scenes/ui/minimap.gd" id="5_minimap"]
+[ext_resource type="Texture2D" uid="uid://bjkcoeyt20wow" path="res://assets/ui/icon/split/icon_potion_red.png" id="7_potion_icon"]
+[ext_resource type="Texture2D" uid="uid://bm2qisprpgms0" path="res://assets/ui/life_bar/player_bar_empty.png" id="8_hp_bar_empty"]
+[ext_resource type="Texture2D" uid="uid://bw1d2fidxrvwq" path="res://assets/ui/life_bar/player_bar_full.png" id="9_hp_bar_full"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
 atlas = ExtResource("3_lvxji")
 region = Rect2(81.5, 27, 80, 175)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
+atlas = ExtResource("3_lvxji")
+region = Rect2(6, 27, 80, 175)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
 atlas = ExtResource("3_lvxji")
@@ -126,10 +126,10 @@ region = Rect2(320.5, 217, 72, 156)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p47bc")
+"texture": SubResource("AtlasTexture_75vfm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_75vfm")
+"texture": SubResource("AtlasTexture_p47bc")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0owmy")
@@ -279,9 +279,9 @@ limit_right = 1254
 limit_bottom = 1254
 position_smoothing_enabled = true
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1297807309]
 
-[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
+[node name="HealthBar" type="TextureProgressBar" parent="HUD" unique_id=808755709]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -293,12 +293,11 @@ offset_right = 150.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
-max_value = 100.0
 value = 100.0
 texture_under = ExtResource("8_hp_bar_empty")
 texture_progress = ExtResource("9_hp_bar_full")
 
-[node name="HPLabel" type="Label" parent="HUD"]
+[node name="HPLabel" type="Label" parent="HUD" unique_id=2007148369]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -310,16 +309,16 @@ offset_right = 130.0
 offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(1, 1, 1, 0.95)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
 text = "HP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PotionIcon" type="TextureRect" parent="HUD"]
+[node name="PotionIcon" type="TextureRect" parent="HUD" unique_id=592187770]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -335,7 +334,7 @@ texture = ExtResource("7_potion_icon")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PotionCount" type="Label" parent="HUD"]
+[node name="PotionCount" type="Label" parent="HUD" unique_id=363663094]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -347,12 +346,12 @@ offset_right = -28.0
 offset_bottom = -28.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 14
 theme_override_colors/font_color = Color(1, 1, 1, 0.95)
+theme_override_font_sizes/font_size = 14
 text = "3"
 horizontal_alignment = 1
 
-[node name="PotionKey" type="Label" parent="HUD"]
+[node name="PotionKey" type="Label" parent="HUD" unique_id=1516670856]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -364,30 +363,31 @@ offset_right = -28.0
 offset_bottom = -12.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 11
 theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 11
 text = "Z"
 horizontal_alignment = 1
 
-[node name="MiniMap" type="Control" parent="HUD"]
-script = ExtResource("5_minimap")
+[node name="MiniMap" type="Control" parent="HUD" unique_id=221095034]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 196.0
 offset_bottom = 196.0
+script = ExtResource("5_minimap")
 
-[node name="Bg" type="Panel" parent="HUD/MiniMap"]
-anchors_preset = 15
+[node name="Bg" type="Panel" parent="HUD/MiniMap" unique_id=157022038]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_minimap_bg")
 
-[node name="MapClip" type="Control" parent="HUD/MiniMap"]
+[node name="MapClip" type="Control" parent="HUD/MiniMap" unique_id=1366834254]
 clip_contents = true
-anchors_preset = 15
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 6.0
@@ -397,16 +397,16 @@ offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MapTexture" type="TextureRect" parent="HUD/MiniMap/MapClip"]
-anchors_preset = 15
+[node name="MapTexture" type="TextureRect" parent="HUD/MiniMap/MapClip" unique_id=677142733]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
-stretch_mode = 0
 
-[node name="PlayerDot" type="Panel" parent="HUD/MiniMap/MapClip"]
+[node name="PlayerDot" type="Panel" parent="HUD/MiniMap/MapClip" unique_id=1465218326]
+layout_mode = 0
 offset_right = 10.0
 offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_minimap_dot")
