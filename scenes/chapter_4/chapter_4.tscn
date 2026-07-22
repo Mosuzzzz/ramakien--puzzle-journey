@@ -9,12 +9,13 @@
 [ext_resource type="Script" uid="uid://bn15761xnrrb8" path="res://scenes/cutscene/chapter_4_cutscene.gd" id="6_cutscene_script"]
 [ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="7_cutscene_font"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="8_cutscene_bold"]
-[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/homepage/lable/pieces/title_scroll_banner.png" id="9_title_banner"]
+[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="9_title_banner"]
 [ext_resource type="Texture2D" uid="uid://dtebuqsjyd5uw" path="res://assets/cutscene/chapter_4/ChatGPT Image 20 ก.ค. 2569 13_13_42.png" id="10_second_cutscene_image"]
 [ext_resource type="Texture2D" uid="uid://dbevliwyodlb3" path="res://assets/cutscene/chapter_4/ChatGPT Image 20 ก.ค. 2569 14_21_31.png" id="11_third_cutscene_image"]
 [ext_resource type="Texture2D" uid="uid://bjdpgi3lsv4n3" path="res://assets/cutscene/chapter_4/ChatGPT Image 20 ก.ค. 2569 14_59_40.png" id="12_fourth_cutscene_image"]
 [ext_resource type="Texture2D" uid="uid://46vauomsf6md" path="res://assets/cutscene/chapter_4/ChatGPT Image 20 ก.ค. 2569 15_12_56.png" id="13_fifth_cutscene_image"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
+[ext_resource type="Script" path="res://scenes/chapter_4/chapter_4.gd" id="chapter_4_script"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1448, 80)
@@ -317,6 +318,7 @@ size = Vector2(279.25, 12.5)
 radius = 37.054016
 
 [node name="Chapter4" type="Node2D" unique_id=530775568]
+script = ExtResource("chapter_4_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=134560956]
 position = Vector2(727, 541)
@@ -825,8 +827,7 @@ texture = ExtResource("12_fourth_cutscene_image")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="FifthCutsceneImage" type="TextureRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene"]
-visible = false
+[node name="FifthCutsceneImage" type="TextureRect" parent="Chapter4CutsceneLayer/Chapter4Cutscene" unique_id=1252728635]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
