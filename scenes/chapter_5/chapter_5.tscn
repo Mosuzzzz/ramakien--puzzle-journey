@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://rtc351ebqg4i"]
+[gd_scene format=3 uid="uid://cf1v8vwfmwqv1"]
 
 [ext_resource type="Texture2D" uid="uid://blb82p8smqn6q" path="res://assets/map/chapter_5/08e55717-0517-4299-be49-f9443675cc33.png" id="1_map"]
 [ext_resource type="PackedScene" path="res://scenes/player/hanuman_player.tscn" id="2_player"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
 [ext_resource type="PackedScene" uid="uid://dilmgn5n35nb2" path="res://scenes/props/miyarap.tscn" id="92_miyarap"]
+[ext_resource type="Script" uid="uid://bnlmiqpp2x3hf" path="res://scenes/chapter_5/chapter_5.gd" id="chapter_5_script"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="cutscene_bold"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="cutscene_font"]
+[ext_resource type="Texture2D" uid="uid://cm4owh1l85bo4" path="res://assets/cutscene/chapter_5/ChatGPT Image 21 ก.ค. 2569 21_01_37.png" id="lanka_march_image"]
+[ext_resource type="Texture2D" uid="uid://qi50m4tnhepd" path="res://assets/cutscene/chapter_5/ChatGPT Image 21 ก.ค. 2569 18_34_46.png" id="post_boss_image"]
+[ext_resource type="Script" uid="uid://cbmt0ofoclhgr" path="res://scenes/cutscene/chapter_5_post_boss_cutscene.gd" id="post_boss_script"]
+[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="title_banner"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1774, 64)
@@ -20,6 +27,7 @@ size = Vector2(64, 887)
 size = Vector2(64, 887)
 
 [node name="Chapter5" type="Node2D" unique_id=42638117]
+script = ExtResource("chapter_5_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=521177600]
 position = Vector2(883, 447)
@@ -73,3 +81,135 @@ display_height = 200.0
 position = Vector2(884, 450)
 scale = Vector2(1.106875, 1.08875)
 texture = ExtResource("7_p0vbt")
+
+[node name="Chapter5CutsceneLayer" type="CanvasLayer" parent="." unique_id=1689224343]
+layer = 100
+
+[node name="Chapter5PostBossCutscene" type="Control" parent="Chapter5CutsceneLayer" unique_id=1270260272]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("post_boss_script")
+
+[node name="CutsceneImage" type="TextureRect" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=2048511197]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("post_boss_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LankaMarchImage" type="TextureRect" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=1684248124]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("lanka_march_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundDim" type="ColorRect" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=1190701463]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.34)
+
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=1395484151]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19
+anchor_right = 0.81
+offset_top = 36.0
+offset_bottom = 132.0
+grow_horizontal = 2
+texture = ExtResource("title_banner")
+patch_margin_left = 92
+patch_margin_top = 16
+patch_margin_right = 92
+patch_margin_bottom = 16
+
+[node name="Title" type="Label" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene/TitleBanner" unique_id=2120779371]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_right = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.12, 0.045, 1)
+theme_override_fonts/font = ExtResource("cutscene_bold")
+theme_override_font_sizes/font_size = 32
+text = "ชัยชนะเหนือไมยราพ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogue" type="Label" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=71654019]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.62
+anchor_right = 0.93
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
+theme_override_constants/line_spacing = 6
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("cutscene_font")
+theme_override_font_sizes/font_size = 30
+text = "คำบรรยาย: ไมยราพล้มลงกับพื้น"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinuePrompt" type="Label" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=812416024]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.0
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.87, 0.78, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("cutscene_font")
+theme_override_font_sizes/font_size = 19
+text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
+horizontal_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=1189665898]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
