@@ -3,3 +3,18 @@ static var next_spawn := Vector2.INF
 
 # whether the chapter 1 plaza intro narration has already played this run
 static var chapter_1_intro_played := false
+
+# whether the chapter 2 forest intro narration has already played this run
+static var chapter_2_intro_played := false
+
+# whether the golden deer (Maricha) has already been defeated and Sida abducted
+static var chapter_2_deer_defeated := false
+
+# whether the ashram supply matching puzzle has already been solved
+static var chapter_2_ashram_puzzle_solved := false
+
+# whether the golden deer's appearance cutscene has already played
+static var chapter_2_deer_intro_played := false
+
+# whether the "return to the empty ashram" aftermath quest has been set
+static var chapter_2_aftermath_played := false

@@ -33,6 +33,12 @@ var _dash_time_left := 0.0
 var _dash_cooldown_left := 0.0
 var _knockback_velocity := Vector2.ZERO
 var _hit_flash_tween: Tween
+# scripted forward push (e.g. a chase sequence) layered on top of normal
+# movement — additive, so real input is never overridden or cancelled
+var auto_run_velocity := Vector2.ZERO
+# when true, WASD/arrow steering is ignored (e.g. a fully scripted chase);
+# dash and other actions are unaffected
+var movement_locked := false
 var _dead := false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -127,23 +133,25 @@ func _physics_process(_delta: float) -> void:
 		_knockback_velocity = _knockback_velocity.move_toward(Vector2.ZERO, 1100.0 * _delta)
 		move_and_slide()
 		return
-	var dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	dir += Vector2(
-		float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
-		float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W))
-	)
-	if dir.length() > 1.0:
-		dir = dir.normalized()
+	var dir := Vector2.ZERO
+	if not movement_locked:
+		dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		dir += Vector2(
+			float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
+			float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W))
+		)
+		if dir.length() > 1.0:
+			dir = dir.normalized()
 	if _dash_time_left > 0.0:
 		_dash_time_left = maxf(_dash_time_left - _delta, 0.0)
 		velocity = _dash_direction * dash_speed
 	else:
-		velocity = dir * speed
+		velocity = dir * speed + auto_run_velocity
 	move_and_slide()
 
-	if _dash_time_left > 0.0 or dir.length() > 0.0:
+	if _dash_time_left > 0.0 or dir.length() > 0.0 or auto_run_velocity.length() > 0.0:
 		_play_animation("walk")
-		var facing_direction := _dash_direction if _dash_time_left > 0.0 else dir
+		var facing_direction := _dash_direction if _dash_time_left > 0.0 else (dir if dir.length() > 0.0 else auto_run_velocity)
 		if facing_direction.x != 0.0:
 			_face_right = facing_direction.x > 0.0
 	else:
