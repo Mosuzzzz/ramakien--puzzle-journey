@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://umnr7p3ux046" path="res://assets/map/chapter_8/9f23b563-a6fe-4dca-9b3e-7a817da428c7.png" id="1_room"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
+[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="4_sida"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1448, 269)
@@ -304,11 +305,13 @@ shape = SubResource("RectangleShape2D_den7k")
 [node name="YSortRoot" type="Node2D" parent="." unique_id=835042073]
 y_sort_enabled = true
 
+[node name="Sida" parent="YSortRoot" unique_id=528436466 instance=ExtResource("4_sida")]
+position = Vector2(724, 365)
+
 [node name="Player" parent="YSortRoot" unique_id=1578129558 instance=ExtResource("2_player")]
 position = Vector2(722, 871)
 
-
-[node name="ExitToChapter8" parent="." instance=ExtResource("3_portal")]
+[node name="ExitToChapter8" parent="." unique_id=922704312 instance=ExtResource("3_portal")]
 position = Vector2(724, 850)
 target_scene = "res://scenes/chapter_8/chapter_8.tscn"
 target_spawn = Vector2(220, 520)
