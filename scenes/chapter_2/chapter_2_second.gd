@@ -4,6 +4,7 @@ const GameState := preload("res://scenes/game_state.gd")
 
 const MAP_WIDTH := 1881.0
 const PATH_Y := 398.0
+const ASHRAM_RETURN_SPAWN := Vector2(1120, 680)
 
 # the scripted chase: the deer always stays _gap px ahead of the player.
 # running alone never closes the distance — only correct answers do.
@@ -120,7 +121,7 @@ func _catch_deer() -> void:
 
 func _on_abduction_finished() -> void:
 	# the story returns Rama to the (now empty) ashram
-	GameState.next_spawn = Vector2(1000, 600)
+	GameState.next_spawn = ASHRAM_RETURN_SPAWN
 	get_tree().change_scene_to_file.call_deferred("res://scenes/chapter_2/chapter_2.tscn")
 
 
@@ -136,7 +137,7 @@ func _fail_chase() -> void:
 
 
 func _on_fail_finished() -> void:
-	GameState.next_spawn = Vector2(1000, 600)
+	GameState.next_spawn = ASHRAM_RETURN_SPAWN
 	get_tree().change_scene_to_file.call_deferred("res://scenes/chapter_2/chapter_2.tscn")
 
 
