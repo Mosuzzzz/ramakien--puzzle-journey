@@ -202,7 +202,7 @@ radius = 26.1983
 radius = 45.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1j3co"]
-a = Vector2(127, -53)
+a = Vector2(145, -37)
 b = Vector2(37, -3)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_533dn"]
@@ -211,7 +211,7 @@ b = Vector2(-29, 33)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_mon38"]
 a = Vector2(12, 68)
-b = Vector2(-29, 33)
+b = Vector2(-10, 48)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bqn5i"]
 a = Vector2(15, -27)
@@ -653,7 +653,7 @@ position = Vector2(802, 118)
 shape = SubResource("CircleShape2D_2v6fu")
 
 [node name="UpperCenterRock7" type="CollisionShape2D" parent="wall" unique_id=710567981]
-position = Vector2(900, 608)
+position = Vector2(904, 609)
 shape = SubResource("SegmentShape2D_1j3co")
 
 [node name="UpperCenterRock8" type="CollisionShape2D" parent="wall" unique_id=712950127]
@@ -873,7 +873,7 @@ position = Vector2(732, 191)
 position = Vector2(981, 554)
 
 [node name="Talkable" parent="YSortRoot/Sida" unique_id=369622869 instance=ExtResource("10_talkable")]
-position = Vector2(0, -20)
+position = Vector2(18, -52)
 speaker_name = "นางสีดา"
 lines = Array[String](["อาศรมเล็ก ๆ แห่งนี้แม้เรียบง่าย แต่หม่อมฉันก็รู้สึกอบอุ่นใจทุกครั้งที่ได้อยู่พร้อมหน้าพระสวามีและพี่ลักษณ์", "พระสวามี กวางตัวนั้นงดงามนัก ขนของมันเป็นประกายราวกับทองคำ หากจับมาได้ ข้าจะเลี้ยงไว้เป็นเพื่อนนะเพคะ"])
 prompt_text = "กด E เพื่อคุยกับนางสีดา"
@@ -883,20 +883,20 @@ position = Vector2(1199, 498)
 flee_target = Vector2(1540, 541)
 escape_on_arrival = true
 
-[node name="ForestGate" parent="YSortRoot" instance=ExtResource("5_portal")]
+[node name="ForestGate" parent="YSortRoot" unique_id=162342224 instance=ExtResource("5_portal")]
 position = Vector2(1410, 541)
 target_scene = "res://scenes/chapter_2/chapter_2_second.tscn"
 target_spawn = Vector2(120, 395)
 interaction_size = Vector2(90, 130)
-auto = true
 locked = true
 locked_prompt_text = "ยังไม่มีเหตุให้เข้าไปในป่าลึก"
+auto = true
 
 [node name="Phalak" parent="YSortRoot" unique_id=316981769 instance=ExtResource("9_phalak")]
 position = Vector2(1035, 554)
 
 [node name="Talkable" parent="YSortRoot/Phalak" unique_id=887555574 instance=ExtResource("10_talkable")]
-position = Vector2(0, -20)
+position = Vector2(1, -65)
 speaker_name = "พระลักษณ์"
 lines = Array[String](["ในที่สุดเราก็ได้พักผ่อนที่อาศรมแห่งนี้ พี่รามคิดว่าเราจะอยู่ที่นี่ได้นานแค่ไหนนะ", "ป่านี้ดูสงบดี แต่ข้าก็ยังไม่วางใจนัก ท่านพี่ระวังตัวด้วยนะ"])
 prompt_text = "กด E เพื่อคุยกับพระลักษณ์"
@@ -940,7 +940,7 @@ locked = true
 locked_prompt_text = "ยังมีเรื่องสำคัญที่ต้องจัดการที่อาศรมก่อน"
 
 [node name="Mob3" parent="YSortRoot" unique_id=1253520576 instance=ExtResource("3_mob")]
-position = Vector2(980, 640)
+position = Vector2(780, 658)
 speed = null
 aggro_range = null
 contact_damage = null
@@ -956,10 +956,10 @@ position = Vector2(721, 540)
 texture = ExtResource("6_2mjbf")
 
 [node name="AshramHome" type="Marker2D" parent="YSortRoot" unique_id=1778512451]
-position = Vector2(1000, 600)
+position = Vector2(902, 596)
 
 [node name="PuzzleTrigger" parent="YSortRoot" unique_id=1798531351 instance=ExtResource("17_puzzle_trigger")]
-position = Vector2(900, 500)
+position = Vector2(890, 489)
 prompt_text = "กด E เพื่อสำรวจหาของใช้"
 
 [node name="PinkTree" type="Sprite2D" parent="." unique_id=718484091]
@@ -985,6 +985,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("14_intro_script")
@@ -1108,6 +1110,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_abduction_script")
+metadata/_edit_use_anchors_ = true
 
 [node name="BackgroundDim" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=2138075405]
 layout_mode = 1
@@ -1118,6 +1121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
+metadata/_edit_use_anchors_ = true
 
 [node name="TitleBanner" type="NinePatchRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1269155402]
 layout_mode = 1
@@ -1132,6 +1136,7 @@ patch_margin_left = 92
 patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
+metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene/TitleBanner" unique_id=997391759]
 layout_mode = 1
@@ -1148,6 +1153,7 @@ theme_override_font_sizes/font_size = 32
 text = "การลักพาตัวนางสีดา"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Dialogue" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1509547943]
 layout_mode = 1
@@ -1171,6 +1177,7 @@ text = "คำบรรยาย: ทันทีที่ศรของพร�
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="ContinuePrompt" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1927598680]
 layout_mode = 1
@@ -1193,6 +1200,7 @@ theme_override_fonts/font = ExtResource("11_cutscene_font")
 theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="FadeOverlay" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1629458318]
 layout_mode = 1
@@ -1203,6 +1211,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
 
 [node name="Chapter2DeerCutsceneLayer" type="CanvasLayer" parent="." unique_id=343938522]
 layer = 100
@@ -1216,6 +1225,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("16_deer_script")
+metadata/_edit_use_anchors_ = true
 
 [node name="CutsceneImage" type="TextureRect" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=1100633007]
 layout_mode = 1
@@ -1228,6 +1238,7 @@ mouse_filter = 2
 texture = ExtResource("20_second_image")
 expand_mode = 1
 stretch_mode = 6
+metadata/_edit_use_anchors_ = true
 
 [node name="BackgroundDim" type="ColorRect" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=949564121]
 layout_mode = 1
@@ -1238,6 +1249,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
+metadata/_edit_use_anchors_ = true
 
 [node name="TitleBanner" type="NinePatchRect" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=585819140]
 layout_mode = 1
@@ -1252,6 +1264,7 @@ patch_margin_left = 92
 patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
+metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene/TitleBanner" unique_id=1019466223]
 layout_mode = 1
@@ -1268,6 +1281,7 @@ theme_override_font_sizes/font_size = 32
 text = "กวางทองแห่งอาศรม"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Dialogue" type="Label" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=1952907396]
 layout_mode = 1
@@ -1291,6 +1305,7 @@ text = "คำบรรยาย: วันหนึ่ง มีกวางท
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="ContinuePrompt" type="Label" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=494826897]
 layout_mode = 1
@@ -1313,15 +1328,21 @@ theme_override_fonts/font = ExtResource("11_cutscene_font")
 theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="FadeOverlay" type="ColorRect" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=465605883]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
 
 [node name="MatchingPuzzle" parent="." unique_id=1087447439 instance=ExtResource("18_matching_puzzle")]
