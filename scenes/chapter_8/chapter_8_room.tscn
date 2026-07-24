@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
 [ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="4_sida"]
+[ext_resource type="Script" path="res://scenes/chapter_8/chapter_8_room.gd" id="chapter_8_room_script"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1448, 269)
@@ -135,6 +136,7 @@ height = 40.0
 size = Vector2(123.25, 84)
 
 [node name="Chapter8Room" type="Node2D" unique_id=687135914]
+script = ExtResource("chapter_8_room_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=422484337]
 position = Vector2(724, 543)

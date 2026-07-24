@@ -1,5 +1,7 @@
 extends "res://scenes/props/mob.gd"
 
+signal defeated
+
 @export var always_chase_player: bool = true
 
 @export var normal_attacks_before_jump: int = 3
@@ -130,6 +132,7 @@ func take_damage(amount: int) -> void:
 
 	if _health <= 0:
 		await get_tree().create_timer(0.12).timeout
+		defeated.emit()
 		queue_free()
 
 

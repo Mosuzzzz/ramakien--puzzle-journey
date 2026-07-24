@@ -25,6 +25,9 @@ func _on_start_pressed() -> void:
 	GameState.chapter_2_ashram_puzzle_solved = false
 	GameState.chapter_2_deer_intro_played = false
 	GameState.chapter_2_aftermath_played = false
+	GameState.chapter_8_intro_played = false
+	GameState.chapter_9_thotsakan_defeated = false
+	GameState.chapter_9_sida_rescued = false
 	get_tree().change_scene_to_file(FIRST_CHAPTER)
 
 func _on_quit_pressed() -> void:

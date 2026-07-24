@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal following_started
+
 @export var speed: float = 120.0  # slower than the player (150)
 @export var follow_distance: float = 45.0
 # scale factor: character renders at display_height * (char_px / region_px)
@@ -19,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	var to_player := _player.global_position - global_position
 	if not _following and to_player.length() < 60.0:
-		_following = true
+		start_following()
 	if _following and to_player.length() > follow_distance:
 		velocity = to_player.normalized() * speed
 		move_and_slide()
@@ -29,6 +31,14 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 		_play("idle")
+
+
+func start_following() -> void:
+	if _following:
+		return
+	_following = true
+	following_started.emit()
+
 
 func _play(anim: String) -> void:
 	if _sprite.animation != anim:
