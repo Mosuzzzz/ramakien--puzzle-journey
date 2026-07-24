@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/matching_puzzle.tscn" id="18_matching_puzzle"]
 [ext_resource type="Texture2D" uid="uid://d1koq3jwpbgxu" path="res://assets/cutscene/chapter_2/first.png" id="19_first_image"]
 [ext_resource type="Texture2D" uid="uid://cb6clikeugxys" path="res://assets/cutscene/chapter_2/second.png" id="20_second_image"]
+[ext_resource type="Texture2D" uid="uid://5mubkcq2qtbh" path="res://assets/cutscene/chapter_2/deer_chase.png" id="21_deer_chase_image"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e8ag2"]
 a = Vector2(-42.53296, -38.313812)
@@ -265,8 +266,11 @@ b = Vector2(-37, -23)
 [sub_resource type="CircleShape2D" id="CircleShape2D_e8ag2"]
 radius = 56.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kp0rp"]
+radius = 32.01562
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_7o8a3"]
-radius = 26.683329
+radius = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knlif"]
 radius = 44.181442
@@ -733,8 +737,8 @@ position = Vector2(858, 985)
 shape = SubResource("CircleShape2D_e8ag2")
 
 [node name="LowerCenterRock5" type="CollisionShape2D" parent="wall" unique_id=87388295]
-position = Vector2(813, 876)
-shape = SubResource("CircleShape2D_7o8a3")
+position = Vector2(809, 882)
+shape = SubResource("CircleShape2D_kp0rp")
 
 [node name="LowerCenterRock6" type="CollisionShape2D" parent="wall" unique_id=367391834]
 position = Vector2(768, 890)
@@ -1111,6 +1115,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_abduction_script")
 metadata/_edit_use_anchors_ = true
+
+[node name="CutsceneImage" type="TextureRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=2138075406]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("21_deer_chase_image")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="BackgroundDim" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=2138075405]
 layout_mode = 1

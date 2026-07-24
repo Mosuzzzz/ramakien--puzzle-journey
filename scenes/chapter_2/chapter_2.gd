@@ -28,8 +28,8 @@ var _waiting_for_home := false
 
 
 func _ready() -> void:
-	# the intro cutscene auto-plays (and pauses the tree) from its own _ready;
-	# on any revisit it must be removed no matter which phase we resume into
+	# only ever play the intro cutscene once; on any revisit it's removed
+	# no matter which phase we resume into
 	if GameState.chapter_2_intro_played:
 		_intro_cutscene.get_parent().queue_free()
 
@@ -73,6 +73,7 @@ func _ready() -> void:
 
 	GameState.chapter_2_intro_played = true
 	_intro_cutscene.finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
+	_intro_cutscene.call("show_cutscene")
 
 
 func _process(_delta: float) -> void:

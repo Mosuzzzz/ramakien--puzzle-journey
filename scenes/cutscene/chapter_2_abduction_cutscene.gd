@@ -4,9 +4,18 @@ const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
 
 # used when the deer is felled by an arrow (map 1's escape-shot path)
 const ARROW_OPENING: Array[String] = [
-	"คำบรรยาย: ทันทีที่ศรของพระรามพุ่งเข้าปะทะ กวางทองก็ร้องด้วยความเจ็บปวด ก่อนร่างจะแปรเปลี่ยนกลายเป็นยักษ์มารีศ",
+	"คำบรรยาย: พระรามไล่ตามกวางทองเข้าไปในป่าลึกอย่างไม่ลดละ",
+	"คำบรรยาย: ทันใดนั้น กวางทองก็ผงะหันมาพร้อมแปรเปลี่ยนร่างกลายเป็นยักษ์มารีศ พระรามชะงักด้วยความตกใจ ก่อนจะน้าวศรยิงออกไปโดยพลัน",
 	"มารีศ: “พระลักษมณ์... ช่วยพี่ด้วย!”",
 	"คำบรรยาย: มารีศร้องเลียนเสียงพระรามเป็นครั้งสุดท้าย ก่อนจะสิ้นใจกลางป่า",
+]
+
+# one image per ARROW_OPENING line
+const ARROW_IMAGES: Array[Texture2D] = [
+	preload("res://assets/cutscene/chapter_2/deer_chase.png"),
+	preload("res://assets/cutscene/chapter_2/deer_reaction.png"),
+	preload("res://assets/cutscene/chapter_2/deer_death.png"),
+	preload("res://assets/cutscene/chapter_2/deer_death.png"),
 ]
 
 # used when the deer is finally cornered after the chase (map 2's quiz path)
@@ -23,6 +32,20 @@ const CATCH_OPENING: Array[String] = [
 	"คำบรรยาย: มารีศร้องเลียนเสียงพระรามเป็นครั้งสุดท้าย ก่อนจะสิ้นใจกลางป่า",
 ]
 
+# one image per CATCH_OPENING line
+const CATCH_IMAGES: Array[Texture2D] = [
+	preload("res://assets/cutscene/chapter_2/deer_chase.png"),
+	preload("res://assets/cutscene/chapter_2/deer_chase.png"),
+	preload("res://assets/cutscene/chapter_2/deer_reaction.png"),
+	preload("res://assets/cutscene/chapter_2/deer_reaction.png"),
+	preload("res://assets/cutscene/chapter_2/deer_death.png"),
+	preload("res://assets/cutscene/chapter_2/deer_death.png"),
+	preload("res://assets/cutscene/chapter_2/deer_death.png"),
+	preload("res://assets/cutscene/chapter_2/deer_death.png"),
+	preload("res://assets/cutscene/chapter_2/deer_death.png"),
+	preload("res://assets/cutscene/chapter_2/deer_death.png"),
+]
+
 const SHARED_TAIL: Array[String] = [
 	"คำบรรยาย: ที่อาศรม นางสีดาได้ยินเสียงร้องนั้นก็ตกใจ เชื่อว่าพระรามกำลังตกอยู่ในอันตราย",
 	"นางสีดา: “พระลักษมณ์! นั่นเสียงพระราม รีบไปช่วยท่านเถิด!”",
@@ -34,10 +57,26 @@ const SHARED_TAIL: Array[String] = [
 	"คำบรรยาย: ทันทีที่นางสีดาเข้าใกล้ ฤๅษีชราก็เผยร่างที่แท้จริง คือทศกัณฐ์ เจ้ากรุงลงกา",
 	"ทศกัณฐ์: “นางสีดา... ในที่สุดข้าก็พบเจ้า เจ้าจะได้เป็นมเหสีของข้าที่กรุงลงกา!”",
 	"คำบรรยาย: ทศกัณฐ์ใช้ฤทธิ์อุ้มนางสีดาขึ้นราชรถเหาะ มุ่งหน้าสู่กรุงลงกาทันที",
-	"คำบรรยาย: ระหว่างทาง พญาชฎายุเห็นเหตุการณ์ จึงเข้าขัดขวาง แต่ไม่อาจต้านทานฤทธิ์ของทศกัณฐ์ได้ และได้รับบาดเจ็บสาหัส",
 	"คำบรรยาย: เมื่อพระรามและพระลักษมณ์กลับมาถึงอาศรม กลับพบเพียงความว่างเปล่าและร่องรอยการต่อสู้",
 	"พระราม: “สีดา... เครื่องประดับของเจ้าตกอยู่ตรงนี้... ข้าจะต้องช่วยเจ้ากลับคืนมาให้ได้”",
 	"คำบรรยาย: พระรามและพระลักษมณ์จึงออกเดินทางตามรอยทศกัณฐ์ทันที มุ่งหน้าสู่การผจญภัยครั้งใหม่...",
+]
+
+# one image per SHARED_TAIL line
+const SHARED_TAIL_IMAGES: Array[Texture2D] = [
+	preload("res://assets/cutscene/chapter_2/sida_hears_cry.png"),
+	preload("res://assets/cutscene/chapter_2/sida_hears_cry.png"),
+	preload("res://assets/cutscene/chapter_2/sida_hears_cry.png"),
+	preload("res://assets/cutscene/chapter_2/sida_hears_cry.png"),
+	preload("res://assets/cutscene/chapter_2/lakshmana_leaves.png"),
+	preload("res://assets/cutscene/chapter_2/rishi_arrives.png"),
+	preload("res://assets/cutscene/chapter_2/rishi_arrives.png"),
+	preload("res://assets/cutscene/chapter_2/thodsakanShow.png"),
+	preload("res://assets/cutscene/chapter_2/thodsakanShow.png"),
+	preload("res://assets/cutscene/chapter_2/ravana_abduction.png"),
+	preload("res://assets/cutscene/chapter_2/empty_ashram.png"),
+	preload("res://assets/cutscene/chapter_2/empty_ashram.png"),
+	preload("res://assets/cutscene/chapter_2/empty_ashram.png"),
 ]
 
 signal finished
@@ -46,7 +85,9 @@ var _active := false
 var _dialogue_index := 0
 var _transitioning := false
 var _dialogues: Array[String] = []
+var _images: Array[Texture2D] = []
 
+@onready var _cutscene_image: TextureRect = get_node_or_null("CutsceneImage")
 @onready var _background_dim: ColorRect = $BackgroundDim
 @onready var _title_banner: NinePatchRect = $TitleBanner
 @onready var _dialogue_label: Label = $Dialogue
@@ -62,11 +103,16 @@ func _ready() -> void:
 ## catch_method: "arrow" (shot dead) or "catch" (cornered after the chase)
 func show_cutscene(catch_method: String = "arrow") -> void:
 	_dialogues = (ARROW_OPENING if catch_method == "arrow" else CATCH_OPENING) + SHARED_TAIL
+	_images = (ARROW_IMAGES if catch_method == "arrow" else CATCH_IMAGES) + SHARED_TAIL_IMAGES
 	_active = true
 	_transitioning = true
 	_dialogue_index = 0
 	_show_dialogue(0, false)
 	var content: Array[CanvasItem] = [_background_dim, _title_banner, _dialogue_label, _prompt_label]
+	if not _images.is_empty() and _cutscene_image:
+		content.append(_cutscene_image)
+	elif _cutscene_image:
+		_cutscene_image.hide()
 	for item: CanvasItem in content:
 		item.hide()
 	_fade_overlay.color.a = 0.0
@@ -108,6 +154,12 @@ func _advance_dialogue() -> void:
 
 func _show_dialogue(index: int, animated: bool) -> void:
 	_dialogue_index = index
+	if _cutscene_image:
+		if index < _images.size():
+			_cutscene_image.texture = _images[index]
+			_cutscene_image.show()
+		else:
+			_cutscene_image.hide()
 	_prompt_label.text = "กด E เพื่อออกติดตามทศกัณฐ์ ▼" if index == _dialogues.size() - 1 else "กด E เพื่อดำเนินเรื่องต่อ ▼"
 	if not animated:
 		_dialogue_label.text = _dialogues[_dialogue_index]
