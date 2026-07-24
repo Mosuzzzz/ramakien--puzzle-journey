@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="8_title_banner"]
 [ext_resource type="Script" uid="uid://3au27m7j7v4o" path="res://scenes/cutscene/chapter_2_abduction_cutscene.gd" id="9_abduction_script"]
 [ext_resource type="PackedScene" path="res://scenes/ui/question_quiz.tscn" id="10_quiz"]
+[ext_resource type="Texture2D" path="res://assets/cutscene/chapter_2/deer_chase.png" id="11_deer_chase_image"]
 
 [sub_resource type="RectangleShape2D" id="rect_forest_top"]
 size = Vector2(5643, 360)
@@ -84,6 +85,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_abduction_script")
+
+[node name="CutsceneImage" type="TextureRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=199016634]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_deer_chase_image")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="BackgroundDim" type="ColorRect" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=88390485]
 layout_mode = 1
