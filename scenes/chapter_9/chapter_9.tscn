@@ -9,6 +9,11 @@
 [ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="chapter_9_cutscene_font"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="chapter_9_cutscene_bold"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="chapter_9_title_banner"]
+[ext_resource type="Script" path="res://scenes/chapter_9/chapter_9.gd" id="chapter_9_script"]
+[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="chapter_9_sida"]
+[ext_resource type="Script" path="res://scenes/props/chapter_9_ending_gate.gd" id="chapter_9_ending_gate_script"]
+[ext_resource type="Texture2D" uid="uid://dqb68kn34iqv5" path="res://assets/cutscene/chapter_9/ChatGPT Image 24 ก.ค. 2569 14_44_25.png" id="chapter_9_ending_image"]
+[ext_resource type="Script" path="res://scenes/cutscene/chapter_9_ending_cutscene.gd" id="chapter_9_ending_cutscene_script"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1448, 299)
@@ -157,6 +162,7 @@ radius = 13.0
 height = 94.0
 
 [node name="Chapter9" type="Node2D" unique_id=493174854]
+script = ExtResource("chapter_9_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1043713902]
 position = Vector2(724, 543)
@@ -330,10 +336,13 @@ y_sort_enabled = true
 [node name="Player" parent="YSortRoot" unique_id=643082494 instance=ExtResource("2_player")]
 position = Vector2(718, 1022)
 
+[node name="Sida" parent="YSortRoot" instance=ExtResource("chapter_9_sida")]
+position = Vector2(762, 1022)
+
 [node name="EndingPortal" parent="YSortRoot" unique_id=1366143209 instance=ExtResource("90_portal")]
 position = Vector2(724, 330)
-target_scene = "res://scenes/ending/ending.tscn"
 prompt_text = "กด E - จบภารกิจ"
+script = ExtResource("chapter_9_ending_gate_script")
 
 [node name="Chapter8Portal" parent="YSortRoot" unique_id=544627573 instance=ExtResource("90_portal")]
 position = Vector2(718, 1058)
@@ -458,6 +467,126 @@ text = "กด E เพื่อดำเนินเรื่องต่อ �
 horizontal_alignment = 1
 
 [node name="FadeOverlay" type="ColorRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Chapter9EndingCutsceneLayer" type="CanvasLayer" parent="."]
+layer = 110
+
+[node name="Chapter9EndingCutscene" type="Control" parent="Chapter9EndingCutsceneLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("chapter_9_ending_cutscene_script")
+
+[node name="CutsceneImage" type="TextureRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("chapter_9_ending_image")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundDim" type="ColorRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.34)
+
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19
+anchor_right = 0.81
+offset_top = 36.0
+offset_bottom = 132.0
+grow_horizontal = 2
+texture = ExtResource("chapter_9_title_banner")
+patch_margin_left = 92
+patch_margin_top = 16
+patch_margin_right = 92
+patch_margin_bottom = 16
+
+[node name="Title" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene/TitleBanner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_right = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.12, 0.045, 1)
+theme_override_fonts/font = ExtResource("chapter_9_cutscene_bold")
+theme_override_font_sizes/font_size = 32
+text = "ชัยชนะเหนือทศกัณฐ์"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogue" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.62
+anchor_right = 0.93
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
+theme_override_constants/line_spacing = 6
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("chapter_9_cutscene_font")
+theme_override_font_sizes/font_size = 30
+text = "คำบรรยาย: หลังการต่อสู้อันดุเดือด พระรามใช้พระแสงพรหมาสตร์เอาชนะทศกัณฐ์ได้สำเร็จ"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinuePrompt" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.0
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.87, 0.78, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("chapter_9_cutscene_font")
+theme_override_font_sizes/font_size = 19
+text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
+horizontal_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

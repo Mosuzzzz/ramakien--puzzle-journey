@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dtebuqsjyd5uw" path="res://assets/cutscene/chapter_4/ChatGPT Image 20 ก.ค. 2569 13_13_42.png" id="10_second_cutscene_image"]
 [ext_resource type="Texture2D" uid="uid://dbevliwyodlb3" path="res://assets/cutscene/chapter_4/ChatGPT Image 20 ก.ค. 2569 14_21_31.png" id="11_third_cutscene_image"]
 [ext_resource type="Texture2D" uid="uid://bjdpgi3lsv4n3" path="res://assets/cutscene/chapter_4/ChatGPT Image 20 ก.ค. 2569 14_59_40.png" id="12_fourth_cutscene_image"]
-[ext_resource type="Texture2D" uid="uid://46vauomsf6md" path="res://assets/cutscene/chapter_4/ChatGPT Image 20 ก.ค. 2569 15_12_56.png" id="13_fifth_cutscene_image"]
+[ext_resource type="Texture2D" uid="uid://upe4kljbkyld" path="res://assets/cutscene/chapter_4/ChatGPT Image 19 ก.ค. 2569 13_43_25.png" id="13_fifth_cutscene_image"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 [ext_resource type="Script" path="res://scenes/chapter_4/chapter_4.gd" id="chapter_4_script"]
 

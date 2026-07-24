@@ -3,6 +3,8 @@ set -eu
 
 scene="scenes/chapter_8/chapter_8.tscn"
 cutscene="scenes/cutscene/chapter_8_cutscene.gd"
+game_state="scenes/game_state.gd"
+home_page="scenes/homepage/home_page.gd"
 
 test -f "$cutscene"
 grep -Fq 'Chapter8CutsceneLayer' "$scene"
@@ -23,6 +25,11 @@ test "$(grep -Fc '"color:a", 1.0, 1.0' "$cutscene")" -ge 1
 test "$(grep -Fc '"color:a", 0.0, 1.0' "$cutscene")" -ge 1
 grep -Fq 'กด E เพื่อเริ่ม Chapter 8 ▼' "$cutscene"
 grep -Fq 'get_tree().paused = false' "$cutscene"
+
+grep -Fq 'static var chapter_8_intro_played := false' "$game_state"
+grep -Fq 'GameState.chapter_8_intro_played = false' "$home_page"
+grep -Fq 'if GameState.chapter_8_intro_played:' "$cutscene"
+grep -Fq 'GameState.chapter_8_intro_played = true' "$cutscene"
 
 grep -Fq '[node name="Player" parent="YSortRoot"' "$scene"
 grep -Fq '[node name="Chapter9Portal" parent="YSortRoot"' "$scene"

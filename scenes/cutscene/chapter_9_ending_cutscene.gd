@@ -1,18 +1,17 @@
 extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
-const GameState := preload("res://scenes/game_state.gd")
+const ENDING_SCENE := "res://scenes/ending/ending.tscn"
 
 const DIALOGUES: Array[String] = [
-	"คำบรรยาย: หลังจากพระรามฝ่าแนวป้องกันของเหล่าทหารยักษ์ และบุกเข้าสู่พระราชวังลงกาได้สำเร็จ",
-	"คำบรรยาย: กลับพบว่าทางเข้าสู่ท้องพระโรงทอดยาวผ่านหลายห้อง ประตูทุกบานเชื่อมต่อกันราวกับเขาวงกต",
-	"คำบรรยาย: มีเพียงผู้มีสติปัญญาและความกล้าหาญเท่านั้นจึงจะผ่านไปได้ พระรามต้องไขปริศนาเพื่อเปิดประตูบานสุดท้าย",
-	"คำบรรยาย: เบื้องหลังประตูนั้นคือท้องพระโรง ที่ซึ่งทศกัณฐ์กำลังรออยู่ เมื่อประตูเปิด การเผชิญหน้าครั้งสุดท้ายก็ใกล้จะเริ่มต้น",
+	"คำบรรยาย: หลังการต่อสู้อันดุเดือด พระรามใช้พระแสงพรหมาสตร์เอาชนะทศกัณฐ์ได้สำเร็จ",
+	"คำบรรยาย: เมื่อราชายักษ์สิ้นชีวิต พระรามได้พาตัวนางสีดาที่ถูกคุมขัง ออกมาได้อย่างปลอดภัยและยุติสงครามลงอย่างสมบูรณ์",
 ]
 
-var _dialogue_index := 0
+var _active := false
 var _transitioning := false
 var _finished := false
+var _dialogue_index := 0
 
 @onready var _cutscene_image: TextureRect = $CutsceneImage
 @onready var _background_dim: ColorRect = $BackgroundDim
@@ -23,23 +22,18 @@ var _finished := false
 
 
 func _ready() -> void:
-	if GameState.chapter_8_intro_played:
-		var cutscene_layer := get_parent()
-		if cutscene_layer is CanvasLayer:
-			cutscene_layer.queue_free()
-		else:
-			queue_free()
-		return
-
-	GameState.chapter_8_intro_played = true
-	get_tree().paused = true
-	_show_dialogue(0, false)
+	hide()
 	CutsceneSkip.attach(self, _finish_cutscene)
-	_play_intro_transition()
 
 
-func _play_intro_transition() -> void:
+func show_cutscene() -> void:
+	if _active or _finished:
+		return
+	_active = true
 	_transitioning = true
+	_dialogue_index = 0
+	_show_dialogue(0, false)
+
 	var content: Array[CanvasItem] = [
 		_cutscene_image,
 		_background_dim,
@@ -50,6 +44,9 @@ func _play_intro_transition() -> void:
 	for item: CanvasItem in content:
 		item.hide()
 	_fade_overlay.color.a = 0.0
+	show()
+	get_tree().paused = true
+
 	var darken := create_tween()
 	darken.tween_property(_fade_overlay, "color:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
 	await darken.finished
@@ -62,7 +59,7 @@ func _play_intro_transition() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouse:
+	if not _active or event is InputEventMouse:
 		return
 	get_viewport().set_input_as_handled()
 	if _transitioning or _finished:
@@ -81,7 +78,7 @@ func _advance_dialogue() -> void:
 func _show_dialogue(index: int, animated: bool) -> void:
 	_dialogue_index = index
 	var is_final_line := _dialogue_index == DIALOGUES.size() - 1
-	_prompt_label.text = "กด E เพื่อเริ่ม Chapter 8 ▼" if is_final_line else "กด E เพื่อดำเนินเรื่องต่อ ▼"
+	_prompt_label.text = "กด E เพื่อจบเรื่องราว ▼" if is_final_line else "กด E เพื่อดำเนินเรื่องต่อ ▼"
 	if not animated:
 		_dialogue_label.text = DIALOGUES[_dialogue_index]
 		return
@@ -101,14 +98,11 @@ func _finish_cutscene() -> void:
 	if _finished:
 		return
 	_finished = true
+	_active = false
 	get_tree().paused = false
-	var cutscene_layer := get_parent()
-	if cutscene_layer is CanvasLayer:
-		cutscene_layer.queue_free()
-	else:
-		queue_free()
+	get_tree().change_scene_to_file.call_deferred(ENDING_SCENE)
 
 
 func _exit_tree() -> void:
-	if get_tree() != null:
+	if _active and get_tree() != null:
 		get_tree().paused = false

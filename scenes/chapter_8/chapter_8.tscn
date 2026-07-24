@@ -4,101 +4,103 @@
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
-[ext_resource type="Texture2D" uid="uid://l5hlblynhrek" path="res://assets/cutscene/chapter_8/ChatGPT Image 23 ก.ค. 2569 11_31_24.png" id="chapter_8_cutscene_image"]
-[ext_resource type="Script" path="res://scenes/cutscene/chapter_8_cutscene.gd" id="chapter_8_cutscene_script"]
-[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="chapter_8_cutscene_font"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="chapter_8_cutscene_bold"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="chapter_8_cutscene_font"]
+[ext_resource type="Texture2D" uid="uid://l5hlblynhrek" path="res://assets/cutscene/chapter_8/ChatGPT Image 23 ก.ค. 2569 11_31_24.png" id="chapter_8_cutscene_image"]
+[ext_resource type="Script" uid="uid://bu1pi543pa2lj" path="res://scenes/cutscene/chapter_8_cutscene.gd" id="chapter_8_cutscene_script"]
+[ext_resource type="Script" uid="uid://be56ohm3gkcqh" path="res://scenes/chapter_8/chapter_8.gd" id="chapter_8_script"]
+[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="chapter_8_sida"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="chapter_8_title_banner"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
-size = Vector2(1024.000043, 126.519342)
+size = Vector2(1024, 126.51934)
 
 [sub_resource type="RectangleShape2D" id="BottomWall"]
-size = Vector2(1024.000043, 90.519341)
+size = Vector2(1024, 90.51934)
 
 [sub_resource type="RectangleShape2D" id="LeftWall"]
-size = Vector2(79.911606, 1536.000064)
+size = Vector2(79.911606, 1536.0001)
 
 [sub_resource type="RectangleShape2D" id="RightWall"]
-size = Vector2(45.25967, 1536.000064)
+size = Vector2(45.25967, 1536.0001)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5y3m"]
-size = Vector2(420.773498, 198.657465)
+size = Vector2(420.7735, 198.65747)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5j7er"]
-size = Vector2(420.773498, 212.657469)
+size = Vector2(420.7735, 212.65747)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y6o0t"]
 radius = 27.580112
-height = 144.265199
+height = 144.2652
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j5y3r"]
 radius = 55.000004
-height = 220.000016
+height = 220.00002
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lo8hc"]
-a = Vector2(53, 312.000013)
-b = Vector2(30.000001, 167.000009)
+a = Vector2(53, 312)
+b = Vector2(30.000002, 167.00002)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tjopw"]
-radius = 50.000002
-height = 200.000008
+radius = 50.000004
+height = 200.00002
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qs52"]
-radius = 45.000002
-height = 232.00001
+radius = 45.000004
+height = 232.00002
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dqycq"]
-a = Vector2(14.000001, 135.000007)
-b = Vector2(28.994476, 220.640893)
+a = Vector2(14.000001, 135)
+b = Vector2(28.994476, 220.6409)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvntq"]
-radius = 46.500005
-height = 206.000012
+radius = 46.500004
+height = 206.00002
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rcvpd"]
-a = Vector2(96.933619, 190.342528)
-b = Vector2(-201.06639, 195.342534)
+a = Vector2(96.93362, 190.34253)
+b = Vector2(-201.06639, 195.34253)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_7niha"]
-a = Vector2(151.000093, 66.999959)
-b = Vector2(-94.999921, 66.999959)
+a = Vector2(151.00009, 66.99996)
+b = Vector2(-94.99992, 66.99996)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kf86y"]
-a = Vector2(-143.000008, 179.000002)
-b = Vector2(52.999916, 182.000011)
+a = Vector2(-143.00002, 179)
+b = Vector2(52.999916, 182.00002)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxe7d"]
-radius = 65.999981
-height = 263.999926
+radius = 65.999985
+height = 263.99994
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhrlv"]
-radius = 19.500001
-height = 78.000004
+radius = 19.500002
+height = 78.00001
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atdya"]
-radius = 17.500001
-height = 70.000004
+radius = 17.500002
+height = 70.00001
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_wenmv"]
-a = Vector2(-105.37017, 142.850835)
-b = Vector2(-115.977905, 272.972387)
+a = Vector2(-105.37017, 142.85083)
+b = Vector2(-115.977905, 272.97238)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rgjvp"]
-a = Vector2(109.911596, 245.917118)
-b = Vector2(-143.088413, 245.917118)
+a = Vector2(109.9116, 245.91711)
+b = Vector2(-143.08841, 245.91711)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_7cic4"]
-a = Vector2(91.000013, 274.000008)
-b = Vector2(-115.977905, 272.972387)
+a = Vector2(91.000015, 274)
+b = Vector2(-115.977905, 272.97238)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5y3m"]
-radius = 11
-height = 70.000091
+radius = 11.0
+height = 70.00009
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4rpk"]
 radius = 12.0221
-height = 272.000011
+height = 272.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ixx2"]
 radius = 10.999957
@@ -106,23 +108,23 @@ height = 53.99998
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nu6h7"]
 radius = 12.0221
-height = 67.999917
+height = 67.999916
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpsgy"]
 radius = 4.243094
-height = 87.690611
+height = 87.69061
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5j7er"]
 radius = 9.99999
-height = 61.999959
+height = 61.999958
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wp21q"]
-radius = 27.000001
-height = 218.000048
+radius = 27.000002
+height = 218.00005
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7niha"]
 radius = 9.193371
-height = 351.999972
+height = 351.99997
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lo8hc"]
 radius = 9.193371
@@ -130,36 +132,37 @@ height = 63.99996
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqycq"]
 radius = 9.193371
-height = 132.950282
+height = 132.95029
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcvpd"]
 radius = 9.193371
-height = 62.000025
+height = 62.000027
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kf86y"]
-radius = 18.500001
-height = 94.000007
+radius = 18.500002
+height = 94.00001
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wenmv"]
 radius = 59.000004
-height = 236.000017
+height = 236.00002
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_y6o0t"]
-b = Vector2(217.000007, -2)
+b = Vector2(217, -2)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7vhbe"]
 radius = 59.000004
-height = 236.000017
+height = 236.00002
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jpnx5"]
 radius = 27.500002
-height = 110.000008
+height = 110.00001
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c3fco"]
-radius = 18.000001
-height = 94.000007
+radius = 18.000002
+height = 94.00001
 
 [node name="Chapter8" type="Node2D" unique_id=493174854]
+script = ExtResource("chapter_8_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1043713902]
 position = Vector2(512, 768)
@@ -168,250 +171,253 @@ texture = ExtResource("1_map")
 [node name="Walls" type="StaticBody2D" parent="." unique_id=388791847]
 
 [node name="Top" type="CollisionShape2D" parent="Walls" unique_id=2116186047]
-position = Vector2(512.000021, -27.259668)
+position = Vector2(512, -27.259668)
 shape = SubResource("TopWall")
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=369051228]
-position = Vector2(512.000021, 1581.259735)
+position = Vector2(512, 1581.2598)
 shape = SubResource("BottomWall")
 
 [node name="Left" type="CollisionShape2D" parent="Walls" unique_id=323272462]
-position = Vector2(-5.303868, 768.000032)
+position = Vector2(-5.303868, 768.00006)
 shape = SubResource("LeftWall")
 
 [node name="Right" type="CollisionShape2D" parent="Walls" unique_id=961968895]
-position = Vector2(1046.629878, 768.000032)
+position = Vector2(1046.6299, 768.00006)
 shape = SubResource("RightWall")
 
 [node name="Bottom2" type="CollisionShape2D" parent="Walls" unique_id=1562773882]
-position = Vector2(-6.000006, 1434.328783)
+position = Vector2(-6.000006, 1434.3287)
 shape = SubResource("RectangleShape2D_w5y3m")
 
 [node name="Bottom3" type="CollisionShape2D" parent="Walls" unique_id=1920204909]
-position = Vector2(1026.000025, 1429.32882)
+position = Vector2(1026, 1429.3289)
 shape = SubResource("RectangleShape2D_5j7er")
 
 [node name="Bottom5" type="CollisionShape2D" parent="Walls" unique_id=583716113]
-position = Vector2(921.99995, 1425.000058)
+position = Vector2(921.99994, 1425)
 shape = SubResource("CapsuleShape2D_y6o0t")
 
 [node name="Bottom6" type="CollisionShape2D" parent="Walls" unique_id=171650966]
-position = Vector2(747.00004, 630.000044)
+position = Vector2(747.00006, 630.00006)
 shape = SubResource("CapsuleShape2D_j5y3r")
 
 [node name="Bottom9" type="CollisionShape2D" parent="Walls" unique_id=520410677]
-position = Vector2(760.000032, 1180.000085)
+position = Vector2(760.00006, 1180.0001)
 shape = SubResource("SegmentShape2D_lo8hc")
 
 [node name="Bottom10" type="CollisionShape2D" parent="Walls" unique_id=543047883]
-position = Vector2(279.99999, 619.999976)
+position = Vector2(280, 620)
 shape = SubResource("CapsuleShape2D_tjopw")
 
 [node name="Bottom11" type="CollisionShape2D" parent="Walls" unique_id=2136453419]
-position = Vector2(706.000012, 361.000013)
+position = Vector2(706, 361)
 shape = SubResource("CapsuleShape2D_4qs52")
 
 [node name="Bottom12" type="CollisionShape2D" parent="Walls" unique_id=767908542]
-position = Vector2(700.999985, 577.000022)
+position = Vector2(701, 577)
 shape = SubResource("SegmentShape2D_dqycq")
 
 [node name="Bottom13" type="CollisionShape2D" parent="Walls" unique_id=1272573081]
-position = Vector2(310.999986, 363.00001)
+position = Vector2(311, 363)
 shape = SubResource("CapsuleShape2D_nvntq")
 
 [node name="Bottom14" type="CollisionShape2D" parent="Walls" unique_id=117843375]
-position = Vector2(932.066337, 261.65747)
+position = Vector2(932.06635, 261.65747)
 shape = SubResource("SegmentShape2D_rcvpd")
 
 [node name="Bottom15" type="CollisionShape2D" parent="Walls" unique_id=226959898]
-position = Vector2(873.999948, 480.00002)
+position = Vector2(873.99994, 480.00003)
 shape = SubResource("SegmentShape2D_7niha")
 
 [node name="Bottom18" type="CollisionShape2D" parent="Walls" unique_id=2089629605]
-position = Vector2(172.000007, 770.000029)
+position = Vector2(172, 770)
 shape = SubResource("SegmentShape2D_kf86y")
 
 [node name="Bottom20" type="CollisionShape2D" parent="Walls" unique_id=1194756224]
-position = Vector2(223.999988, 857.999947)
+position = Vector2(223.99998, 857.99994)
 shape = SubResource("CapsuleShape2D_qxe7d")
 
 [node name="Bottom21" type="CollisionShape2D" parent="Walls" unique_id=1143340662]
-position = Vector2(352.000015, 656.000027)
+position = Vector2(352, 656)
 shape = SubResource("CapsuleShape2D_uhrlv")
 
 [node name="Bottom22" type="CollisionShape2D" parent="Walls" unique_id=1888355589]
-position = Vector2(667.000037, 654.000031)
+position = Vector2(667.00006, 654.00006)
 shape = SubResource("CapsuleShape2D_atdya")
 
 [node name="Bottom23" type="CollisionShape2D" parent="Walls" unique_id=1101207040]
-position = Vector2(401.000015, 546.000019)
+position = Vector2(401, 546)
 shape = SubResource("SegmentShape2D_wenmv")
 
 [node name="Bottom24" type="CollisionShape2D" parent="Walls" unique_id=190308480]
-position = Vector2(176.088405, 205.082882)
+position = Vector2(176.08841, 205.08289)
 shape = SubResource("SegmentShape2D_rgjvp")
 
 [node name="Bottom25" type="CollisionShape2D" parent="Walls" unique_id=1489070530]
-position = Vector2(152.999983, 273.00001)
+position = Vector2(152.99998, 273)
 shape = SubResource("SegmentShape2D_7cic4")
 
 [node name="Bottom26" type="CollisionShape2D" parent="Walls" unique_id=816016758]
-position = Vector2(379.000025, 413.999964)
+position = Vector2(379.00003, 413.99997)
 shape = SubResource("CapsuleShape2D_w5y3m")
 
 [node name="Bottom27" type="CollisionShape2D" parent="Walls" unique_id=1522492175]
-position = Vector2(347.000023, 167.000009)
+position = Vector2(347.00003, 167.00002)
 shape = SubResource("CapsuleShape2D_n4rpk")
 
 [node name="Bottom28" type="CollisionShape2D" parent="Walls" unique_id=574748645]
-position = Vector2(443.000027, 106.999999)
+position = Vector2(443.00003, 107)
 shape = SubResource("CapsuleShape2D_0ixx2")
 
 [node name="Bottom29" type="CollisionShape2D" parent="Walls" unique_id=239938344]
-position = Vector2(641.000025, 415.999975)
+position = Vector2(641, 415.99997)
 shape = SubResource("CapsuleShape2D_nu6h7")
 
 [node name="Bottom30" type="CollisionShape2D" parent="Walls" unique_id=656530708]
-position = Vector2(875.000045, 265.000009)
+position = Vector2(875.00006, 265)
 shape = SubResource("CapsuleShape2D_vpsgy")
 
 [node name="Bottom31" type="CollisionShape2D" parent="Walls" unique_id=587148381]
-position = Vector2(965.000031, 206.000012)
+position = Vector2(965.00006, 206.00002)
 shape = SubResource("CapsuleShape2D_vpsgy")
 
 [node name="Bottom32" type="CollisionShape2D" parent="Walls" unique_id=611217584]
-position = Vector2(431.999976, 227.000018)
+position = Vector2(431.99997, 227.00002)
 shape = SubResource("CapsuleShape2D_5j7er")
 
 [node name="Bottom33" type="CollisionShape2D" parent="Walls" unique_id=657284652]
-position = Vector2(637.999974, 149.000012)
+position = Vector2(638, 149.00002)
 shape = SubResource("CapsuleShape2D_wp21q")
 
 [node name="Bottom34" type="CollisionShape2D" parent="Walls" unique_id=233723315]
-position = Vector2(670.000046, 180.999985)
+position = Vector2(670.00006, 180.99998)
 shape = SubResource("CapsuleShape2D_7niha")
 
 [node name="Bottom35" type="CollisionShape2D" parent="Walls" unique_id=963238942]
-position = Vector2(589.000016, 227.000018)
+position = Vector2(589, 227.00002)
 shape = SubResource("CapsuleShape2D_lo8hc")
 
 [node name="Bottom36" type="CollisionShape2D" parent="Walls" unique_id=143490659]
-position = Vector2(105.999987, 214.000012)
+position = Vector2(105.999985, 214.00002)
 shape = SubResource("CapsuleShape2D_dqycq")
 
 [node name="Bottom37" type="CollisionShape2D" parent="Walls" unique_id=939075076]
-position = Vector2(580.99998, 108.000005)
+position = Vector2(581, 108.00001)
 shape = SubResource("CapsuleShape2D_rcvpd")
 
 [node name="Bottom42" type="CollisionShape2D" parent="Walls" unique_id=2096640963]
-position = Vector2(705.000028, 924.999959)
+position = Vector2(705, 924.99994)
 shape = SubResource("CapsuleShape2D_kf86y")
 
 [node name="Bottom43" type="CollisionShape2D" parent="Walls" unique_id=101414261]
-position = Vector2(314.000017, 924.000074)
+position = Vector2(314.00003, 924.00006)
 shape = SubResource("CapsuleShape2D_kf86y")
 
 [node name="Bottom45" type="CollisionShape2D" parent="Walls" unique_id=627770155]
-position = Vector2(386.999954, 147.000001)
+position = Vector2(386.99994, 147)
 shape = SubResource("CapsuleShape2D_wp21q")
 
 [node name="Bottom40" type="CollisionShape2D" parent="Walls" unique_id=1349652910]
-position = Vector2(822.999937, 1252.000017)
+position = Vector2(822.99994, 1252)
 shape = SubResource("CapsuleShape2D_wenmv")
 
 [node name="Bottom48" type="CollisionShape2D" parent="Walls" unique_id=820787964]
-position = Vector2(861.000027, 1186.000046)
+position = Vector2(861, 1186)
 shape = SubResource("SegmentShape2D_y6o0t")
 
 [node name="Bottom49" type="CollisionShape2D" parent="Walls" unique_id=1981871712]
-position = Vector2(832.000035, 948.99996)
+position = Vector2(832.00006, 948.99994)
 shape = SubResource("SegmentShape2D_y6o0t")
 
 [node name="Bottom41" type="CollisionShape2D" parent="Walls" unique_id=621363174]
-position = Vector2(790.000051, 870.000054)
+position = Vector2(790.00006, 870.00006)
 shape = SubResource("CapsuleShape2D_7vhbe")
 
 [node name="Bottom44" type="CollisionShape2D" parent="Walls" unique_id=205744613]
-position = Vector2(777.999944, 1302.000072)
+position = Vector2(777.99994, 1302.0001)
 shape = SubResource("CapsuleShape2D_jpnx5")
 
 [node name="Bottom50" type="CollisionShape2D" parent="Walls" unique_id=1613817480]
-position = Vector2(719.999988, 1300.000019)
+position = Vector2(720, 1300)
 shape = SubResource("CapsuleShape2D_c3fco")
 
 [node name="Bottom51" type="CollisionShape2D" parent="Walls" unique_id=193461725]
-position = Vector2(296.999968, 1300.000019)
+position = Vector2(296.99997, 1300)
 shape = SubResource("CapsuleShape2D_c3fco")
 
 [node name="Bottom52" type="CollisionShape2D" parent="Walls" unique_id=516529626]
-position = Vector2(242.999969, 1294.000058)
+position = Vector2(242.99997, 1294)
 shape = SubResource("CapsuleShape2D_jpnx5")
 
 [node name="Bottom46" type="CollisionShape2D" parent="Walls" unique_id=1056544387]
-position = Vector2(192.999964, 1251.000061)
+position = Vector2(192.99997, 1251)
 shape = SubResource("CapsuleShape2D_wenmv")
 
 [node name="Bottom53" type="CollisionShape2D" parent="Walls" unique_id=404019124]
-position = Vector2(-36.000088, 1185.000048)
+position = Vector2(-36.000088, 1185)
 shape = SubResource("SegmentShape2D_y6o0t")
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1395324870]
 y_sort_enabled = true
 
+[node name="Sida" parent="YSortRoot" unique_id=1580014169 instance=ExtResource("chapter_8_sida")]
+position = Vector2(208, 508)
+
 [node name="Player" parent="YSortRoot" unique_id=643082494 instance=ExtResource("2_player")]
 position = Vector2(507.76, 1445.68)
 
-[node name="RoomEntranceLeftUpper" parent="." instance=ExtResource("3_portal")]
+[node name="Chapter9Portal" parent="YSortRoot" unique_id=2021643869 instance=ExtResource("3_portal")]
+position = Vector2(505, 90)
+target_scene = "res://scenes/chapter_9/chapter_9.tscn"
+target_spawn = Vector2(718, 995)
+
+[node name="Chapter7Portal" parent="YSortRoot" unique_id=1083698871 instance=ExtResource("3_portal")]
+position = Vector2(507, 1490)
+target_scene = "res://scenes/chapter_7/chapter_7.tscn"
+target_spawn = Vector2(1086, 757.5)
+
+[node name="Mob1" parent="YSortRoot" unique_id=681729753 instance=ExtResource("91_mob")]
+position = Vector2(505, 1150)
+
+[node name="Mob2" parent="YSortRoot" unique_id=399524683 instance=ExtResource("91_mob")]
+position = Vector2(460, 750)
+
+[node name="Mob3" parent="YSortRoot" unique_id=360747725 instance=ExtResource("91_mob")]
+position = Vector2(550, 450)
+
+[node name="RoomEntranceLeftUpper" parent="." unique_id=724181362 instance=ExtResource("3_portal")]
 position = Vector2(70, 560)
 target_scene = "res://scenes/chapter_8/chapter_8_room.tscn"
 target_spawn = Vector2(722, 871)
 prompt_text = "กด E เพื่อเข้าห้อง"
 interaction_size = Vector2(220, 260)
 
-[node name="RoomEntranceRightUpper" parent="." instance=ExtResource("3_portal")]
+[node name="RoomEntranceRightUpper" parent="." unique_id=33816890 instance=ExtResource("3_portal")]
 position = Vector2(954, 560)
 target_scene = "res://scenes/chapter_8/chapter_8_room_2.tscn"
 target_spawn = Vector2(724, 812)
 prompt_text = "กด E เพื่อเข้าห้อง"
 interaction_size = Vector2(220, 260)
 
-[node name="RoomEntranceLeftLower" parent="." instance=ExtResource("3_portal")]
+[node name="RoomEntranceLeftLower" parent="." unique_id=606907370 instance=ExtResource("3_portal")]
 position = Vector2(70, 1120)
 target_scene = "res://scenes/chapter_8/chapter_8_room_3.tscn"
 target_spawn = Vector2(721, 796)
 prompt_text = "กด E เพื่อเข้าห้อง"
 interaction_size = Vector2(220, 260)
 
-[node name="RoomEntranceRightLower" parent="." instance=ExtResource("3_portal")]
+[node name="RoomEntranceRightLower" parent="." unique_id=2137021775 instance=ExtResource("3_portal")]
 position = Vector2(954, 1120)
 target_scene = "res://scenes/chapter_8/chapter_8_room_4.tscn"
 target_spawn = Vector2(723, 778)
 prompt_text = "กด E เพื่อเข้าห้อง"
 interaction_size = Vector2(220, 260)
 
-[node name="Chapter9Portal" parent="YSortRoot" instance=ExtResource("3_portal")]
-position = Vector2(505, 90)
-target_scene = "res://scenes/chapter_9/chapter_9.tscn"
-target_spawn = Vector2(718, 995)
-
-[node name="Chapter7Portal" parent="YSortRoot" instance=ExtResource("3_portal")]
-position = Vector2(507, 1490)
-target_scene = "res://scenes/chapter_7/chapter_7.tscn"
-target_spawn = Vector2(1086, 757.5)
-
-[node name="Mob1" parent="YSortRoot" instance=ExtResource("91_mob")]
-position = Vector2(505, 1150)
-
-[node name="Mob2" parent="YSortRoot" instance=ExtResource("91_mob")]
-position = Vector2(460, 750)
-
-[node name="Mob3" parent="YSortRoot" instance=ExtResource("91_mob")]
-position = Vector2(550, 450)
-
-[node name="Chapter8CutsceneLayer" type="CanvasLayer" parent="."]
+[node name="Chapter8CutsceneLayer" type="CanvasLayer" parent="." unique_id=895637992]
 layer = 100
 
-[node name="Chapter8Cutscene" type="Control" parent="Chapter8CutsceneLayer"]
+[node name="Chapter8Cutscene" type="Control" parent="Chapter8CutsceneLayer" unique_id=125527496]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -421,7 +427,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("chapter_8_cutscene_script")
 
-[node name="CutsceneImage" type="TextureRect" parent="Chapter8CutsceneLayer/Chapter8Cutscene"]
+[node name="CutsceneImage" type="TextureRect" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=163131785]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -433,7 +439,7 @@ texture = ExtResource("chapter_8_cutscene_image")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="BackgroundDim" type="ColorRect" parent="Chapter8CutsceneLayer/Chapter8Cutscene"]
+[node name="BackgroundDim" type="ColorRect" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=1831463937]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -443,7 +449,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
 
-[node name="TitleBanner" type="NinePatchRect" parent="Chapter8CutsceneLayer/Chapter8Cutscene"]
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=2027717848]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.19
@@ -457,7 +463,7 @@ patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
 
-[node name="Title" type="Label" parent="Chapter8CutsceneLayer/Chapter8Cutscene/TitleBanner"]
+[node name="Title" type="Label" parent="Chapter8CutsceneLayer/Chapter8Cutscene/TitleBanner" unique_id=428710929]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -473,7 +479,7 @@ text = "ปริศนาแห่งพระราชวังลงกา"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter8CutsceneLayer/Chapter8Cutscene"]
+[node name="Dialogue" type="Label" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=1864235937]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.07
@@ -496,7 +502,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ContinuePrompt" type="Label" parent="Chapter8CutsceneLayer/Chapter8Cutscene"]
+[node name="ContinuePrompt" type="Label" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=1969490375]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -518,7 +524,7 @@ theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
 
-[node name="FadeOverlay" type="ColorRect" parent="Chapter8CutsceneLayer/Chapter8Cutscene"]
+[node name="FadeOverlay" type="ColorRect" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=1578580854]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

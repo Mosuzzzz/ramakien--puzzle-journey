@@ -1,6 +1,7 @@
 extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
+const GameState := preload("res://scenes/game_state.gd")
 
 const DIALOGUES: Array[String] = [
 	"คำบรรยาย: หลังจากพระรามผ่านปริศนาภายในพระราชวังลงกาได้สำเร็จ พระรามก็มาถึงท้องพระโรง ที่ซึ่งทศกัณฐ์กำลังรออยู่",
@@ -21,6 +22,9 @@ var _finished := false
 
 
 func _ready() -> void:
+	if GameState.chapter_9_thotsakan_defeated:
+		queue_free()
+		return
 	get_tree().paused = true
 	_show_dialogue(0, false)
 	CutsceneSkip.attach(self, _finish_cutscene)
