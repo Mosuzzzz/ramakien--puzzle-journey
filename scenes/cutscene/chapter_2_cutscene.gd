@@ -21,9 +21,14 @@ var _finished := false
 
 
 func _ready() -> void:
-	get_tree().paused = true
-	_show_dialogue(0, false)
+	hide()
 	CutsceneSkip.attach(self, _finish_cutscene)
+
+
+func show_cutscene() -> void:
+	get_tree().paused = true
+	show()
+	_show_dialogue(0, false)
 	_play_intro_transition()
 
 
