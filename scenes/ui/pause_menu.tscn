@@ -99,9 +99,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
+offset_left = -230.0
 offset_top = -160.0
-offset_right = 200.0
+offset_right = 230.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -164,21 +164,34 @@ alignment = 1
 theme_override_constants/separation = 16
 
 [node name="ResumeButton" type="Button" parent="Dim/Panel/VBox/ButtonsRow"]
-custom_minimum_size = Vector2(145, 50)
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "เล่นต่อ"
 theme_override_fonts/font = ExtResource("7_sarabun_b")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("resume_normal")
+theme_override_styles/pressed = SubResource("resume_pressed")
+theme_override_styles/hover = SubResource("resume_hover")
+
+[node name="SaveButton" type="Button" parent="Dim/Panel/VBox/ButtonsRow"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "บันทึกเกม"
+theme_override_fonts/font = ExtResource("7_sarabun_b")
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("resume_normal")
 theme_override_styles/pressed = SubResource("resume_pressed")
 theme_override_styles/hover = SubResource("resume_hover")
 
 [node name="MenuButton" type="Button" parent="Dim/Panel/VBox/ButtonsRow"]
-custom_minimum_size = Vector2(145, 50)
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "หน้าหลัก"
 theme_override_fonts/font = ExtResource("7_sarabun_b")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("menu_normal")
 theme_override_styles/pressed = SubResource("menu_pressed")
 theme_override_styles/hover = SubResource("menu_hover")
@@ -188,4 +201,5 @@ theme_override_styles/hover = SubResource("menu_hover")
 [connection signal="toggled" from="Dim/Panel/VBox/FullscreenCheck" to="." method="_on_fullscreen_toggled"]
 [connection signal="item_selected" from="Dim/Panel/VBox/FontRow/FontOption" to="." method="_on_font_selected"]
 [connection signal="pressed" from="Dim/Panel/VBox/ButtonsRow/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Dim/Panel/VBox/ButtonsRow/SaveButton" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Dim/Panel/VBox/ButtonsRow/MenuButton" to="." method="_on_menu_pressed"]

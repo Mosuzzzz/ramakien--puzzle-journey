@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/save_slots.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="2_cinzel"]
+[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="3_panel_bg"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="4_sarabun_b"]
+
+[sub_resource type="StyleBoxTexture" id="panel_bg"]
+content_margin_left = 45.0
+content_margin_top = 35.0
+content_margin_right = 45.0
+content_margin_bottom = 35.0
+texture = ExtResource("3_panel_bg")
+texture_margin_left = 45.0
+texture_margin_top = 35.0
+texture_margin_right = 45.0
+texture_margin_bottom = 35.0
+
+[node name="SaveSlots" type="CanvasLayer"]
+layer = 20
+process_mode = 3
+script = ExtResource("1_script")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+mouse_filter = 1
+
+[node name="Panel" type="PanelContainer" parent="Dim"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -190.0
+offset_right = 230.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_bg")
+
+[node name="VBox" type="VBoxContainer" parent="Dim/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Dim/Panel/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cinzel")
+theme_override_font_sizes/font_size = 24
+text = "บันทึกเกม"
+horizontal_alignment = 1
+
+[node name="Slot0" type="Button" parent="Dim/Panel/VBox"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_sarabun_b")
+theme_override_font_sizes/font_size = 15
+text = "ช่อง 1 — ว่าง"
+
+[node name="Slot1" type="Button" parent="Dim/Panel/VBox"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_sarabun_b")
+theme_override_font_sizes/font_size = 15
+text = "ช่อง 2 — ว่าง"
+
+[node name="Slot2" type="Button" parent="Dim/Panel/VBox"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_sarabun_b")
+theme_override_font_sizes/font_size = 15
+text = "ช่อง 3 — ว่าง"
+
+[node name="CloseButton" type="Button" parent="Dim/Panel/VBox"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_sarabun_b")
+theme_override_font_sizes/font_size = 15
+text = "ปิด"
+
+[connection signal="pressed" from="Dim/Panel/VBox/CloseButton" to="." method="_on_close_pressed"]

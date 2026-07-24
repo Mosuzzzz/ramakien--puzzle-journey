@@ -20,6 +20,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _hud_allowed and event.is_action_pressed("ui_cancel"):
 		_toggle()
 
+func is_open() -> bool:
+	return _dim.visible
+
+func force_close() -> void:
+	_dim.visible = false
+	get_tree().paused = false
+
 func set_hud_visible(shown: bool) -> void:
 	_hud_allowed = shown
 	_gear.visible = shown
@@ -46,6 +53,9 @@ func _on_font_selected(index: int) -> void:
 
 func _on_resume_pressed() -> void:
 	_toggle()
+
+func _on_save_pressed() -> void:
+	SaveSlots.open("save")
 
 func _on_menu_pressed() -> void:
 	get_tree().paused = false

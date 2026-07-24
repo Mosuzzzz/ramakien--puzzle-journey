@@ -21,6 +21,7 @@ Dialogue="*res://scenes/ui/dialogue_manager.tscn"
 Quest="*res://scenes/ui/quest_log.tscn"
 PauseMenu="*res://scenes/ui/pause_menu.tscn"
 Inv="*res://scenes/ui/inventory.tscn"
+SaveSlots="*res://scenes/ui/save_slots.tscn"
 
 [display]
 
