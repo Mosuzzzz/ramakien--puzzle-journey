@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://b56hepwwhvpbh" path="res://assets/ui/logo/Logo.PNG" id="3_logo"]
 [ext_resource type="Texture2D" uid="uid://bsdap8odu3xqx" path="res://assets/ui/lable/pieces1/banner_green_star.png" id="4_btn_start"]
 [ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="5_cinzel"]
-[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="6_sarabun"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="7_sarabun_b"]
 [ext_resource type="Texture2D" uid="uid://cnnr8lmdpj45" path="res://assets/ui/lable/pieces1/banner_red_x.png" id="8_btn_quit"]
-[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/banner_red_gear.png" id="9_btn_settings"]
+[ext_resource type="Texture2D" uid="uid://0k4hw3458s7y" path="res://assets/ui/lable/pieces1/banner_red_gear.png" id="9_btn_settings"]
+[ext_resource type="Texture2D" uid="uid://rk24mljjx1q" path="res://assets/ui/lable/pieces1/banner_blue_star.png" id="10_btn_load"]
 
 [sub_resource type="FontVariation" id="font_cinzel_bold"]
 fallbacks = Array[Font]([ExtResource("7_sarabun_b")])
@@ -42,28 +42,44 @@ modulate_color = Color(1.18, 1.18, 1.1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="no_focus"]
 
-[sub_resource type="StyleBoxTexture" id="quit_normal"]
+[sub_resource type="StyleBoxTexture" id="load_normal"]
 content_margin_left = 44.0
 content_margin_top = 8.0
 content_margin_right = 16.0
 content_margin_bottom = 10.0
-texture = ExtResource("8_btn_quit")
+texture = ExtResource("10_btn_load")
 
-[sub_resource type="StyleBoxTexture" id="quit_pressed"]
+[sub_resource type="StyleBoxTexture" id="load_pressed"]
 content_margin_left = 44.0
 content_margin_top = 10.0
 content_margin_right = 16.0
 content_margin_bottom = 8.0
-texture = ExtResource("8_btn_quit")
+texture = ExtResource("10_btn_load")
 modulate_color = Color(0.8, 0.8, 0.8, 1)
 
-[sub_resource type="StyleBoxTexture" id="quit_hover"]
+[sub_resource type="StyleBoxTexture" id="load_hover"]
 content_margin_left = 44.0
 content_margin_top = 8.0
 content_margin_right = 16.0
 content_margin_bottom = 10.0
-texture = ExtResource("8_btn_quit")
-modulate_color = Color(1.18, 1.1, 1.1, 1)
+texture = ExtResource("10_btn_load")
+modulate_color = Color(1.1, 1.1, 1.18, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_focus"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.95, 0.7, 0.85)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxTexture" id="settings_normal"]
 content_margin_left = 44.0
@@ -88,41 +104,28 @@ content_margin_bottom = 10.0
 texture = ExtResource("9_btn_settings")
 modulate_color = Color(1.18, 1.1, 1.1, 1)
 
-[sub_resource type="StyleBoxFlat" id="btn_focus"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.95, 0.7, 0.85)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
+[sub_resource type="StyleBoxTexture" id="quit_normal"]
+content_margin_left = 44.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+texture = ExtResource("8_btn_quit")
 
-[sub_resource type="LabelSettings" id="hint_label"]
-font = ExtResource("6_sarabun")
-font_color = Color(1, 1, 1, 0.8)
-shadow_size = 4
-shadow_color = Color(0, 0, 0, 0.7)
+[sub_resource type="StyleBoxTexture" id="quit_pressed"]
+content_margin_left = 44.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+texture = ExtResource("8_btn_quit")
+modulate_color = Color(0.8, 0.8, 0.8, 1)
 
-[sub_resource type="FontVariation" id="font_cinzel_semibold"]
-fallbacks = Array[Font]([ExtResource("6_sarabun")])
-base_font = ExtResource("5_cinzel")
-variation_opentype = {
-2003265652: 600
-}
-
-[sub_resource type="LabelSettings" id="version_label"]
-font = SubResource("font_cinzel_semibold")
-font_size = 13
-font_color = Color(1, 1, 1, 0.55)
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 0.6)
+[sub_resource type="StyleBoxTexture" id="quit_hover"]
+content_margin_left = 44.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+texture = ExtResource("8_btn_quit")
+modulate_color = Color(1.18, 1.1, 1.1, 1)
 
 [node name="HomePage" type="Control" unique_id=834778796]
 layout_mode = 3
@@ -132,6 +135,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+metadata/_edit_lock_ = true
 
 [node name="Background" type="TextureRect" parent="." unique_id=1226173713]
 layout_mode = 1
@@ -163,16 +167,16 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 183.0
-offset_top = -387.0
-offset_right = 463.0
-offset_bottom = -227.0
+offset_left = 191.0
+offset_top = -383.0
+offset_right = 471.0
+offset_bottom = -125.0
 grow_vertical = 0
-theme_override_constants/separation = 18
+theme_override_constants/separation = 14
 alignment = 1
 
 [node name="StartButton" type="Button" parent="Menu" unique_id=1894225114]
-custom_minimum_size = Vector2(280, 62)
+custom_minimum_size = Vector2(280, 54)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.55, 1)
 theme_override_colors/font_focus_color = Color(1, 0.95, 0.7, 1)
@@ -186,8 +190,23 @@ theme_override_styles/hover = SubResource("start_hover")
 theme_override_styles/focus = SubResource("no_focus")
 text = "START"
 
+[node name="LoadButton" type="Button" parent="Menu" unique_id=692810346]
+custom_minimum_size = Vector2(280, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.55, 1)
+theme_override_colors/font_focus_color = Color(1, 0.95, 0.7, 1)
+theme_override_colors/font_pressed_color = Color(0.95, 0.8, 0.45, 1)
+theme_override_colors/font_hover_color = Color(1, 0.97, 0.75, 1)
+theme_override_fonts/font = SubResource("font_cinzel_bold")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("load_normal")
+theme_override_styles/pressed = SubResource("load_pressed")
+theme_override_styles/hover = SubResource("load_hover")
+theme_override_styles/focus = SubResource("btn_focus")
+text = "LOAD GAME"
+
 [node name="SettingsButton" type="Button" parent="Menu" unique_id=692810345]
-custom_minimum_size = Vector2(280, 62)
+custom_minimum_size = Vector2(280, 54)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.55, 1)
 theme_override_colors/font_focus_color = Color(1, 0.95, 0.7, 1)
@@ -202,7 +221,7 @@ theme_override_styles/focus = SubResource("btn_focus")
 text = "SETTINGS"
 
 [node name="QuitButton" type="Button" parent="Menu" unique_id=1080403444]
-custom_minimum_size = Vector2(280, 62)
+custom_minimum_size = Vector2(280, 54)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.55, 1)
 theme_override_colors/font_focus_color = Color(1, 0.95, 0.7, 1)
@@ -216,37 +235,7 @@ theme_override_styles/hover = SubResource("quit_hover")
 theme_override_styles/focus = SubResource("btn_focus")
 text = "QUIT"
 
-[node name="Hint" type="Label" parent="." unique_id=441417374]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 443.0
-offset_top = -37.0
-offset_right = 723.0
-offset_bottom = -13.0
-grow_vertical = 0
-text = "กด ENTER เพื่อเริ่มการเดินทาง"
-label_settings = SubResource("hint_label")
-horizontal_alignment = 1
-
-[node name="Version" type="Label" parent="." unique_id=657363499]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -220.0
-offset_top = -34.0
-offset_right = -14.0
-offset_bottom = -12.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Ramakien: Puzzle Journey"
-label_settings = SubResource("version_label")
-horizontal_alignment = 2
-
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/LoadButton" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="Menu/SettingsButton" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Menu/QuitButton" to="." method="_on_quit_pressed"]

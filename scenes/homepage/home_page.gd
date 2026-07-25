@@ -30,6 +30,9 @@ func _on_start_pressed() -> void:
 	GameState.chapter_9_sida_rescued = false
 	get_tree().change_scene_to_file(FIRST_CHAPTER)
 
+func _on_load_pressed() -> void:
+	SaveSlots.open("load")
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
