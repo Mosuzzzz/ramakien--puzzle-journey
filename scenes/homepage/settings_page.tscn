@@ -1,48 +1,64 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene format=3 uid="uid://luucqtt38xyw"]
 
-[ext_resource type="Script" path="res://scenes/homepage/settings_page.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dll0kexissatr" path="res://scenes/homepage/settings_page.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://ccg4q53rnwpi0" path="res://assets/ui/bg/HOME_BG.png" id="2_bg"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_gear.png" id="3_gear"]
-[ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="4_cinzel"]
-[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="5_panel_bg"]
-[ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/icon_arrow_left.png" id="6_btn_back"]
-[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="7_sarabun_b"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="3_sarabun_b"]
+[ext_resource type="Texture2D" uid="uid://dip440xqj2nvb" path="res://assets/ui/settings/content_frame.png" id="6_frame"]
+[ext_resource type="Texture2D" uid="uid://b7rli43t1rm6d" path="res://assets/ui/settings/icon_volume.png" id="13_icon_volume"]
+[ext_resource type="Texture2D" uid="uid://cy170t0824yx3" path="res://assets/ui/settings/icon_music.png" id="14_icon_music"]
+[ext_resource type="Texture2D" uid="uid://bkfbgrjqdnt7m" path="res://assets/ui/settings/icon_volume2.png" id="15_icon_volume2"]
+[ext_resource type="Texture2D" uid="uid://wae457wclqn6" path="res://assets/ui/settings/icon_screen.png" id="16_icon_screen"]
+[ext_resource type="Texture2D" uid="uid://cyceancqjkr4" path="res://assets/ui/settings/icon_resolution.png" id="17_icon_res"]
+[ext_resource type="Texture2D" uid="uid://c8olqddorebqn" path="res://assets/ui/settings/setting_asset.PNG" id="17_kph5e"]
+[ext_resource type="Texture2D" uid="uid://cbdsii2p2uc3n" path="res://assets/ui/settings/icon_brightness.png" id="18_icon_bright"]
+[ext_resource type="Texture2D" uid="uid://c0mjlbv60y2f7" path="res://assets/ui/settings/icon_hints.png" id="19_icon_hints"]
+[ext_resource type="Texture2D" uid="uid://cir4lubb8jgt2" path="res://assets/ui/settings/icon_tutorial.png" id="20_icon_tut"]
+[ext_resource type="Texture2D" uid="uid://bhsw5i03jt11u" path="res://assets/ui/settings/icon_save.png" id="21_icon_save"]
+[ext_resource type="Texture2D" uid="uid://cq216c7mj3lfe" path="res://assets/ui/settings/btn_reset.png" id="22_btn_reset"]
+[ext_resource type="Texture2D" uid="uid://b6mid4x2j81q5" path="res://assets/ui/settings/btn_back.png" id="24_btn_back"]
+[ext_resource type="Texture2D" uid="uid://b410ggbh6x802" path="res://assets/ui/settings/btn_reset_hover.png" id="25_reset_h"]
+[ext_resource type="Texture2D" uid="uid://x8elici4eocd" path="res://assets/ui/settings/btn_back_hover.png" id="26_back_h"]
 
-[sub_resource type="StyleBoxTexture" id="panel_bg"]
-content_margin_left = 45.0
-content_margin_top = 35.0
-content_margin_right = 45.0
-content_margin_bottom = 35.0
-texture = ExtResource("5_panel_bg")
-texture_margin_left = 45.0
-texture_margin_top = 35.0
-texture_margin_right = 45.0
-texture_margin_bottom = 35.0
+[sub_resource type="StyleBoxFlat" id="slider_bg"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.29, 0.22, 0.13, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.55, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxTexture" id="back_normal"]
-content_margin_left = 12.0
-content_margin_top = 6.0
-content_margin_right = 12.0
-content_margin_bottom = 8.0
-texture = ExtResource("6_btn_back")
+[sub_resource type="StyleBoxFlat" id="slider_fill"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.2, 0.5, 0.2, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxTexture" id="back_pressed"]
-content_margin_left = 12.0
-content_margin_top = 8.0
-content_margin_right = 12.0
-content_margin_bottom = 6.0
-texture = ExtResource("6_btn_back")
-modulate_color = Color(0.8, 0.8, 0.8, 1)
+[sub_resource type="StyleBoxFlat" id="readout_bg"]
+content_margin_left = 8.0
+content_margin_top = 3.0
+content_margin_right = 8.0
+content_margin_bottom = 3.0
+bg_color = Color(0.32, 0.18, 0.1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.65, 0.5, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxTexture" id="back_hover"]
-content_margin_left = 12.0
-content_margin_top = 6.0
-content_margin_right = 12.0
-content_margin_bottom = 8.0
-texture = ExtResource("6_btn_back")
-modulate_color = Color(1.15, 1.15, 1.1, 1)
-
-[node name="SettingsPage" type="Control"]
+[node name="SettingsPage" type="Control" unique_id=517685551]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=2124288776]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,84 +78,489 @@ texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Dim" type="ColorRect" parent="." unique_id=154000042]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="ContentFrame" type="NinePatchRect" parent="." unique_id=172992871]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -160.0
-offset_right = 200.0
-offset_bottom = 160.0
+offset_left = -410.0
+offset_top = -240.0
+offset_right = 410.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("panel_bg")
+texture = ExtResource("6_frame")
+patch_margin_left = 44
+patch_margin_top = 44
+patch_margin_right = 44
+patch_margin_bottom = 44
 
-[node name="VBox" type="VBoxContainer" parent="Panel"]
-layout_mode = 2
-theme_override_constants/separation = 20
+[node name="Margin" type="MarginContainer" parent="ContentFrame" unique_id=1529234109]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 46
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 24
 
-[node name="TitleRow" type="HBoxContainer" parent="Panel/VBox"]
+[node name="VBox" type="VBoxContainer" parent="ContentFrame/Margin" unique_id=1576295063]
 layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
-[node name="GearIcon" type="TextureRect" parent="Panel/VBox/TitleRow"]
-custom_minimum_size = Vector2(32, 32)
+[node name="Scroll" type="ScrollContainer" parent="ContentFrame/Margin/VBox" unique_id=865214178]
 layout_mode = 2
-texture = ExtResource("3_gear")
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="ContentFrame/Margin/VBox/Scroll" unique_id=1843815608]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="AudioHeader" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=1460333895]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.3, 0.13, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "◆ AUDIO"
+
+[node name="MasterVolumeRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=1463193018]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow" unique_id=2106674436]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("13_icon_volume")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 6
 
-[node name="Title" type="Label" parent="Panel/VBox/TitleRow"]
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow" unique_id=1382964497]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_cinzel")
-theme_override_font_sizes/font_size = 26
-text = "SETTINGS"
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Master Volume"
 vertical_alignment = 1
 
-[node name="VolumeLabel" type="Label" parent="Panel/VBox"]
+[node name="VolumeSlider" type="HSlider" parent="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow" unique_id=1273556730]
+custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
-text = "Volume"
-
-[node name="VolumeSlider" type="HSlider" parent="Panel/VBox"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("slider_bg")
+theme_override_styles/grabber_area = SubResource("slider_fill")
+theme_override_styles/grabber_area_highlight = SubResource("slider_fill")
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="FullscreenCheck" type="CheckButton" parent="Panel/VBox"]
+[node name="ReadoutBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow" unique_id=1568977130]
 layout_mode = 2
-text = "เต็มจอ (Fullscreen)"
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("readout_bg")
 
-[node name="FontRow" type="HBoxContainer" parent="Panel/VBox"]
+[node name="Readout" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/ReadoutBg" unique_id=231496710]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.65, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 14
+text = "100%"
+horizontal_alignment = 1
+
+[node name="MusicVolumeRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=1090557144]
+modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="FontLabel" type="Label" parent="Panel/VBox/FontRow"]
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow" unique_id=746632000]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-text = "ขนาดตัวอักษร"
+texture = ExtResource("14_icon_music")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow" unique_id=430030746]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Music Volume"
 vertical_alignment = 1
 
-[node name="FontOption" type="OptionButton" parent="Panel/VBox/FontRow"]
+[node name="VolumeSlider" type="HSlider" parent="ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow" unique_id=940938114]
+custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("slider_bg")
+theme_override_styles/grabber_area = SubResource("slider_fill")
+max_value = 1.0
+value = 1.0
+editable = false
 
-[node name="BackButton" type="Button" parent="Panel/VBox"]
-custom_minimum_size = Vector2(170, 50)
+[node name="ReadoutBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow" unique_id=2085177761]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "กลับ"
-theme_override_fonts/font = ExtResource("7_sarabun_b")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("back_normal")
-theme_override_styles/pressed = SubResource("back_pressed")
-theme_override_styles/hover = SubResource("back_hover")
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("readout_bg")
 
-[connection signal="value_changed" from="Panel/VBox/VolumeSlider" to="." method="_on_volume_changed"]
-[connection signal="toggled" from="Panel/VBox/FullscreenCheck" to="." method="_on_fullscreen_toggled"]
-[connection signal="item_selected" from="Panel/VBox/FontRow/FontOption" to="." method="_on_font_selected"]
-[connection signal="pressed" from="Panel/VBox/BackButton" to="." method="_on_back_pressed"]
+[node name="Readout" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow/ReadoutBg" unique_id=1486706814]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.65, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 14
+text = "70%"
+horizontal_alignment = 1
+
+[node name="SFXVolumeRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=1881347558]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow" unique_id=1206417832]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("15_icon_volume2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow" unique_id=1776137947]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "SFX Volume"
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow" unique_id=324582384]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("slider_bg")
+theme_override_styles/grabber_area = SubResource("slider_fill")
+max_value = 1.0
+value = 1.0
+editable = false
+
+[node name="ReadoutBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow" unique_id=1962245387]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("readout_bg")
+
+[node name="Readout" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow/ReadoutBg" unique_id=1570672464]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.65, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 14
+text = "90%"
+horizontal_alignment = 1
+
+[node name="MuteRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=1125799692]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/MuteRow" unique_id=641629713]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("13_icon_volume")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/MuteRow" unique_id=1533852131]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Mute All"
+vertical_alignment = 1
+
+[node name="Check" type="CheckButton" parent="ContentFrame/Margin/VBox/Scroll/Content/MuteRow" unique_id=443840415]
+layout_mode = 2
+disabled = true
+
+[node name="DisplayHeader" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=468985354]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.3, 0.13, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "◆ DISPLAY"
+
+[node name="ScreenModeRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=234846478]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow" unique_id=568795161]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("16_icon_screen")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow" unique_id=1487731770]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Screen Mode"
+vertical_alignment = 1
+
+[node name="LeftArrow" type="Button" parent="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow" unique_id=2052019626]
+custom_minimum_size = Vector2(28, 26)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "◀"
+flat = true
+
+[node name="ValueBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow" unique_id=1613350624]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("readout_bg")
+
+[node name="Value" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/ValueBg" unique_id=103503103]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.65, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 15
+text = "Fullscreen"
+horizontal_alignment = 1
+
+[node name="RightArrow" type="Button" parent="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow" unique_id=1503856752]
+custom_minimum_size = Vector2(28, 26)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "▶"
+flat = true
+
+[node name="ResolutionRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=519347068]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow" unique_id=1548131583]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("17_icon_res")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow" unique_id=55249895]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Resolution"
+vertical_alignment = 1
+
+[node name="ValueBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow" unique_id=63773268]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("readout_bg")
+
+[node name="Value" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow/ValueBg" unique_id=1292697625]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.65, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 15
+text = "1920 x 1080"
+horizontal_alignment = 1
+
+[node name="BrightnessRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=600011608]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/BrightnessRow" unique_id=1696731457]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("18_icon_bright")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/BrightnessRow" unique_id=705985087]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Brightness"
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="ContentFrame/Margin/VBox/Scroll/Content/BrightnessRow" unique_id=1931658435]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("slider_bg")
+theme_override_styles/grabber_area = SubResource("slider_fill")
+max_value = 1.0
+value = 1.0
+editable = false
+
+[node name="ReadoutBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/BrightnessRow" unique_id=131722513]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("readout_bg")
+
+[node name="Readout" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/BrightnessRow/ReadoutBg" unique_id=1481975474]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.65, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 14
+text = "60%"
+horizontal_alignment = 1
+
+[node name="GameplayHeader" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=20578755]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.3, 0.13, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "◆ GAMEPLAY"
+
+[node name="HintsRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=498775445]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/HintsRow" unique_id=1628903243]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("19_icon_hints")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/HintsRow" unique_id=1482473649]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Hints"
+vertical_alignment = 1
+
+[node name="Check" type="CheckButton" parent="ContentFrame/Margin/VBox/Scroll/Content/HintsRow" unique_id=1939803689]
+layout_mode = 2
+disabled = true
+button_pressed = true
+
+[node name="TutorialRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=853790638]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/TutorialRow" unique_id=771110763]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("20_icon_tut")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/TutorialRow" unique_id=1835915163]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Tutorial Tips"
+vertical_alignment = 1
+
+[node name="Check" type="CheckButton" parent="ContentFrame/Margin/VBox/Scroll/Content/TutorialRow" unique_id=450321253]
+layout_mode = 2
+disabled = true
+button_pressed = true
+
+[node name="AutoSaveRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=298350115]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="ContentFrame/Margin/VBox/Scroll/Content/AutoSaveRow" unique_id=1358737403]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("21_icon_save")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content/AutoSaveRow" unique_id=1161703786]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.25, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "Auto Save"
+vertical_alignment = 1
+
+[node name="Check" type="CheckButton" parent="ContentFrame/Margin/VBox/Scroll/Content/AutoSaveRow" unique_id=49193175]
+layout_mode = 2
+disabled = true
+button_pressed = true
+
+[node name="ButtonsRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox" unique_id=1516414166]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="ResetButton" type="TextureButton" parent="ContentFrame/Margin/VBox/ButtonsRow" unique_id=1372673925]
+custom_minimum_size = Vector2(178, 54)
+layout_mode = 2
+texture_normal = ExtResource("22_btn_reset")
+texture_hover = ExtResource("25_reset_h")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BackButton" type="TextureButton" parent="ContentFrame/Margin/VBox/ButtonsRow" unique_id=202191427]
+custom_minimum_size = Vector2(178, 54)
+layout_mode = 2
+texture_normal = ExtResource("24_btn_back")
+texture_hover = ExtResource("26_back_h")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SettingAsset" type="Sprite2D" parent="." unique_id=1262078865]
+position = Vector2(562, 112)
+scale = Vector2(0.60967743, 0.60967743)
+texture = ExtResource("17_kph5e")
+region_enabled = true
+region_rect = Rect2(352.48706, 14.575562, 592.6592, 155.57306)
+
+[connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/VolumeSlider" to="." method="_on_volume_changed"]
+[connection signal="pressed" from="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/LeftArrow" to="." method="_on_screen_mode_cycle"]
+[connection signal="pressed" from="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/RightArrow" to="." method="_on_screen_mode_cycle"]
+[connection signal="pressed" from="ContentFrame/Margin/VBox/ButtonsRow/ResetButton" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="ContentFrame/Margin/VBox/ButtonsRow/BackButton" to="." method="_on_back_pressed"]

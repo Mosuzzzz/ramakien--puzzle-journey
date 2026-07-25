@@ -1,30 +1,38 @@
 extends Control
 
 const HOME_PAGE := "res://scenes/homepage/home_page.tscn"
-const FONT_LABELS := ["เล็ก", "กลาง", "ใหญ่"]
+const SCREEN_MODE_LABELS := ["Windowed", "Fullscreen"]
 
-@onready var _volume_slider: HSlider = $Panel/VBox/VolumeSlider
-@onready var _fullscreen_check: CheckButton = $Panel/VBox/FullscreenCheck
-@onready var _font_option: OptionButton = $Panel/VBox/FontRow/FontOption
+@onready var _volume_slider: HSlider = $ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/VolumeSlider
+@onready var _volume_readout: Label = $ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/ReadoutBg/Readout
+@onready var _screen_mode_value: Label = $ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/ValueBg/Value
 
 func _ready() -> void:
 	PauseMenu.set_hud_visible(false)
 	Inv.set_hud_visible(false)
 	Quest.set_hud_visible(false)
+	_refresh()
+
+func _refresh() -> void:
 	_volume_slider.set_value_no_signal(Settings.master_volume)
-	_fullscreen_check.set_pressed_no_signal(Settings.fullscreen)
-	for label in FONT_LABELS:
-		_font_option.add_item(label)
-	_font_option.select(Settings.font_size_index)
+	_update_readout(Settings.master_volume)
+	_screen_mode_value.text = SCREEN_MODE_LABELS[1 if Settings.fullscreen else 0]
 
 func _on_volume_changed(value: float) -> void:
 	Settings.set_master_volume(value)
+	_update_readout(value)
 
-func _on_fullscreen_toggled(on: bool) -> void:
-	Settings.set_fullscreen(on)
+func _update_readout(value: float) -> void:
+	_volume_readout.text = "%d%%" % roundi(value * 100.0)
 
-func _on_font_selected(index: int) -> void:
-	Settings.set_font_size_index(index)
+func _on_screen_mode_cycle() -> void:
+	Settings.set_fullscreen(not Settings.fullscreen)
+	_screen_mode_value.text = SCREEN_MODE_LABELS[1 if Settings.fullscreen else 0]
+
+func _on_reset_pressed() -> void:
+	Settings.set_master_volume(1.0)
+	Settings.set_fullscreen(false)
+	_refresh()
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file(HOME_PAGE)
