@@ -1,6 +1,6 @@
 extends Area2D
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 @export_file("*.tscn") var target_scene: String
 @export var target_spawn := Vector2.ZERO

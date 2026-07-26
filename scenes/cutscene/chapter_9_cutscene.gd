@@ -1,7 +1,7 @@
 extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 const DIALOGUES: Array[String] = [
 	"คำบรรยาย: หลังจากพระรามผ่านปริศนาภายในพระราชวังลงกาได้สำเร็จ พระรามก็มาถึงท้องพระโรง ที่ซึ่งทศกัณฐ์กำลังรออยู่",

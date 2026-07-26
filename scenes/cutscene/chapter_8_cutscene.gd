@@ -1,7 +1,7 @@
 extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 const DIALOGUES: Array[String] = [
 	"คำบรรยาย: หลังจากพระรามฝ่าแนวป้องกันของเหล่าทหารยักษ์ และบุกเข้าสู่พระราชวังลงกาได้สำเร็จ",

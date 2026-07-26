@@ -1,6 +1,6 @@
 extends Node2D
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

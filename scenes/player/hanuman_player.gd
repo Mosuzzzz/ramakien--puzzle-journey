@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal health_changed(current_health: int, max_health: int)
 signal died
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 const MeleeHitScene := preload("res://scenes/props/melee_hit.tscn")
 
 @export var character_name: String = "Hanuman"

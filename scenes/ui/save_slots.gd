@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const SaveGame := preload("res://scenes/save_game.gd")
+const SaveGame := preload("res://scenes/core/save_game.gd")
 const HOME_PAGE := "res://scenes/homepage/home_page.tscn"
 
 var _mode := "save"

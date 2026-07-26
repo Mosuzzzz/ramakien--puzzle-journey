@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 @export var north_spot := Vector2(0, -180)
 @export var south_spot := Vector2(0, 30)

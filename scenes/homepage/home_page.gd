@@ -1,6 +1,6 @@
 extends Control
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 const FIRST_CHAPTER := "res://scenes/prologue/prologue.tscn"
 const SETTINGS_PAGE := "res://scenes/homepage/settings_page.tscn"
 

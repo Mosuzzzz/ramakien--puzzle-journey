@@ -1,6 +1,6 @@
 extends Node2D
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 const MAP_WIDTH := 1881.0
 const PATH_Y := 398.0

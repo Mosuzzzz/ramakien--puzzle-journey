@@ -1,6 +1,6 @@
 extends RefCounted
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 const SLOT_COUNT := 3
 
@@ -70,7 +70,7 @@ static func save_to_slot(slot: int) -> void:
 	# GameState is preloaded with a strict static type, which the compiler
 	# refuses for dynamic get()/set() by key — load() again here as a loose
 	# Variant handle to the same script class just for that
-	var state_dyn = load("res://scenes/game_state.gd")
+	var state_dyn = load("res://scenes/core/game_state.gd")
 	for key in STATE_KEYS:
 		data[key] = state_dyn.get(key)
 	var f := FileAccess.open(_slot_path(slot), FileAccess.WRITE)
@@ -82,7 +82,7 @@ static func load_slot(slot: int) -> void:
 	var data := slot_info(slot)
 	if not data.exists:
 		return
-	var state_dyn = load("res://scenes/game_state.gd")
+	var state_dyn = load("res://scenes/core/game_state.gd")
 	for key in STATE_KEYS:
 		if data.has(key):
 			state_dyn.set(key, data[key])

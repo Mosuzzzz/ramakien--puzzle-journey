@@ -1,6 +1,6 @@
 extends Node2D
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 @onready var _sida: CharacterBody2D = $YSortRoot/Sida
 

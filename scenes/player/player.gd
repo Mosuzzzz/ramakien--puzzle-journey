@@ -3,8 +3,17 @@ extends CharacterBody2D
 signal health_changed(current_health: int, max_health: int)
 signal died
 
-const GameState := preload("res://scenes/game_state.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 const ArrowScene := preload("res://scenes/props/arrow.tscn")
+
+# fractions of the player_bar texture width where the red pill begins/ends
+# (the gold flame ends take up the rest)
+const BAR_FILL_START := 0.027
+const BAR_FILL_END := 0.97
+
+# horizontal offset (texture px) of the drawn character from the frame center,
+# measured from the sprite sheets; used to keep the character centered when flipping
+const CHAR_X_OFF := {"idle": 0.0, "walk": 0.0, "shoot": 0.0}
 
 @export var character_name: String = "Phra Ram"
 @export var speed: float = 150.0
@@ -16,15 +25,13 @@ const ArrowScene := preload("res://scenes/props/arrow.tscn")
 @export var potion_heal: int = 30
 
 var current_health: int = max_health
+# scripted forward push (e.g. a chase sequence) layered on top of normal
+# movement — additive, so real input is never overridden or cancelled
+var auto_run_velocity := Vector2.ZERO
+# when true, WASD/arrow steering is ignored (e.g. a fully scripted chase);
+# dash and other actions are unaffected
+var movement_locked := false
 
-# fractions of the player_bar texture width where the red pill begins/ends
-# (the gold flame ends take up the rest)
-const BAR_FILL_START := 0.027
-const BAR_FILL_END := 0.97
-
-# horizontal offset (texture px) of the drawn character from the frame center,
-# measured from the sprite sheets; used to keep the character centered when flipping
-const CHAR_X_OFF := {"idle": 0.0, "walk": 0.0, "shoot": 0.0}
 var _cx: float = 0.0
 var _face_right := false
 var _shooting := false
@@ -33,12 +40,6 @@ var _dash_time_left := 0.0
 var _dash_cooldown_left := 0.0
 var _knockback_velocity := Vector2.ZERO
 var _hit_flash_tween: Tween
-# scripted forward push (e.g. a chase sequence) layered on top of normal
-# movement — additive, so real input is never overridden or cancelled
-var auto_run_velocity := Vector2.ZERO
-# when true, WASD/arrow steering is ignored (e.g. a fully scripted chase);
-# dash and other actions are unaffected
-var movement_locked := false
 var _dead := false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -135,11 +136,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	var dir := Vector2.ZERO
 	if not movement_locked:
-		dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		dir += Vector2(
-			float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
-			float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W))
-		)
+		dir = _read_move_input()
 		if dir.length() > 1.0:
 			dir = dir.normalized()
 	if _dash_time_left > 0.0:
@@ -164,14 +161,20 @@ func _start_dash() -> void:
 	if _dash_cooldown_left > 0.0:
 		return
 
-	var input_direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	input_direction += Vector2(
-		float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
-		float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W))
-	)
+	var input_direction := _read_move_input()
 	_dash_direction = input_direction.normalized() if input_direction.length() > 0.0 else (Vector2.RIGHT if _face_right else Vector2.LEFT)
 	_dash_time_left = dash_duration
 	_dash_cooldown_left = dash_cooldown
+
+
+# combined WASD + arrow-key movement vector (un-normalized)
+func _read_move_input() -> Vector2:
+	var dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	dir += Vector2(
+		float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
+		float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W))
+	)
+	return dir
 
 func _shoot() -> void:
 	_shooting = true
