@@ -3,7 +3,7 @@ set -eu
 
 scene="scenes/chapter_8/chapter_8.tscn"
 cutscene="scenes/cutscene/chapter_8_cutscene.gd"
-game_state="scenes/game_state.gd"
+game_state="scenes/core/game_state.gd"
 home_page="scenes/homepage/home_page.gd"
 
 test -f "$cutscene"
@@ -19,7 +19,7 @@ grep -Fq 'ประตูทุกบานเชื่อมต่อกัน�
 grep -Fq 'พระรามต้องไขปริศนาเพื่อเปิดประตูบานสุดท้าย' "$cutscene"
 grep -Fq 'การเผชิญหน้าครั้งสุดท้ายก็ใกล้จะเริ่มต้น' "$cutscene"
 grep -Fq 'get_tree().paused = true' "$cutscene"
-grep -Fq 'event.keycode == KEY_E' "$cutscene"
+grep -Fq 'CutsceneAdvanceInput.is_advance_event(event, hovered_control)' "$cutscene"
 grep -Fq 'CutsceneSkip.attach(self, _finish_cutscene)' "$cutscene"
 test "$(grep -Fc '"color:a", 1.0, 1.0' "$cutscene")" -ge 1
 test "$(grep -Fc '"color:a", 0.0, 1.0' "$cutscene")" -ge 1

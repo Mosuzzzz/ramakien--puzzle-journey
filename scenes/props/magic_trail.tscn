@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scenes/props/magic_trail.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon/split/ChatGPT_Image_26_ก.ค._2569_22_08_37-removebg-preview.png" id="2_texture"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_magic_trail"]
+radius = 72.0
+
+[node name="MagicTrail" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_texture")
+scale = Vector2(0.16, 0.16)
+
+[node name="Prompt" type="Label" parent="."]
+offset_left = -120.0
+offset_top = -82.0
+offset_right = 120.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 21
+text = "กด E เพื่อตามรอยมนตร์"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_magic_trail")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

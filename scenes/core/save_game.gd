@@ -64,12 +64,15 @@ static func has_any_save() -> bool:
 
 
 static func save_to_slot(slot: int) -> void:
-	var scene := (Engine.get_main_loop() as SceneTree).current_scene
+	var tree := Engine.get_main_loop() as SceneTree
+	var scene := tree.current_scene
 	var player := scene.get_node_or_null("YSortRoot/Player") as Node2D
+	var inventory = tree.root.get_node_or_null("Inv")
 	var data := {
 		"scene_path": scene.scene_file_path,
 		"player_position": [player.global_position.x, player.global_position.y] if player else null,
 		"timestamp": Time.get_datetime_string_from_system(),
+		"inventory": inventory.get_items_snapshot() if inventory != null else {},
 	}
 	# GameState is preloaded with a strict static type, which the compiler
 	# refuses for dynamic get()/set() by key — load() again here as a loose
@@ -91,15 +94,19 @@ static func load_slot(slot: int) -> void:
 	var data := slot_info(slot)
 	if not data.exists:
 		return
+	var tree := Engine.get_main_loop() as SceneTree
 	var state_dyn = load("res://scenes/core/game_state.gd")
 	for key in STATE_KEYS:
 		if data.has(key):
 			state_dyn.set(key, data[key])
+	var inventory = tree.root.get_node_or_null("Inv")
+	if data.has("inventory"):
+		inventory.restore_items(data["inventory"])
 	var pos = data.get("player_position")
 	GameState.next_spawn = Vector2(pos[0], pos[1]) if pos else Vector2.INF
 	# hand the saved quest to the next gameplay scene to re-apply on _ready
 	GameState.next_quest = data.get("quest", {})
-	(Engine.get_main_loop() as SceneTree).change_scene_to_file.call_deferred(data["scene_path"])
+	tree.change_scene_to_file.call_deferred(data["scene_path"])
 
 
 static func delete_slot(slot: int) -> void:

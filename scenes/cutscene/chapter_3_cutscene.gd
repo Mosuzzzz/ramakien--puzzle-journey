@@ -1,6 +1,7 @@
 extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
+const CutsceneAdvanceInput := preload("res://scenes/ui/cutscene_advance_input.gd")
 
 const DIALOGUES: Array[Dictionary] = [
 	{"speaker": "พระลักษมณ์", "text": "พี่ราม ดูตรงนั้นสิ! มีนกตัวใหญ่บาดเจ็บอยู่"},
@@ -64,12 +65,13 @@ func _play_intro_transition() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouse:
-		return  # let the GUI (skip button) receive clicks; the tree is paused anyway
+	var hovered_control := get_viewport().gui_get_hovered_control()
+	if event is InputEventMouse and not CutsceneAdvanceInput.is_advance_event(event, hovered_control):
+		return
 	get_viewport().set_input_as_handled()
 	if _transitioning or _finished:
 		return
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
+	if CutsceneAdvanceInput.is_advance_event(event, hovered_control):
 		_advance_dialogue()
 
 
@@ -104,6 +106,9 @@ func _finish_cutscene() -> void:
 		return
 	_finished = true
 	get_tree().paused = false
+	var chapter := get_tree().current_scene
+	if chapter != null and chapter.has_method("start_feather_quest"):
+		chapter.call("start_feather_quest")
 	queue_free()
 
 

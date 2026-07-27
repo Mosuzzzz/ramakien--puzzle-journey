@@ -16,7 +16,7 @@ grep -Fq 'คำบรรยาย: หลังจากพระรามผ�
 grep -Fq 'ทศกัณฐ์ประกาศว่าจะไม่มีวันยอมคืนสีดา' "$cutscene"
 grep -Fq 'พระรามจึงเข้าประลองกับทศกัณฐ์ในการต่อสู้ครั้งสุดท้าย' "$cutscene"
 grep -Fq 'get_tree().paused = true' "$cutscene"
-grep -Fq 'event.keycode == KEY_E' "$cutscene"
+grep -Fq 'CutsceneAdvanceInput.is_advance_event(event, hovered_control)' "$cutscene"
 grep -Fq 'CutsceneSkip.attach(self, _finish_cutscene)' "$cutscene"
 test "$(grep -Fc '"color:a", 1.0, 1.0' "$cutscene")" -ge 1
 test "$(grep -Fc '"color:a", 0.0, 1.0' "$cutscene")" -ge 1
