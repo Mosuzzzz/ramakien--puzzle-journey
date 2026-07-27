@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://upe4kljbkyld" path="res://assets/cutscene/chapter_4/ChatGPT Image 19 ก.ค. 2569 13_43_25.png" id="13_fifth_cutscene_image"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 [ext_resource type="Script" path="res://scenes/chapter_4/chapter_4.gd" id="chapter_4_script"]
+[ext_resource type="PackedScene" path="res://scenes/props/magic_trail.tscn" id="91_magic_trail"]
+[ext_resource type="PackedScene" path="res://scenes/ui/question_quiz.tscn" id="92_question_quiz"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1448, 80)
@@ -752,11 +754,17 @@ position = Vector2(691, 863)
 position = Vector2(712, 205)
 target_scene = "res://scenes/chapter_5/chapter_5.tscn"
 target_spawn = Vector2(85, 574)
+locked = true
+locked_prompt_text = "ตามรอยมนตร์ให้ครบก่อน"
 
 [node name="Chapter3Portal" parent="YSortRoot" unique_id=469271962 instance=ExtResource("90_portal")]
 position = Vector2(702, 1048)
 target_scene = "res://scenes/chapter_3/chapter_3.tscn"
 target_spawn = Vector2(1110, 990)
+
+[node name="MagicTrail" parent="YSortRoot" instance=ExtResource("91_magic_trail")]
+
+[node name="MagicTrailQuiz" parent="." instance=ExtResource("92_question_quiz")]
 
 [node name="CampFire" type="Sprite2D" parent="." unique_id=2122264671]
 position = Vector2(727, 541)

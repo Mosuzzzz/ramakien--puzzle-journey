@@ -5,6 +5,7 @@ const COMPLETED_TEXT_COLOR := Color("#67d56b")
 
 var _hud_allowed := true
 var _has_quest := false
+var _completed := false
 var target_position := Vector2.INF
 var _target_nodes: Array[Node2D] = []
 var _target_markers: Array[Control] = []
@@ -65,6 +66,7 @@ func clear_targets() -> void:
 
 
 func set_completed(completed: bool) -> void:
+	_completed = completed
 	var color := COMPLETED_TEXT_COLOR if completed else DEFAULT_TEXT_COLOR
 	_name_label.modulate = color
 	_detail_name_label.modulate = color
@@ -73,6 +75,10 @@ func set_completed(completed: bool) -> void:
 
 func get_target_count() -> int:
 	return _target_nodes.size()
+
+
+func is_completed() -> bool:
+	return _completed
 
 func set_hud_visible(shown: bool) -> void:
 	_hud_allowed = shown
