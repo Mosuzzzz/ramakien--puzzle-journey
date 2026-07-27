@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-game_state="scenes/game_state.gd"
+game_state="scenes/core/game_state.gd"
 home_page="scenes/homepage/home_page.gd"
 chapter_8_scene="scenes/chapter_8/chapter_8.tscn"
 chapter_8_script="scenes/chapter_8/chapter_8.gd"

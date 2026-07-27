@@ -29,6 +29,7 @@ var _player: Node2D
 var _face_right := false
 var _attacking := false
 var _hit_flash_tween: Tween
+var damage_gate: Node = null
 
 @onready var _sprite: AnimatedSprite2D = $Sprite
 
@@ -96,11 +97,27 @@ func _play(requested: StringName) -> StringName:
 	return anim
 
 func take_damage(amount: int) -> void:
+	if is_instance_valid(damage_gate) and damage_gate.has_method("request_mob_damage"):
+		damage_gate.request_mob_damage(self, amount)
+		return
+	apply_authorized_damage(amount)
+
+
+func apply_authorized_damage(amount: int) -> void:
 	_flash_hit()
 	_health -= amount
 	if _health <= 0:
 		await get_tree().create_timer(0.12).timeout
 		queue_free()
+
+
+func would_damage_defeat(amount: int) -> bool:
+	return _health - amount <= 0
+
+
+func restore_full_health() -> void:
+	_health = max_health
+
 
 func _flash_hit() -> void:
 	if is_instance_valid(_hit_flash_tween):

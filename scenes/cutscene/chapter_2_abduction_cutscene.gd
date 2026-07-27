@@ -1,6 +1,7 @@
 extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
+const CutsceneAdvanceInput := preload("res://scenes/ui/cutscene_advance_input.gd")
 
 # used when the deer is felled by an arrow (map 1's escape-shot path)
 const ARROW_OPENING: Array[String] = [
@@ -136,12 +137,13 @@ func _play_intro_transition(content: Array[CanvasItem]) -> void:
 func _input(event: InputEvent) -> void:
 	if not _active:
 		return
-	if event is InputEventMouse:
-		return  # let the GUI (skip button) receive clicks; the tree is paused anyway
+	var hovered_control := get_viewport().gui_get_hovered_control()
+	if event is InputEventMouse and not CutsceneAdvanceInput.is_advance_event(event, hovered_control):
+		return
 	get_viewport().set_input_as_handled()
 	if _transitioning:
 		return
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
+	if CutsceneAdvanceInput.is_advance_event(event, hovered_control):
 		_advance_dialogue()
 
 
