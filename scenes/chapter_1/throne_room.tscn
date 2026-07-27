@@ -142,6 +142,17 @@ y_sort_enabled = true
 [node name="King" parent="YSortRoot" unique_id=1141403656 instance=ExtResource("5_king")]
 position = Vector2(281, 185)
 
+[node name="Talkable" parent="YSortRoot/King" instance=ExtResource("7_talkable")]
+position = Vector2(0, -30)
+speaker_name = "ท้าวทศรถ"
+lines = Array[String](["พ่อรามลูกรัก... เจ้ามาถึงแล้วหรือ", "ด้วยสัจวาจาที่พ่อเคยให้ไว้แก่นางไกยเกษี พ่อจำต้องมอบราชสมบัติแก่พระพรต และให้เจ้าออกไปใช้ชีวิตในป่าถึงสิบสี่ปี", "พ่อรู้ว่านี่ไม่เป็นธรรมต่อเจ้าเลย แต่ขัตติยะย่อมไม่อาจผิดคำสัตย์ได้", "จงรักษาตัวให้ดี พ่อรามของพ่อ..."])
+prompt_text = "กด E เพื่อเข้าเฝ้าท้าวทศรถ"
+flag_after = "chapter_1_audience_done"
+quest_after = "ออกเดินทางสู่ป่า"
+quest_after_detail = "กลับไปที่ลานวัง แล้วออกทางประตูทิศใต้ของกรุงอโยธยาเพื่อเริ่มการเดินทาง"
+narration_after = Array[String](["พระรามน้อมรับพระบัญชาด้วยใจสงบ ไม่มีแม้แต่คำโต้แย้ง", "นางสีดาและพระลักษมณ์ต่างขอติดตามพระองค์เข้าสู่ป่าด้วยความจงรักภักดี", "ทั้งสามเตรียมออกเดินทางจากกรุงอโยธยา สู่เส้นทางแห่งบททดสอบ"])
+narration_after_title = "คำสั่งเนรเทศ"
+
 [node name="Player" parent="YSortRoot" unique_id=10043806 instance=ExtResource("2_player")]
 position = Vector2(280.72, 440)
 

@@ -57,6 +57,8 @@ func _ready() -> void:
 	PauseMenu.set_hud_visible(true)
 	Inv.set_hud_visible(true)
 	Quest.set_hud_visible(true)
+	# re-apply a loaded save's quest after the chapter's own _ready() runs
+	Quest.restore_pending.call_deferred()
 	if GameState.next_spawn.is_finite():
 		global_position = GameState.next_spawn
 		GameState.next_spawn = Vector2.INF

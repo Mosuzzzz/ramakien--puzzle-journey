@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+const GameState := preload("res://scenes/core/game_state.gd")
 const DEFAULT_TEXT_COLOR := Color.WHITE
 const COMPLETED_TEXT_COLOR := Color("#67d56b")
 
@@ -79,6 +80,26 @@ func get_target_count() -> int:
 
 func is_completed() -> bool:
 	return _completed
+
+## capture the active quest for saving; {} when there is no quest
+func snapshot() -> Dictionary:
+	if not _has_quest:
+		return {}
+	var target = null
+	if target_position.is_finite():
+		target = [target_position.x, target_position.y]
+	return {"name": _name_label.text, "detail": _detail_text_label.text, "target": target}
+
+## re-apply the quest stored by a load; runs once, after the scene is ready
+func restore_pending() -> void:
+	if GameState.next_quest.is_empty():
+		return
+	var q: Dictionary = GameState.next_quest
+	GameState.next_quest = {}
+	var target := Vector2.INF
+	if q.get("target") != null:
+		target = Vector2(q["target"][0], q["target"][1])
+	set_quest(q.get("name", ""), q.get("detail", ""), target)
 
 func set_hud_visible(shown: bool) -> void:
 	_hud_allowed = shown

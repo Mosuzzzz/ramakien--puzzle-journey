@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 signal following_started
 
-@export var speed: float = 120.0  # slower than the player (150)
-@export var follow_distance: float = 45.0
 # scale factor: character renders at display_height * (char_px / region_px)
 @export var display_height: float = 59.4
 
@@ -17,20 +15,12 @@ func _ready() -> void:
 	_play("idle")
 
 func _physics_process(_delta: float) -> void:
-	if _player == null:
+	# approaching Sida "rescues" her (fires the signal once, used by ch8/ch9
+	# progression); she no longer walks after the player
+	if _following or _player == null:
 		return
-	var to_player := _player.global_position - global_position
-	if not _following and to_player.length() < 60.0:
+	if _player.global_position.distance_to(global_position) < 60.0:
 		start_following()
-	if _following and to_player.length() > follow_distance:
-		velocity = to_player.normalized() * speed
-		move_and_slide()
-		_play("run")
-		if absf(velocity.x) > 1.0:
-			_sprite.flip_h = velocity.x > 0.0
-	else:
-		velocity = Vector2.ZERO
-		_play("idle")
 
 
 func start_following() -> void:

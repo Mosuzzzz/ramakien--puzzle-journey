@@ -25,11 +25,15 @@ const CHAPTER_NAMES := {
 # every GameState progress flag that should persist across a save/load
 const STATE_KEYS := [
 	"chapter_1_intro_played",
+	"chapter_1_audience_done",
 	"chapter_2_intro_played",
 	"chapter_2_deer_defeated",
 	"chapter_2_ashram_puzzle_solved",
 	"chapter_2_deer_intro_played",
 	"chapter_2_aftermath_played",
+	"chapter_8_intro_played",
+	"chapter_9_thotsakan_defeated",
+	"chapter_9_sida_rescued",
 ]
 
 
@@ -76,6 +80,11 @@ static func save_to_slot(slot: int) -> void:
 	var state_dyn = load("res://scenes/core/game_state.gd")
 	for key in STATE_KEYS:
 		data[key] = state_dyn.get(key)
+	# capture the active quest so it survives a load (chapter _ready() logic
+	# often skips re-setting it once its one-time flag is already true)
+	var quest := (Engine.get_main_loop() as SceneTree).root.get_node_or_null("Quest")
+	if quest != null:
+		data["quest"] = quest.snapshot()
 	var f := FileAccess.open(_slot_path(slot), FileAccess.WRITE)
 	f.store_string(JSON.stringify(data))
 
@@ -95,6 +104,8 @@ static func load_slot(slot: int) -> void:
 		inventory.restore_items(data["inventory"])
 	var pos = data.get("player_position")
 	GameState.next_spawn = Vector2(pos[0], pos[1]) if pos else Vector2.INF
+	# hand the saved quest to the next gameplay scene to re-apply on _ready
+	GameState.next_quest = data.get("quest", {})
 	tree.change_scene_to_file.call_deferred(data["scene_path"])
 
 
