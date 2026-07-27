@@ -112,6 +112,20 @@ patch_margin_top = 44
 patch_margin_right = 44
 patch_margin_bottom = 44
 
+[node name="Title" type="TextureRect" parent="Dim/ContentFrame"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = -45.0
+offset_right = 220.0
+offset_bottom = 35.0
+grow_horizontal = 2
+texture = SubResource("title_atlas")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="Margin" type="MarginContainer" parent="Dim/ContentFrame"]
 layout_mode = 1
 anchors_preset = 15
@@ -120,20 +134,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 46
-theme_override_constants/margin_top = 22
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 46
 theme_override_constants/margin_bottom = 18
 
 [node name="VBox" type="VBoxContainer" parent="Dim/ContentFrame/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 8
-
-[node name="Title" type="TextureRect" parent="Dim/ContentFrame/Margin/VBox"]
-custom_minimum_size = Vector2(0, 74)
-layout_mode = 2
-texture = SubResource("title_atlas")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="Scroll" type="ScrollContainer" parent="Dim/ContentFrame/Margin/VBox"]
 layout_mode = 2
