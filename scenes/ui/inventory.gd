@@ -9,6 +9,10 @@ const ITEMS := {
 	"key": {"name": "กุญแจ", "icon": "res://assets/ui/icon/split/icon_key.png"},
 	"coin": {"name": "เหรียญ", "icon": "res://assets/ui/icon/split/icon_coin.png"},
 	"gem": {"name": "อัญมณี", "icon": "res://assets/ui/icon/split/icon_gem.png"},
+	"jatayu_feather": {
+		"name": "ขนนกพญาชฎายุ",
+		"icon": "res://assets/ui/icon/split/icon_wing.png",
+	},
 }
 
 var items := {"potion": 3}
@@ -27,7 +31,22 @@ func set_hud_visible(shown: bool) -> void:
 		_page.hide()
 
 func count(id: String) -> int:
-	return items.get(id, 0)
+	return int(items.get(id, 0))
+
+func get_items_snapshot() -> Dictionary:
+	return items.duplicate(true)
+
+func restore_items(snapshot: Dictionary) -> void:
+	items = snapshot.duplicate(true)
+	changed.emit()
+	if is_instance_valid(_page) and _page.visible:
+		_refresh()
+
+func reset_for_new_story() -> void:
+	items = {"potion": 3}
+	changed.emit()
+	if is_instance_valid(_page) and _page.visible:
+		_refresh()
 
 func add_item(id: String, n: int = 1) -> void:
 	items[id] = count(id) + n

@@ -1,6 +1,7 @@
 extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
+const CutsceneAdvanceInput := preload("res://scenes/ui/cutscene_advance_input.gd")
 
 const DIALOGUES: Array[String] = [
 	"คำบรรยาย: หลังจากพระรามและพระลักษณ์จัดการพวกยักษ์ระหว่างทางได้ ทั้งสองเดินมาถึงใต้ต้นไม้ใหญ่กลางป่า",
@@ -86,12 +87,13 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if not _active:
 		return
-	if event is InputEventMouse:
-		return  # let the GUI (skip button) receive clicks; the tree is paused anyway
+	var hovered_control := get_viewport().gui_get_hovered_control()
+	if event is InputEventMouse and not CutsceneAdvanceInput.is_advance_event(event, hovered_control):
+		return
 	get_viewport().set_input_as_handled()
 	if _transitioning:
 		return
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
+	if CutsceneAdvanceInput.is_advance_event(event, hovered_control):
 		_advance_dialogue()
 
 
@@ -152,8 +154,8 @@ func _finish_cutscene() -> void:
 	hide()
 	get_tree().paused = false
 	var chapter := get_tree().current_scene
-	if chapter != null and chapter.has_method("reveal_hanuman_after_all_cutscenes"):
-		chapter.call("reveal_hanuman_after_all_cutscenes")
+	if chapter != null and chapter.has_method("finish_chapter_3_story"):
+		chapter.call("finish_chapter_3_story")
 
 
 func _exit_tree() -> void:

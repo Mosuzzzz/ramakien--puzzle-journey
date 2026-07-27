@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://2tfiacjapdrq" path="res://assets/props/chapter6/pole_left.PNG" id="4_t4dvl"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
-[ext_resource type="Texture2D" uid="uid://1sgk7kg45wfd" path="res://assets/cutscene/chapter_6/ChatGPT Image 22 ก.ค. 2569 20_29_33.png" id="chapter_6_cutscene_image"]
-[ext_resource type="Script" path="res://scenes/cutscene/chapter_6_cutscene.gd" id="chapter_6_cutscene_script"]
-[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="chapter_6_cutscene_font"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="chapter_6_cutscene_bold"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="chapter_6_cutscene_font"]
+[ext_resource type="Texture2D" uid="uid://1sgk7kg45wfd" path="res://assets/cutscene/chapter_6/ChatGPT Image 22 ก.ค. 2569 20_29_33.png" id="chapter_6_cutscene_image"]
+[ext_resource type="Script" uid="uid://dry6tt5pa4gyo" path="res://scenes/cutscene/chapter_6_cutscene.gd" id="chapter_6_cutscene_script"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="chapter_6_title_banner"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvi4p"]
@@ -284,7 +284,7 @@ position = Vector2(309, 755)
 shape = SubResource("CapsuleShape2D_2wkmy")
 
 [node name="Left3" type="CollisionShape2D" parent="Walls2" unique_id=309944099]
-position = Vector2(1025, 714)
+position = Vector2(1029, 728)
 shape = SubResource("CircleShape2D_18dia")
 
 [node name="Left4" type="CollisionShape2D" parent="Walls2" unique_id=857742910]
@@ -328,7 +328,7 @@ position = Vector2(1063, 626)
 shape = SubResource("CapsuleShape2D_ocuia")
 
 [node name="Left14" type="CollisionShape2D" parent="Walls2" unique_id=382631402]
-position = Vector2(1061, 749)
+position = Vector2(938, 775)
 shape = SubResource("CircleShape2D_738ru")
 
 [node name="Left15" type="CollisionShape2D" parent="Walls2" unique_id=369519805]
@@ -553,6 +553,24 @@ y_sort_enabled = true
 [node name="Player" parent="YSortRoot" unique_id=330999147 instance=ExtResource("2_player")]
 position = Vector2(725, 1017)
 
+[node name="Chapter7Portal" parent="YSortRoot" unique_id=1786418311 instance=ExtResource("90_portal")]
+position = Vector2(724, 330)
+target_scene = "res://scenes/chapter_7/chapter_7.tscn"
+target_spawn = Vector2(1083, 1462.5)
+
+[node name="Chapter5Portal" parent="YSortRoot" unique_id=1840192708 instance=ExtResource("90_portal")]
+position = Vector2(725, 1050)
+target_scene = "res://scenes/chapter_5/chapter_5.tscn"
+target_spawn = Vector2(1700, 574)
+
+[node name="YakCaptain" parent="YSortRoot" unique_id=1074699174 instance=ExtResource("91_mob")]
+position = Vector2(724, 445)
+speed = 70.0
+aggro_range = 260.0
+contact_damage = 15
+max_health = 80
+display_height = 90.0
+
 [node name="PoleRight" type="Sprite2D" parent="." unique_id=1036395887]
 position = Vector2(724, 540)
 texture = ExtResource("3_hox84")
@@ -561,28 +579,11 @@ texture = ExtResource("3_hox84")
 position = Vector2(724, 540)
 texture = ExtResource("4_t4dvl")
 
-[node name="Chapter7Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
-position = Vector2(724, 330)
-target_scene = "res://scenes/chapter_7/chapter_7.tscn"
-target_spawn = Vector2(1083, 1462.5)
-
-[node name="Chapter5Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
-position = Vector2(725, 1050)
-target_scene = "res://scenes/chapter_5/chapter_5.tscn"
-target_spawn = Vector2(1700, 574)
-
-[node name="YakCaptain" parent="YSortRoot" instance=ExtResource("91_mob")]
-position = Vector2(724, 445)
-max_health = 80
-contact_damage = 15
-display_height = 90.0
-speed = 70.0
-aggro_range = 260.0
-
-[node name="Chapter6CutsceneLayer" type="CanvasLayer" parent="."]
+[node name="Chapter6CutsceneLayer" type="CanvasLayer" parent="." unique_id=1271363944]
 layer = 100
+visible = false
 
-[node name="Chapter6Cutscene" type="Control" parent="Chapter6CutsceneLayer"]
+[node name="Chapter6Cutscene" type="Control" parent="Chapter6CutsceneLayer" unique_id=1239646785]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -592,7 +593,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("chapter_6_cutscene_script")
 
-[node name="CutsceneImage" type="TextureRect" parent="Chapter6CutsceneLayer/Chapter6Cutscene"]
+[node name="CutsceneImage" type="TextureRect" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=505881417]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -604,7 +605,7 @@ texture = ExtResource("chapter_6_cutscene_image")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="BackgroundDim" type="ColorRect" parent="Chapter6CutsceneLayer/Chapter6Cutscene"]
+[node name="BackgroundDim" type="ColorRect" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=1650009109]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -614,7 +615,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
 
-[node name="TitleBanner" type="NinePatchRect" parent="Chapter6CutsceneLayer/Chapter6Cutscene"]
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=2130199869]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.19
@@ -628,7 +629,7 @@ patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
 
-[node name="Title" type="Label" parent="Chapter6CutsceneLayer/Chapter6Cutscene/TitleBanner"]
+[node name="Title" type="Label" parent="Chapter6CutsceneLayer/Chapter6Cutscene/TitleBanner" unique_id=234440995]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -644,7 +645,7 @@ text = "ประตูกรุงลงกา"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter6CutsceneLayer/Chapter6Cutscene"]
+[node name="Dialogue" type="Label" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=1697806717]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.07
@@ -667,7 +668,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ContinuePrompt" type="Label" parent="Chapter6CutsceneLayer/Chapter6Cutscene"]
+[node name="ContinuePrompt" type="Label" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=970594358]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -689,7 +690,7 @@ theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
 
-[node name="FadeOverlay" type="ColorRect" parent="Chapter6CutsceneLayer/Chapter6Cutscene"]
+[node name="FadeOverlay" type="ColorRect" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=39142211]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
