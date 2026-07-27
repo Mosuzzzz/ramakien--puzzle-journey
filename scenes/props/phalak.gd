@@ -1,34 +1,12 @@
 extends CharacterBody2D
 
-@export var speed: float = 118.0  # slower than the player (150)
-@export var follow_distance: float = 60.0
 # scale factor: character renders at display_height * (char_px / region_px)
 @export var display_height: float = 59.4
-
-var _following := false
-var _player: Node2D
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
-	_player = get_parent().get_node_or_null("Player")
 	_play("idle")
-
-func _physics_process(_delta: float) -> void:
-	if _player == null:
-		return
-	var to_player := _player.global_position - global_position
-	if not _following and to_player.length() < 75.0:
-		_following = true
-	if _following and to_player.length() > follow_distance:
-		velocity = to_player.normalized() * speed
-		move_and_slide()
-		_play("walk")
-		if absf(velocity.x) > 1.0:
-			_sprite.flip_h = velocity.x < 0.0
-	else:
-		velocity = Vector2.ZERO
-		_play("idle")
 
 func _play(anim: String) -> void:
 	if _sprite.animation != anim:

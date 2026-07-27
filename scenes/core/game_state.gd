@@ -1,8 +1,15 @@
 # where the player should appear after the next scene change; INF = use scene default
 static var next_spawn := Vector2.INF
 
+# the active quest to restore after loading a save, applied once when the next
+# gameplay scene is ready; empty = nothing to restore
+static var next_quest := {}
+
 # whether the chapter 1 plaza intro narration has already played this run
 static var chapter_1_intro_played := false
+
+# whether Rama has had his audience with King Thotsarot (heard the exile decree)
+static var chapter_1_audience_done := false
 
 # whether the chapter 2 forest intro narration has already played this run
 static var chapter_2_intro_played := false
