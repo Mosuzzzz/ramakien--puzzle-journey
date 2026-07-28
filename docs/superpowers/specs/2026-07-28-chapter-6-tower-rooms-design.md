@@ -97,3 +97,30 @@ Use test-driven development for the implementation:
 - Existing Chapter 5 and Chapter 7 portals on the Chapter 6 map continue to
   work.
 - Both room scenes load without missing-resource or parser errors.
+
+## Follow-up: Player Alignment and Room Scale
+
+The room collision layout edited in Godot is user-owned and must be preserved.
+The player becoming stuck is caused by the left room overriding the visual
+sprite to `Vector2(9, -181)` and the camera to `Vector2(6, -161)` while the
+`CharacterBody2D` collision remains at the player origin. The rendered
+character therefore appears far away from the body that collides with walls.
+
+Both tower rooms must keep the player body and its visual representation
+aligned:
+
+- Restore the room-local sprite offset to a feet-aligned position derived from
+  the base player scene.
+- Restore the room-local camera position to the player origin.
+- Enlarge only the player sprite and shadow to 1.5 times their base visual
+  size in both rooms.
+- Do not enlarge the player collision shape.
+- Preserve the user's left-room wall nodes, shapes, and positions.
+- Replace movement assertions that assume the old sparse room layout with
+  assertions based on the current spawn area and explicit visual/body
+  alignment.
+
+The fix is accepted when the player moves from each room spawn without an
+unexpected collision, the displayed feet remain aligned with the physics body,
+both room sprites render at 1.5 times the base size, and the complete Chapter 6
+tower-room regression suite passes.
