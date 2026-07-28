@@ -8,6 +8,25 @@ func _initialize() -> void:
 	call_deferred("_run")
 
 func _run() -> void:
+	var chapter_packed := load(CHAPTER_6) as PackedScene
+	if chapter_packed == null:
+		_fail("Could not load Chapter 6")
+		return
+	var chapter := chapter_packed.instantiate()
+	root.add_child(chapter)
+	var left_entrance := chapter.get_node_or_null("YSortRoot/LeftTowerRoomPortal")
+	var right_entrance := chapter.get_node_or_null("YSortRoot/RightTowerRoomPortal")
+	if left_entrance == null or right_entrance == null:
+		_fail("Chapter 6 is missing tower room entrances")
+		return
+	if String(left_entrance.get("target_scene")) != LEFT_ROOM:
+		_fail("Left tower targets the wrong room")
+		return
+	if String(right_entrance.get("target_scene")) != RIGHT_ROOM:
+		_fail("Right tower targets the wrong room")
+		return
+	chapter.queue_free()
+
 	for path: String in [LEFT_ROOM, RIGHT_ROOM]:
 		var packed := load(path) as PackedScene
 		if packed == null:
@@ -25,8 +44,9 @@ func _run() -> void:
 		if String(exit_portal.get("target_scene")) != CHAPTER_6:
 			_fail("%s exit does not target Chapter 6" % path)
 			return
-		if Vector2(exit_portal.get("target_spawn")) == Vector2.ZERO:
-			_fail("%s exit has no return spawn" % path)
+		var expected_spawn := Vector2(190, 650) if path == LEFT_ROOM else Vector2(1258, 650)
+		if Vector2(exit_portal.get("target_spawn")) != expected_spawn:
+			_fail("%s exit has the wrong return spawn" % path)
 			return
 		room.queue_free()
 	print("Chapter 6 tower room runtime passed")
