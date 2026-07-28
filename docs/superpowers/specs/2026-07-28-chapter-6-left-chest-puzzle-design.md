@@ -44,10 +44,12 @@ scale changes:
 
 - Each color rectangle stays fully inside the dark center of its corresponding
   slot and leaves the surrounding gold frame visible on all four sides.
-- The measured normalized inner bounds are:
-  - slot 1: left `0.274`, top `0.527`, right `0.386`, bottom `0.616`;
-  - slot 2: left `0.444`, top `0.527`, right `0.556`, bottom `0.616`; and
-  - slot 3: left `0.630`, top `0.527`, right `0.742`, bottom `0.616`.
+- The artwork's three dark centers are not perfectly uniform, so each color
+  rectangle uses independently measured bounds with approximately two source
+  pixels of clearance from the surrounding gold:
+  - slot 1: left `0.262`, top `0.515`, right `0.379`, bottom `0.622`;
+  - slot 2: left `0.439`, top `0.515`, right `0.563`, bottom `0.622`; and
+  - slot 3: left `0.623`, top `0.515`, right `0.739`, bottom `0.622`.
 - An unanswered slot has a neutral dark appearance.
 - A correct answer turns the current slot green permanently.
 - A wrong answer flashes the current slot red for approximately one second.
