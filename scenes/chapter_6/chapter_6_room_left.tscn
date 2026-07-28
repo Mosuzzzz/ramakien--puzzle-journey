@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Texture2D" path="res://assets/map/chapter_6/ChatGPT Image 27 ก.ค. 2569 20_32_50.png" id="1_background"]
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
@@ -12,6 +12,9 @@ size = Vector2(460, 80)
 
 [sub_resource type="RectangleShape2D" id="BottomRightWallShape"]
 size = Vector2(460, 80)
+
+[sub_resource type="RectangleShape2D" id="BottomCenterWallShape"]
+size = Vector2(150, 80)
 
 [sub_resource type="RectangleShape2D" id="LeftWallShape"]
 size = Vector2(80, 900)
@@ -41,6 +44,10 @@ shape = SubResource("BottomLeftWallShape")
 [node name="BottomRightWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2(924, 1115)
 shape = SubResource("BottomRightWallShape")
+
+[node name="BottomCenterWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(627, 1115)
+shape = SubResource("BottomCenterWallShape")
 
 [node name="LeftWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2(225, 660)

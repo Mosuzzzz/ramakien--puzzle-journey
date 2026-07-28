@@ -1,10 +1,13 @@
 extends SceneTree
 
+signal _scene_change_race_finished(changed_before_timeout: bool)
+
 const CHAPTER_5 := "res://scenes/chapter_5/chapter_5.tscn"
 const CHAPTER_6 := "res://scenes/chapter_6/chapter_6.tscn"
 const CHAPTER_7 := "res://scenes/chapter_7/chapter_7.tscn"
 const LEFT_ROOM := "res://scenes/chapter_6/chapter_6_room_left.tscn"
 const RIGHT_ROOM := "res://scenes/chapter_6/chapter_6_room_right.tscn"
+const SCENE_CHANGE_TIMEOUT_SECONDS := 3.0
 const GameState := preload("res://scenes/core/game_state.gd")
 
 var _failed := false
@@ -41,7 +44,7 @@ func _run() -> void:
 	if not await _activate_portal(
 		current_scene,
 		"YSortRoot/ExitPortal",
-		"click",
+		"viewport_click",
 		CHAPTER_6,
 		Vector2(190, 650),
 		120.0
@@ -112,7 +115,8 @@ func _change_scene(path: String) -> bool:
 	if error != OK:
 		_fail("Could not change to %s (error %d)" % [path, error])
 		return false
-	await scene_changed
+	if not await _wait_for_scene_change("Changing to %s" % path):
+		return false
 	await process_frame
 	if current_scene == null or current_scene.scene_file_path != path:
 		_fail("Scene change did not reach %s" % path)
@@ -171,13 +175,24 @@ func _activate_portal(
 		key_event.keycode = KEY_E
 		key_event.pressed = true
 		portal.call("_input", key_event)
+	elif input_kind == "viewport_click":
+		var viewport := portal.get_viewport()
+		var click_position := portal.get_global_transform_with_canvas().origin
+		var click_event := InputEventMouseButton.new()
+		click_event.button_index = MOUSE_BUTTON_LEFT
+		click_event.button_mask = MOUSE_BUTTON_MASK_LEFT
+		click_event.pressed = true
+		click_event.position = click_position
+		click_event.global_position = click_position
+		viewport.push_input(click_event, true)
 	else:
 		var click_event := InputEventMouseButton.new()
 		click_event.button_index = MOUSE_BUTTON_LEFT
 		click_event.pressed = true
 		portal.call("_on_input_event", root, click_event, 0)
 
-	await scene_changed
+	if not await _wait_for_scene_change("Activating %s" % portal_path):
+		return false
 	await process_frame
 	if current_scene == null or current_scene.scene_file_path != expected_scene:
 		_fail("%s did not activate its configured scene" % portal_path)
@@ -188,6 +203,36 @@ func _activate_portal(
 		or spawned_player.global_position.distance_to(expected_spawn) > spawn_tolerance
 	):
 		_fail("%s produced the wrong destination spawn" % portal_path)
+		return false
+	return true
+
+
+func _wait_for_scene_change(context: String) -> bool:
+	var race_state := {"settled": false}
+	var timeout := create_timer(SCENE_CHANGE_TIMEOUT_SECONDS)
+	var on_scene_changed := func() -> void:
+		if race_state["settled"]:
+			return
+		race_state["settled"] = true
+		_scene_change_race_finished.emit(true)
+	var on_timeout := func() -> void:
+		if race_state["settled"]:
+			return
+		race_state["settled"] = true
+		_scene_change_race_finished.emit(false)
+
+	scene_changed.connect(on_scene_changed, CONNECT_ONE_SHOT)
+	timeout.timeout.connect(on_timeout, CONNECT_ONE_SHOT)
+	var changed_before_timeout: bool = await _scene_change_race_finished
+	if scene_changed.is_connected(on_scene_changed):
+		scene_changed.disconnect(on_scene_changed)
+	if timeout.timeout.is_connected(on_timeout):
+		timeout.timeout.disconnect(on_timeout)
+	if not changed_before_timeout:
+		_fail(
+			"%s timed out after %.1f seconds waiting for a scene change"
+			% [context, SCENE_CHANGE_TIMEOUT_SECONDS]
+		)
 		return false
 	return true
 
@@ -219,6 +264,10 @@ func _verify_room_movement_and_collisions(room: Node) -> bool:
 	var bottom_end := await _drive_player(player, Vector2(400, 1010), Vector2(0, 600), 30)
 	if bottom_end.y > 1067.0:
 		_fail("%s player crossed the bottom wall" % room.scene_file_path)
+		return false
+	var doorway_end := await _drive_player(player, Vector2(627, 1010), Vector2(0, 600), 30)
+	if doorway_end.y > 1067.0:
+		_fail("%s player escaped through the center-bottom doorway" % room.scene_file_path)
 		return false
 
 	var altar_hit := await _drive_player(player, Vector2(430, 680), Vector2(600, 0), 30)
