@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/map/chapter_6/ChatGPT Image 27 ก.ค. 2569 20_33_55.png" id="1_background"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
+
+[sub_resource type="RectangleShape2D" id="TopWallShape"]
+size = Vector2(780, 80)
+
+[sub_resource type="RectangleShape2D" id="BottomLeftWallShape"]
+size = Vector2(460, 80)
+
+[sub_resource type="RectangleShape2D" id="BottomRightWallShape"]
+size = Vector2(460, 80)
+
+[sub_resource type="RectangleShape2D" id="LeftWallShape"]
+size = Vector2(80, 900)
+
+[sub_resource type="RectangleShape2D" id="RightWallShape"]
+size = Vector2(80, 900)
+
+[sub_resource type="CircleShape2D" id="CenterObstacleShape"]
+radius = 105.0
+
+[node name="Chapter6RoomRight" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(627, 627)
+texture = ExtResource("1_background")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="TopWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(627, 210)
+shape = SubResource("TopWallShape")
+
+[node name="BottomLeftWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(330, 1115)
+shape = SubResource("BottomLeftWallShape")
+
+[node name="BottomRightWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(924, 1115)
+shape = SubResource("BottomRightWallShape")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(225, 660)
+shape = SubResource("LeftWallShape")
+
+[node name="RightWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1029, 660)
+shape = SubResource("RightWallShape")
+
+[node name="CenterObstacle" type="CollisionShape2D" parent="Walls"]
+position = Vector2(627, 680)
+shape = SubResource("CenterObstacleShape")
+
+[node name="YSortRoot" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="YSortRoot" instance=ExtResource("2_player")]
+position = Vector2(627, 1040)
+
+[node name="Camera2D" parent="YSortRoot/Player" index="3"]
+limit_left = 0
+limit_top = 0
+limit_right = 1254
+limit_bottom = 1254
+
+[node name="ExitPortal" parent="YSortRoot" instance=ExtResource("3_portal")]
+position = Vector2(627, 1110)
+target_scene = "res://scenes/chapter_6/chapter_6.tscn"
+target_spawn = Vector2(1258, 650)
+prompt_text = "กด E เพื่อออกจากหอคอย"
+interaction_size = Vector2(150, 90)
+
+[editable path="YSortRoot/Player"]
