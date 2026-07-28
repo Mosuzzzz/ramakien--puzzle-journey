@@ -29,28 +29,46 @@ Before the first question, the puzzle displays:
 
 `ตอบคำถามให้ถูกต้องเพื่อปลดล็อกกล่องนี้`
 
+It also displays:
+
+`กด E เพื่อเริ่ม`
+
 The player can press E or click to begin.
 
 ### Lock Indicators
 
 Three status indicators align with the three empty square slots in the chest
-image:
+image. Their positions and sizes use normalized anchors relative to the chest
+image instead of fixed viewport pixels, keeping them aligned when the viewport
+scale changes:
 
 - An unanswered slot has a neutral dark appearance.
 - A correct answer turns the current slot green permanently.
 - A wrong answer flashes the current slot red for approximately one second.
 - Input is disabled during the red flash.
-- After the flash, the same question and choices are shown again.
-- Previously completed green slots never reset during the puzzle.
+- After the flash, all three slots return to neutral and the puzzle returns to
+  question 1.
+- Every wrong answer shuffles the displayed positions of the three choices for
+  every question. Correctness follows the choice's original identity, not its
+  displayed button index.
 
-The puzzle cannot be dismissed or the room exited while it is active. It ends
-only after all three questions are answered correctly, preventing partial
-modal state from leaking into scene transitions.
+The first attempt uses the authored choice order. Shuffling occurs only after
+a wrong answer.
+
+### Cancelling
+
+While answering, the modal shows an on-screen `ยกเลิก` button and accepts Esc.
+Either action fades the UI out, unpauses the room, clears all temporary answer
+progress, and returns the player to the same world position. The chest remains
+locked, and approaching it again starts from question 1 with neutral slots.
+
+Cancel input is temporarily disabled during the one-second wrong-answer flash
+so a running tween or paused state cannot leak into the room.
 
 ## Questions
 
-Questions appear in this fixed order. Each question keeps the same choice
-order when retried after a wrong answer.
+Questions appear in this fixed order. A wrong answer returns to question 1 and
+reshuffles the displayed choice positions.
 
 ### Question 1
 
@@ -152,14 +170,17 @@ A dedicated `CanvasLayer` owns:
 - the translucent full-viewport dark overlay;
 - the centered chest image;
 - the instruction state;
+- the explicit `กด E เพื่อเริ่ม` hint;
 - three visual lock indicators;
 - the question label;
 - three answer buttons; and
+- an on-screen cancel button; and
 - fade and wrong-answer animations.
 
-The UI exposes a single `open()` entry point and emits `solved` once. It owns
-temporary question progress but does not modify GameState, inventory, quest
-data, or room nodes directly.
+The UI exposes a single `open()` entry point, emits `solved` once on success,
+and emits `cancelled` once when the player presses the button or Esc. It owns
+temporary question progress and shuffled display mappings but does not modify
+GameState, inventory, quest data, or room nodes directly.
 
 The CanvasLayer uses `PROCESS_MODE_ALWAYS` so its buttons, fades, and one-second
 wrong-answer timer continue while the scene tree is paused.
@@ -183,8 +204,8 @@ Add:
 `GameState.chapter_6_left_chest_unlocked: bool`
 
 The value is included in save-slot state and reset when starting a new story.
-Temporary per-question progress is not saved because the player cannot leave
-or save while the modal is active.
+Temporary per-question progress is not saved. Cancelling explicitly clears it,
+and scene saving is unavailable while the paused modal is active.
 
 Room restoration follows these rules:
 
@@ -202,9 +223,14 @@ state behaves identically.
 
 - The world interaction ignores repeated E key events while opening.
 - The puzzle disables answer buttons during the red flash.
+- The puzzle disables cancel input during the red flash.
 - A correct answer advances only once and completed slots cannot be answered
   again.
 - The `solved` signal emits exactly once.
+- The `cancelled` signal emits exactly once per open attempt and restores the
+  world chest prompt if the player remains nearby.
+- Shuffled buttons carry their source choice identity, so changing display
+  order cannot change which answer is correct.
 - Fragment spawning checks both the scene and inventory to avoid duplicates.
 - Fragment collection checks inventory before adding the bar item.
 - The world prompt and puzzle modal are mutually exclusive, preventing one E
@@ -217,23 +243,30 @@ Automated tests will verify:
 1. The chest prompt appears only when the Player is in range.
 2. E opens the modal, pauses gameplay, darkens the room, and shows the large
    chest image and instruction.
-3. E or clicking advances from the instruction to question 1.
+3. The instruction visibly includes `กด E เพื่อเริ่ม`, and E or clicking
+   advances to question 1.
 4. All three fixed questions, choices, and correct indices match this design.
-5. A wrong answer flashes only the current slot red, blocks input for about
-   one second, and retries the same question without changing earlier slots.
-6. Correct answers turn slots green and advance one question at a time.
-7. Three correct answers emit one solved event and close the modal.
-8. Completion marks the chest unlocked and creates one floating bar fragment
+5. A wrong answer flashes only the current slot red and blocks answer/cancel
+   input for about one second.
+6. After the flash, all slots reset, question 1 returns, and all question
+   choices receive a newly shuffled display order while retaining correctness.
+7. The cancel button and Esc close the modal, unpause the room, clear progress,
+   and allow the chest to be opened again.
+8. Normalized lock indicators remain inside all three artwork frames at the
+   supported viewport sizes.
+9. Correct answers turn slots green and advance one question at a time.
+10. Three correct answers emit one solved event and close the modal.
+11. Completion marks the chest unlocked and creates one floating bar fragment
    above the chest.
-9. Leaving and returning before collection restores the fragment without
+12. Leaving and returning before collection restores the fragment without
    reopening the puzzle.
-10. E collection adds only `lanka_key_fragment_bar`, removes the pickup, and
+13. E collection adds only `lanka_key_fragment_bar`, removes the pickup, and
     updates quest progress from the inventory-derived count.
-11. Re-entering after collection creates neither the chest prompt nor a
+14. Re-entering after collection creates neither the chest prompt nor a
     duplicate fragment.
-12. Save/load, new-story reset, existing Yak-fragment behavior, the full test
+15. Save/load, new-story reset, existing Yak-fragment behavior, the full test
     suite, and Godot headless parsing remain valid.
-13. A before-and-after hash of the left-room `Walls` section remains identical.
+16. A before-and-after hash of the left-room `Walls` section remains identical.
 
 ## Deferred Work
 
