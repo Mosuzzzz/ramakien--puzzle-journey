@@ -11,6 +11,9 @@ static var chapter_1_intro_played := false
 # whether Rama has had his audience with King Thotsarot (heard the exile decree)
 static var chapter_1_audience_done := false
 
+# whether the how-to-play tutorial has been shown this run
+static var tutorial_shown := false
+
 # whether the chapter 2 forest intro narration has already played this run
 static var chapter_2_intro_played := false
 

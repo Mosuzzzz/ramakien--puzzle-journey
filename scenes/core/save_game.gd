@@ -26,6 +26,7 @@ const CHAPTER_NAMES := {
 const STATE_KEYS := [
 	"chapter_1_intro_played",
 	"chapter_1_audience_done",
+	"tutorial_shown",
 	"chapter_2_intro_played",
 	"chapter_2_deer_defeated",
 	"chapter_2_ashram_puzzle_solved",

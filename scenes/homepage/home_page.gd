@@ -22,6 +22,7 @@ func _on_start_pressed() -> void:
 	GameState.next_quest = {}
 	GameState.chapter_1_intro_played = false
 	GameState.chapter_1_audience_done = false
+	GameState.tutorial_shown = false
 	GameState.chapter_2_intro_played = false
 	GameState.chapter_2_deer_defeated = false
 	GameState.chapter_2_ashram_puzzle_solved = false
