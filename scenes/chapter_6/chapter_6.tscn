@@ -558,14 +558,14 @@ position = Vector2(190, 610)
 target_scene = "res://scenes/chapter_6/chapter_6_room_left.tscn"
 target_spawn = Vector2(627, 1010)
 prompt_text = "กด E เพื่อเข้าไปในหอคอย"
-interaction_size = Vector2(150, 100)
+interaction_size = Vector2(150, 160)
 
 [node name="RightTowerRoomPortal" parent="YSortRoot" instance=ExtResource("90_portal")]
 position = Vector2(1258, 610)
 target_scene = "res://scenes/chapter_6/chapter_6_room_right.tscn"
 target_spawn = Vector2(627, 1010)
 prompt_text = "กด E เพื่อเข้าไปในหอคอย"
-interaction_size = Vector2(150, 100)
+interaction_size = Vector2(150, 160)
 
 [node name="Chapter7Portal" parent="YSortRoot" unique_id=1786418311 instance=ExtResource("90_portal")]
 position = Vector2(724, 330)
@@ -595,7 +595,6 @@ texture = ExtResource("4_t4dvl")
 
 [node name="Chapter6CutsceneLayer" type="CanvasLayer" parent="." unique_id=1271363944]
 layer = 100
-visible = false
 
 [node name="Chapter6Cutscene" type="Control" parent="Chapter6CutsceneLayer" unique_id=1239646785]
 process_mode = 3
