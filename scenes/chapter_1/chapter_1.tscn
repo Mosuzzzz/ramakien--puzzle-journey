@@ -7,10 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://beb8xnnh620tk" path="res://scenes/props/door.tscn" id="5_ayeki"]
 [ext_resource type="Texture2D" uid="uid://t2vhx3gyb8cb" path="res://assets/props/chapter1/tree.png" id="6_sofv4"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="7_portal"]
-[ext_resource type="PackedScene" uid="uid://4kx8tqw0140u" path="res://scenes/props/phalak.tscn" id="8_phalak"]
-[ext_resource type="PackedScene" path="res://scenes/props/talkable.tscn" id="9_talkable"]
 [ext_resource type="Script" path="res://scenes/chapter_1/chapter_1.gd" id="10_script"]
-[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="11_sida"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1254, 78)
@@ -196,18 +193,6 @@ texture = ExtResource("4_o8eds")
 
 [node name="Player" parent="YSortRoot" unique_id=181157515 instance=ExtResource("2_player")]
 position = Vector2(625, 340)
-
-[node name="Phalak" parent="YSortRoot" instance=ExtResource("8_phalak")]
-position = Vector2(700, 930)
-
-[node name="Sida" parent="YSortRoot" instance=ExtResource("11_sida")]
-position = Vector2(560, 950)
-
-[node name="Talkable" parent="YSortRoot/Phalak" instance=ExtResource("9_talkable")]
-position = Vector2(0, -20)
-speaker_name = "พระลักษณ์"
-lines = Array[String](["พี่ราม! วันนี้ทั่วกรุงอโยธยาตกแต่งประดับประดา เตรียมพระราชพิธีอภิเษกของพี่รามเลยนะ", "แต่ข้าเพิ่งได้ยินมาว่า พระนางไกยเกษีเข้าเฝ้าเสด็จพ่อแต่เช้ามืด แล้วอยู่ ๆ ท่านก็มีรับสั่งด่วนให้เข้าเฝ้าที่ท้องพระโรง", "ท่าทางจะไม่ใช่เรื่องธรรมดา ไปดูกันเถอะพี่ราม"])
-prompt_text = "กด E เพื่อคุยกับพระลักษณ์"
 
 [node name="door_south" parent="YSortRoot" unique_id=819793605 instance=ExtResource("5_ayeki")]
 position = Vector2(628, 1095)

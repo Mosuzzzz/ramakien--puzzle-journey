@@ -3,6 +3,12 @@ extends Node2D
 const GameState := preload("res://scenes/core/game_state.gd")
 
 func _ready() -> void:
+	# show the how-to-play tutorial once, when the player first reaches the
+	# first playable scene (deferred so it appears after the scene is ready)
+	if not GameState.tutorial_shown:
+		GameState.tutorial_shown = true
+		Tutorial.show_tutorial.call_deferred()
+
 	# set the quest for the current phase every time the plaza loads, so it
 	# is correct after returning from the throne room (or a save load)
 	if GameState.chapter_1_audience_done:
