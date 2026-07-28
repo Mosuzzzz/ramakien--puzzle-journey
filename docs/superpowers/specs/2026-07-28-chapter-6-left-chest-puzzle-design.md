@@ -42,6 +42,12 @@ image. Their positions and sizes use normalized anchors relative to the chest
 image instead of fixed viewport pixels, keeping them aligned when the viewport
 scale changes:
 
+- Each color rectangle stays fully inside the dark center of its corresponding
+  slot and leaves the surrounding gold frame visible on all four sides.
+- The measured normalized inner bounds are:
+  - slot 1: left `0.274`, top `0.527`, right `0.386`, bottom `0.616`;
+  - slot 2: left `0.444`, top `0.527`, right `0.556`, bottom `0.616`; and
+  - slot 3: left `0.630`, top `0.527`, right `0.742`, bottom `0.616`.
 - An unanswered slot has a neutral dark appearance.
 - A correct answer turns the current slot green permanently.
 - A wrong answer flashes the current slot red for approximately one second.
@@ -57,10 +63,13 @@ a wrong answer.
 
 ### Cancelling
 
-While answering, the modal shows an on-screen `ยกเลิก` button and accepts Esc.
-Either action fades the UI out, unpauses the room, clears all temporary answer
-progress, and returns the player to the same world position. The chest remains
-locked, and approaching it again starts from question 1 with neutral slots.
+While answering, the modal shows an on-screen `ยกเลิก (Esc)` button in the
+upper-left corner of the viewport. It uses a 24-pixel margin from the top and
+left edges and remains separate from the lower question panel. The Esc key
+performs the same action. Either action fades the UI out, unpauses the room,
+clears all temporary answer progress, and returns the player to the same world
+position. The chest remains locked, and approaching it again starts from
+question 1 with neutral slots.
 
 Cancel input is temporarily disabled during the one-second wrong-answer flash
 so a running tween or paused state cannot leak into the room.
@@ -174,7 +183,7 @@ A dedicated `CanvasLayer` owns:
 - three visual lock indicators;
 - the question label;
 - three answer buttons; and
-- an on-screen cancel button; and
+- an upper-left on-screen cancel button; and
 - fade and wrong-answer animations.
 
 The UI exposes a single `open()` entry point, emits `solved` once on success,
