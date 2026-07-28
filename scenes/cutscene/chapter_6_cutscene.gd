@@ -2,6 +2,7 @@ extends Control
 
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
 const CutsceneAdvanceInput := preload("res://scenes/ui/cutscene_advance_input.gd")
+const GameState := preload("res://scenes/core/game_state.gd")
 
 const DIALOGUES: Array[String] = [
 	"คำบรรยาย: หลังจากหนุมานช่วยพระรามกลับมาจากไมยราพได้สำเร็จ พระรามก็เดินทางต่อไปยังกรุงลงกาเพื่อช่วยนางสีดา",
@@ -23,6 +24,9 @@ var _finished := false
 
 
 func _ready() -> void:
+	if GameState.chapter_6_intro_played:
+		queue_free()
+		return
 	get_tree().paused = true
 	_show_dialogue(0, false)
 	CutsceneSkip.attach(self, _finish_cutscene)
@@ -93,6 +97,7 @@ func _finish_cutscene() -> void:
 	if _finished:
 		return
 	_finished = true
+	GameState.chapter_6_intro_played = true
 	get_tree().paused = false
 	var cutscene_layer := get_parent()
 	if cutscene_layer is CanvasLayer:

@@ -9,6 +9,12 @@ GAME_STATE="$ROOT/scenes/core/game_state.gd"
 CUTSCENE="$ROOT/scenes/cutscene/chapter_6_cutscene.gd"
 HOME_PAGE="$ROOT/scenes/homepage/home_page.gd"
 
+grep -Fq 'static var chapter_6_intro_played := false' "$GAME_STATE"
+grep -Fq 'const GameState := preload("res://scenes/core/game_state.gd")' "$CUTSCENE"
+grep -Fq 'if GameState.chapter_6_intro_played:' "$CUTSCENE"
+grep -Fq 'GameState.chapter_6_intro_played = true' "$CUTSCENE"
+grep -Fq 'GameState.chapter_6_intro_played = false' "$HOME_PAGE"
+
 grep -Fq 'name="LeftTowerRoomPortal"' "$CHAPTER"
 grep -Fq 'target_scene = "res://scenes/chapter_6/chapter_6_room_left.tscn"' "$CHAPTER"
 grep -Fq 'name="RightTowerRoomPortal"' "$CHAPTER"
