@@ -1,9 +1,9 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_gear.png" id="2_gear"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="3_sarabun_b"]
-[ext_resource type="Texture2D" path="res://assets/ui/settings/title_setting.png" id="4_title"]
+[ext_resource type="Texture2D" path="res://assets/ui/settings/setting_asset.PNG" id="4_title"]
 [ext_resource type="Texture2D" path="res://assets/ui/settings/btn_close.png" id="5_close"]
 [ext_resource type="Texture2D" path="res://assets/ui/settings/content_frame.png" id="6_frame"]
 [ext_resource type="Texture2D" path="res://assets/ui/settings/icon_volume.png" id="7_icon_volume"]
@@ -22,6 +22,10 @@
 [ext_resource type="Texture2D" path="res://assets/ui/settings/btn_reset_hover.png" id="20_reset_h"]
 [ext_resource type="Texture2D" path="res://assets/ui/settings/btn_save_hover.png" id="21_save_h"]
 [ext_resource type="Texture2D" path="res://assets/ui/settings/btn_back_hover.png" id="22_back_h"]
+
+[sub_resource type="AtlasTexture" id="title_atlas"]
+atlas = ExtResource("4_title")
+region = Rect2(352.48706, 14.575562, 592.6592, 155.57306)
 
 [sub_resource type="StyleBoxFlat" id="slider_bg"]
 content_margin_top = 5.0
@@ -89,35 +93,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.55)
 mouse_filter = 1
 
-[node name="Title" type="TextureRect" parent="Dim"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -170.0
-offset_top = 14.0
-offset_right = 170.0
-offset_bottom = 94.0
-grow_horizontal = 2
-texture = ExtResource("4_title")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="CloseButton" type="TextureButton" parent="Dim"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -84.0
-offset_top = 20.0
-offset_right = -24.0
-offset_bottom = 80.0
-grow_horizontal = 0
-texture_normal = ExtResource("5_close")
-texture_hover = ExtResource("19_close_h")
-ignore_texture_size = true
-stretch_mode = 5
-
 [node name="ContentFrame" type="NinePatchRect" parent="Dim"]
 layout_mode = 1
 anchors_preset = 8
@@ -126,9 +101,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -410.0
-offset_top = -240.0
+offset_top = -313.0
 offset_right = 410.0
-offset_bottom = 300.0
+offset_bottom = 314.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_frame")
@@ -136,6 +111,20 @@ patch_margin_left = 44
 patch_margin_top = 44
 patch_margin_right = 44
 patch_margin_bottom = 44
+
+[node name="Title" type="TextureRect" parent="Dim/ContentFrame"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = -45.0
+offset_right = 220.0
+offset_bottom = 35.0
+grow_horizontal = 2
+texture = SubResource("title_atlas")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Margin" type="MarginContainer" parent="Dim/ContentFrame"]
 layout_mode = 1
@@ -145,9 +134,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 46
-theme_override_constants/margin_top = 28
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 46
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_bottom = 18
 
 [node name="VBox" type="VBoxContainer" parent="Dim/ContentFrame/Margin"]
 layout_mode = 2
@@ -161,7 +150,7 @@ horizontal_scroll_mode = 0
 [node name="Content" type="VBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 5
+theme_override_constants/separation = 3
 
 [node name="AudioHeader" type="Label" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
 layout_mode = 2
@@ -592,7 +581,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [connection signal="pressed" from="GearButton" to="." method="_toggle"]
-[connection signal="pressed" from="Dim/CloseButton" to="." method="_on_menu_pressed"]
 [connection signal="value_changed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/VolumeSlider" to="." method="_on_volume_changed"]
 [connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/LeftArrow" to="." method="_on_screen_mode_cycle"]
 [connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/RightArrow" to="." method="_on_screen_mode_cycle"]

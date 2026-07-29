@@ -9,6 +9,8 @@ extends Area2D
 @export var quest_after_detail: String = ""
 @export var narration_after: Array[String] = []
 @export var narration_after_title: String = ""
+# name of a GameState flag to set true once this dialogue finishes (optional)
+@export var flag_after: String = ""
 
 const TALK_CURSOR := preload("res://assets/cursor/cursor_talk.png")
 const DEFAULT_CURSOR := preload("res://assets/cursor/cursor_arrow.png")
@@ -63,11 +65,15 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func _interact() -> void:
 	Dialogue.start(speaker_name, lines)
-	if quest_after != "" or not narration_after.is_empty():
+	if quest_after != "" or not narration_after.is_empty() or flag_after != "":
 		Dialogue.finished.connect(_on_dialogue_finished, CONNECT_ONE_SHOT)
 	get_viewport().set_input_as_handled()
 
 func _on_dialogue_finished() -> void:
+	if flag_after != "":
+		# GameState is a plain static-var script; a loose load() handle allows
+		# setting the flag dynamically by name
+		load("res://scenes/core/game_state.gd").set(flag_after, true)
 	if quest_after != "":
 		Quest.set_quest(quest_after, quest_after_detail)
 	if not narration_after.is_empty():
