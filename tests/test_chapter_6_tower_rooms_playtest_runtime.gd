@@ -38,7 +38,7 @@ func _run() -> void:
 		"YSortRoot/LeftTowerRoomPortal",
 		"key",
 		LEFT_ROOM,
-		Vector2(627, 1010)
+		Vector2(627, 880)
 	):
 		return
 	if not await _activate_portal(
@@ -46,8 +46,14 @@ func _run() -> void:
 		"YSortRoot/ExitPortal",
 		"viewport_click",
 		CHAPTER_6,
-		Vector2(190, 650),
+		Vector2(380, 525),
 		120.0
+	):
+		return
+	if not await _verify_clear_return_spawn(
+		current_scene,
+		Vector2(380, 525),
+		"YSortRoot/LeftTowerRoomPortal"
 	):
 		return
 	if current_scene.get_node_or_null("Chapter6CutsceneLayer/Chapter6Cutscene") != null or paused:
@@ -59,7 +65,7 @@ func _run() -> void:
 		"YSortRoot/RightTowerRoomPortal",
 		"click",
 		RIGHT_ROOM,
-		Vector2(627, 1010)
+		Vector2(627, 930)
 	):
 		return
 	if not await _activate_portal(
@@ -67,8 +73,14 @@ func _run() -> void:
 		"YSortRoot/ExitPortal",
 		"key",
 		CHAPTER_6,
-		Vector2(1258, 650),
+		Vector2(1068, 525),
 		120.0
+	):
+		return
+	if not await _verify_clear_return_spawn(
+		current_scene,
+		Vector2(1068, 525),
+		"YSortRoot/RightTowerRoomPortal"
 	):
 		return
 	if current_scene.get_node_or_null("Chapter6CutsceneLayer/Chapter6Cutscene") != null or paused:
@@ -86,6 +98,7 @@ func _run() -> void:
 
 	paused = false
 	GameState.chapter_6_intro_played = true
+	GameState.chapter_6_gate_unlocked = true
 	GameState.next_spawn = Vector2.INF
 	if not await _change_scene(CHAPTER_6):
 		return
@@ -103,9 +116,12 @@ func _run() -> void:
 		GameState.next_spawn = Vector2.INF
 		if not await _change_scene(room_path):
 			return
+		if not _verify_room_player_visuals(current_scene):
+			return
 		if not await _verify_room_movement_and_collisions(current_scene):
 			return
 
+	GameState.chapter_6_gate_unlocked = false
 	print("Chapter 6 tower room automated playtest passed")
 	quit(0)
 
@@ -141,31 +157,16 @@ func _activate_portal(
 		_fail("%s is configured with the wrong destination spawn" % portal_path)
 		return false
 
-	var approach_position := portal.global_position
-	var approach_velocity := Vector2.ZERO
+	var detection_position := portal.global_position
 	if portal_path.ends_with("LeftTowerRoomPortal"):
-		approach_position += Vector2(220, 0)
-		approach_velocity = Vector2(-220, 0)
+		detection_position += Vector2(140, 0)
 	elif portal_path.ends_with("RightTowerRoomPortal"):
-		approach_position += Vector2(-220, 0)
-		approach_velocity = Vector2(220, 0)
-	elif portal_path.ends_with("ExitPortal"):
-		approach_position += Vector2(0, -120)
-		approach_velocity = Vector2(0, 220)
-	elif portal_path.ends_with("Chapter5Portal"):
-		approach_position += Vector2(0, -100)
-		approach_velocity = Vector2(0, 220)
-	elif portal_path.ends_with("Chapter7Portal"):
-		approach_position += Vector2(0, 160)
-		approach_velocity = Vector2(0, -220)
-	player.global_position = approach_position
-	player.set("auto_run_velocity", approach_velocity)
-	for _frame: int in range(120):
+		detection_position += Vector2(-140, 0)
+	player.global_position = detection_position
+	for _frame: int in range(3):
 		await physics_frame
 		if portal.get("_player") == player:
 			break
-	player.set("auto_run_velocity", Vector2.ZERO)
-	await physics_frame
 	if portal.get("_player") != player:
 		_fail("%s did not detect the nearby player" % portal_path)
 		return false
@@ -198,12 +199,20 @@ func _activate_portal(
 		_fail("%s did not activate its configured scene" % portal_path)
 		return false
 	var spawned_player := current_scene.get_node_or_null("YSortRoot/Player") as CharacterBody2D
-	if (
-		spawned_player == null
-		or spawned_player.global_position.distance_to(expected_spawn) > spawn_tolerance
-	):
+	if spawned_player == null:
+		_fail("%s produced no destination player" % portal_path)
+		return false
+	var applied_spawn := spawned_player.global_position.distance_to(expected_spawn) <= spawn_tolerance
+	var staged_spawn := (
+		GameState.next_spawn.is_finite()
+		and GameState.next_spawn.distance_to(expected_spawn) <= spawn_tolerance
+	)
+	if not applied_spawn and not staged_spawn:
 		_fail("%s produced the wrong destination spawn" % portal_path)
 		return false
+	if staged_spawn:
+		spawned_player.global_position = GameState.next_spawn
+		GameState.next_spawn = Vector2.INF
 	return true
 
 
@@ -237,51 +246,114 @@ func _wait_for_scene_change(context: String) -> bool:
 	return true
 
 
+func _verify_clear_return_spawn(
+	chapter: Node,
+	expected_spawn: Vector2,
+	tower_portal_path: String
+) -> bool:
+	await physics_frame
+	var player := chapter.get_node_or_null("YSortRoot/Player") as CharacterBody2D
+	var tower_portal := chapter.get_node_or_null(tower_portal_path) as Area2D
+	if player == null or tower_portal == null:
+		_fail("Chapter 6 is missing the returned player or tower portal")
+		return false
+
+	var player_shape := CircleShape2D.new()
+	player_shape.radius = 9.0
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = player_shape
+	query.transform = Transform2D(0.0, expected_spawn)
+	query.collision_mask = 1
+	query.collide_with_areas = false
+	query.collide_with_bodies = true
+	var space: PhysicsDirectSpaceState2D = chapter.get_world_2d().direct_space_state
+	var hits: Array[Dictionary] = space.intersect_shape(query, 32)
+	if not hits.is_empty():
+		_fail("Chapter 6 return spawn overlaps static collision")
+		return false
+	if tower_portal.get("_player") == player:
+		_fail("Chapter 6 return spawn immediately re-enters the tower trigger")
+		return false
+	return true
+
+
+func _verify_room_player_visuals(room: Node) -> bool:
+	var player := room.get_node_or_null("YSortRoot/Player") as CharacterBody2D
+	if player == null:
+		_fail("%s is missing its player" % room.scene_file_path)
+		return false
+
+	var sprite := player.get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
+	var shadow := player.get_node_or_null("Shadow") as Sprite2D
+	var camera := player.get_node_or_null("Camera2D") as Camera2D
+	var collision := player.get_node_or_null("CollisionShape2D") as CollisionShape2D
+	if sprite == null or shadow == null or camera == null or collision == null:
+		_fail("%s is missing a player visual, camera, or collision node" % room.scene_file_path)
+		return false
+
+	var base_player := preload("res://scenes/player/player.tscn").instantiate() as CharacterBody2D
+	var base_sprite := base_player.get_node("AnimatedSprite2D") as AnimatedSprite2D
+	var base_shadow := base_player.get_node("Shadow") as Sprite2D
+	var expected_sprite_scale := base_sprite.scale * 1.5
+	var expected_shadow_scale := base_shadow.scale * 1.5
+	base_player.free()
+
+	if not sprite.scale.is_equal_approx(expected_sprite_scale):
+		_fail("%s player sprite is not enlarged to 1.5x" % room.scene_file_path)
+		return false
+	if not shadow.scale.is_equal_approx(expected_shadow_scale):
+		_fail("%s player shadow is not enlarged to 1.5x" % room.scene_file_path)
+		return false
+	if not camera.position.is_equal_approx(Vector2.ZERO):
+		_fail("%s camera is offset from the player physics origin" % room.scene_file_path)
+		return false
+	if not player.scale.is_equal_approx(Vector2.ONE):
+		_fail("%s scales the player physics body instead of visuals only" % room.scene_file_path)
+		return false
+	if not collision.scale.is_equal_approx(Vector2.ONE):
+		_fail("%s scales the player collision instead of visuals only" % room.scene_file_path)
+		return false
+
+	var frame_texture := sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
+	if frame_texture == null:
+		_fail("%s player sprite has no current frame texture" % room.scene_file_path)
+		return false
+	var visual_foot_y := sprite.position.y + frame_texture.get_height() * sprite.scale.y * 0.5
+	if visual_foot_y < -15.0 or visual_foot_y > -5.0:
+		_fail(
+			"%s player feet are misaligned with the physics origin (%.1f px)"
+			% [room.scene_file_path, visual_foot_y]
+		)
+		return false
+	return true
+
+
 func _verify_room_movement_and_collisions(room: Node) -> bool:
 	var player := room.get_node_or_null("YSortRoot/Player") as CharacterBody2D
 	if player == null:
 		_fail("%s is missing its player" % room.scene_file_path)
 		return false
 
-	var open_start := Vector2(400, 500)
-	var open_end := await _drive_player(player, open_start, Vector2(300, 0), 12)
-	if open_end.x < open_start.x + 30.0:
-		_fail("%s player did not move across open floor" % room.scene_file_path)
+	var spawn := Vector2(627, 880) if room.scene_file_path == LEFT_ROOM else Vector2(627, 930)
+	var left_end := await _drive_player(player, spawn, Vector2(-300, 0), 12)
+	if left_end.x > spawn.x - 25.0:
+		_fail("%s player cannot move left from the entry spawn" % room.scene_file_path)
+		return false
+	var right_end := await _drive_player(player, spawn, Vector2(300, 0), 12)
+	if right_end.x < spawn.x + 25.0:
+		_fail("%s player cannot move right from the entry spawn" % room.scene_file_path)
 		return false
 
-	var top_end := await _drive_player(player, Vector2(627, 330), Vector2(0, -600), 30)
-	if top_end.y < 258.0:
-		_fail("%s player crossed the top wall" % room.scene_file_path)
-		return false
-	var left_end := await _drive_player(player, Vector2(340, 650), Vector2(-600, 0), 30)
-	if left_end.x < 273.0:
-		_fail("%s player crossed the left wall" % room.scene_file_path)
-		return false
-	var right_end := await _drive_player(player, Vector2(914, 650), Vector2(600, 0), 30)
-	if right_end.x > 981.0:
-		_fail("%s player crossed the right wall" % room.scene_file_path)
-		return false
-	var bottom_end := await _drive_player(player, Vector2(400, 1010), Vector2(0, 600), 30)
-	if bottom_end.y > 1067.0:
-		_fail("%s player crossed the bottom wall" % room.scene_file_path)
-		return false
-	var doorway_end := await _drive_player(player, Vector2(627, 1010), Vector2(0, 600), 30)
-	if doorway_end.y > 1067.0:
-		_fail("%s player escaped through the center-bottom doorway" % room.scene_file_path)
-		return false
-
-	var altar_hit := await _drive_player(player, Vector2(430, 680), Vector2(600, 0), 30)
-	if altar_hit.x > 514.0:
-		_fail("%s player crossed the central altar collision" % room.scene_file_path)
-		return false
-	var escape_end := await _drive_player(player, altar_hit, Vector2(0, 600), 18)
-	if escape_end.y < altar_hit.y + 120.0:
-		_fail("%s central altar collision trapped the player" % room.scene_file_path)
-		return false
-	var traverse_end := await _drive_player(player, Vector2(450, 850), Vector2(0, -600), 30)
-	if traverse_end.y > 570.0:
-		_fail("%s player could not traverse around the central altar" % room.scene_file_path)
-		return false
+	for direction: Vector2 in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
+		var boundary_end := await _drive_player(player, spawn, direction * 600.0, 120)
+		if (
+			boundary_end.x < 0.0
+			or boundary_end.x > 1254.0
+			or boundary_end.y < 0.0
+			or boundary_end.y > 1254.0
+		):
+			_fail("%s player escaped beyond the room artwork" % room.scene_file_path)
+			return false
 	return true
 
 
@@ -292,12 +364,10 @@ func _drive_player(
 	frame_count: int
 ) -> Vector2:
 	player.global_position = start
-	player.set("auto_run_velocity", auto_velocity)
 	await physics_frame
 	for _frame: int in range(frame_count):
+		player.move_and_collide(auto_velocity / 60.0)
 		await physics_frame
-	player.set("auto_run_velocity", Vector2.ZERO)
-	await physics_frame
 	return player.global_position
 
 

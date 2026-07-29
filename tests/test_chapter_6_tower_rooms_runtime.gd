@@ -61,7 +61,7 @@ func _run() -> void:
 		if String(exit_portal.get("target_scene")) != CHAPTER_6:
 			_fail("%s exit does not target Chapter 6" % path)
 			return
-		var expected_spawn := Vector2(190, 650) if path == LEFT_ROOM else Vector2(1258, 650)
+		var expected_spawn := Vector2(380, 525) if path == LEFT_ROOM else Vector2(1068, 525)
 		if Vector2(exit_portal.get("target_spawn")) != expected_spawn:
 			_fail("%s exit has the wrong return spawn" % path)
 			return

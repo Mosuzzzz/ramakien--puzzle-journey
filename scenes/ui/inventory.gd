@@ -13,6 +13,18 @@ const ITEMS := {
 		"name": "ขนนกพญาชฎายุ",
 		"icon": "res://assets/ui/icon/split/icon_wing.png",
 	},
+	"lanka_key_fragment_shaft": {
+		"name": "ชิ้นส่วนกุญแจ: แกน",
+		"icon": "res://assets/ui/icon/split/image-removebg-preview-removebg-preview.png",
+	},
+	"lanka_key_fragment_bar": {
+		"name": "ชิ้นส่วนกุญแจ: แท่ง",
+		"icon": "res://assets/ui/icon/split/image-removebg-preview สำเนา.png",
+	},
+	"lanka_key_fragment_ring": {
+		"name": "ชิ้นส่วนกุญแจ: ห่วง",
+		"icon": "res://assets/ui/icon/split/image-removebg-preview.png",
+	},
 }
 
 var items := {"potion": 3}

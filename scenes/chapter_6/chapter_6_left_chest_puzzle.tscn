@@ -1,0 +1,174 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/chapter_6/chapter_6_left_chest_puzzle.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon/split/ChatGPT Image 28 ก.ค. 2569 21_07_11.png" id="2_chest"]
+[ext_resource type="FontFile" path="res://assets/fonts/Sarabun-Bold.ttf" id="3_bold"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+bg_color = Color(0.08, 0.045, 0.02, 0.94)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.77, 0.58, 0.25, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="LeftChestPuzzle" type="CanvasLayer"]
+process_mode = 3
+layer = 80
+script = ExtResource("1_script")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.72)
+
+[node name="ChestPanel" type="Control" parent="Dim"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -440.0
+offset_right = 360.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChestImage" type="TextureRect" parent="Dim/ChestPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_chest")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slots" type="Control" parent="Dim/ChestPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Slot1" type="ColorRect" parent="Dim/ChestPanel/Slots"]
+layout_mode = 1
+anchor_left = 0.262
+anchor_top = 0.515
+anchor_right = 0.379
+anchor_bottom = 0.622
+color = Color(0.14, 0.1, 0.08, 1)
+
+[node name="Slot2" type="ColorRect" parent="Dim/ChestPanel/Slots"]
+layout_mode = 1
+anchor_left = 0.439
+anchor_top = 0.515
+anchor_right = 0.563
+anchor_bottom = 0.622
+color = Color(0.14, 0.1, 0.08, 1)
+
+[node name="Slot3" type="ColorRect" parent="Dim/ChestPanel/Slots"]
+layout_mode = 1
+anchor_left = 0.623
+anchor_top = 0.515
+anchor_right = 0.739
+anchor_bottom = 0.622
+color = Color(0.14, 0.1, 0.08, 1)
+
+[node name="Instruction" type="PanelContainer" parent="Dim"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -370.0
+offset_top = -225.0
+offset_right = 370.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Dim/Instruction"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Label" type="Label" parent="Dim/Instruction/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 25
+text = "ตอบคำถามให้ถูกต้องเพื่อปลดล็อกกล่องนี้"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartHint" type="Label" parent="Dim/Instruction/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 20
+text = "กด E เพื่อเริ่ม"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestionPanel" type="PanelContainer" parent="Dim"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -390.0
+offset_top = -320.0
+offset_right = 390.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="Margin" type="MarginContainer" parent="Dim/QuestionPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 22
+
+[node name="VBox" type="VBoxContainer" parent="Dim/QuestionPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="QuestionLabel" type="Label" parent="Dim/QuestionPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 20
+text = "คำถาม"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Choices" type="VBoxContainer" parent="Dim/QuestionPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="Dim"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 18
+text = "ยกเลิก (Esc)"

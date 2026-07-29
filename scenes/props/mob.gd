@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal defeated(mob: CharacterBody2D)
+
 @export var speed: float = 60.0
 @export var aggro_range: float = 220.0
 @export var contact_damage: int = 10
@@ -28,6 +30,7 @@ var _hit_cooldown: float = 0.0
 var _player: Node2D
 var _face_right := false
 var _attacking := false
+var _defeated := false
 var _hit_flash_tween: Tween
 var damage_gate: Node = null
 
@@ -97,6 +100,8 @@ func _play(requested: StringName) -> StringName:
 	return anim
 
 func take_damage(amount: int) -> void:
+	if _defeated:
+		return
 	if is_instance_valid(damage_gate) and damage_gate.has_method("request_mob_damage"):
 		damage_gate.request_mob_damage(self, amount)
 		return
@@ -104,19 +109,25 @@ func take_damage(amount: int) -> void:
 
 
 func apply_authorized_damage(amount: int) -> void:
+	if _defeated:
+		return
 	_flash_hit()
 	_health -= amount
 	if _health <= 0:
+		_defeated = true
+		defeated.emit(self)
 		await get_tree().create_timer(0.12).timeout
-		queue_free()
+		if is_inside_tree():
+			queue_free()
 
 
 func would_damage_defeat(amount: int) -> bool:
-	return _health - amount <= 0
+	return not _defeated and _health - amount <= 0
 
 
 func restore_full_health() -> void:
 	_health = max_health
+	_defeated = false
 
 
 func _flash_hit() -> void:

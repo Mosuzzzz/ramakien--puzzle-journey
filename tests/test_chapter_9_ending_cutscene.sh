@@ -12,6 +12,7 @@ chapter_9_script="scenes/chapter_9/chapter_9.gd"
 ending_gate="scenes/props/chapter_9_ending_gate.gd"
 ending_cutscene="scenes/cutscene/chapter_9_ending_cutscene.gd"
 thotsakan="scenes/props/thosakan.gd"
+mob="scenes/props/mob.gd"
 sida="scenes/props/sida.gd"
 
 for file in \
@@ -29,8 +30,8 @@ grep -Fq 'static var chapter_9_sida_rescued := false' "$game_state"
 grep -Fq 'GameState.chapter_9_thotsakan_defeated = false' "$home_page"
 grep -Fq 'GameState.chapter_9_sida_rescued = false' "$home_page"
 
-grep -Fq 'signal defeated' "$thotsakan"
-grep -Fq 'defeated.emit()' "$thotsakan"
+grep -Fq 'signal defeated(mob: CharacterBody2D)' "$mob"
+grep -Fq 'defeated.emit(self)' "$thotsakan"
 grep -Fq 'signal following_started' "$sida"
 grep -Fq 'func start_following() -> void:' "$sida"
 grep -Fq 'following_started.emit()' "$sida"

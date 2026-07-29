@@ -19,7 +19,7 @@ func _ready() -> void:
 		_sida.queue_free()
 
 
-func _on_thotsakan_defeated() -> void:
+func _on_thotsakan_defeated(_defeated_thotsakan: CharacterBody2D) -> void:
 	GameState.chapter_9_thotsakan_defeated = true
 
 

@@ -1,14 +1,17 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene format=3 uid="uid://cj1xtup3mjc3l"]
 
-[ext_resource type="Texture2D" path="res://assets/map/chapter_6/ChatGPT Image 27 ก.ค. 2569 20_33_55.png" id="1_background"]
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://dnrgjysrqcnok" path="res://assets/map/chapter_6/ChatGPT Image 27 ก.ค. 2569 20_33_55.png" id="1_background"]
+[ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
+[ext_resource type="Script" uid="uid://voe6lxy1n3ri" path="res://scenes/chapter_6/chapter_6_room_right.gd" id="4_controller"]
+[ext_resource type="PackedScene" uid="uid://cohgpnm1jkjlw" path="res://scenes/chapter_6/chapter_6_right_jar_modal.tscn" id="5_jar_modal"]
+[ext_resource type="PackedScene" uid="uid://k3sg1uur7ong" path="res://scenes/chapter_6/chapter_6_right_code_modal.tscn" id="6_code_modal"]
 
 [sub_resource type="RectangleShape2D" id="TopWallShape"]
-size = Vector2(780, 80)
+size = Vector2(959, 80)
 
 [sub_resource type="RectangleShape2D" id="BottomLeftWallShape"]
-size = Vector2(460, 80)
+size = Vector2(784, 80)
 
 [sub_resource type="RectangleShape2D" id="BottomRightWallShape"]
 size = Vector2(460, 80)
@@ -23,61 +26,472 @@ size = Vector2(80, 900)
 size = Vector2(80, 900)
 
 [sub_resource type="CircleShape2D" id="CenterObstacleShape"]
-radius = 105.0
+radius = 102.0049
 
-[node name="Chapter6RoomRight" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npiw3"]
+radius = 28.0
+height = 84.0
 
-[node name="Background" type="Sprite2D" parent="."]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vywiu"]
+radius = 22.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xqkhr"]
+radius = 28.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2181n"]
+radius = 33.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3l05"]
+radius = 33.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s67tl"]
+radius = 33.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v52rc"]
+radius = 33.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8xcn"]
+radius = 14.0
+height = 66.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gla1"]
+radius = 20.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv2ok"]
+radius = 29.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o073m"]
+radius = 33.0
+height = 216.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_egjvr"]
+radius = 33.0
+height = 220.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_devki"]
+radius = 33.0
+height = 214.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh0mh"]
+radius = 33.0
+height = 220.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cs3iq"]
+radius = 28.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5esnh"]
+radius = 28.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vcgu0"]
+radius = 28.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r2gag"]
+radius = 16.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fo3qr"]
+radius = 32.0
+height = 68.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fihqw"]
+radius = 32.0
+height = 68.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vy001"]
+radius = 63.0
+height = 218.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkbbt"]
+radius = 33.0
+height = 162.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hihno"]
+radius = 30.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iwbxs"]
+radius = 5.0
+height = 98.0
+
+[sub_resource type="CircleShape2D" id="JarInteractionShape"]
+radius = 42.0
+
+[sub_resource type="CircleShape2D" id="PedestalInteractionShape"]
+radius = 120.0
+
+[node name="Chapter6RoomRight" type="Node2D" unique_id=417674350]
+script = ExtResource("4_controller")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1875657686]
 position = Vector2(627, 627)
 texture = ExtResource("1_background")
 
-[node name="Walls" type="StaticBody2D" parent="."]
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1074162152]
 
-[node name="TopWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(627, 210)
+[node name="TopWall" type="CollisionShape2D" parent="Walls" unique_id=1413639680]
+position = Vector2(612, 216)
 shape = SubResource("TopWallShape")
 
-[node name="BottomLeftWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(330, 1115)
+[node name="BottomLeftWall" type="CollisionShape2D" parent="Walls" unique_id=1887016242]
+position = Vector2(630, 1005)
 shape = SubResource("BottomLeftWallShape")
 
-[node name="BottomRightWall" type="CollisionShape2D" parent="Walls"]
+[node name="BottomRightWall" type="CollisionShape2D" parent="Walls" unique_id=930990450]
 position = Vector2(924, 1115)
 shape = SubResource("BottomRightWallShape")
 
-[node name="BottomCenterWall" type="CollisionShape2D" parent="Walls"]
+[node name="BottomCenterWall" type="CollisionShape2D" parent="Walls" unique_id=1932809592]
 position = Vector2(627, 1115)
 shape = SubResource("BottomCenterWallShape")
 
-[node name="LeftWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(225, 660)
+[node name="LeftWall" type="CollisionShape2D" parent="Walls" unique_id=953362147]
+position = Vector2(119, 661)
 shape = SubResource("LeftWallShape")
 
-[node name="RightWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1029, 660)
+[node name="RightWall" type="CollisionShape2D" parent="Walls" unique_id=415725967]
+position = Vector2(1116, 655)
 shape = SubResource("RightWallShape")
 
-[node name="CenterObstacle" type="CollisionShape2D" parent="Walls"]
-position = Vector2(627, 680)
+[node name="CenterObstacle" type="CollisionShape2D" parent="Walls" unique_id=1657344594]
+position = Vector2(625, 630)
 shape = SubResource("CenterObstacleShape")
 
-[node name="YSortRoot" type="Node2D" parent="."]
+[node name="BottomLeftWall2" type="CollisionShape2D" parent="Walls" unique_id=1082566425]
+position = Vector2(376, 984)
+shape = SubResource("CapsuleShape2D_npiw3")
+
+[node name="BottomLeftWall3" type="CollisionShape2D" parent="Walls" unique_id=939841601]
+position = Vector2(462, 977)
+shape = SubResource("CapsuleShape2D_vywiu")
+
+[node name="BottomLeftWall4" type="CollisionShape2D" parent="Walls" unique_id=389094398]
+position = Vector2(553, 995)
+shape = SubResource("CapsuleShape2D_vywiu")
+
+[node name="BottomLeftWall5" type="CollisionShape2D" parent="Walls" unique_id=44331240]
+position = Vector2(702, 995)
+shape = SubResource("CapsuleShape2D_vywiu")
+
+[node name="BottomLeftWall6" type="CollisionShape2D" parent="Walls" unique_id=1714118373]
+position = Vector2(791, 979)
+shape = SubResource("CapsuleShape2D_vywiu")
+
+[node name="BottomLeftWall7" type="CollisionShape2D" parent="Walls" unique_id=1754072293]
+position = Vector2(872, 986)
+shape = SubResource("CapsuleShape2D_npiw3")
+
+[node name="BottomLeftWall8" type="CollisionShape2D" parent="Walls" unique_id=326027350]
+position = Vector2(939, 963)
+shape = SubResource("CapsuleShape2D_xqkhr")
+
+[node name="BottomLeftWall9" type="CollisionShape2D" parent="Walls" unique_id=1987087786]
+position = Vector2(972, 930)
+shape = SubResource("CapsuleShape2D_xqkhr")
+
+[node name="BottomLeftWall10" type="CollisionShape2D" parent="Walls" unique_id=4137501]
+position = Vector2(1017, 889)
+shape = SubResource("CapsuleShape2D_xqkhr")
+
+[node name="BottomLeftWall11" type="CollisionShape2D" parent="Walls" unique_id=685509375]
+position = Vector2(1054, 831)
+shape = SubResource("CapsuleShape2D_xqkhr")
+
+[node name="BottomLeftWall12" type="CollisionShape2D" parent="Walls" unique_id=588914576]
+position = Vector2(1065, 641)
+shape = SubResource("CapsuleShape2D_2181n")
+
+[node name="BottomLeftWall13" type="CollisionShape2D" parent="Walls" unique_id=1105364999]
+position = Vector2(1092, 499)
+shape = SubResource("CapsuleShape2D_w3l05")
+
+[node name="BottomLeftWall14" type="CollisionShape2D" parent="Walls" unique_id=521251469]
+position = Vector2(1053, 422)
+shape = SubResource("CapsuleShape2D_s67tl")
+
+[node name="BottomLeftWall15" type="CollisionShape2D" parent="Walls" unique_id=93012511]
+position = Vector2(1016, 389)
+shape = SubResource("CapsuleShape2D_v52rc")
+
+[node name="BottomLeftWall16" type="CollisionShape2D" parent="Walls" unique_id=1651652503]
+position = Vector2(984, 374)
+shape = SubResource("CapsuleShape2D_s67tl")
+
+[node name="BottomLeftWall17" type="CollisionShape2D" parent="Walls" unique_id=1813159157]
+position = Vector2(1024, 498)
+shape = SubResource("CapsuleShape2D_w8xcn")
+
+[node name="BottomLeftWall18" type="CollisionShape2D" parent="Walls" unique_id=598565109]
+position = Vector2(954, 294)
+shape = SubResource("CapsuleShape2D_s67tl")
+
+[node name="BottomLeftWall19" type="CollisionShape2D" parent="Walls" unique_id=705232359]
+position = Vector2(894, 244)
+shape = SubResource("CapsuleShape2D_s67tl")
+
+[node name="BottomLeftWall20" type="CollisionShape2D" parent="Walls" unique_id=2067564313]
+position = Vector2(837, 255)
+shape = SubResource("CapsuleShape2D_1gla1")
+
+[node name="BottomLeftWall21" type="CollisionShape2D" parent="Walls" unique_id=988127530]
+position = Vector2(791, 235)
+shape = SubResource("CapsuleShape2D_1gla1")
+
+[node name="BottomLeftWall22" type="CollisionShape2D" parent="Walls" unique_id=616449139]
+position = Vector2(723, 292)
+shape = SubResource("CapsuleShape2D_wv2ok")
+
+[node name="BottomLeftWall23" type="CollisionShape2D" parent="Walls" unique_id=1107019892]
+position = Vector2(863, 450)
+shape = SubResource("CapsuleShape2D_o073m")
+
+[node name="BottomLeftWall24" type="CollisionShape2D" parent="Walls" unique_id=379855326]
+position = Vector2(392, 450)
+shape = SubResource("CapsuleShape2D_egjvr")
+
+[node name="BottomLeftWall25" type="CollisionShape2D" parent="Walls" unique_id=1360906637]
+position = Vector2(393, 773)
+shape = SubResource("CapsuleShape2D_devki")
+
+[node name="BottomLeftWall26" type="CollisionShape2D" parent="Walls" unique_id=1897140196]
+position = Vector2(861, 777)
+shape = SubResource("CapsuleShape2D_jh0mh")
+
+[node name="BottomLeftWall27" type="CollisionShape2D" parent="Walls" unique_id=1870637931]
+position = Vector2(302, 964)
+shape = SubResource("CapsuleShape2D_cs3iq")
+
+[node name="BottomLeftWall28" type="CollisionShape2D" parent="Walls" unique_id=1417977724]
+position = Vector2(246, 970)
+shape = SubResource("CapsuleShape2D_5esnh")
+
+[node name="BottomLeftWall29" type="CollisionShape2D" parent="Walls" unique_id=93899349]
+position = Vector2(219, 947)
+shape = SubResource("CapsuleShape2D_5esnh")
+
+[node name="BottomLeftWall30" type="CollisionShape2D" parent="Walls" unique_id=17995856]
+position = Vector2(190, 925)
+shape = SubResource("CapsuleShape2D_5esnh")
+
+[node name="BottomLeftWall31" type="CollisionShape2D" parent="Walls" unique_id=1104325093]
+position = Vector2(161, 896)
+shape = SubResource("CapsuleShape2D_5esnh")
+
+[node name="BottomLeftWall32" type="CollisionShape2D" parent="Walls" unique_id=1234407940]
+position = Vector2(179, 845)
+shape = SubResource("CapsuleShape2D_vcgu0")
+
+[node name="BottomLeftWall33" type="CollisionShape2D" parent="Walls" unique_id=2077091876]
+position = Vector2(160, 826)
+shape = SubResource("CapsuleShape2D_vcgu0")
+
+[node name="BottomLeftWall34" type="CollisionShape2D" parent="Walls" unique_id=2114530929]
+position = Vector2(173, 766)
+shape = SubResource("CapsuleShape2D_r2gag")
+
+[node name="BottomLeftWall35" type="CollisionShape2D" parent="Walls" unique_id=1820679547]
+position = Vector2(170, 481)
+shape = SubResource("CapsuleShape2D_r2gag")
+
+[node name="BottomLeftWall36" type="CollisionShape2D" parent="Walls" unique_id=931733475]
+position = Vector2(175, 619)
+shape = SubResource("CapsuleShape2D_fo3qr")
+
+[node name="BottomLeftWall37" type="CollisionShape2D" parent="Walls" unique_id=307512481]
+position = Vector2(139, 584)
+shape = SubResource("CapsuleShape2D_fihqw")
+
+[node name="BottomLeftWall38" type="CollisionShape2D" parent="Walls" unique_id=36869536]
+position = Vector2(158, 532)
+shape = SubResource("CapsuleShape2D_fihqw")
+
+[node name="BottomLeftWall39" type="CollisionShape2D" parent="Walls" unique_id=16737832]
+position = Vector2(184, 346)
+shape = SubResource("CapsuleShape2D_vy001")
+
+[node name="BottomLeftWall40" type="CollisionShape2D" parent="Walls" unique_id=919875898]
+position = Vector2(247, 330)
+shape = SubResource("CapsuleShape2D_qkbbt")
+
+[node name="BottomLeftWall41" type="CollisionShape2D" parent="Walls" unique_id=22517942]
+position = Vector2(286, 327)
+shape = SubResource("CapsuleShape2D_qkbbt")
+
+[node name="BottomLeftWall42" type="CollisionShape2D" parent="Walls" unique_id=1706705211]
+position = Vector2(319, 249)
+shape = SubResource("CapsuleShape2D_qkbbt")
+
+[node name="BottomLeftWall43" type="CollisionShape2D" parent="Walls" unique_id=1383455552]
+position = Vector2(418, 221)
+shape = SubResource("CapsuleShape2D_qkbbt")
+
+[node name="BottomLeftWall44" type="CollisionShape2D" parent="Walls" unique_id=1477679640]
+position = Vector2(468, 198)
+shape = SubResource("CapsuleShape2D_qkbbt")
+
+[node name="BottomLeftWall45" type="CollisionShape2D" parent="Walls" unique_id=1094480016]
+position = Vector2(529, 297)
+shape = SubResource("CapsuleShape2D_hihno")
+
+[node name="BottomLeftWall46" type="CollisionShape2D" parent="Walls" unique_id=801791289]
+position = Vector2(369, 204)
+shape = SubResource("CapsuleShape2D_qkbbt")
+
+[node name="BottomLeftWall47" type="CollisionShape2D" parent="Walls" unique_id=201242229]
+position = Vector2(1100, 780)
+shape = SubResource("CapsuleShape2D_xqkhr")
+
+[node name="BottomLeftWall48" type="CollisionShape2D" parent="Walls" unique_id=2009632114]
+position = Vector2(698, 336)
+shape = SubResource("CapsuleShape2D_iwbxs")
+
+[node name="BottomLeftWall49" type="CollisionShape2D" parent="Walls" unique_id=690718303]
+position = Vector2(551, 338)
+shape = SubResource("CapsuleShape2D_iwbxs")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=1565829442]
 y_sort_enabled = true
 
-[node name="Player" parent="YSortRoot" instance=ExtResource("2_player")]
-position = Vector2(627, 1040)
+[node name="Player" parent="YSortRoot" unique_id=1591154196 instance=ExtResource("2_player")]
+position = Vector2(627, 930)
+display_height = 120.0
 
-[node name="Camera2D" parent="YSortRoot/Player" index="3"]
-limit_left = 0
-limit_top = 0
-limit_right = 1254
-limit_bottom = 1254
+[node name="Shadow" parent="YSortRoot/Player" index="0" unique_id=1742627637]
+position = Vector2(0, -7)
+scale = Vector2(0.19242188, 0.06679688)
 
-[node name="ExitPortal" parent="YSortRoot" instance=ExtResource("3_portal")]
-position = Vector2(627, 1110)
+[node name="AnimatedSprite2D" parent="YSortRoot/Player" index="1" unique_id=1220771692]
+position = Vector2(1, -42.3)
+scale = Vector2(0.35295, 0.35295)
+
+[node name="ExitPortal" parent="YSortRoot" unique_id=723904788 instance=ExtResource("3_portal")]
+position = Vector2(627, 930)
 target_scene = "res://scenes/chapter_6/chapter_6.tscn"
-target_spawn = Vector2(1258, 650)
+target_spawn = Vector2(1068, 525)
 prompt_text = "กด E เพื่อออกจากหอคอย"
 interaction_size = Vector2(150, 90)
+
+[node name="JarInteractions" type="Node2D" parent="." unique_id=1978599359]
+
+[node name="JarUpperLeft" type="Area2D" parent="JarInteractions" unique_id=1717094362]
+position = Vector2(245, 390)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JarInteractions/JarUpperLeft" unique_id=1132851301]
+shape = SubResource("JarInteractionShape")
+
+[node name="Prompt" type="Label" parent="JarInteractions/JarUpperLeft" unique_id=667318127]
+visible = false
+offset_left = -115.0
+offset_top = -105.0
+offset_right = 115.0
+offset_bottom = -65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "กด E เพื่อค้นหา"
+horizontal_alignment = 1
+
+[node name="JarUpperRight" type="Area2D" parent="JarInteractions" unique_id=782534392]
+position = Vector2(1005, 390)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JarInteractions/JarUpperRight" unique_id=1556180717]
+shape = SubResource("JarInteractionShape")
+
+[node name="Prompt" type="Label" parent="JarInteractions/JarUpperRight" unique_id=258404213]
+visible = false
+offset_left = -115.0
+offset_top = -105.0
+offset_right = 115.0
+offset_bottom = -65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "กด E เพื่อค้นหา"
+horizontal_alignment = 1
+
+[node name="JarLowerLeft" type="Area2D" parent="JarInteractions" unique_id=426561353]
+position = Vector2(245, 800)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JarInteractions/JarLowerLeft" unique_id=1708731870]
+shape = SubResource("JarInteractionShape")
+
+[node name="Prompt" type="Label" parent="JarInteractions/JarLowerLeft" unique_id=1397277730]
+visible = false
+offset_left = -115.0
+offset_top = -105.0
+offset_right = 115.0
+offset_bottom = -65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "กด E เพื่อค้นหา"
+horizontal_alignment = 1
+
+[node name="JarLowerRight" type="Area2D" parent="JarInteractions" unique_id=206439621]
+position = Vector2(1005, 800)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JarInteractions/JarLowerRight" unique_id=996323292]
+shape = SubResource("JarInteractionShape")
+
+[node name="Prompt" type="Label" parent="JarInteractions/JarLowerRight" unique_id=1336701766]
+visible = false
+offset_left = -115.0
+offset_top = -105.0
+offset_right = 115.0
+offset_bottom = -65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "กด E เพื่อค้นหา"
+horizontal_alignment = 1
+
+[node name="RightJarModal" parent="." unique_id=1713914508 instance=ExtResource("5_jar_modal")]
+visible = true
+
+[node name="PedestalInteraction" type="Area2D" parent="." unique_id=670412462]
+position = Vector2(627, 627)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PedestalInteraction" unique_id=1276546929]
+shape = SubResource("PedestalInteractionShape")
+
+[node name="Prompt" type="Label" parent="PedestalInteraction" unique_id=1617320755]
+visible = false
+offset_left = -140.0
+offset_top = -155.0
+offset_right = 140.0
+offset_bottom = -110.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 24
+text = "กด E เพื่อใส่รหัส"
+horizontal_alignment = 1
+
+[node name="RightCodeModal" parent="." unique_id=704219975 instance=ExtResource("6_code_modal")]
+visible = true
 
 [editable path="YSortRoot/Player"]
