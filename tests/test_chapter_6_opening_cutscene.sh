@@ -21,6 +21,7 @@ grep -Fq 'CutsceneSkip.attach(self, _finish_cutscene)' "$cutscene"
 test "$(grep -Fc '"color:a", 1.0, 1.0' "$cutscene")" -ge 1
 test "$(grep -Fc '"color:a", 0.0, 1.0' "$cutscene")" -ge 1
 grep -Fq 'get_tree().paused = false' "$cutscene"
+grep -Fq 'start_key_fragment_quest' "$cutscene"
 
 grep -Fq '[node name="Player" parent="YSortRoot"' "$scene"
 grep -Fq '[node name="Chapter7Portal" parent="YSortRoot"' "$scene"

@@ -1,5 +1,7 @@
 extends Area2D
 
+signal activated(portal: Area2D)
+
 const GameState := preload("res://scenes/core/game_state.gd")
 
 @export_file("*.tscn") var target_scene: String
@@ -64,6 +66,7 @@ func _use_portal() -> void:
 	if locked:
 		get_viewport().set_input_as_handled()
 		return
+	activated.emit(self)
 	GameState.next_spawn = target_spawn
 	get_tree().change_scene_to_file.call_deferred(target_scene)
 	get_viewport().set_input_as_handled()

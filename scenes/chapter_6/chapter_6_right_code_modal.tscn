@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://k3sg1uur7ong"]
+
+[ext_resource type="Script" uid="uid://4t0dnoyv48at" path="res://scenes/chapter_6/chapter_6_right_code_modal.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://b5txv40pxqhpq" path="res://assets/ui/icon/split/ChatGPT Image 28 ก.ค. 2569 21_08_34.png" id="3_pedestal"]
+
+[sub_resource type="StyleBoxFlat" id="ButtonStyle"]
+bg_color = Color(0.105882, 0.0941176, 0.0862745, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.521569, 0.337255, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.105882, 0.0588235, 0.0352941, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.737255, 0.482353, 0.188235, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="RightCodeModal" type="CanvasLayer" unique_id=485018237]
+process_mode = 3
+layer = 80
+script = ExtResource("1_script")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1950742776]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.74)
+
+[node name="CancelButton" type="Button" parent="Dim" unique_id=1172597555]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "ยกเลิก (Esc)"
+
+[node name="PedestalPanel" type="Control" parent="Dim" unique_id=822259624]
+layout_mode = 1
+anchor_left = 0.28
+anchor_top = 0.03
+anchor_right = 0.72
+anchor_bottom = 0.72
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PedestalImage" type="TextureRect" parent="Dim/PedestalPanel" unique_id=618501945]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pedestal")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slots" type="Control" parent="Dim/PedestalPanel" unique_id=1410251363]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Slot1" type="ColorRect" parent="Dim/PedestalPanel/Slots" unique_id=733357058]
+layout_mode = 1
+anchor_left = 0.347
+anchor_top = 0.594
+anchor_right = 0.429
+anchor_bottom = 0.664
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.101961, 0.0784314, 1)
+
+[node name="Value" type="Label" parent="Dim/PedestalPanel/Slots/Slot1" unique_id=1561080044]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot2" type="ColorRect" parent="Dim/PedestalPanel/Slots" unique_id=1370736796]
+layout_mode = 1
+anchor_left = 0.457
+anchor_top = 0.594
+anchor_right = 0.543
+anchor_bottom = 0.664
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.101961, 0.0784314, 1)
+
+[node name="Value" type="Label" parent="Dim/PedestalPanel/Slots/Slot2" unique_id=1159692406]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot3" type="ColorRect" parent="Dim/PedestalPanel/Slots" unique_id=712500502]
+layout_mode = 1
+anchor_left = 0.573
+anchor_top = 0.594
+anchor_right = 0.654
+anchor_bottom = 0.664
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.101961, 0.0784314, 1)
+
+[node name="Value" type="Label" parent="Dim/PedestalPanel/Slots/Slot3" unique_id=33690846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EntryPanel" type="PanelContainer" parent="Dim" unique_id=43625400]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.7
+anchor_right = 0.75
+anchor_bottom = 0.97
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="Margin" type="MarginContainer" parent="Dim/EntryPanel" unique_id=352428912]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 18
+
+[node name="VBox" type="VBoxContainer" parent="Dim/EntryPanel/Margin" unique_id=353878635]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Instruction" type="Label" parent="Dim/EntryPanel/Margin/VBox" unique_id=429217072]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 26
+text = "เรียงรหัสลับให้ถูกต้อง"
+horizontal_alignment = 1
+
+[node name="DigitSources" type="HBoxContainer" parent="Dim/EntryPanel/Margin/VBox" unique_id=508723917]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Digit2" type="Button" parent="Dim/EntryPanel/Margin/VBox/DigitSources" unique_id=488414496]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "?"
+
+[node name="Digit7" type="Button" parent="Dim/EntryPanel/Margin/VBox/DigitSources" unique_id=1690694276]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "?"
+
+[node name="Digit3" type="Button" parent="Dim/EntryPanel/Margin/VBox/DigitSources" unique_id=1694431050]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "?"
+
+[node name="ClearButton" type="Button" parent="Dim/EntryPanel/Margin/VBox" unique_id=170344021]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "ล้างรหัส"

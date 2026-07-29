@@ -32,6 +32,12 @@ const STATE_KEYS := [
 	"chapter_2_ashram_puzzle_solved",
 	"chapter_2_deer_intro_played",
 	"chapter_2_aftermath_played",
+	"chapter_6_intro_played",
+	"chapter_6_yak_defeated",
+	"chapter_6_left_chest_unlocked",
+	"chapter_6_right_jars_mask",
+	"chapter_6_right_pedestal_solved",
+	"chapter_6_gate_unlocked",
 	"chapter_8_intro_played",
 	"chapter_9_thotsakan_defeated",
 	"chapter_9_sida_rescued",
@@ -103,6 +109,7 @@ static func load_slot(slot: int) -> void:
 	var inventory = tree.root.get_node_or_null("Inv")
 	if data.has("inventory"):
 		inventory.restore_items(data["inventory"])
+	GameState.chapter_6_yak_fragment_position = Vector2.INF
 	var pos = data.get("player_position")
 	GameState.next_spawn = Vector2(pos[0], pos[1]) if pos else Vector2.INF
 	# hand the saved quest to the next gameplay scene to re-apply on _ready

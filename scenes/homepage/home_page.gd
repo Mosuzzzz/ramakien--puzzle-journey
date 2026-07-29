@@ -28,6 +28,13 @@ func _on_start_pressed() -> void:
 	GameState.chapter_2_ashram_puzzle_solved = false
 	GameState.chapter_2_deer_intro_played = false
 	GameState.chapter_2_aftermath_played = false
+	GameState.chapter_6_intro_played = false
+	GameState.chapter_6_yak_defeated = false
+	GameState.chapter_6_yak_fragment_position = Vector2.INF
+	GameState.chapter_6_left_chest_unlocked = false
+	GameState.chapter_6_right_jars_mask = 0
+	GameState.chapter_6_right_pedestal_solved = false
+	GameState.chapter_6_gate_unlocked = false
 	GameState.chapter_8_intro_played = false
 	GameState.chapter_9_thotsakan_defeated = false
 	GameState.chapter_9_sida_rescued = false

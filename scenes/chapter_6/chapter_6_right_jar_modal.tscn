@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://cohgpnm1jkjlw"]
+
+[ext_resource type="Script" uid="uid://00m5vcsxt7c" path="res://scenes/chapter_6/chapter_6_right_jar_modal.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="ButtonStyle"]
+bg_color = Color(0.105882, 0.0941176, 0.0862745, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.521569, 0.337255, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.105882, 0.0588235, 0.0352941, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.737255, 0.482353, 0.188235, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="RightJarModal" type="CanvasLayer" unique_id=2020361567]
+process_mode = 3
+layer = 80
+script = ExtResource("1_script")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=2131768767]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.74)
+
+[node name="CancelButton" type="Button" parent="Dim" unique_id=1124424768]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "ยกเลิก (Esc)"
+
+[node name="JarPanel" type="Control" parent="Dim" unique_id=1728700029]
+layout_mode = 1
+anchor_left = 0.24
+anchor_top = 0.05
+anchor_right = 0.76
+anchor_bottom = 0.83
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="JarImage" type="TextureRect" parent="Dim/JarPanel" unique_id=706035461]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuestionPanel" type="PanelContainer" parent="Dim" unique_id=758656434]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.3
+anchor_right = 0.8
+anchor_bottom = 0.94
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="Margin" type="MarginContainer" parent="Dim/QuestionPanel" unique_id=1737967280]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Dim/QuestionPanel/Margin" unique_id=2143802958]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="QuestionLabel" type="Label" parent="Dim/QuestionPanel/Margin/VBox" unique_id=2138141144]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 27
+text = "คำถาม"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Choices" type="VBoxContainer" parent="Dim/QuestionPanel/Margin/VBox" unique_id=1620303790]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Choice1" type="Button" parent="Dim/QuestionPanel/Margin/VBox/Choices" unique_id=533838727]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "คำตอบ 1"
+
+[node name="Choice2" type="Button" parent="Dim/QuestionPanel/Margin/VBox/Choices" unique_id=553073088]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "คำตอบ 2"
+
+[node name="Choice3" type="Button" parent="Dim/QuestionPanel/Margin/VBox/Choices" unique_id=2132144382]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+text = "คำตอบ 3"

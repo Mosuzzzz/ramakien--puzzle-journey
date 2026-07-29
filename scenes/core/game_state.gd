@@ -29,6 +29,15 @@ static var chapter_2_deer_intro_played := false
 # whether the "return to the empty ashram" aftermath quest has been set
 static var chapter_2_aftermath_played := false
 
+# whether the Chapter 6 Lanka gate intro cutscene has already played this run
+static var chapter_6_intro_played := false
+static var chapter_6_yak_defeated := false
+static var chapter_6_yak_fragment_position := Vector2.INF
+static var chapter_6_left_chest_unlocked := false
+static var chapter_6_right_jars_mask := 0
+static var chapter_6_right_pedestal_solved := false
+static var chapter_6_gate_unlocked := false
+
 # whether Thotsakan has been defeated in Chapter 9
 static var chapter_9_thotsakan_defeated := false
 
