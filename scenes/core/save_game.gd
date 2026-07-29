@@ -35,6 +35,11 @@ const STATE_KEYS := [
 	"chapter_8_intro_played",
 	"chapter_9_thotsakan_defeated",
 	"chapter_9_sida_rescued",
+	"chapter_3_intro_played",
+	"chapter_3_post_battle_played",
+	"chapter_4_intro_played",
+	"chapter_5_post_boss_played",
+	"chapter_6_intro_played",
 ]
 
 

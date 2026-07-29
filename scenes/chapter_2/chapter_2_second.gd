@@ -77,9 +77,12 @@ func _physics_process(_delta: float) -> void:
 			camera.reset_smoothing()
 	if _abduction_started or _failed or not is_instance_valid(_golden_deer):
 		return
-	_golden_deer.global_position = Vector2(
-		wrapf(_player.global_position.x + _gap, 0.0, MAP_WIDTH), PATH_Y
-	)
+	# no wrap here: player.x is already kept within [0, MAP_WIDTH) above, and
+	# the tiled background art extends a full map-width past each edge, so
+	# player.x + _gap stays within the rendered range and the deer never
+	# needs to jump — wrapping this would snap it visually behind the player
+	# every time the sum crossed MAP_WIDTH
+	_golden_deer.global_position = Vector2(_player.global_position.x + _gap, PATH_Y)
 
 
 func _process(delta: float) -> void:

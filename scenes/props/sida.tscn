@@ -180,10 +180,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="circ_body"]
-radius = 8.0
+radius = 4.0
 
 [node name="Sida" type="CharacterBody2D" unique_id=1241224610]
-collision_layer = 0
+collision_layer = 1
 script = ExtResource("4_script")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1488992932]

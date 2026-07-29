@@ -581,7 +581,6 @@ texture = ExtResource("4_t4dvl")
 
 [node name="Chapter6CutsceneLayer" type="CanvasLayer" parent="." unique_id=1271363944]
 layer = 100
-visible = false
 
 [node name="Chapter6Cutscene" type="Control" parent="Chapter6CutsceneLayer" unique_id=1239646785]
 process_mode = 3

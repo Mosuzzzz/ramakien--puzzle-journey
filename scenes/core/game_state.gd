@@ -37,3 +37,41 @@ static var chapter_9_sida_rescued := false
 
 # whether the Chapter 8 palace intro cutscene has already played this run
 static var chapter_8_intro_played := false
+
+# whether the Chapter 3 opening (Jatayu) cutscene has already played this run
+static var chapter_3_intro_played := false
+
+# whether the Chapter 3 post-battle (Hanuman join) cutscene has already played
+static var chapter_3_post_battle_played := false
+
+# whether the Chapter 4 opening cutscene has already played this run
+static var chapter_4_intro_played := false
+
+# whether the Chapter 5 post-boss (Miyarap defeat) cutscene has already played
+static var chapter_5_post_boss_played := false
+
+# whether the Chapter 6 opening (Lanka gate) cutscene has already played this run
+static var chapter_6_intro_played := false
+
+
+## resets every progress flag for a fresh New Game — the single place to
+## touch when adding a new flag, so home_page.gd can't forget one
+static func reset_progress() -> void:
+	next_spawn = Vector2.INF
+	next_quest = {}
+	chapter_1_intro_played = false
+	chapter_1_audience_done = false
+	tutorial_shown = false
+	chapter_2_intro_played = false
+	chapter_2_deer_defeated = false
+	chapter_2_ashram_puzzle_solved = false
+	chapter_2_deer_intro_played = false
+	chapter_2_aftermath_played = false
+	chapter_3_intro_played = false
+	chapter_3_post_battle_played = false
+	chapter_4_intro_played = false
+	chapter_5_post_boss_played = false
+	chapter_6_intro_played = false
+	chapter_8_intro_played = false
+	chapter_9_thotsakan_defeated = false
+	chapter_9_sida_rescued = false

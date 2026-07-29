@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const PotionPickup := preload("res://scenes/props/potion_pickup.tscn")
+
 @export var speed: float = 60.0
 @export var aggro_range: float = 220.0
 @export var contact_damage: int = 10
@@ -9,6 +11,7 @@ extends CharacterBody2D
 @export var attack_range: float = 55.0
 @export var attack_cooldown: float = 1.2
 @export var attack_hit_padding: float = 20.0
+@export_range(0.0, 1.0) var potion_drop_chance: float = 0.3
 
 # which way each sprite sheet faces natively; flip_h mirrors it when facing the other way
 const ANIM_FACES_RIGHT := {"idle": false, "run": false, "walk": true, "attack": true}
@@ -107,8 +110,16 @@ func apply_authorized_damage(amount: int) -> void:
 	_flash_hit()
 	_health -= amount
 	if _health <= 0:
+		if randf() < potion_drop_chance:
+			_drop_potion()
 		await get_tree().create_timer(0.12).timeout
 		queue_free()
+
+
+func _drop_potion() -> void:
+	var pickup := PotionPickup.instantiate()
+	pickup.global_position = global_position
+	get_parent().add_child(pickup)
 
 
 func would_damage_defeat(amount: int) -> bool:
