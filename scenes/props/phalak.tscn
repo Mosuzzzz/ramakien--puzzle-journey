@@ -78,7 +78,7 @@ atlas = ExtResource("3_walk")
 region = Rect2(508, 232, 90, 152)
 
 [sub_resource type="CircleShape2D" id="circ_body"]
-radius = 8.0
+radius = 4.0
 
 [sub_resource type="SpriteFrames" id="frames_phalak"]
 animations = [{
@@ -148,7 +148,7 @@ animations = [{
 }]
 
 [node name="Phalak" type="CharacterBody2D" unique_id=1462114690]
-collision_layer = 0
+collision_layer = 1
 script = ExtResource("4_script")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=876956269]

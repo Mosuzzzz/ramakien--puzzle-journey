@@ -1,5 +1,6 @@
 extends Node2D
 
+const GameState := preload("res://scenes/core/game_state.gd")
 const PHRA_RAM_SCENE := preload("res://scenes/player/player.tscn")
 
 var _post_boss_cutscene_started := false
@@ -19,11 +20,12 @@ func _on_miyarap_removed() -> void:
 
 
 func _show_post_boss_cutscene() -> void:
-	if _post_boss_cutscene_started or not is_inside_tree():
+	if _post_boss_cutscene_started or GameState.chapter_5_post_boss_played or not is_inside_tree():
 		return
 	if get_node_or_null("YSortRoot/Miyarap") != null:
 		return
 	_post_boss_cutscene_started = true
+	GameState.chapter_5_post_boss_played = true
 	_post_boss_cutscene.call("show_cutscene")
 
 

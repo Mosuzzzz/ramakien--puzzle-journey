@@ -1,5 +1,6 @@
 extends Node2D
 
+const GameState := preload("res://scenes/core/game_state.gd")
 const FEATHER_TOTAL := 3
 const FEATHER_QUEST_NAME := "ตามหาขนนกพญาชฎายุ"
 const FEATHER_QUEST_DETAIL := "รวบรวมขนนกพญาชฎายุที่ตกหล่นให้ครบ %d/3"
@@ -162,14 +163,16 @@ func _start_post_battle_cutscene() -> void:
 	if (
 		not _feather_quest_started
 		or _post_battle_cutscene_started
+		or GameState.chapter_3_post_battle_played
 		or Inv.count("jatayu_feather") < FEATHER_TOTAL
 		or not is_inside_tree()
 	):
 		return
 	await get_tree().create_timer(0.35).timeout
-	if _post_battle_cutscene_started or not is_inside_tree():
+	if _post_battle_cutscene_started or GameState.chapter_3_post_battle_played or not is_inside_tree():
 		return
 	_post_battle_cutscene_started = true
+	GameState.chapter_3_post_battle_played = true
 	_post_battle_cutscene.call("show_cutscene")
 
 

@@ -338,6 +338,7 @@ position = Vector2(718, 1022)
 
 [node name="Sida" parent="YSortRoot" instance=ExtResource("chapter_9_sida")]
 position = Vector2(762, 1022)
+can_walk = false
 
 [node name="EndingPortal" parent="YSortRoot" unique_id=1366143209 instance=ExtResource("90_portal")]
 position = Vector2(724, 330)

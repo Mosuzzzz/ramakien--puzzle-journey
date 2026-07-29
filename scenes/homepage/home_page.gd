@@ -18,26 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_on_start_pressed()
 
 func _on_start_pressed() -> void:
-	GameState.next_spawn = Vector2.INF
-	GameState.next_quest = {}
-	GameState.chapter_1_intro_played = false
-	GameState.chapter_1_audience_done = false
-	GameState.tutorial_shown = false
-	GameState.chapter_2_intro_played = false
-	GameState.chapter_2_deer_defeated = false
-	GameState.chapter_2_ashram_puzzle_solved = false
-	GameState.chapter_2_deer_intro_played = false
-	GameState.chapter_2_aftermath_played = false
-	GameState.chapter_6_intro_played = false
-	GameState.chapter_6_yak_defeated = false
-	GameState.chapter_6_yak_fragment_position = Vector2.INF
-	GameState.chapter_6_left_chest_unlocked = false
-	GameState.chapter_6_right_jars_mask = 0
-	GameState.chapter_6_right_pedestal_solved = false
-	GameState.chapter_6_gate_unlocked = false
-	GameState.chapter_8_intro_played = false
-	GameState.chapter_9_thotsakan_defeated = false
-	GameState.chapter_9_sida_rescued = false
+	GameState.reset_progress()
 	get_tree().change_scene_to_file(FIRST_CHAPTER)
 
 func _on_load_pressed() -> void:
