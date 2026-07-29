@@ -32,7 +32,6 @@ func _ready() -> void:
 			queue_free()
 		return
 
-	GameState.chapter_6_intro_played = true
 	get_tree().paused = true
 	_show_dialogue(0, false)
 	CutsceneSkip.attach(self, _finish_cutscene)
@@ -103,7 +102,11 @@ func _finish_cutscene() -> void:
 	if _finished:
 		return
 	_finished = true
+	GameState.chapter_6_intro_played = true
 	get_tree().paused = false
+	var chapter := get_tree().current_scene
+	if chapter != null and chapter.has_method("start_key_fragment_quest"):
+		chapter.call("start_key_fragment_quest")
 	var cutscene_layer := get_parent()
 	if cutscene_layer is CanvasLayer:
 		cutscene_layer.queue_free()

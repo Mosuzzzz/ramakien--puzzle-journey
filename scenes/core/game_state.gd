@@ -29,6 +29,15 @@ static var chapter_2_deer_intro_played := false
 # whether the "return to the empty ashram" aftermath quest has been set
 static var chapter_2_aftermath_played := false
 
+# whether the Chapter 6 Lanka gate intro cutscene has already played this run
+static var chapter_6_intro_played := false
+static var chapter_6_yak_defeated := false
+static var chapter_6_yak_fragment_position := Vector2.INF
+static var chapter_6_left_chest_unlocked := false
+static var chapter_6_right_jars_mask := 0
+static var chapter_6_right_pedestal_solved := false
+static var chapter_6_gate_unlocked := false
+
 # whether Thotsakan has been defeated in Chapter 9
 static var chapter_9_thotsakan_defeated := false
 
@@ -50,9 +59,6 @@ static var chapter_4_intro_played := false
 # whether the Chapter 5 post-boss (Miyarap defeat) cutscene has already played
 static var chapter_5_post_boss_played := false
 
-# whether the Chapter 6 opening (Lanka gate) cutscene has already played this run
-static var chapter_6_intro_played := false
-
 
 ## resets every progress flag for a fresh New Game — the single place to
 ## touch when adding a new flag, so home_page.gd can't forget one
@@ -72,6 +78,12 @@ static func reset_progress() -> void:
 	chapter_4_intro_played = false
 	chapter_5_post_boss_played = false
 	chapter_6_intro_played = false
+	chapter_6_yak_defeated = false
+	chapter_6_yak_fragment_position = Vector2.INF
+	chapter_6_left_chest_unlocked = false
+	chapter_6_right_jars_mask = 0
+	chapter_6_right_pedestal_solved = false
+	chapter_6_gate_unlocked = false
 	chapter_8_intro_played = false
 	chapter_9_thotsakan_defeated = false
 	chapter_9_sida_rescued = false
