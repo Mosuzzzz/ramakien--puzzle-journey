@@ -39,6 +39,7 @@ var _question_queue: Array = []
 @onready var _player: CharacterBody2D = $YSortRoot/Player
 @onready var _quiz: CanvasLayer = $QuestionQuiz
 @onready var _abduction_cutscene: Control = $Chapter2AbductionCutsceneLayer/AbductionCutscene
+@onready var _return_portal := $YSortRoot/ReturnPortal
 
 
 func _ready() -> void:
@@ -48,6 +49,7 @@ func _ready() -> void:
 		minimap.hide()
 	if GameState.chapter_2_deer_defeated:
 		_golden_deer.queue_free()
+		_return_portal.set_locked(false)
 		return
 	_quiz.answered.connect(_on_quiz_answered)
 	_question_queue = range(QUESTIONS.size())
@@ -117,6 +119,7 @@ func _catch_deer() -> void:
 	GameState.chapter_2_deer_defeated = true
 	_player.auto_run_velocity = Vector2.ZERO
 	_player.movement_locked = false
+	_return_portal.set_locked(false)
 	_golden_deer.queue_free()
 	_abduction_cutscene.finished.connect(_on_abduction_finished, CONNECT_ONE_SHOT)
 	_abduction_cutscene.call("show_cutscene", "catch")
@@ -132,6 +135,7 @@ func _fail_chase() -> void:
 	_failed = true
 	_player.auto_run_velocity = Vector2.ZERO
 	_player.movement_locked = false
+	_return_portal.set_locked(false)
 	if is_instance_valid(_golden_deer):
 		_golden_deer.queue_free()
 	Quest.clear()

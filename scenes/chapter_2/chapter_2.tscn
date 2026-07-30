@@ -926,7 +926,7 @@ prompt_text = "กด E เพื่อกลับลานวัง"
 [node name="Chapter3Portal" parent="YSortRoot" unique_id=964546436 instance=ExtResource("5_portal")]
 position = Vector2(670, 1000)
 target_scene = "res://scenes/chapter_3/chapter_3.tscn"
-target_spawn = Vector2(545, 860)
+target_spawn = Vector2(1192, 351)
 prompt_text = "กด E เพื่อไปด่านต่อไป"
 locked = true
 locked_prompt_text = "ยังมีเรื่องสำคัญที่ต้องจัดการที่อาศรมก่อน"
@@ -962,7 +962,6 @@ region_rect = Rect2(0, 0, 1448, 442.08514)
 
 [node name="Chapter2IntroCutsceneLayer" type="CanvasLayer" parent="." unique_id=1303567525]
 layer = 100
-visible = false
 
 [node name="Chapter2Cutscene" type="Control" parent="Chapter2IntroCutsceneLayer" unique_id=292883451]
 process_mode = 3
@@ -1085,7 +1084,6 @@ color = Color(0, 0, 0, 0)
 
 [node name="Chapter2AbductionCutsceneLayer" type="CanvasLayer" parent="." unique_id=1871779692]
 layer = 100
-visible = false
 
 [node name="AbductionCutscene" type="Control" parent="Chapter2AbductionCutsceneLayer" unique_id=80451594]
 process_mode = 3
@@ -1213,7 +1211,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Chapter2DeerCutsceneLayer" type="CanvasLayer" parent="." unique_id=343938522]
 layer = 100
-visible = false
 
 [node name="Chapter2DeerCutscene" type="Control" parent="Chapter2DeerCutsceneLayer" unique_id=480171026]
 process_mode = 3
@@ -1346,7 +1343,6 @@ color = Color(0, 0, 0, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="MatchingPuzzle" parent="." unique_id=1087447439 instance=ExtResource("18_matching_puzzle")]
-visible = false
 
 [node name="TreeStump" type="Sprite2D" parent="." unique_id=1981777791]
 position = Vector2(718, 435)

@@ -55,6 +55,7 @@ target_scene = "res://scenes/chapter_2/chapter_2.tscn"
 target_spawn = Vector2(1300, 541)
 prompt_text = "กด E เพื่อกลับไปยังอาศรม"
 auto = true
+locked = true
 
 [node name="QuestionQuiz" parent="." unique_id=2134883277 instance=ExtResource("10_quiz")]
 
