@@ -114,11 +114,13 @@ func _start_attack() -> void:
 	_play("attack")
 	while _sprite.animation == &"attack" and _sprite.frame < ATTACK_HIT_FRAME:
 		await _sprite.frame_changed
+	_play_slam_sound()
 	if is_instance_valid(_player) and _player.has_method("take_damage"):
 		if (_player.global_position - global_position).length() <= attack_range + 20.0:
 			_player.take_damage(contact_damage)
 	_spawn_wave(Vector2.LEFT)
 	_spawn_wave(Vector2.RIGHT)
+	_play_wave_sound()
 	await _sprite.animation_finished
 	_attacking = false
 	_play("idle")
@@ -126,12 +128,21 @@ func _start_attack() -> void:
 func take_damage(amount: int) -> void:
 	if _stunned:
 		return  # immune while stunned
+	AudioManager.play_sfx(AudioManager.ENEMY_HIT)
 	_flash_hit()
 	_health -= amount
 	_stagger_damage += amount
 	if _health <= 0:
 		await get_tree().create_timer(0.12).timeout
 		queue_free()
+
+
+func _play_slam_sound() -> void:
+	AudioManager.play_sfx(AudioManager.GIANT)
+
+
+func _play_wave_sound() -> void:
+	AudioManager.play_sfx(AudioManager.WAVE)
 
 func _flash_hit() -> void:
 	if is_instance_valid(_hit_flash_tween):

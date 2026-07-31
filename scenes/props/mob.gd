@@ -61,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		_play("walk" if velocity.length() > 0.0 else "idle")
 
 func _start_attack() -> void:
+	AudioManager.play_sfx(_attack_sound_key())
 	_attacking = true
 	_hit_cooldown = attack_cooldown
 	velocity = Vector2.ZERO
@@ -79,6 +80,10 @@ func _start_attack() -> void:
 	else:
 		await _sprite.animation_finished
 	_attacking = false
+
+
+func _attack_sound_key() -> StringName:
+	return AudioManager.ENEMY_ATTACKING
 
 func _animation_for(requested: StringName) -> StringName:
 	if _sprite.sprite_frames.has_animation(requested):
@@ -114,6 +119,7 @@ func take_damage(amount: int) -> void:
 func apply_authorized_damage(amount: int) -> void:
 	if _defeated:
 		return
+	AudioManager.play_sfx(AudioManager.ENEMY_HIT)
 	_flash_hit()
 	_health -= amount
 	if _health <= 0:
