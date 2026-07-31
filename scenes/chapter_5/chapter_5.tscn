@@ -61,6 +61,8 @@ position = Vector2(65, 574)
 position = Vector2(1735, 574)
 target_scene = "res://scenes/chapter_6/chapter_6.tscn"
 target_spawn = Vector2(725, 995)
+locked = true
+locked_prompt_text = "ต้องกำจัดไมยราพก่อนถึงจะไปต่อได้"
 
 [node name="Chapter4Portal" parent="YSortRoot" unique_id=1675960875 instance=ExtResource("90_portal")]
 position = Vector2(28, 574)

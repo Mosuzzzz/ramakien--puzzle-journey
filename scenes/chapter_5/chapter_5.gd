@@ -7,15 +7,23 @@ var _post_boss_cutscene_started := false
 var _phra_ram_restored := false
 
 @onready var _post_boss_cutscene: Control = $Chapter5CutsceneLayer/Chapter5PostBossCutscene
+@onready var _chapter6_portal: Area2D = $YSortRoot/Chapter6Portal
 
 
 func _ready() -> void:
 	var boss := get_node_or_null("YSortRoot/Miyarap")
-	if boss != null:
+	if GameState.chapter_5_post_boss_played:
+		if boss != null:
+			boss.queue_free()
+		_chapter6_portal.set_locked(false)
+	elif boss != null:
 		boss.tree_exited.connect(_on_miyarap_removed)
+	else:
+		_chapter6_portal.set_locked(false)
 
 
 func _on_miyarap_removed() -> void:
+	_chapter6_portal.set_locked(false)
 	call_deferred("_show_post_boss_cutscene")
 
 
