@@ -861,6 +861,8 @@ prompt_text = "กด E เพื่อกลับไปด่านก่อ�
 position = Vector2(1150, 1000)
 target_scene = "res://scenes/chapter_4/chapter_4.tscn"
 target_spawn = Vector2(648, 877)
+locked = true
+locked_prompt_text = "ยังมีเรื่องสำคัญที่ต้องจัดการในป่านี้ก่อน"
 
 [node name="Mob1" parent="YSortRoot" unique_id=2031789558 instance=ExtResource("91_mob")]
 position = Vector2(540, 770)

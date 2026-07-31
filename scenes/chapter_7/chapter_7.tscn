@@ -1,6 +1,6 @@
-[gd_scene load_steps=92 format=3 uid="uid://dfyfphwry72uy"]
+[gd_scene format=3 uid="uid://dfyfphwry72uy"]
 
-[ext_resource type="Texture2D" uid="uid://b8y7yusxqtpci" path="res://assets/map/chapter_7/main_map.png" id="1_map"]
+[ext_resource type="Texture2D" uid="uid://b8y7yusxqtpci" path="res://assets/map/chapter_8/main_map.png" id="1_map"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
@@ -21,10 +21,10 @@ size = Vector2(75, 1629)
 size = Vector2(480, 292.5)
 
 [sub_resource type="CircleShape2D" id="shape_TowerNW"]
-radius = 48
+radius = 48.0
 
 [sub_resource type="CircleShape2D" id="shape_TowerNE"]
-radius = 48
+radius = 48.0
 
 [sub_resource type="SegmentShape2D" id="shape_FenceTempleL"]
 a = Vector2(-37.5, -2.25)
@@ -35,21 +35,21 @@ a = Vector2(60, -26.25)
 b = Vector2(-60, 26.25)
 
 [sub_resource type="CircleShape2D" id="shape_BannerW"]
-radius = 12
+radius = 12.0
 
 [sub_resource type="SegmentShape2D" id="shape_FenceNE"]
 a = Vector2(-75, -26.25)
 b = Vector2(75, 26.25)
 
 [sub_resource type="CircleShape2D" id="shape_TowerW"]
-radius = 45
+radius = 45.0
 
 [sub_resource type="SegmentShape2D" id="shape_WallWa"]
 a = Vector2(-15, -42.75)
 b = Vector2(15, 42.75)
 
 [sub_resource type="CapsuleShape2D" id="shape_TowerWS"]
-radius = 33
+radius = 33.0
 height = 172.5
 
 [sub_resource type="SegmentShape2D" id="shape_WallWb"]
@@ -57,39 +57,33 @@ a = Vector2(-34.5, -15)
 b = Vector2(34.5, 15)
 
 [sub_resource type="CircleShape2D" id="shape_TowerSW"]
-radius = 42
+radius = 42.0
 
 [sub_resource type="SegmentShape2D" id="shape_WallSWa"]
 a = Vector2(-37.5, -97.5)
 b = Vector2(37.5, 97.5)
 
 [sub_resource type="SegmentShape2D" id="shape_WallSWb"]
-a = Vector2(-137.25, -4.5)
-b = Vector2(137.25, 4.5)
-
-[sub_resource type="CircleShape2D" id="shape_GatePostL"]
-radius = 15
-
-[sub_resource type="CircleShape2D" id="shape_GatePostR"]
-radius = 15
+a = Vector2(-159, -20)
+b = Vector2(143, 16)
 
 [sub_resource type="SegmentShape2D" id="shape_WallSEa"]
-a = Vector2(-138, 6)
-b = Vector2(138, -6)
+a = Vector2(-166, 44)
+b = Vector2(161, -5)
 
 [sub_resource type="SegmentShape2D" id="shape_WallSEb"]
-a = Vector2(-45, 99.75)
+a = Vector2(-38, 118.75)
 b = Vector2(45, -99.75)
 
 [sub_resource type="CircleShape2D" id="shape_TowerSE"]
-radius = 42
+radius = 42.0
 
 [sub_resource type="SegmentShape2D" id="shape_WallEb"]
 a = Vector2(-28.5, 13.5)
 b = Vector2(28.5, -13.5)
 
 [sub_resource type="CapsuleShape2D" id="shape_TowerES"]
-radius = 33
+radius = 33.0
 height = 172.5
 
 [sub_resource type="SegmentShape2D" id="shape_WallEa"]
@@ -97,7 +91,7 @@ a = Vector2(-6, 42.75)
 b = Vector2(6, -42.75)
 
 [sub_resource type="CircleShape2D" id="shape_TowerE"]
-radius = 45
+radius = 45.0
 
 [sub_resource type="RectangleShape2D" id="shape_PavilionL"]
 size = Vector2(180, 157.5)
@@ -118,14 +112,14 @@ size = Vector2(232.5, 157.5)
 size = Vector2(240, 157.5)
 
 [sub_resource type="CircleShape2D" id="shape_TorchL"]
-radius = 12
+radius = 12.0
 
 [sub_resource type="CircleShape2D" id="shape_TorchR"]
-radius = 12
+radius = 12.0
 
 [sub_resource type="CapsuleShape2D" id="shape_LavaWEdge"]
 radius = 82.5
-height = 270
+height = 270.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaNWa"]
 radius = 82.5
@@ -134,31 +128,31 @@ radius = 82.5
 radius = 82.5
 
 [sub_resource type="CircleShape2D" id="shape_LavaSWa"]
-radius = 120
+radius = 120.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaSWb"]
-radius = 120
+radius = 120.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaSWc"]
-radius = 90
+radius = 90.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaSWd"]
 radius = 82.5
 
 [sub_resource type="CapsuleShape2D" id="shape_RocksWRidge"]
 radius = 67.5
-height = 240
+height = 240.0
 
 [sub_resource type="CircleShape2D" id="shape_RocksW2"]
-radius = 60
+radius = 60.0
 
 [sub_resource type="CapsuleShape2D" id="shape_RockMtnSW"]
 radius = 97.5
-height = 270
+height = 270.0
 
 [sub_resource type="CapsuleShape2D" id="shape_RockRidgeSW"]
-radius = 60
-height = 135
+radius = 60.0
+height = 135.0
 
 [sub_resource type="CircleShape2D" id="shape_RocksSW3"]
 radius = 52.5
@@ -173,18 +167,18 @@ radius = 82.5
 radius = 52.5
 
 [sub_resource type="CircleShape2D" id="shape_RockN3"]
-radius = 42
+radius = 42.0
 
 [sub_resource type="CircleShape2D" id="shape_RockNW4"]
 radius = 67.5
 
 [sub_resource type="CapsuleShape2D" id="shape_RockNW5"]
-radius = 57
-height = 195
+radius = 57.0
+height = 195.0
 
 [sub_resource type="CapsuleShape2D" id="shape_RockNW6"]
 radius = 52.5
-height = 180
+height = 180.0
 
 [sub_resource type="CircleShape2D" id="shape_RockNE7"]
 radius = 52.5
@@ -200,35 +194,35 @@ radius = 67.5
 
 [sub_resource type="CapsuleShape2D" id="shape_RockERidge"]
 radius = 67.5
-height = 195
+height = 195.0
 
 [sub_resource type="CapsuleShape2D" id="shape_RockE2"]
 radius = 67.5
-height = 165
+height = 165.0
 
 [sub_resource type="CircleShape2D" id="shape_RockE3"]
-radius = 75
+radius = 75.0
 
 [sub_resource type="CircleShape2D" id="shape_RockE4"]
 radius = 52.5
 
 [sub_resource type="CircleShape2D" id="shape_LavaSEf"]
-radius = 75
+radius = 75.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaSEa"]
-radius = 105
+radius = 105.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaSEb"]
-radius = 105
+radius = 105.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaSEc"]
-radius = 105
+radius = 105.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaSEd"]
-radius = 90
+radius = 90.0
 
 [sub_resource type="CircleShape2D" id="shape_LavaSEe"]
-radius = 75
+radius = 75.0
 
 [sub_resource type="CircleShape2D" id="shape_RockSE5"]
 radius = 67.5
@@ -237,56 +231,53 @@ radius = 67.5
 radius = 52.5
 
 [sub_resource type="CircleShape2D" id="shape_TreeNW1"]
-radius = 18
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeW1"]
-radius = 21
+radius = 21.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeW3"]
-radius = 21
+radius = 21.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeN1"]
-radius = 21
+radius = 21.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeN2"]
-radius = 18
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeE1"]
-radius = 24
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeE2"]
-radius = 18
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeNE3"]
-radius = 15
+radius = 15.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeSE1"]
-radius = 24
-
-[sub_resource type="CircleShape2D" id="shape_TreeSE2"]
-radius = 21
-
-[sub_resource type="CircleShape2D" id="shape_TreeS1"]
-radius = 24
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="shape_TreeS2"]
-radius = 18
-
-[sub_resource type="CircleShape2D" id="shape_RockS1"]
-radius = 45
-
-[sub_resource type="CircleShape2D" id="shape_RockS2"]
-radius = 37.5
-
-[sub_resource type="CircleShape2D" id="shape_RockS3"]
-radius = 45
-
-[sub_resource type="CapsuleShape2D" id="shape_RockS4"]
-radius = 42
-height = 120
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="shape_RockS5"]
-radius = 42
+radius = 42.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_psbl4"]
+a = Vector2(-165, -85)
+b = Vector2(123, 127)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_sug24"]
+a = Vector2(-157, 242)
+b = Vector2(165, 16)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pnbe0"]
+a = Vector2(-166, 44)
+b = Vector2(-135, -616)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_sm2xf"]
+a = Vector2(-166, 44)
+b = Vector2(-205, -618)
 
 [node name="Chapter7" type="Node2D" unique_id=855524503]
 
@@ -297,353 +288,337 @@ texture = ExtResource("1_map")
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=139309260]
 
-[node name="BoundTop" type="CollisionShape2D" parent="Walls"]
+[node name="BoundTop" type="CollisionShape2D" parent="Walls" unique_id=385986212]
 position = Vector2(1086, 45)
 shape = SubResource("shape_BoundTop")
 
-[node name="BoundBottom" type="CollisionShape2D" parent="Walls"]
+[node name="BoundBottom" type="CollisionShape2D" parent="Walls" unique_id=498370609]
 position = Vector2(1086, 1591.5)
 shape = SubResource("shape_BoundBottom")
 
-[node name="BoundLeft" type="CollisionShape2D" parent="Walls"]
+[node name="BoundLeft" type="CollisionShape2D" parent="Walls" unique_id=1213031010]
 position = Vector2(37.5, 814.5)
 shape = SubResource("shape_BoundLeft")
 
-[node name="BoundRight" type="CollisionShape2D" parent="Walls"]
+[node name="BoundRight" type="CollisionShape2D" parent="Walls" unique_id=1662266764]
 position = Vector2(2134.5, 814.5)
 shape = SubResource("shape_BoundRight")
 
-[node name="MainTemple" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1087.5, 450)
+[node name="MainTemple" type="CollisionShape2D" parent="Walls" unique_id=1338391003]
+position = Vector2(1086, 482)
 shape = SubResource("shape_MainTemple")
 
-[node name="TowerNW" type="CollisionShape2D" parent="Walls"]
+[node name="TowerNW" type="CollisionShape2D" parent="Walls" unique_id=2063930834]
 position = Vector2(742.5, 472.5)
 shape = SubResource("shape_TowerNW")
 
-[node name="TowerNE" type="CollisionShape2D" parent="Walls"]
+[node name="TowerNE" type="CollisionShape2D" parent="Walls" unique_id=749110911]
 position = Vector2(1380, 472.5)
 shape = SubResource("shape_TowerNE")
 
-[node name="FenceTempleL" type="CollisionShape2D" parent="Walls"]
+[node name="FenceTempleL" type="CollisionShape2D" parent="Walls" unique_id=1546400840]
 position = Vector2(817.5, 474.75)
 shape = SubResource("shape_FenceTempleL")
 
-[node name="FenceNW" type="CollisionShape2D" parent="Walls"]
+[node name="FenceNW" type="CollisionShape2D" parent="Walls" unique_id=229002351]
 position = Vector2(645, 521.25)
 shape = SubResource("shape_FenceNW")
 
-[node name="BannerW" type="CollisionShape2D" parent="Walls"]
+[node name="BannerW" type="CollisionShape2D" parent="Walls" unique_id=1278205638]
 position = Vector2(582, 552)
 shape = SubResource("shape_BannerW")
 
-[node name="FenceNE" type="CollisionShape2D" parent="Walls"]
+[node name="FenceNE" type="CollisionShape2D" parent="Walls" unique_id=556073424]
 position = Vector2(1500, 521.25)
 shape = SubResource("shape_FenceNE")
 
-[node name="TowerW" type="CollisionShape2D" parent="Walls"]
+[node name="TowerW" type="CollisionShape2D" parent="Walls" unique_id=2091405872]
 position = Vector2(474, 655.5)
 shape = SubResource("shape_TowerW")
 
-[node name="WallWa" type="CollisionShape2D" parent="Walls"]
+[node name="WallWa" type="CollisionShape2D" parent="Walls" unique_id=2128143532]
 position = Vector2(498, 740.25)
 shape = SubResource("shape_WallWa")
 
-[node name="TowerWS" type="CollisionShape2D" parent="Walls"]
+[node name="TowerWS" type="CollisionShape2D" parent="Walls" unique_id=1365780461]
 position = Vector2(522, 858)
 shape = SubResource("shape_TowerWS")
 
-[node name="WallWb" type="CollisionShape2D" parent="Walls"]
+[node name="WallWb" type="CollisionShape2D" parent="Walls" unique_id=2048429157]
 position = Vector2(577.5, 948)
 shape = SubResource("shape_WallWb")
 
-[node name="TowerSW" type="CollisionShape2D" parent="Walls"]
+[node name="TowerSW" type="CollisionShape2D" parent="Walls" unique_id=1128871362]
 position = Vector2(648, 967.5)
 shape = SubResource("shape_TowerSW")
 
-[node name="WallSWa" type="CollisionShape2D" parent="Walls"]
-position = Vector2(708, 1114.5)
+[node name="WallSWa" type="CollisionShape2D" parent="Walls" unique_id=429739400]
+position = Vector2(711, 1149)
 shape = SubResource("shape_WallSWa")
 
-[node name="WallSWb" type="CollisionShape2D" parent="Walls"]
-position = Vector2(887.25, 1231.5)
+[node name="WallSWb" type="CollisionShape2D" parent="Walls" unique_id=1216153566]
+position = Vector2(904, 1264)
 shape = SubResource("shape_WallSWb")
 
-[node name="GatePostL" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1032, 1230)
-shape = SubResource("shape_GatePostL")
-
-[node name="GatePostR" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1158, 1230)
-shape = SubResource("shape_GatePostR")
-
-[node name="WallSEa" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1296, 1230)
+[node name="WallSEa" type="CollisionShape2D" parent="Walls" unique_id=1492570671]
+position = Vector2(1289, 1237)
 shape = SubResource("shape_WallSEa")
 
-[node name="WallSEb" type="CollisionShape2D" parent="Walls"]
+[node name="WallSEb" type="CollisionShape2D" parent="Walls" unique_id=2055594519]
 position = Vector2(1488, 1112.25)
 shape = SubResource("shape_WallSEb")
 
-[node name="TowerSE" type="CollisionShape2D" parent="Walls"]
+[node name="TowerSE" type="CollisionShape2D" parent="Walls" unique_id=226703159]
 position = Vector2(1548, 960)
 shape = SubResource("shape_TowerSE")
 
-[node name="WallEb" type="CollisionShape2D" parent="Walls"]
+[node name="WallEb" type="CollisionShape2D" parent="Walls" unique_id=634894381]
 position = Vector2(1615.5, 943.5)
 shape = SubResource("shape_WallEb")
 
-[node name="TowerES" type="CollisionShape2D" parent="Walls"]
+[node name="TowerES" type="CollisionShape2D" parent="Walls" unique_id=191640724]
 position = Vector2(1662, 858)
 shape = SubResource("shape_TowerES")
 
-[node name="WallEa" type="CollisionShape2D" parent="Walls"]
+[node name="WallEa" type="CollisionShape2D" parent="Walls" unique_id=451353129]
 position = Vector2(1674, 744.75)
 shape = SubResource("shape_WallEa")
 
-[node name="TowerE" type="CollisionShape2D" parent="Walls"]
+[node name="TowerE" type="CollisionShape2D" parent="Walls" unique_id=374977768]
 position = Vector2(1683, 652.5)
 shape = SubResource("shape_TowerE")
 
-[node name="PavilionL" type="CollisionShape2D" parent="Walls"]
+[node name="PavilionL" type="CollisionShape2D" parent="Walls" unique_id=285735756]
 position = Vector2(720, 675)
 shape = SubResource("shape_PavilionL")
 
-[node name="PavilionR" type="CollisionShape2D" parent="Walls"]
+[node name="PavilionR" type="CollisionShape2D" parent="Walls" unique_id=490393899]
 position = Vector2(1387.5, 667.5)
 shape = SubResource("shape_PavilionR")
 
-[node name="HouseInnerL" type="CollisionShape2D" parent="Walls"]
+[node name="HouseInnerL" type="CollisionShape2D" parent="Walls" unique_id=719769760]
 position = Vector2(832.5, 900)
 shape = SubResource("shape_HouseInnerL")
 
-[node name="HouseInnerR" type="CollisionShape2D" parent="Walls"]
+[node name="HouseInnerR" type="CollisionShape2D" parent="Walls" unique_id=2114761081]
 position = Vector2(1387.5, 900)
 shape = SubResource("shape_HouseInnerR")
 
-[node name="HouseSouthL" type="CollisionShape2D" parent="Walls"]
+[node name="HouseSouthL" type="CollisionShape2D" parent="Walls" unique_id=735292543]
 position = Vector2(877.5, 1125)
 shape = SubResource("shape_HouseSouthL")
 
-[node name="HouseSouthR" type="CollisionShape2D" parent="Walls"]
+[node name="HouseSouthR" type="CollisionShape2D" parent="Walls" unique_id=1466025225]
 position = Vector2(1305, 1125)
 shape = SubResource("shape_HouseSouthR")
 
-[node name="TorchL" type="CollisionShape2D" parent="Walls"]
+[node name="TorchL" type="CollisionShape2D" parent="Walls" unique_id=448386785]
 position = Vector2(900, 730.5)
 shape = SubResource("shape_TorchL")
 
-[node name="TorchR" type="CollisionShape2D" parent="Walls"]
+[node name="TorchR" type="CollisionShape2D" parent="Walls" unique_id=196513337]
 position = Vector2(1267.5, 730.5)
 shape = SubResource("shape_TorchR")
 
-[node name="LavaWEdge" type="CollisionShape2D" parent="Walls"]
+[node name="LavaWEdge" type="CollisionShape2D" parent="Walls" unique_id=1752970640]
 position = Vector2(72, 730.5)
 shape = SubResource("shape_LavaWEdge")
 
-[node name="LavaNWa" type="CollisionShape2D" parent="Walls"]
+[node name="LavaNWa" type="CollisionShape2D" parent="Walls" unique_id=890623081]
 position = Vector2(307.5, 517.5)
 shape = SubResource("shape_LavaNWa")
 
-[node name="LavaNWb" type="CollisionShape2D" parent="Walls"]
+[node name="LavaNWb" type="CollisionShape2D" parent="Walls" unique_id=699829233]
 position = Vector2(420, 525)
 shape = SubResource("shape_LavaNWb")
 
-[node name="LavaSWa" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSWa" type="CollisionShape2D" parent="Walls" unique_id=1831167345]
 position = Vector2(405, 1275)
 shape = SubResource("shape_LavaSWa")
 
-[node name="LavaSWb" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSWb" type="CollisionShape2D" parent="Walls" unique_id=1251156034]
 position = Vector2(495, 1350)
 shape = SubResource("shape_LavaSWb")
 
-[node name="LavaSWc" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSWc" type="CollisionShape2D" parent="Walls" unique_id=194914952]
 position = Vector2(360, 1380)
 shape = SubResource("shape_LavaSWc")
 
-[node name="LavaSWd" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSWd" type="CollisionShape2D" parent="Walls" unique_id=1478277342]
 position = Vector2(337.5, 1222.5)
 shape = SubResource("shape_LavaSWd")
 
-[node name="RocksWRidge" type="CollisionShape2D" parent="Walls"]
+[node name="RocksWRidge" type="CollisionShape2D" parent="Walls" unique_id=723770688]
 position = Vector2(150, 472.5)
 shape = SubResource("shape_RocksWRidge")
 
-[node name="RocksW2" type="CollisionShape2D" parent="Walls"]
+[node name="RocksW2" type="CollisionShape2D" parent="Walls" unique_id=2112301002]
 position = Vector2(112.5, 630)
 shape = SubResource("shape_RocksW2")
 
-[node name="RockMtnSW" type="CollisionShape2D" parent="Walls"]
+[node name="RockMtnSW" type="CollisionShape2D" parent="Walls" unique_id=1929525766]
 position = Vector2(187.5, 1080)
 shape = SubResource("shape_RockMtnSW")
 
-[node name="RockRidgeSW" type="CollisionShape2D" parent="Walls"]
+[node name="RockRidgeSW" type="CollisionShape2D" parent="Walls" unique_id=499466683]
 position = Vector2(375, 1110)
 shape = SubResource("shape_RockRidgeSW")
 
-[node name="RocksSW3" type="CollisionShape2D" parent="Walls"]
+[node name="RocksSW3" type="CollisionShape2D" parent="Walls" unique_id=378421547]
 position = Vector2(600, 1252.5)
 shape = SubResource("shape_RocksSW3")
 
-[node name="RocksSW4" type="CollisionShape2D" parent="Walls"]
+[node name="RocksSW4" type="CollisionShape2D" parent="Walls" unique_id=1181308199]
 position = Vector2(202.5, 1372.5)
 shape = SubResource("shape_RocksSW4")
 
-[node name="RockN1" type="CollisionShape2D" parent="Walls"]
+[node name="RockN1" type="CollisionShape2D" parent="Walls" unique_id=1853649602]
 position = Vector2(1065, 135)
 shape = SubResource("shape_RockN1")
 
-[node name="RockN2" type="CollisionShape2D" parent="Walls"]
+[node name="RockN2" type="CollisionShape2D" parent="Walls" unique_id=19719768]
 position = Vector2(967.5, 232.5)
 shape = SubResource("shape_RockN2")
 
-[node name="RockN3" type="CollisionShape2D" parent="Walls"]
+[node name="RockN3" type="CollisionShape2D" parent="Walls" unique_id=319093000]
 position = Vector2(855, 262.5)
 shape = SubResource("shape_RockN3")
 
-[node name="RockNW4" type="CollisionShape2D" parent="Walls"]
+[node name="RockNW4" type="CollisionShape2D" parent="Walls" unique_id=1984723210]
 position = Vector2(697.5, 120)
 shape = SubResource("shape_RockNW4")
 
-[node name="RockNW5" type="CollisionShape2D" parent="Walls"]
+[node name="RockNW5" type="CollisionShape2D" parent="Walls" unique_id=1898810429]
 position = Vector2(622.5, 435)
 shape = SubResource("shape_RockNW5")
 
-[node name="RockNW6" type="CollisionShape2D" parent="Walls"]
+[node name="RockNW6" type="CollisionShape2D" parent="Walls" unique_id=1713459996]
 position = Vector2(435, 367.5)
 shape = SubResource("shape_RockNW6")
 
-[node name="RockNE7" type="CollisionShape2D" parent="Walls"]
+[node name="RockNE7" type="CollisionShape2D" parent="Walls" unique_id=1360797260]
 position = Vector2(1972.5, 682.5)
 shape = SubResource("shape_RockNE7")
 
-[node name="LavaNEa" type="CollisionShape2D" parent="Walls"]
+[node name="LavaNEa" type="CollisionShape2D" parent="Walls" unique_id=1193432538]
 position = Vector2(1965, 765)
 shape = SubResource("shape_LavaNEa")
 
-[node name="LavaNEb" type="CollisionShape2D" parent="Walls"]
+[node name="LavaNEb" type="CollisionShape2D" parent="Walls" unique_id=2131474405]
 position = Vector2(2077.5, 817.5)
 shape = SubResource("shape_LavaNEb")
 
-[node name="LavaNEc" type="CollisionShape2D" parent="Walls"]
+[node name="LavaNEc" type="CollisionShape2D" parent="Walls" unique_id=1831480037]
 position = Vector2(2130, 810)
 shape = SubResource("shape_LavaNEc")
 
-[node name="RockERidge" type="CollisionShape2D" parent="Walls"]
+[node name="RockERidge" type="CollisionShape2D" parent="Walls" unique_id=296938687]
 position = Vector2(2130, 540)
 shape = SubResource("shape_RockERidge")
 
-[node name="RockE2" type="CollisionShape2D" parent="Walls"]
+[node name="RockE2" type="CollisionShape2D" parent="Walls" unique_id=2008492692]
 position = Vector2(1957.5, 1042.5)
 shape = SubResource("shape_RockE2")
 
-[node name="RockE3" type="CollisionShape2D" parent="Walls"]
+[node name="RockE3" type="CollisionShape2D" parent="Walls" unique_id=685447256]
 position = Vector2(2115, 1125)
 shape = SubResource("shape_RockE3")
 
-[node name="RockE4" type="CollisionShape2D" parent="Walls"]
+[node name="RockE4" type="CollisionShape2D" parent="Walls" unique_id=639334952]
 position = Vector2(1815, 900)
 shape = SubResource("shape_RockE4")
 
-[node name="LavaSEf" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSEf" type="CollisionShape2D" parent="Walls" unique_id=482240923]
 position = Vector2(2160, 1260)
 shape = SubResource("shape_LavaSEf")
 
-[node name="LavaSEa" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSEa" type="CollisionShape2D" parent="Walls" unique_id=1584662001]
 position = Vector2(2100, 1305)
 shape = SubResource("shape_LavaSEa")
 
-[node name="LavaSEb" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSEb" type="CollisionShape2D" parent="Walls" unique_id=700291442]
 position = Vector2(1950, 1335)
 shape = SubResource("shape_LavaSEb")
 
-[node name="LavaSEc" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSEc" type="CollisionShape2D" parent="Walls" unique_id=184941228]
 position = Vector2(1800, 1380)
 shape = SubResource("shape_LavaSEc")
 
-[node name="LavaSEd" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSEd" type="CollisionShape2D" parent="Walls" unique_id=553637588]
 position = Vector2(1665, 1425)
 shape = SubResource("shape_LavaSEd")
 
-[node name="LavaSEe" type="CollisionShape2D" parent="Walls"]
+[node name="LavaSEe" type="CollisionShape2D" parent="Walls" unique_id=1715687079]
 position = Vector2(1560, 1477.5)
 shape = SubResource("shape_LavaSEe")
 
-[node name="RockSE5" type="CollisionShape2D" parent="Walls"]
+[node name="RockSE5" type="CollisionShape2D" parent="Walls" unique_id=1838785748]
 position = Vector2(1867.5, 1500)
 shape = SubResource("shape_RockSE5")
 
-[node name="RockSE6" type="CollisionShape2D" parent="Walls"]
+[node name="RockSE6" type="CollisionShape2D" parent="Walls" unique_id=1194982818]
 position = Vector2(1650, 1350)
 shape = SubResource("shape_RockSE6")
 
-[node name="TreeNW1" type="CollisionShape2D" parent="Walls"]
+[node name="TreeNW1" type="CollisionShape2D" parent="Walls" unique_id=441779337]
 position = Vector2(255, 307.5)
 shape = SubResource("shape_TreeNW1")
 
-[node name="TreeW1" type="CollisionShape2D" parent="Walls"]
+[node name="TreeW1" type="CollisionShape2D" parent="Walls" unique_id=1169592942]
 position = Vector2(495, 930)
 shape = SubResource("shape_TreeW1")
 
-[node name="TreeW3" type="CollisionShape2D" parent="Walls"]
+[node name="TreeW3" type="CollisionShape2D" parent="Walls" unique_id=500818409]
 position = Vector2(322.5, 937.5)
 shape = SubResource("shape_TreeW3")
 
-[node name="TreeN1" type="CollisionShape2D" parent="Walls"]
+[node name="TreeN1" type="CollisionShape2D" parent="Walls" unique_id=1072648419]
 position = Vector2(1350, 202.5)
 shape = SubResource("shape_TreeN1")
 
-[node name="TreeN2" type="CollisionShape2D" parent="Walls"]
+[node name="TreeN2" type="CollisionShape2D" parent="Walls" unique_id=140704551]
 position = Vector2(1500, 285)
 shape = SubResource("shape_TreeN2")
 
-[node name="TreeE1" type="CollisionShape2D" parent="Walls"]
+[node name="TreeE1" type="CollisionShape2D" parent="Walls" unique_id=805072614]
 position = Vector2(1692, 517.5)
 shape = SubResource("shape_TreeE1")
 
-[node name="TreeE2" type="CollisionShape2D" parent="Walls"]
+[node name="TreeE2" type="CollisionShape2D" parent="Walls" unique_id=284013168]
 position = Vector2(2017.5, 277.5)
 shape = SubResource("shape_TreeE2")
 
-[node name="TreeNE3" type="CollisionShape2D" parent="Walls"]
+[node name="TreeNE3" type="CollisionShape2D" parent="Walls" unique_id=1691874003]
 position = Vector2(1867.5, 180)
 shape = SubResource("shape_TreeNE3")
 
-[node name="TreeSE1" type="CollisionShape2D" parent="Walls"]
+[node name="TreeSE1" type="CollisionShape2D" parent="Walls" unique_id=652631648]
 position = Vector2(1455, 1342.5)
 shape = SubResource("shape_TreeSE1")
 
-[node name="TreeSE2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1237.5, 1372.5)
-shape = SubResource("shape_TreeSE2")
-
-[node name="TreeS1" type="CollisionShape2D" parent="Walls"]
-position = Vector2(960, 1387.5)
-shape = SubResource("shape_TreeS1")
-
-[node name="TreeS2" type="CollisionShape2D" parent="Walls"]
+[node name="TreeS2" type="CollisionShape2D" parent="Walls" unique_id=2144952410]
 position = Vector2(390, 1432.5)
 shape = SubResource("shape_TreeS2")
 
-[node name="RockS1" type="CollisionShape2D" parent="Walls"]
-position = Vector2(847.5, 1455)
-shape = SubResource("shape_RockS1")
-
-[node name="RockS2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(952.5, 1447.5)
-shape = SubResource("shape_RockS2")
-
-[node name="RockS3" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1275, 1425)
-shape = SubResource("shape_RockS3")
-
-[node name="RockS4" type="CollisionShape2D" parent="Walls"]
-position = Vector2(742.5, 1305)
-shape = SubResource("shape_RockS4")
-
-[node name="RockS5" type="CollisionShape2D" parent="Walls"]
+[node name="RockS5" type="CollisionShape2D" parent="Walls" unique_id=2127076765]
 position = Vector2(585, 1537.5)
 shape = SubResource("shape_RockS5")
+
+[node name="WallSWb2" type="CollisionShape2D" parent="Walls" unique_id=683098480]
+position = Vector2(912, 1333)
+shape = SubResource("SegmentShape2D_psbl4")
+
+[node name="WallSEa2" type="CollisionShape2D" parent="Walls" unique_id=1236905288]
+position = Vector2(1287, 1216)
+shape = SubResource("SegmentShape2D_sug24")
+
+[node name="WallSEa3" type="CollisionShape2D" parent="Walls" unique_id=365103538]
+position = Vector2(1289, 1237)
+shape = SubResource("SegmentShape2D_pnbe0")
+
+[node name="WallSEa4" type="CollisionShape2D" parent="Walls" unique_id=1434891225]
+position = Vector2(1212, 1237)
+shape = SubResource("SegmentShape2D_sm2xf")
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1767982696]
 y_sort_enabled = true
@@ -651,21 +626,21 @@ y_sort_enabled = true
 [node name="Player" parent="YSortRoot" unique_id=1320977462 instance=ExtResource("2_player")]
 position = Vector2(1083, 1480.5)
 
-[node name="Chapter8Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+[node name="Chapter8Portal" parent="YSortRoot" unique_id=1617578338 instance=ExtResource("90_portal")]
 position = Vector2(1086, 660)
 target_scene = "res://scenes/chapter_8/chapter_8.tscn"
 target_spawn = Vector2(507, 1430)
 
-[node name="Chapter6Portal" parent="YSortRoot" instance=ExtResource("90_portal")]
+[node name="Chapter6Portal" parent="YSortRoot" unique_id=47323949 instance=ExtResource("90_portal")]
 position = Vector2(1071, 1531.5)
 target_scene = "res://scenes/chapter_6/chapter_6.tscn"
 target_spawn = Vector2(660, 410)
 
-[node name="Mob1" parent="YSortRoot" instance=ExtResource("91_mob")]
-position = Vector2(900, 1350)
+[node name="Mob1" parent="YSortRoot" unique_id=467823555 instance=ExtResource("91_mob")]
+position = Vector2(908, 1329)
 
-[node name="Mob2" parent="YSortRoot" instance=ExtResource("91_mob")]
-position = Vector2(1275, 1350)
+[node name="Mob2" parent="YSortRoot" unique_id=1699889086 instance=ExtResource("91_mob")]
+position = Vector2(1269, 1332)
 
-[node name="Mob3" parent="YSortRoot" instance=ExtResource("91_mob")]
+[node name="Mob3" parent="YSortRoot" unique_id=789340940 instance=ExtResource("91_mob")]
 position = Vector2(1086, 990)
