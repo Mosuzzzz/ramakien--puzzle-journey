@@ -14,6 +14,7 @@ func _run() -> void:
 		_expect(audio.has_signal("sfx_played"), "SFX is observable")
 		_expect(audio.has_method("play_sfx"), "play_sfx API exists")
 		_expect(audio.has_method("set_run_active"), "run-loop API exists")
+		_expect(audio.has_method("sync_music_for_scene_path"), "scene music API exists")
 		_expect(audio.get_node_or_null("Music") != null, "Music player exists")
 		_expect(audio.get_node_or_null("RunLoop") != null, "RunLoop player exists")
 		var keys: Array[StringName] = [
@@ -39,6 +40,24 @@ func _run() -> void:
 		audio.set_run_active(owner, false)
 		_expect(not audio.get_node("RunLoop").playing, "run loop stops")
 		owner.free()
+		if audio.has_method("sync_music_for_scene_path"):
+			audio.sync_music_for_scene_path("res://scenes/chapter_6/chapter_6.tscn")
+			var music := audio.get_node("Music") as AudioStreamPlayer
+			_expect(music.playing, "chapter starts music")
+			music.seek(2.0)
+			audio.sync_music_for_scene_path("res://scenes/chapter_6/chapter_6_room_left.tscn")
+			_expect(music.playing, "subroom keeps music")
+			_expect(music.get_playback_position() >= 1.9, "subroom does not restart music")
+			audio.sync_music_for_scene_path("res://scenes/homepage/home_page.tscn")
+			_expect(not music.playing, "non-chapter stops chapter music")
+		heard.clear()
+		var button := Button.new()
+		root.add_child(button)
+		await process_frame
+		button.pressed.emit()
+		await process_frame
+		_expect(heard == [&"button_click"], "new button clicks exactly once")
+		button.free()
 	_finish()
 
 

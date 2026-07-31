@@ -43,15 +43,24 @@ var _streams: Dictionary = {}
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _pool_cursor := 0
 var _run_owner: Node
+var _last_scene_id := 0
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_streams()
 	_create_players()
+	get_tree().node_added.connect(_on_node_added)
+	_register_buttons_recursive(get_tree().root)
+	_sync_music_for_current_scene.call_deferred()
 
 
 func _process(_delta: float) -> void:
+	var scene := get_tree().current_scene
+	var scene_id := scene.get_instance_id() if scene != null else 0
+	if scene_id != _last_scene_id:
+		_last_scene_id = scene_id
+		_sync_music_for_current_scene()
 	if _run_owner != null and not is_instance_valid(_run_owner):
 		stop_run_loop()
 
@@ -84,6 +93,20 @@ func set_run_active(owner: Node, active: bool) -> void:
 func stop_run_loop() -> void:
 	_run_owner = null
 	(get_node("RunLoop") as AudioStreamPlayer).stop()
+
+
+func sync_music_for_scene_path(scene_path: String) -> void:
+	var should_play := (
+		scene_path.begins_with("res://scenes/chapter_")
+		or scene_path.begins_with("res://scenes/cutscene/chapter_")
+	)
+	var music := get_node("Music") as AudioStreamPlayer
+	if should_play:
+		if not music.playing and _streams.has(BACKGROUND):
+			music.stream = _streams[BACKGROUND]
+			music.play()
+	else:
+		music.stop()
 
 
 func _load_streams() -> void:
@@ -125,3 +148,27 @@ func _next_sfx_player() -> AudioStreamPlayer:
 	var player := _sfx_players[_pool_cursor]
 	_pool_cursor = (_pool_cursor + 1) % _sfx_players.size()
 	return player
+
+
+func _sync_music_for_current_scene() -> void:
+	var scene := get_tree().current_scene
+	sync_music_for_scene_path(scene.scene_file_path if scene != null else "")
+
+
+func _on_node_added(node: Node) -> void:
+	if node is BaseButton:
+		_register_button(node)
+
+
+func _register_buttons_recursive(node: Node) -> void:
+	if node is BaseButton:
+		_register_button(node)
+	for child in node.get_children():
+		_register_buttons_recursive(child)
+
+
+func _register_button(button: BaseButton) -> void:
+	if button.has_meta("audio_click_connected"):
+		return
+	button.set_meta("audio_click_connected", true)
+	button.pressed.connect(play_sfx.bind(BUTTON_CLICK))
