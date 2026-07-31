@@ -41,18 +41,60 @@ func _run() -> void:
 		_expect(not audio.get_node("RunLoop").playing, "run loop stops")
 		owner.free()
 		if audio.has_method("sync_music_for_scene_path"):
-			audio.sync_music_for_scene_path("res://scenes/chapter_6/chapter_6.tscn")
+			var sfx_bus := AudioServer.get_bus_index(&"SFX")
+			var sfx_before := AudioServer.get_bus_volume_db(sfx_bus)
+			audio.sync_music_for_scene_path("res://scenes/homepage/home_page.tscn")
 			var music := audio.get_node("Music") as AudioStreamPlayer
-			_expect(music.playing, "chapter starts music")
+			_expect(music.playing, "home page starts music")
+			_expect(
+				is_equal_approx(music.volume_db, linear_to_db(1.0)),
+				"menu music uses full gain"
+			)
 			music.seek(2.0)
-			audio.sync_music_for_scene_path("")
-			_expect(music.playing, "transient empty scene keeps music")
-			_expect(music.get_playback_position() >= 1.9, "empty scene does not restart music")
+			audio.sync_music_for_scene_path("res://scenes/prologue/prologue.tscn")
+			_expect(music.playing, "prologue keeps music")
+			_expect(
+				is_equal_approx(music.volume_db, linear_to_db(0.4)),
+				"prologue music uses gameplay gain"
+			)
+			_expect(music.get_playback_position() >= 1.9, "prologue does not restart music")
+			audio.sync_music_for_scene_path("res://scenes/chapter_1/chapter_1.tscn")
+			_expect(
+				is_equal_approx(music.volume_db, linear_to_db(0.4)),
+				"chapter music uses gameplay gain"
+			)
 			audio.sync_music_for_scene_path("res://scenes/chapter_6/chapter_6_room_left.tscn")
 			_expect(music.playing, "subroom keeps music")
 			_expect(music.get_playback_position() >= 1.9, "subroom does not restart music")
-			audio.sync_music_for_scene_path("res://scenes/homepage/home_page.tscn")
-			_expect(not music.playing, "non-chapter stops chapter music")
+			_expect(
+				is_equal_approx(music.volume_db, linear_to_db(0.4)),
+				"subroom music uses gameplay gain"
+			)
+			audio.sync_music_for_scene_path("res://scenes/cutscene/chapter_9_cutscene.tscn")
+			_expect(
+				is_equal_approx(music.volume_db, linear_to_db(0.4)),
+				"chapter cutscene uses gameplay gain"
+			)
+			var gain_before_transition := music.volume_db
+			audio.sync_music_for_scene_path("")
+			_expect(music.playing, "transient empty scene keeps music")
+			_expect(music.get_playback_position() >= 1.9, "empty scene does not restart music")
+			_expect(
+				is_equal_approx(music.volume_db, gain_before_transition),
+				"empty scene preserves music gain"
+			)
+			audio.sync_music_for_scene_path("res://scenes/homepage/settings_page.tscn")
+			_expect(music.playing, "returning to menu keeps music")
+			_expect(
+				is_equal_approx(music.volume_db, linear_to_db(1.0)),
+				"returning to menu restores full gain"
+			)
+			_expect(
+				is_equal_approx(AudioServer.get_bus_volume_db(sfx_bus), sfx_before),
+				"scene music sync leaves SFX bus unchanged"
+			)
+			audio.sync_music_for_scene_path("res://scenes/ending/ending.tscn")
+			_expect(not music.playing, "unrelated scene stops music")
 		heard.clear()
 		var button := Button.new()
 		root.add_child(button)

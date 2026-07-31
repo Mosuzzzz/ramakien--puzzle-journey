@@ -19,6 +19,8 @@ const JUMP_THROW := &"jump_throw"
 const HEAL_AND_PULL := &"heal_and_pull"
 const GIANT_ATTACK := &"giant_attack"
 const SFX_POOL_SIZE := 12
+const MENU_MUSIC_GAIN := 1.0
+const GAMEPLAY_MUSIC_GAIN := 0.4
 
 const SOUND_PATHS := {
 	BACKGROUND: "res://assets/audio/music/background.mp3",
@@ -98,12 +100,21 @@ func stop_run_loop() -> void:
 func sync_music_for_scene_path(scene_path: String) -> void:
 	if scene_path.is_empty():
 		return
-	var should_play := (
-		scene_path.begins_with("res://scenes/chapter_")
+	var is_menu := scene_path.begins_with("res://scenes/homepage/")
+	var is_gameplay := (
+		scene_path == "res://scenes/prologue/prologue.tscn"
+		or scene_path.begins_with("res://scenes/chapter_")
 		or scene_path.begins_with("res://scenes/cutscene/chapter_")
+	)
+	var should_play := (
+		is_menu
+		or is_gameplay
 	)
 	var music := get_node("Music") as AudioStreamPlayer
 	if should_play:
+		music.volume_db = linear_to_db(
+			GAMEPLAY_MUSIC_GAIN if is_gameplay else MENU_MUSIC_GAIN
+		)
 		if not music.playing and _streams.has(BACKGROUND):
 			music.stream = _streams[BACKGROUND]
 			music.play()
