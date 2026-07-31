@@ -45,6 +45,9 @@ func _run() -> void:
 			var music := audio.get_node("Music") as AudioStreamPlayer
 			_expect(music.playing, "chapter starts music")
 			music.seek(2.0)
+			audio.sync_music_for_scene_path("")
+			_expect(music.playing, "transient empty scene keeps music")
+			_expect(music.get_playback_position() >= 1.9, "empty scene does not restart music")
 			audio.sync_music_for_scene_path("res://scenes/chapter_6/chapter_6_room_left.tscn")
 			_expect(music.playing, "subroom keeps music")
 			_expect(music.get_playback_position() >= 1.9, "subroom does not restart music")

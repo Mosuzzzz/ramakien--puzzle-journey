@@ -96,6 +96,8 @@ func stop_run_loop() -> void:
 
 
 func sync_music_for_scene_path(scene_path: String) -> void:
+	if scene_path.is_empty():
+		return
 	var should_play := (
 		scene_path.begins_with("res://scenes/chapter_")
 		or scene_path.begins_with("res://scenes/cutscene/chapter_")
