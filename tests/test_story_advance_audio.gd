@@ -50,6 +50,24 @@ func _run() -> void:
 	_expect(_events == [&"button_click"], "final dialogue close sounds once")
 	_expect(not dialogue.is_active, "final dialogue input closes dialogue")
 
+	_events.clear()
+	key_event.echo = true
+	_expect(
+		not CutsceneAdvanceInput.consume_advance_event(key_event, null),
+		"repeated E is rejected"
+	)
+	_expect(_events.is_empty(), "repeated E stays silent")
+	key_event.echo = false
+
+	var right_click := InputEventMouseButton.new()
+	right_click.button_index = MOUSE_BUTTON_RIGHT
+	right_click.pressed = true
+	_expect(
+		not CutsceneAdvanceInput.consume_advance_event(right_click, null),
+		"right click is rejected"
+	)
+	_expect(_events.is_empty(), "right click stays silent")
+
 	_finish()
 
 
