@@ -120,6 +120,10 @@ func _attack_sound_key() -> StringName:
 	return AudioManager.GIANT_ATTACK
 
 
+func _uses_shared_run_audio() -> bool:
+	return false
+
+
 func take_damage(amount: int) -> void:
 	if amount <= 0 or _health <= 0:
 		return

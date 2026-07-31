@@ -21,25 +21,30 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if _player == null:
+		_update_run_audio(false)
 		return
 	# approaching Sida "rescues" her (fires the signal once, used by ch8/ch9
 	# progression); once rescued, she walks behind the player
 	if not _following:
+		_update_run_audio(false)
 		if _player.global_position.distance_to(global_position) < 60.0:
 			start_following()
 		return
 	if not can_walk:
+		_update_run_audio(false)
 		return
 	var to_player := _player.global_position - global_position
 	if to_player.length() > follow_distance:
 		velocity = to_player.normalized() * speed
 		move_and_slide()
 		_play("run")
+		_update_run_audio(true)
 		if absf(velocity.x) > 1.0:
 			_sprite.flip_h = velocity.x > 0.0
 	else:
 		velocity = Vector2.ZERO
 		_play("idle")
+		_update_run_audio(false)
 
 
 func start_following() -> void:
@@ -56,3 +61,11 @@ func _play(anim: String) -> void:
 		var s := display_height / tex.get_height()
 		_sprite.scale = Vector2(s, s)
 	_sprite.play(anim)
+
+
+func _update_run_audio(active: bool) -> void:
+	AudioManager.set_run_active(self, active)
+
+
+func _exit_tree() -> void:
+	AudioManager.set_run_active(self, false)
