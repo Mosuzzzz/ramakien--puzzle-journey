@@ -115,8 +115,8 @@ func _show_question() -> void:
 		button.custom_minimum_size = Vector2(620, 46)
 		button.add_theme_font_override("font", BUTTON_FONT)
 		button.add_theme_font_size_override("font_size", 18)
-		button.pressed.connect(_on_choice_pressed.bind(source_index))
 		_choices.add_child(button)
+		button.pressed.connect(_on_choice_pressed.bind(source_index))
 
 
 func _on_choice_pressed(index: int) -> void:
@@ -124,8 +124,10 @@ func _on_choice_pressed(index: int) -> void:
 		return
 	var data: Dictionary = QUESTIONS[_question_index]
 	if index != int(data["correct_index"]):
+		AudioManager.play_sfx(AudioManager.ANSWER_WRONG)
 		_flash_wrong_answer()
 		return
+	AudioManager.play_sfx(AudioManager.ANSWER_CORRECT)
 	_slots[_question_index].color = CORRECT
 	_question_index += 1
 	if _question_index >= QUESTIONS.size():

@@ -110,6 +110,7 @@ func _evaluate() -> void:
 	_feedback_locked = true
 	_set_controls_locked(true)
 	if _entered_digits == SOLUTION:
+		AudioManager.play_sfx(AudioManager.ANSWER_CORRECT)
 		_render_slots(CORRECT)
 		await get_tree().create_timer(1.0, true).timeout
 		if not is_instance_valid(self):
@@ -120,6 +121,7 @@ func _evaluate() -> void:
 		hide()
 		get_tree().paused = false
 		return
+	AudioManager.play_sfx(AudioManager.ANSWER_WRONG)
 	_render_slots(WRONG)
 	await get_tree().create_timer(1.0, true).timeout
 	if not is_instance_valid(self):
