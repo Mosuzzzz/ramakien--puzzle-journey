@@ -4,6 +4,16 @@ var _failures: Array[String] = []
 var _events: Array[StringName] = []
 
 
+class DamageReceiver:
+	extends Node2D
+	var current_health := 100
+	var damage_taken := 0
+
+	func take_damage(amount: int) -> void:
+		damage_taken += amount
+		current_health -= amount
+
+
 func _initialize() -> void:
 	call_deferred("_run")
 
@@ -13,7 +23,7 @@ func _run() -> void:
 	audio.sfx_played.connect(func(key: StringName): _events.append(key))
 	var stage := Node2D.new()
 	root.add_child(stage)
-	var player := Node2D.new()
+	var player := DamageReceiver.new()
 	player.name = "Player"
 	stage.add_child(player)
 
@@ -42,6 +52,18 @@ func _run() -> void:
 		_expect(thosakan._is_footstep_frame(&"run", 1), "first Thosakan foot contact")
 		_expect(thosakan._is_footstep_frame(&"run", 3), "second Thosakan foot contact")
 		_expect(not thosakan._is_footstep_frame(&"idle", 1), "idle is silent")
+	_events.clear()
+	thosakan._begin_jump_attack()
+	_expect(not _events.has(&"jump_throw"), "Thosakan jump take-off is silent")
+	var damage_before := player.damage_taken
+	thosakan._begin_jump_impact()
+	_expect(_events == [&"jump_throw"], "Thosakan jump cue plays at impact")
+	_expect(
+		player.damage_taken == damage_before + thosakan.jump_damage,
+		"jump impact damages player"
+	)
+	thosakan._begin_jump_impact()
+	_expect(_events == [&"jump_throw"], "jump impact cue cannot duplicate")
 	_events.clear()
 	thosakan.take_damage(1)
 	_expect(_events == [&"enemy_hit"], "Thosakan hit plays once")

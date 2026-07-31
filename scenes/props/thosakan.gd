@@ -322,7 +322,6 @@ func _finish_heal_skill() -> void:
 
 
 func _begin_jump_attack() -> void:
-	AudioManager.play_sfx(_special_sound_key(JUMP_ANIMATION))
 	_attacking = true
 	_jump_active = true
 	_jump_approaching = false
@@ -375,6 +374,7 @@ func _begin_jump_impact() -> void:
 	_sprite.frame = JUMP_IMPACT_FRAME
 	_sprite.frame_progress = 0.0
 	if not _jump_damage_done and is_instance_valid(_player):
+		AudioManager.play_sfx(_special_sound_key(JUMP_ANIMATION))
 		_player.take_damage(jump_damage)
 		_jump_damage_done = true
 
