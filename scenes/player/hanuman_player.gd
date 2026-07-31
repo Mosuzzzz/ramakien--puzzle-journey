@@ -123,8 +123,10 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if _attacking:
+		_update_run_audio(false)
 		return
 	if Dialogue.is_active:
+		_update_run_audio(false)
 		velocity = Vector2.ZERO
 		move_and_slide()
 		_play_animation("idle")
@@ -132,6 +134,7 @@ func _physics_process(_delta: float) -> void:
 	_dash_cooldown_left = maxf(_dash_cooldown_left - _delta, 0.0)
 	_attack_cooldown_left = maxf(_attack_cooldown_left - _delta, 0.0)
 	if _knockback_velocity.length() > 4.0:
+		_update_run_audio(false)
 		velocity = _knockback_velocity
 		_knockback_velocity = _knockback_velocity.move_toward(Vector2.ZERO, 1100.0 * _delta)
 		move_and_slide()
@@ -151,11 +154,13 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 	if _dash_time_left > 0.0 or dir.length() > 0.0:
+		_update_run_audio(true)
 		_play_animation("walk")
 		var facing_direction := _dash_direction if _dash_time_left > 0.0 else dir
 		if facing_direction.x != 0.0:
 			_face_right = facing_direction.x > 0.0
 	else:
+		_update_run_audio(false)
 		_play_animation("idle")
 	# idle/walk art faces left natively, so flip to face right
 	animated_sprite.flip_h = _face_right
@@ -175,6 +180,8 @@ func _start_dash() -> void:
 
 func _attack() -> void:
 	_attacking = true
+	_update_run_audio(false)
+	AudioManager.play_sfx(AudioManager.THRASH)
 	_attack_cooldown_left = attack_cooldown
 	_dash_time_left = 0.0
 	velocity = Vector2.ZERO
@@ -213,6 +220,8 @@ func take_damage(amount: int) -> void:
 		return
 	if _dash_time_left > 0.0:
 		return  # i-frames: dashing dodges all damage
+	_update_run_audio(false)
+	AudioManager.play_sfx(AudioManager.HURT)
 	current_health = clampi(current_health - amount, 0, max_health)
 	_update_health_bar()
 	_update_hp_label()
@@ -250,6 +259,7 @@ func _update_potion_label() -> void:
 
 func _die() -> void:
 	_dead = true
+	_update_run_audio(false)
 	_attacking = true  # reuses the input lock so the body stays put while fading
 	velocity = Vector2.ZERO
 	if is_instance_valid(_hit_flash_tween):
@@ -259,3 +269,11 @@ func _die() -> void:
 	await fade.finished
 	GameState.next_spawn = Vector2.INF
 	get_tree().reload_current_scene()
+
+
+func _update_run_audio(active: bool) -> void:
+	AudioManager.set_run_active(self, active)
+
+
+func _exit_tree() -> void:
+	_update_run_audio(false)
