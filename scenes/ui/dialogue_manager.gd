@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const CutsceneAdvanceInput := preload("res://scenes/ui/cutscene_advance_input.gd")
+
 signal finished
 
 var is_active: bool = false
@@ -63,15 +65,11 @@ func _show_line() -> void:
 func _input(event: InputEvent) -> void:
 	if not is_active:
 		return
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
-		_advance()
-		get_viewport().set_input_as_handled()
+	var hovered_control := get_viewport().gui_get_hovered_control()
+	if not CutsceneAdvanceInput.consume_advance_event(event, hovered_control):
 		return
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if get_viewport().gui_get_hovered_control() is Button:
-			return  # click belongs to a UI button (e.g. cutscene skip), don't advance
-		_advance()
-		get_viewport().set_input_as_handled()
+	_advance()
+	get_viewport().set_input_as_handled()
 
 func _advance() -> void:
 	_index += 1
