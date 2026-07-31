@@ -66,7 +66,26 @@ func _use_portal() -> void:
 	if locked:
 		get_viewport().set_input_as_handled()
 		return
+	var current_scene := get_tree().current_scene
+	play_transition_sound_for_scene_path(
+		current_scene.scene_file_path if current_scene != null else ""
+	)
 	activated.emit(self)
 	GameState.next_spawn = target_spawn
 	get_tree().change_scene_to_file.call_deferred(target_scene)
 	get_viewport().set_input_as_handled()
+
+
+func play_transition_sound_for_scene_path(current_scene_path: String) -> void:
+	if locked:
+		return
+	if _is_room_scene_path(current_scene_path) or _is_room_scene_path(target_scene):
+		AudioManager.play_sfx(AudioManager.DOOR)
+
+
+func _is_room_scene_path(scene_path: String) -> bool:
+	return (
+		scene_path == "res://scenes/chapter_1/throne_room.tscn"
+		or scene_path.contains("/chapter_6/chapter_6_room_")
+		or scene_path.contains("/chapter_8/chapter_8_room")
+	)

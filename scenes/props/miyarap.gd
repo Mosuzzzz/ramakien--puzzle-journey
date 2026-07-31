@@ -86,6 +86,7 @@ func _start_stun() -> void:
 func _start_summon() -> void:
 	_attacking = true
 	_hit_cooldown = attack_cooldown
+	AudioManager.play_sfx(AudioManager.INVITE)
 	_play("summon")
 	while _sprite.animation == &"summon" and _sprite.frame < SUMMON_SPAWN_FRAME:
 		await _sprite.frame_changed
