@@ -33,6 +33,44 @@ func _run() -> void:
 		audio.play_sfx(&"missing_key")
 		await process_frame
 		_expect(heard == [&"pickup"], "unknown key is ignored")
+		for child in audio.get_children():
+			if child is AudioStreamPlayer and child.name.begins_with("SFX"):
+				child.stop()
+		audio.play_sfx(&"door")
+		var door_player: AudioStreamPlayer = null
+		for child in audio.get_children():
+			if (
+				child is AudioStreamPlayer
+				and child.stream != null
+				and child.stream.resource_path.ends_with("door.mp3")
+			):
+				door_player = child
+				break
+		_expect(door_player != null, "door uses a pooled SFX player")
+		if door_player != null:
+			_expect(
+				is_equal_approx(door_player.volume_db, linear_to_db(1.5)),
+				"door cue uses 1.5 gain"
+			)
+		for child in audio.get_children():
+			if child is AudioStreamPlayer and child.name.begins_with("SFX"):
+				child.stop()
+		audio.play_sfx(&"pickup")
+		var pickup_player: AudioStreamPlayer = null
+		for child in audio.get_children():
+			if (
+				child is AudioStreamPlayer
+				and child.stream != null
+				and child.stream.resource_path.ends_with("pickup.mp3")
+			):
+				pickup_player = child
+				break
+		_expect(pickup_player != null, "pickup uses a pooled SFX player")
+		if pickup_player != null:
+			_expect(
+				is_equal_approx(pickup_player.volume_db, linear_to_db(1.0)),
+				"non-door cues reset pooled player gain"
+			)
 		var owner_a := Node.new()
 		var owner_b := Node.new()
 		root.add_child(owner_a)

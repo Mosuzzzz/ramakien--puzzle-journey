@@ -45,6 +45,10 @@ const SOUND_PATHS := {
 	DOOR: "res://assets/audio/sfx/door.mp3",
 }
 
+const SOUND_GAINS := {
+	DOOR: 1.5,
+}
+
 var _streams: Dictionary = {}
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _pool_cursor := 0
@@ -80,6 +84,7 @@ func play_sfx(sound_key: StringName) -> void:
 		return
 	var player := _next_sfx_player()
 	player.stream = _streams[sound_key]
+	player.volume_db = linear_to_db(float(SOUND_GAINS.get(sound_key, 1.0)))
 	player.play()
 	sfx_played.emit(sound_key)
 

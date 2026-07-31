@@ -82,8 +82,12 @@ func _run() -> void:
 		miyarap._play_wave_sound()
 		_expect(_events == [&"giant", &"wave"], "Miyarap cues play in impact order")
 	_events.clear()
-	miyarap._start_summon()
-	_expect(_events == [&"invite"], "Miyarap summon starts with one invite cue")
+	for _cycle in 5:
+		miyarap._start_summon()
+	_expect(
+		_events == [&"invite", &"invite", &"invite", &"invite", &"invite"],
+		"five Miyarap summon starts produce five invite cues"
+	)
 	miyarap.free()
 	stage.free()
 	_finish()
