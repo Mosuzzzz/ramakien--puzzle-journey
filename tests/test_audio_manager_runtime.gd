@@ -54,9 +54,12 @@ func _run() -> void:
 		var button := Button.new()
 		root.add_child(button)
 		await process_frame
+		button.button_down.emit()
+		await process_frame
+		_expect(heard == [&"button_click"], "button-down plays click immediately")
 		button.pressed.emit()
 		await process_frame
-		_expect(heard == [&"button_click"], "new button clicks exactly once")
+		_expect(heard == [&"button_click"], "pressed does not duplicate click")
 		button.free()
 	_finish()
 

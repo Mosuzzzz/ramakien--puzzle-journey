@@ -171,4 +171,4 @@ func _register_button(button: BaseButton) -> void:
 	if button.has_meta("audio_click_connected"):
 		return
 	button.set_meta("audio_click_connected", true)
-	button.pressed.connect(play_sfx.bind(BUTTON_CLICK))
+	button.button_down.connect(play_sfx.bind(BUTTON_CLICK))

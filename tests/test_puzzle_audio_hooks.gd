@@ -33,6 +33,7 @@ func _test_question_quiz() -> void:
 	quiz.ask("Q", ["A", "B"], 0)
 	var first_button := quiz.get_node("Dim/Page/PageMargin/VBox/Choices").get_child(0) as Button
 	_events.clear()
+	first_button.button_down.emit()
 	first_button.pressed.emit()
 	_expect(
 		_events == [&"button_click", &"answer_correct"],
