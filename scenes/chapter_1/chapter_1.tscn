@@ -199,6 +199,8 @@ position = Vector2(628, 1095)
 exit_scene = "res://scenes/chapter_2/chapter_2.tscn"
 exit_spawn = Vector2(734, 150)
 farewell_lines = Array[String](["พระราม พระลักษณ์ และนางสีดา เดินออกจากประตูกรุงอโยธยาเป็นครั้งสุดท้าย", "เสียงร่ำไห้ของชาวเมืองดังอยู่เบื้องหลัง ขณะที่ทั้งสามมุ่งหน้าเข้าสู่ผืนป่า", "โดยไม่รู้ว่า การเดินทางครั้งนี้จะนำพาพวกเขาไปพบกับบททดสอบครั้งใหญ่..."])
+locked = true
+locked_prompt_text = "ยังไม่ได้เข้าเฝ้าท้าวทศรถ"
 
 [node name="ThroneRoomPortal" parent="YSortRoot" unique_id=1041830134 instance=ExtResource("7_portal")]
 position = Vector2(625, 260)

@@ -82,6 +82,7 @@ static func save_to_slot(slot: int) -> void:
 	var data := {
 		"scene_path": scene.scene_file_path,
 		"player_position": [player.global_position.x, player.global_position.y] if player else null,
+		"player_health": player.current_health if player else null,
 		"timestamp": Time.get_datetime_string_from_system(),
 		"inventory": inventory.get_items_snapshot() if inventory != null else {},
 	}
@@ -116,6 +117,8 @@ static func load_slot(slot: int) -> void:
 	GameState.chapter_6_yak_fragment_position = Vector2.INF
 	var pos = data.get("player_position")
 	GameState.next_spawn = Vector2(pos[0], pos[1]) if pos else Vector2.INF
+	var saved_health = data.get("player_health")
+	GameState.next_health = saved_health if saved_health != null else -1
 	# hand the saved quest to the next gameplay scene to re-apply on _ready
 	GameState.next_quest = data.get("quest", {})
 	tree.change_scene_to_file.call_deferred(data["scene_path"])

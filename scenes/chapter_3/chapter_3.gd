@@ -36,7 +36,6 @@ var _rng := RandomNumberGenerator.new()
 
 @onready var _post_battle_cutscene: Control = $Chapter3CutsceneLayer/PostBattleCutscene
 @onready var _player: CharacterBody2D = $YSortRoot/Player
-@onready var _hanuman: CharacterBody2D = $YSortRoot/Hanuman
 @onready var _chapter4_portal: Area2D = $YSortRoot/Chapter4Portal
 @onready var _story_end_spawn: Marker2D = $StoryEndSpawn
 @onready var _quiz: CanvasLayer = $QuestionQuiz
@@ -58,10 +57,7 @@ var _rng := RandomNumberGenerator.new()
 func _ready() -> void:
 	Quest.clear()
 	if GameState.chapter_3_post_battle_played:
-		_hanuman.show()
 		_chapter4_portal.set_locked(false)
-	else:
-		_hide_hanuman_until_all_cutscenes_finish()
 	_quiz.answered.connect(_on_quiz_answered)
 	_rng.randomize()
 	for feather: Area2D in _feathers:
@@ -199,21 +195,9 @@ func _start_post_battle_cutscene() -> void:
 	_post_battle_cutscene.call("show_cutscene")
 
 
-func _hide_hanuman_until_all_cutscenes_finish() -> void:
-	_hanuman.hide()
-	_hanuman.process_mode = Node.PROCESS_MODE_DISABLED
-
-
-func reveal_hanuman_after_all_cutscenes() -> void:
-	# stays visible but doesn't patrol in chapter 3 — he only starts moving
-	# with the party once chapter 4 begins
-	_hanuman.show()
-
-
 func finish_chapter_3_story() -> void:
 	_player.velocity = Vector2.ZERO
 	_player.global_position = _story_end_spawn.global_position
-	reveal_hanuman_after_all_cutscenes()
 	_chapter4_portal.set_locked(false)
 	Quest.set_quest(EXIT_QUEST_NAME, EXIT_QUEST_DETAIL, _chapter4_portal.global_position)
 

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://4awoo3xm2tfl" path="res://assets/props/chapter3/tree1.PNG" id="2_lkp62"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
-[ext_resource type="PackedScene" uid="uid://clqaeprs66fvn" path="res://scenes/props/hanuman.tscn" id="4_hanuman"]
 [ext_resource type="Texture2D" uid="uid://bce0iufpupogs" path="res://assets/props/chapter3/tree4.PNG" id="4_m7h0s"]
 [ext_resource type="Texture2D" uid="uid://byh28l31q4b2m" path="res://assets/props/chapter3/tree3.PNG" id="6_tw8m1"]
 [ext_resource type="Texture2D" uid="uid://ismj7103co5u" path="res://assets/props/chapter3/tree2.PNG" id="7_253fu"]
@@ -845,11 +844,6 @@ y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1960272009 instance=ExtResource("2_player")]
 position = Vector2(1192, 351)
-
-[node name="Hanuman" parent="YSortRoot" unique_id=1566560080 instance=ExtResource("4_hanuman")]
-process_mode = 4
-visible = false
-position = Vector2(856, 477)
 
 [node name="Chapter2Portal" parent="YSortRoot" unique_id=964546437 instance=ExtResource("3_portal")]
 position = Vector2(1192, 351)

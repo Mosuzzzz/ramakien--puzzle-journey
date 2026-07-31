@@ -12,7 +12,8 @@ func _ready() -> void:
 	# set the quest for the current phase every time the plaza loads, so it
 	# is correct after returning from the throne room (or a save load)
 	if GameState.chapter_1_audience_done:
-		var door_south := $YSortRoot/door_south as Node2D
+		var door_south := $YSortRoot/door_south as StaticBody2D
+		door_south.set_locked(false)
 		Quest.set_quest(
 			"ออกเดินทางสู่ป่า",
 			"ออกทางประตูทิศใต้ของกรุงอโยธยาเพื่อเริ่มการเดินทาง",
