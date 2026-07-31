@@ -1,8 +1,9 @@
-# Menu and Chapter Music Level Design
+# Menu, Chapter Music, and Thosakan Jump Audio Design
 
 ## Goal
 
 Make the existing background track audible on the game's menu screens while keeping it quieter during gameplay so sound effects remain clear.
+Synchronize Thosakan's jump-attack sound with the instant the attack damages the player.
 
 ## Behavior
 
@@ -12,6 +13,8 @@ Make the existing background track audible on the game's menu screens while keep
 - Returning to a menu screen restores the music player to 100% of the player's Music setting.
 - Master and SFX levels are unchanged.
 - An empty scene path during a scene transition preserves both playback and the current gain until the destination scene becomes available.
+- Thosakan's `Jump throw.mp3` does not play when the jump begins. It plays exactly once when the boss reaches the player and calls the player's damage method.
+- If a jump is cancelled before impact or the player becomes invalid, the jump sound does not play.
 
 ## Implementation Boundary
 
@@ -21,6 +24,8 @@ Make the existing background track audible on the game's menu screens while keep
 2. Whether the Music player uses menu gain (100%) or chapter gain (40%).
 
 No scene receives its own background player, avoiding duplicated music and restarts during transitions. The user's saved Music slider value remains unchanged; the 40% chapter multiplier is applied only to the background player.
+
+Thosakan's jump cue remains an SFX owned by `AudioManager`, but its trigger moves from `_begin_jump_attack()` to `_begin_jump_impact()`, immediately next to the successful player-damage call. The existing `_jump_damage_done` guard prevents duplicate damage and duplicate impact audio.
 
 ## Scene Classification
 
@@ -39,5 +44,7 @@ Automated runtime tests will verify:
 - Returning to the home page restores 100% gain.
 - Empty transition paths do not stop or alter currently playing music.
 - SFX bus volume is not changed by scene synchronization.
+- Beginning Thosakan's jump produces no `jump_throw` event.
+- A successful Thosakan jump impact produces one `jump_throw` event at the damage boundary.
 
 The full existing audio test suite and a headless project smoke test will run after the change.
