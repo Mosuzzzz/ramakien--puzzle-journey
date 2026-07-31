@@ -21,7 +21,7 @@ func _run() -> void:
 			&"answer_correct", &"answer_wrong", &"button_click",
 			&"enemy_attacking", &"enemy_hit", &"pickup", &"run",
 			&"sword_attack", &"hurt", &"thrash", &"giant", &"wave",
-			&"jump_throw", &"heal_and_pull", &"giant_attack",
+			&"jump_throw", &"heal_and_pull", &"giant_attack", &"invite", &"door",
 		]
 		for key in keys:
 			_expect(audio.has_sound(key), "sound key loads: %s" % key)
@@ -33,13 +33,22 @@ func _run() -> void:
 		audio.play_sfx(&"missing_key")
 		await process_frame
 		_expect(heard == [&"pickup"], "unknown key is ignored")
-		var owner := Node.new()
-		root.add_child(owner)
-		audio.set_run_active(owner, true)
+		var owner_a := Node.new()
+		var owner_b := Node.new()
+		root.add_child(owner_a)
+		root.add_child(owner_b)
+		audio.set_run_active(owner_a, true)
 		_expect(audio.get_node("RunLoop").playing, "run loop starts")
-		audio.set_run_active(owner, false)
-		_expect(not audio.get_node("RunLoop").playing, "run loop stops")
-		owner.free()
+		audio.set_run_active(owner_b, true)
+		audio.set_run_active(owner_a, false)
+		_expect(audio.get_node("RunLoop").playing, "one stopped owner does not silence another")
+		audio.set_run_active(owner_b, false)
+		_expect(not audio.get_node("RunLoop").playing, "run loop stops after final owner")
+		audio.set_run_active(owner_a, true)
+		owner_a.free()
+		await process_frame
+		_expect(not audio.get_node("RunLoop").playing, "invalid owner is pruned")
+		owner_b.free()
 		if audio.has_method("sync_music_for_scene_path"):
 			var sfx_bus := AudioServer.get_bus_index(&"SFX")
 			var sfx_before := AudioServer.get_bus_volume_db(sfx_bus)
@@ -54,25 +63,25 @@ func _run() -> void:
 			audio.sync_music_for_scene_path("res://scenes/prologue/prologue.tscn")
 			_expect(music.playing, "prologue keeps music")
 			_expect(
-				is_equal_approx(music.volume_db, linear_to_db(0.4)),
+				is_equal_approx(music.volume_db, linear_to_db(0.3)),
 				"prologue music uses gameplay gain"
 			)
 			_expect(music.get_playback_position() >= 1.9, "prologue does not restart music")
 			audio.sync_music_for_scene_path("res://scenes/chapter_1/chapter_1.tscn")
 			_expect(
-				is_equal_approx(music.volume_db, linear_to_db(0.4)),
+				is_equal_approx(music.volume_db, linear_to_db(0.3)),
 				"chapter music uses gameplay gain"
 			)
 			audio.sync_music_for_scene_path("res://scenes/chapter_6/chapter_6_room_left.tscn")
 			_expect(music.playing, "subroom keeps music")
 			_expect(music.get_playback_position() >= 1.9, "subroom does not restart music")
 			_expect(
-				is_equal_approx(music.volume_db, linear_to_db(0.4)),
+				is_equal_approx(music.volume_db, linear_to_db(0.3)),
 				"subroom music uses gameplay gain"
 			)
 			audio.sync_music_for_scene_path("res://scenes/cutscene/chapter_9_cutscene.tscn")
 			_expect(
-				is_equal_approx(music.volume_db, linear_to_db(0.4)),
+				is_equal_approx(music.volume_db, linear_to_db(0.3)),
 				"chapter cutscene uses gameplay gain"
 			)
 			var gain_before_transition := music.volume_db

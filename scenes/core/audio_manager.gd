@@ -18,9 +18,11 @@ const WAVE := &"wave"
 const JUMP_THROW := &"jump_throw"
 const HEAL_AND_PULL := &"heal_and_pull"
 const GIANT_ATTACK := &"giant_attack"
+const INVITE := &"invite"
+const DOOR := &"door"
 const SFX_POOL_SIZE := 12
 const MENU_MUSIC_GAIN := 1.0
-const GAMEPLAY_MUSIC_GAIN := 0.4
+const GAMEPLAY_MUSIC_GAIN := 0.3
 
 const SOUND_PATHS := {
 	BACKGROUND: "res://assets/audio/music/background.mp3",
@@ -39,12 +41,14 @@ const SOUND_PATHS := {
 	JUMP_THROW: "res://assets/audio/sfx/jump_throw.mp3",
 	HEAL_AND_PULL: "res://assets/audio/sfx/heal_and_pull.mp3",
 	GIANT_ATTACK: "res://assets/audio/sfx/giant_attack.mp3",
+	INVITE: "res://assets/audio/sfx/invite.mp3",
+	DOOR: "res://assets/audio/sfx/door.mp3",
 }
 
 var _streams: Dictionary = {}
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _pool_cursor := 0
-var _run_owner: Node
+var _run_owners: Dictionary[int, WeakRef] = {}
 var _last_scene_id := 0
 
 
@@ -63,8 +67,7 @@ func _process(_delta: float) -> void:
 	if scene_id != _last_scene_id:
 		_last_scene_id = scene_id
 		_sync_music_for_current_scene()
-	if _run_owner != null and not is_instance_valid(_run_owner):
-		stop_run_loop()
+	_prune_run_owners()
 
 
 func has_sound(sound_key: StringName) -> bool:
@@ -82,19 +85,36 @@ func play_sfx(sound_key: StringName) -> void:
 
 
 func set_run_active(owner: Node, active: bool) -> void:
+	if owner == null:
+		return
+	var owner_id := owner.get_instance_id()
 	if active:
-		_run_owner = owner
-		var player := get_node("RunLoop") as AudioStreamPlayer
-		if not player.playing and _streams.has(RUN):
-			player.stream = _streams[RUN]
-			player.play()
-	elif _run_owner == owner or _run_owner == null:
-		stop_run_loop()
+		_run_owners[owner_id] = weakref(owner)
+	else:
+		_run_owners.erase(owner_id)
+	_refresh_run_loop()
 
 
 func stop_run_loop() -> void:
-	_run_owner = null
+	_run_owners.clear()
 	(get_node("RunLoop") as AudioStreamPlayer).stop()
+
+
+func _prune_run_owners() -> void:
+	for owner_id: int in _run_owners.keys():
+		var owner_ref := _run_owners[owner_id] as WeakRef
+		if owner_ref.get_ref() == null:
+			_run_owners.erase(owner_id)
+	_refresh_run_loop()
+
+
+func _refresh_run_loop() -> void:
+	var player := get_node("RunLoop") as AudioStreamPlayer
+	if _run_owners.is_empty():
+		player.stop()
+	elif not player.playing and _streams.has(RUN):
+		player.stream = _streams[RUN]
+		player.play()
 
 
 func sync_music_for_scene_path(scene_path: String) -> void:
