@@ -38,6 +38,8 @@ const STATE_KEYS := [
 	"chapter_6_right_jars_mask",
 	"chapter_6_right_pedestal_solved",
 	"chapter_6_gate_unlocked",
+	"chapter_7_defenders_cleared",
+	"chapter_8_sida_room_discovered",
 	"chapter_8_intro_played",
 	"chapter_9_thotsakan_defeated",
 	"chapter_9_sida_rescued",
