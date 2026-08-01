@@ -11,14 +11,19 @@ var _phra_ram_restored := false
 
 
 func _ready() -> void:
+	if not _post_boss_cutscene.finished.is_connected(_on_post_boss_cutscene_finished):
+		_post_boss_cutscene.finished.connect(_on_post_boss_cutscene_finished)
 	var boss := get_node_or_null("YSortRoot/Miyarap")
 	if GameState.chapter_5_post_boss_played:
+		AudioManager.restore_background_music(0.0)
 		if boss != null:
 			boss.queue_free()
 		_chapter6_portal.set_locked(false)
 	elif boss != null:
+		AudioManager.play_boss_music()
 		boss.tree_exited.connect(_on_miyarap_removed)
 	else:
+		AudioManager.restore_background_music(0.0)
 		_chapter6_portal.set_locked(false)
 
 
@@ -35,6 +40,10 @@ func _show_post_boss_cutscene() -> void:
 	_post_boss_cutscene_started = true
 	GameState.chapter_5_post_boss_played = true
 	_post_boss_cutscene.call("show_cutscene")
+
+
+func _on_post_boss_cutscene_finished() -> void:
+	AudioManager.restore_background_music()
 
 
 func restore_phra_ram_after_cutscene() -> void:
