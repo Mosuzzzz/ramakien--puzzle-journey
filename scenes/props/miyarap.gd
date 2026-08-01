@@ -12,6 +12,9 @@ const WaveScene := preload("res://scenes/props/wave.tscn")
 @export var stun_threshold: float = 60.0
 # stop summoning while this many of his minions are still alive
 @export var max_minions: int = 4
+# hits landed while he's not stunned only chip this fraction of their damage through;
+# the real damage happens through the stun-quiz hits instead
+@export_range(0.0, 1.0) var normal_damage_scale: float = 0.15
 
 # ground-slam impact lands here in the trimmed 12-frame attack clip
 const ATTACK_HIT_FRAME := 5
@@ -21,6 +24,29 @@ const SUMMON_SPAWN_FRAME := 5
 # so they need extra scale to make the character read the same size on-screen
 const ANIM_DISPLAY_SCALE := {"attack": 1.1, "summon": 1.03, "stun": 0.97}
 
+# fractions of the boss hp_bar texture width where the red pill begins/ends
+# (the same shared boss bar art used by other bosses)
+const BOSS_FILL_START := 0.171
+const BOSS_FILL_END := 0.825
+
+# while stunned, each hit poses a question instead of landing directly;
+# a correct answer lands the bonus hit, a wrong one lets him off free
+const QUESTIONS := [
+	["คำว่า “เดิน” เป็นคำชนิดใด?", ["คำนาม", "คำกริยา", "คำวิเศษณ์"], 1],
+	["คำใดสะกดถูกต้อง?", ["อนุญาติ", "อนุญาต", "อนุญาส"], 1],
+	["คำใดอยู่ในมาตราตัวสะกดแม่กน?", ["จันทร์", "เมฆ", "นก"], 0],
+	["คำว่า “สวยงาม” เป็นคำประเภทใด?", ["คำซ้อน", "คำซ้ำ", "คำสมาส"], 0],
+	["ข้อใดเป็นคำราชาศัพท์ของคำว่า “กิน”?", ["เสวย", "ฉัน", "รับประทาน"], 0],
+	["คำใดเป็นคำพ้องเสียงกับ “กาล”?", ["การ", "กาฬ", "ถูกทั้งสองข้อ"], 2],
+	["“อิเหนา” เป็นวรรณคดีประเภทใด?", ["นิทาน", "บทละคร", "นิราศ"], 1],
+	["คำว่า “มานะ” หมายความว่าอย่างไร?", ["ความเกียจคร้าน", "ความเพียรพยายาม", "ความโกรธ"], 1],
+	["คำใดเป็นคำซ้อน?", ["บ้านเรือน", "เด็กเด็ก", "สวยงามตระการตา"], 0],
+	["คำใดอยู่ในมาตราตัวสะกดแม่กง?", ["ลิง", "ดาว", "เมฆ"], 0],
+	["ข้อใดเป็นคำพ้องรูป?", ["เพลา (เวลา/ล้อรถ)", "ม้า/หมา", "กา/ปลา"], 0],
+	["คำใดสะกดผิด?", ["อนุญาต", "ผัดวันประกันพรุ่ง", "โอกาศ"], 2],
+	["คำว่า “สุนทรพจน์” อ่านว่าอย่างไร?", ["สุน-ทอน-ระ-พด", "สุน-ทะ-ระ-พด", "สุน-ทอน-พด"], 1],
+]
+
 var _health: int = max_health
 var _hit_cooldown: float = 0.0
 var _player: Node2D
@@ -29,14 +55,27 @@ var _stunned := false
 var _stagger_damage: float = 0.0
 var _minions: Array = []
 var _hit_flash_tween: Tween
+var _dodge_tween: Tween
+var _quiz_open := false
+var _pending_damage := 0
+var _question_queue: Array = []
+# indices already answered correctly — never asked again this fight
+var _solved_questions: Array = []
+var _pending_question_index := -1
 
 @onready var _sprite: AnimatedSprite2D = $Sprite
+@onready var _boss_bar: TextureProgressBar = $BossHUD/BossBar
+@onready var _quiz: CanvasLayer = $QuestionQuiz
 
 
 func _ready() -> void:
 	_health = max_health
 	_player = get_parent().get_node_or_null("Player")
 	_play("idle")
+	_update_boss_bar()
+	_quiz.answered.connect(_on_quiz_answered)
+	_question_queue = range(QUESTIONS.size())
+	_question_queue.shuffle()
 
 func _physics_process(delta: float) -> void:
 	_hit_cooldown = maxf(_hit_cooldown - delta, 0.0)
@@ -127,23 +166,76 @@ func _start_attack() -> void:
 	_play("idle")
 
 func take_damage(amount: int) -> void:
-	if _stunned:
-		return  # immune while stunned
+	if _quiz_open:
+		return
+	if not _stunned:
+		AudioManager.play_sfx(AudioManager.ENEMY_HIT)
+		_flash_hit()
+		_health -= roundi(amount * normal_damage_scale)
+		_stagger_damage += amount
+		_update_boss_bar()
+		if _health <= 0:
+			await get_tree().create_timer(0.12).timeout
+			queue_free()
+		return
+	# stunned: this hit only lands if a quiz question is answered correctly
+	if _question_queue.is_empty():
+		_question_queue = range(QUESTIONS.size()).filter(
+			func(i): return not _solved_questions.has(i)
+		)
+		_question_queue.shuffle()
+	if _question_queue.is_empty():
+		# every question has already been answered correctly this fight —
+		# nothing left to quiz him on, so the hit just lands
+		AudioManager.play_sfx(AudioManager.ENEMY_HIT)
+		_flash_hit()
+		_health -= amount
+		_update_boss_bar()
+		if _health <= 0:
+			await get_tree().create_timer(0.12).timeout
+			queue_free()
+		return
+	_dodge_hit()
+	_pending_damage = amount
+	_quiz_open = true
+	_pending_question_index = _question_queue.pop_front()
+	var q: Array = QUESTIONS[_pending_question_index]
+	_quiz.call("ask", q[0], q[1], q[2])
+
+func _on_quiz_answered(correct: bool) -> void:
+	_quiz_open = false
+	if not correct:
+		_pending_damage = 0
+		return
+	if not _solved_questions.has(_pending_question_index):
+		_solved_questions.append(_pending_question_index)
 	AudioManager.play_sfx(AudioManager.ENEMY_HIT)
 	_flash_hit()
-	_health -= amount
-	_stagger_damage += amount
+	_health -= _pending_damage
+	_pending_damage = 0
+	_update_boss_bar()
 	if _health <= 0:
 		await get_tree().create_timer(0.12).timeout
 		queue_free()
-
-
 func _play_slam_sound() -> void:
 	AudioManager.play_sfx(AudioManager.GIANT)
 
 
 func _play_wave_sound() -> void:
 	AudioManager.play_sfx(AudioManager.WAVE)
+
+
+func _update_boss_bar() -> void:
+	var frac := float(_health) / float(maxi(max_health, 1))
+	_boss_bar.value = _boss_bar.max_value * lerpf(BOSS_FILL_START, BOSS_FILL_END, frac)
+
+func _dodge_hit() -> void:
+	if is_instance_valid(_dodge_tween):
+		_dodge_tween.kill()
+	var start_pos := _sprite.position
+	_dodge_tween = create_tween()
+	_dodge_tween.tween_property(_sprite, "position", start_pos + Vector2(24, 0), 0.08)
+	_dodge_tween.tween_property(_sprite, "position", start_pos, 0.1)
 
 func _flash_hit() -> void:
 	if is_instance_valid(_hit_flash_tween):

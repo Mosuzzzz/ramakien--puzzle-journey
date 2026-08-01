@@ -2,8 +2,7 @@ extends CharacterBody2D
 
 signal following_started
 
-# once rescued, whether she actually walks after the player (chapter 8 only —
-# chapter 9's Sida stays put once following)
+# once rescued, whether she actually walks after the player
 @export var can_walk: bool = true
 @export var speed: float = 120.0  # slower than the player (150)
 @export var follow_distance: float = 45.0

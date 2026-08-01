@@ -72,6 +72,7 @@ func _use_portal() -> void:
 	)
 	activated.emit(self)
 	GameState.next_spawn = target_spawn
+	GameState.next_health = _player.current_health
 	get_tree().change_scene_to_file.call_deferred(target_scene)
 	get_viewport().set_input_as_handled()
 

@@ -49,7 +49,8 @@ var _dead := false
 @onready var _potion_count: Label = $HUD/PotionCount
 
 func _ready() -> void:
-	current_health = max_health
+	current_health = max_health if GameState.next_health < 0 else GameState.next_health
+	GameState.next_health = -1
 	_update_health_bar()
 	_update_hp_label()
 	_update_potion_label()

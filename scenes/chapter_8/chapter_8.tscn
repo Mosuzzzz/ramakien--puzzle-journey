@@ -227,7 +227,7 @@ position = Vector2(932.06635, 261.65747)
 shape = SubResource("SegmentShape2D_rcvpd")
 
 [node name="Bottom15" type="CollisionShape2D" parent="Walls" unique_id=226959898]
-position = Vector2(873.99994, 480.00003)
+position = Vector2(873.99994, 474.00003)
 shape = SubResource("SegmentShape2D_7niha")
 
 [node name="Bottom18" type="CollisionShape2D" parent="Walls" unique_id=2089629605]
@@ -255,7 +255,7 @@ position = Vector2(176.08841, 205.08289)
 shape = SubResource("SegmentShape2D_rgjvp")
 
 [node name="Bottom25" type="CollisionShape2D" parent="Walls" unique_id=1489070530]
-position = Vector2(152.99998, 273)
+position = Vector2(152.99998, 263)
 shape = SubResource("SegmentShape2D_7cic4")
 
 [node name="Bottom26" type="CollisionShape2D" parent="Walls" unique_id=816016758]
@@ -323,7 +323,7 @@ position = Vector2(822.99994, 1252)
 shape = SubResource("CapsuleShape2D_wenmv")
 
 [node name="Bottom48" type="CollisionShape2D" parent="Walls" unique_id=820787964]
-position = Vector2(861, 1186)
+position = Vector2(861, 1177)
 shape = SubResource("SegmentShape2D_y6o0t")
 
 [node name="Bottom49" type="CollisionShape2D" parent="Walls" unique_id=1981871712]
@@ -355,7 +355,7 @@ position = Vector2(192.99997, 1251)
 shape = SubResource("CapsuleShape2D_wenmv")
 
 [node name="Bottom53" type="CollisionShape2D" parent="Walls" unique_id=404019124]
-position = Vector2(-36.000088, 1185)
+position = Vector2(-36.000088, 1170)
 shape = SubResource("SegmentShape2D_y6o0t")
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1395324870]
@@ -363,6 +363,7 @@ y_sort_enabled = true
 
 [node name="Sida" parent="YSortRoot" unique_id=1580014169 instance=ExtResource("chapter_8_sida")]
 position = Vector2(208, 508)
+collision_layer = 0
 
 [node name="Player" parent="YSortRoot" unique_id=643082494 instance=ExtResource("2_player")]
 position = Vector2(507.76, 1445.68)

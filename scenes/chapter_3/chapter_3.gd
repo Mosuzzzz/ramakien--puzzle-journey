@@ -6,6 +6,9 @@ const FEATHER_QUEST_NAME := "ตามหาขนนกพญาชฎายุ
 const FEATHER_QUEST_DETAIL := "รวบรวมขนนกพญาชฎายุที่ตกหล่นให้ครบ %d/3"
 const EXIT_QUEST_NAME := "ตามรอยทศกัณฐ์"
 const EXIT_QUEST_DETAIL := "เดินทางออกจากป่าเพื่อตามหานางสีดา"
+const REST_QUEST_NAME := "พักผ่อนใต้ต้นไม้ใหญ่"
+const REST_QUEST_DETAIL := "เก็บขนนกครบแล้ว เดินทางไปยังต้นไม้ใหญ่กลางป่าเพื่อพักผ่อน"
+const REST_ARRIVAL_DISTANCE := 60.0
 const FEATHER_QUESTIONS: Array[Array] = [
 	[
 		"คำใดอยู่ในมาตราตัวสะกดแม่กง",
@@ -26,13 +29,13 @@ const FEATHER_QUESTIONS: Array[Array] = [
 
 var _post_battle_cutscene_started := false
 var _feather_quest_started := false
+var _resting_quest_active := false
 var _quiz_open := false
 var _pending_feather: Area2D = null
 var _rng := RandomNumberGenerator.new()
 
 @onready var _post_battle_cutscene: Control = $Chapter3CutsceneLayer/PostBattleCutscene
 @onready var _player: CharacterBody2D = $YSortRoot/Player
-@onready var _hanuman: CharacterBody2D = $YSortRoot/Hanuman
 @onready var _chapter4_portal: Area2D = $YSortRoot/Chapter4Portal
 @onready var _story_end_spawn: Marker2D = $StoryEndSpawn
 @onready var _quiz: CanvasLayer = $QuestionQuiz
@@ -53,12 +56,21 @@ var _rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	Quest.clear()
-	_hide_hanuman_until_all_cutscenes_finish()
+	if GameState.chapter_3_post_battle_played:
+		_chapter4_portal.set_locked(false)
 	_quiz.answered.connect(_on_quiz_answered)
 	_rng.randomize()
 	for feather: Area2D in _feathers:
 		feather.call("mark_collected")
 		feather.collection_requested.connect(_on_feather_collection_requested)
+
+
+func _physics_process(_delta: float) -> void:
+	if not _resting_quest_active:
+		return
+	if _player.global_position.distance_to(_story_end_spawn.global_position) <= REST_ARRIVAL_DISTANCE:
+		_resting_quest_active = false
+		_start_post_battle_cutscene()
 
 
 func start_feather_quest() -> void:
@@ -68,7 +80,7 @@ func start_feather_quest() -> void:
 	_spawn_remaining_feathers()
 	_update_feather_quest()
 	if Inv.count("jatayu_feather") >= FEATHER_TOTAL:
-		call_deferred("_start_post_battle_cutscene")
+		call_deferred("_start_resting_quest")
 
 
 func _spawn_remaining_feathers() -> void:
@@ -114,7 +126,7 @@ func _on_quiz_answered(correct: bool) -> void:
 		Inv.add_item("jatayu_feather")
 		_update_feather_quest()
 		if Inv.count("jatayu_feather") >= FEATHER_TOTAL:
-			call_deferred("_start_post_battle_cutscene")
+			call_deferred("_start_resting_quest")
 		return
 	var relocation := _choose_relocation(feather)
 	await feather.call("fade_and_relocate", relocation)
@@ -159,6 +171,13 @@ func _update_feather_quest() -> void:
 	Quest.set_completed(collected_count == FEATHER_TOTAL)
 
 
+func _start_resting_quest() -> void:
+	if _post_battle_cutscene_started or GameState.chapter_3_post_battle_played:
+		return
+	_resting_quest_active = true
+	Quest.set_quest(REST_QUEST_NAME, REST_QUEST_DETAIL, _story_end_spawn.global_position)
+
+
 func _start_post_battle_cutscene() -> void:
 	if (
 		not _feather_quest_started
@@ -176,20 +195,10 @@ func _start_post_battle_cutscene() -> void:
 	_post_battle_cutscene.call("show_cutscene")
 
 
-func _hide_hanuman_until_all_cutscenes_finish() -> void:
-	_hanuman.hide()
-	_hanuman.process_mode = Node.PROCESS_MODE_DISABLED
-
-
-func reveal_hanuman_after_all_cutscenes() -> void:
-	_hanuman.process_mode = Node.PROCESS_MODE_INHERIT
-	_hanuman.show()
-
-
 func finish_chapter_3_story() -> void:
 	_player.velocity = Vector2.ZERO
 	_player.global_position = _story_end_spawn.global_position
-	reveal_hanuman_after_all_cutscenes()
+	_chapter4_portal.set_locked(false)
 	Quest.set_quest(EXIT_QUEST_NAME, EXIT_QUEST_DETAIL, _chapter4_portal.global_position)
 
 

@@ -1,6 +1,9 @@
 # where the player should appear after the next scene change; INF = use scene default
 static var next_spawn := Vector2.INF
 
+# the player's HP to carry into the next scene change; -1 = use scene default (full health)
+static var next_health := -1
+
 # the active quest to restore after loading a save, applied once when the next
 # gameplay scene is ready; empty = nothing to restore
 static var next_quest := {}
@@ -64,6 +67,7 @@ static var chapter_5_post_boss_played := false
 ## touch when adding a new flag, so home_page.gd can't forget one
 static func reset_progress() -> void:
 	next_spawn = Vector2.INF
+	next_health = -1
 	next_quest = {}
 	chapter_1_intro_played = false
 	chapter_1_audience_done = false

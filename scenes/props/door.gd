@@ -8,11 +8,18 @@ const GameState := preload("res://scenes/core/game_state.gd")
 @export var exit_spawn := Vector2.ZERO
 @export var farewell_lines: Array[String] = []
 @export var farewell_title: String = ""
+@export var locked := false
+@export var locked_prompt_text := "ยังมีเรื่องสำคัญที่ต้องจัดการก่อน"
 
 var _player: Node2D = null
 var _farewell_played := false
 
 @onready var _prompt: Label = $Prompt
+
+func set_locked(value: bool) -> void:
+	locked = value
+	if _player:
+		_update_prompt()
 
 func _on_zone_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
@@ -45,6 +52,8 @@ func _is_inside() -> bool:
 
 func _cross() -> void:
 	if _is_inside() and exit_scene != "":
+		if locked:
+			return
 		if farewell_lines.is_empty() or _farewell_played:
 			_go_to_exit_scene()
 		else:
@@ -57,7 +66,11 @@ func _cross() -> void:
 
 func _go_to_exit_scene() -> void:
 	GameState.next_spawn = exit_spawn
+	GameState.next_health = _player.current_health
 	get_tree().change_scene_to_file.call_deferred(exit_scene)
 
 func _update_prompt() -> void:
-	_prompt.text = "กด E เพื่อออกจากวัง" if _is_inside() else "กด E เพื่อเข้าวัง"
+	if _is_inside() and locked:
+		_prompt.text = locked_prompt_text
+	else:
+		_prompt.text = "กด E เพื่อออกจากวัง" if _is_inside() else "กด E เพื่อเข้าวัง"

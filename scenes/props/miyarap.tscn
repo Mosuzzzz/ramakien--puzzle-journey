@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c060sgkcngbx0" path="res://assets/character/miyarap/attack_clean.png" id="4_attack"]
 [ext_resource type="Texture2D" uid="uid://dg8w6r42x4q5d" path="res://assets/character/miyarap/summon_clean.png" id="5_summon"]
 [ext_resource type="Texture2D" uid="uid://byurci5qnpebc" path="res://assets/character/miyarap/stun_clean.png" id="6_stun"]
+[ext_resource type="Texture2D" path="res://assets/ui/life_bar/hp_bar_empty.png" id="7_boss_bar_empty"]
+[ext_resource type="Texture2D" path="res://assets/ui/life_bar/hp_bar_full.png" id="8_boss_bar_full"]
+[ext_resource type="PackedScene" path="res://scenes/ui/question_quiz.tscn" id="9_quiz"]
 
 [sub_resource type="AtlasTexture" id="a2"]
 atlas = ExtResource("4_attack")
@@ -361,3 +364,39 @@ shape = SubResource("circ_body")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=401488320]
 position = Vector2(0, -55)
 shape = SubResource("rect_hurtbox")
+
+[node name="BossHUD" type="CanvasLayer" parent="."]
+
+[node name="BossBar" type="TextureProgressBar" parent="BossHUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 103.0
+grow_horizontal = 2
+max_value = 100.0
+value = 100.0
+texture_under = ExtResource("7_boss_bar_empty")
+texture_progress = ExtResource("8_boss_bar_full")
+
+[node name="BossName" type="Label" parent="BossHUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 46.0
+offset_right = 130.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "ไมยราพ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestionQuiz" parent="." instance=ExtResource("9_quiz")]
