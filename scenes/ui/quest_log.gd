@@ -117,7 +117,7 @@ func _process(_delta: float) -> void:
 	_update_marker()
 
 func _update_marker() -> void:
-	if not _hud_allowed:
+	if not _hud_allowed or not Settings.hints_enabled:
 		_marker.hide()
 		for marker: Control in _target_markers:
 			if is_instance_valid(marker):

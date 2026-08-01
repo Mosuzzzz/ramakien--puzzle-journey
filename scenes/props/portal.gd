@@ -3,6 +3,7 @@ extends Area2D
 signal activated(portal: Area2D)
 
 const GameState := preload("res://scenes/core/game_state.gd")
+const SaveGame := preload("res://scenes/core/save_game.gd")
 
 @export_file("*.tscn") var target_scene: String
 @export var target_spawn := Vector2.ZERO
@@ -73,6 +74,10 @@ func _use_portal() -> void:
 	activated.emit(self)
 	GameState.next_spawn = target_spawn
 	GameState.next_health = _player.current_health
+	# save before the scene changes out from under us — save_autosave() reads
+	# the *current* scene, so it must run synchronously, not deferred
+	if Settings.auto_save_enabled:
+		SaveGame.save_autosave()
 	get_tree().change_scene_to_file.call_deferred(target_scene)
 	get_viewport().set_input_as_handled()
 

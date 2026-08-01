@@ -5,7 +5,7 @@ const GameState := preload("res://scenes/core/game_state.gd")
 func _ready() -> void:
 	# show the how-to-play tutorial once, when the player first reaches the
 	# first playable scene (deferred so it appears after the scene is ready)
-	if not GameState.tutorial_shown:
+	if not GameState.tutorial_shown and Settings.tutorial_tips_enabled:
 		GameState.tutorial_shown = true
 		Tutorial.show_tutorial.call_deferred()
 
