@@ -125,6 +125,7 @@ func _start_stun() -> void:
 func _start_summon() -> void:
 	_attacking = true
 	_hit_cooldown = attack_cooldown
+	AudioManager.play_sfx(AudioManager.INVITE)
 	_play("summon")
 	while _sprite.animation == &"summon" and _sprite.frame < SUMMON_SPAWN_FRAME:
 		await _sprite.frame_changed
@@ -153,11 +154,13 @@ func _start_attack() -> void:
 	_play("attack")
 	while _sprite.animation == &"attack" and _sprite.frame < ATTACK_HIT_FRAME:
 		await _sprite.frame_changed
+	_play_slam_sound()
 	if is_instance_valid(_player) and _player.has_method("take_damage"):
 		if (_player.global_position - global_position).length() <= attack_range + 20.0:
 			_player.take_damage(contact_damage)
 	_spawn_wave(Vector2.LEFT)
 	_spawn_wave(Vector2.RIGHT)
+	_play_wave_sound()
 	await _sprite.animation_finished
 	_attacking = false
 	_play("idle")
@@ -166,6 +169,7 @@ func take_damage(amount: int) -> void:
 	if _quiz_open:
 		return
 	if not _stunned:
+		AudioManager.play_sfx(AudioManager.ENEMY_HIT)
 		_flash_hit()
 		_health -= roundi(amount * normal_damage_scale)
 		_stagger_damage += amount
@@ -183,6 +187,7 @@ func take_damage(amount: int) -> void:
 	if _question_queue.is_empty():
 		# every question has already been answered correctly this fight —
 		# nothing left to quiz him on, so the hit just lands
+		AudioManager.play_sfx(AudioManager.ENEMY_HIT)
 		_flash_hit()
 		_health -= amount
 		_update_boss_bar()
@@ -204,6 +209,7 @@ func _on_quiz_answered(correct: bool) -> void:
 		return
 	if not _solved_questions.has(_pending_question_index):
 		_solved_questions.append(_pending_question_index)
+	AudioManager.play_sfx(AudioManager.ENEMY_HIT)
 	_flash_hit()
 	_health -= _pending_damage
 	_pending_damage = 0
@@ -211,6 +217,13 @@ func _on_quiz_answered(correct: bool) -> void:
 	if _health <= 0:
 		await get_tree().create_timer(0.12).timeout
 		queue_free()
+func _play_slam_sound() -> void:
+	AudioManager.play_sfx(AudioManager.GIANT)
+
+
+func _play_wave_sound() -> void:
+	AudioManager.play_sfx(AudioManager.WAVE)
+
 
 func _update_boss_bar() -> void:
 	var frac := float(_health) / float(maxi(max_health, 1))

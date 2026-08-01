@@ -571,7 +571,9 @@ ignore_texture_size = true
 stretch_mode = 5
 
 
-[connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/VolumeSlider" to="." method="_on_volume_changed"]
+[connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/VolumeSlider" to="." method="_on_master_volume_changed"]
+[connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow/VolumeSlider" to="." method="_on_music_volume_changed"]
+[connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow/VolumeSlider" to="." method="_on_sfx_volume_changed"]
 [connection signal="pressed" from="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/LeftArrow" to="." method="_on_screen_mode_cycle"]
 [connection signal="pressed" from="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/RightArrow" to="." method="_on_screen_mode_cycle"]
 [connection signal="pressed" from="ContentFrame/Margin/VBox/ButtonsRow/ResetButton" to="." method="_on_reset_pressed"]

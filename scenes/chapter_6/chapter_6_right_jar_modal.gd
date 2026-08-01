@@ -74,6 +74,7 @@ func _on_choice_pressed(slot_index: int) -> void:
 
 
 func _show_wrong_feedback(slot_index: int) -> void:
+	AudioManager.play_sfx(AudioManager.ANSWER_WRONG)
 	_feedback_locked = true
 	_set_controls_disabled(true)
 	var selected_button := _choice_buttons[slot_index]
@@ -90,6 +91,7 @@ func _show_wrong_feedback(slot_index: int) -> void:
 
 
 func _show_correct_feedback(slot_index: int) -> void:
+	AudioManager.play_sfx(AudioManager.ANSWER_CORRECT)
 	_feedback_locked = true
 	_set_controls_disabled(true)
 	var selected_button := _choice_buttons[slot_index]

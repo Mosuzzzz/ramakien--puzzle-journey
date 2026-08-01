@@ -62,6 +62,7 @@ func reset_for_new_story() -> void:
 
 func add_item(id: String, n: int = 1) -> void:
 	items[id] = count(id) + n
+	AudioManager.play_sfx(AudioManager.PICKUP)
 	changed.emit()
 
 func remove_item(id: String, n: int = 1) -> bool:

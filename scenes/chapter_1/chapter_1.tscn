@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://beb8xnnh620tk" path="res://scenes/props/door.tscn" id="5_ayeki"]
 [ext_resource type="Texture2D" uid="uid://t2vhx3gyb8cb" path="res://assets/props/chapter1/tree.png" id="6_sofv4"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="7_portal"]
-[ext_resource type="Script" path="res://scenes/chapter_1/chapter_1.gd" id="10_script"]
+[ext_resource type="Script" uid="uid://bwbdrqmpjhvo6" path="res://scenes/chapter_1/chapter_1.gd" id="10_script"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1254, 78)

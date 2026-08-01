@@ -48,6 +48,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_hit_cooldown = maxf(_hit_cooldown - delta, 0.0)
 	if _player == null or _attacking:
+		_update_run_audio(false)
 		return
 	var to_player := _player.global_position - global_position
 	if to_player.length() < attack_range and _hit_cooldown == 0.0:
@@ -59,8 +60,13 @@ func _physics_process(delta: float) -> void:
 		if velocity.x != 0.0:
 			_face_right = velocity.x > 0.0
 		_play("walk" if velocity.length() > 0.0 else "idle")
+		_update_run_audio(velocity.length() > 0.0)
+	else:
+		_update_run_audio(false)
 
 func _start_attack() -> void:
+	_update_run_audio(false)
+	AudioManager.play_sfx(_attack_sound_key())
 	_attacking = true
 	_hit_cooldown = attack_cooldown
 	velocity = Vector2.ZERO
@@ -79,6 +85,10 @@ func _start_attack() -> void:
 	else:
 		await _sprite.animation_finished
 	_attacking = false
+
+
+func _attack_sound_key() -> StringName:
+	return AudioManager.ENEMY_ATTACKING
 
 func _animation_for(requested: StringName) -> StringName:
 	if _sprite.sprite_frames.has_animation(requested):
@@ -114,16 +124,30 @@ func take_damage(amount: int) -> void:
 func apply_authorized_damage(amount: int) -> void:
 	if _defeated:
 		return
+	AudioManager.play_sfx(AudioManager.ENEMY_HIT)
 	_flash_hit()
 	_health -= amount
 	if _health <= 0:
 		_defeated = true
+		_update_run_audio(false)
 		defeated.emit(self)
 		if randf() < potion_drop_chance:
 			_drop_potion()
 		await get_tree().create_timer(0.12).timeout
 		if is_inside_tree():
 			queue_free()
+
+
+func _uses_shared_run_audio() -> bool:
+	return true
+
+
+func _update_run_audio(active: bool) -> void:
+	AudioManager.set_run_active(self, active and _uses_shared_run_audio())
+
+
+func _exit_tree() -> void:
+	AudioManager.set_run_active(self, false)
 
 
 func _drop_potion() -> void:

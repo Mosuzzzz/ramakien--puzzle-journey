@@ -30,6 +30,8 @@ const JUMP_HOLD_FRAME := 3
 const JUMP_IMPACT_FRAME := 4
 const PULL_CHARGE_END_FRAME := 6
 const PULL_FINISH_START_FRAME := 7
+const RUN_ANIMATION := &"run"
+const FOOTSTEP_FRAMES := [1, 3]
 
 var _normal_attack_count: int = 0
 var _jump_active := false
@@ -114,9 +116,18 @@ func _start_attack() -> void:
 	_normal_attack_count = mini(_normal_attack_count + 1, normal_attacks_before_jump)
 
 
+func _attack_sound_key() -> StringName:
+	return AudioManager.GIANT_ATTACK
+
+
+func _uses_shared_run_audio() -> bool:
+	return false
+
+
 func take_damage(amount: int) -> void:
 	if amount <= 0 or _health <= 0:
 		return
+	AudioManager.play_sfx(AudioManager.ENEMY_HIT)
 	_flash_hit()
 	_health = maxi(_health - amount, 0)
 	_update_boss_bar()
@@ -135,6 +146,7 @@ func take_damage(amount: int) -> void:
 
 
 func _begin_heal_skill() -> void:
+	AudioManager.play_sfx(_special_sound_key(SKILL_ANIMATION))
 	if _pull_active and not _pull_damage_done:
 		_set_player_pull_color(false)
 	_restore_player_speed_after_pull_charge()
@@ -211,6 +223,7 @@ func _trigger_inactivity_special() -> void:
 
 
 func _begin_pull_attack() -> void:
+	AudioManager.play_sfx(_special_sound_key(_pull_animation))
 	_attacking = true
 	_pull_active = true
 	_pull_charging = true
@@ -365,6 +378,7 @@ func _begin_jump_impact() -> void:
 	_sprite.frame = JUMP_IMPACT_FRAME
 	_sprite.frame_progress = 0.0
 	if not _jump_damage_done and is_instance_valid(_player):
+		AudioManager.play_sfx(_special_sound_key(JUMP_ANIMATION))
 		_player.take_damage(jump_damage)
 		_jump_damage_done = true
 
@@ -390,11 +404,25 @@ func _on_sprite_animation_looped() -> void:
 
 
 func _on_sprite_frame_changed() -> void:
+	if _is_footstep_frame(_sprite.animation, _sprite.frame) and velocity.length() > 0.0:
+		AudioManager.play_sfx(AudioManager.GIANT)
 	if _sprite.animation == JUMP_ANIMATION:
 		_balance_jump_frame_scale()
 	elif _pull_active and _sprite.animation == _pull_animation:
 		if _pull_charging and _sprite.frame >= PULL_CHARGE_END_FRAME:
 			_hold_pull_charge_frame()
+
+
+func _special_sound_key(animation: StringName) -> StringName:
+	if animation == JUMP_ANIMATION:
+		return AudioManager.JUMP_THROW
+	if animation in [SKILL_ANIMATION, PULL_ANIMATION_LOWER, PULL_ANIMATION_TITLE]:
+		return AudioManager.HEAL_AND_PULL
+	return &""
+
+
+func _is_footstep_frame(animation: StringName, frame: int) -> bool:
+	return animation == RUN_ANIMATION and frame in FOOTSTEP_FRAMES
 
 
 func _balance_jump_frame_scale() -> void:

@@ -69,7 +69,7 @@ func _input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 	if _transitioning or _finished:
 		return
-	if CutsceneAdvanceInput.is_advance_event(event, hovered_control):
+	if CutsceneAdvanceInput.consume_advance_event(event, hovered_control):
 		_advance_dialogue()
 
 

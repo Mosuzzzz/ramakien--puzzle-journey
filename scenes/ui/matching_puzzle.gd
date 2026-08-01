@@ -34,15 +34,15 @@ func open(title: String, pairs: Array) -> void:
 
 	for i in pairs.size():
 		var left_btn := _make_button(pairs[i][0])
-		left_btn.pressed.connect(_on_left_pressed.bind(left_btn, i))
 		_left_column.add_child(left_btn)
+		left_btn.pressed.connect(_on_left_pressed.bind(left_btn, i))
 
 	var right_order: Array = range(pairs.size())
 	right_order.shuffle()
 	for idx in right_order:
 		var right_btn := _make_button(pairs[idx][1])
-		right_btn.pressed.connect(_on_right_pressed.bind(right_btn, idx))
 		_right_column.add_child(right_btn)
+		right_btn.pressed.connect(_on_right_pressed.bind(right_btn, idx))
 
 	get_tree().paused = true
 	show()
@@ -73,6 +73,7 @@ func _on_right_pressed(btn: Button, index: int) -> void:
 		return
 
 	if index == _selected_left_index:
+		AudioManager.play_sfx(AudioManager.ANSWER_CORRECT)
 		_selected_left.modulate = Color(0.5, 1.0, 0.5)
 		_selected_left.disabled = true
 		btn.modulate = Color(0.5, 1.0, 0.5)
@@ -84,6 +85,7 @@ func _on_right_pressed(btn: Button, index: int) -> void:
 			await get_tree().create_timer(0.4).timeout
 			_close_and_solve()
 	else:
+		AudioManager.play_sfx(AudioManager.ANSWER_WRONG)
 		var wrong_left := _selected_left
 		_selected_left = null
 		_selected_left_index = -1

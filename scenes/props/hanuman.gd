@@ -38,10 +38,12 @@ func _physics_process(delta: float) -> void:
 		_show_idle()
 
 func _show_idle() -> void:
+	_update_run_audio(false)
 	animated_sprite.flip_h = _direction > 0.0
 	_set_animation("idle")
 
 func _show_run() -> void:
+	_update_run_audio(true)
 	animated_sprite.flip_h = _direction > 0.0
 	_set_animation("run")
 
@@ -55,3 +57,11 @@ func _set_animation(animation_name: String) -> void:
 	if animated_sprite.animation != animation_name:
 		animated_sprite.animation = animation_name
 	animated_sprite.play()
+
+
+func _update_run_audio(active: bool) -> void:
+	AudioManager.set_run_active(self, active)
+
+
+func _exit_tree() -> void:
+	AudioManager.set_run_active(self, false)
