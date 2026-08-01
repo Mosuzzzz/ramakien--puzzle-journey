@@ -40,6 +40,36 @@ func _run() -> void:
 		_expect(finish_count[0] == 1, "post-boss cutscene emits finished exactly once")
 		cutscene.queue_free()
 
+	var chapter_9_source := FileAccess.get_file_as_string(
+		"res://scenes/chapter_9/chapter_9.gd"
+	)
+	_expect(
+		chapter_9_source.contains("AudioManager.play_boss_music()"),
+		"Chapter 9 starts boss music for an undefeated Thotsakan"
+	)
+	_expect(
+		chapter_9_source.contains("AudioManager.restore_background_music(0.0)"),
+		"completed Chapter 9 save keeps normal music"
+	)
+	var defeated_handler_start := chapter_9_source.find(
+		"func _on_thotsakan_defeated"
+	)
+	var defeated_handler := (
+		chapter_9_source.substr(defeated_handler_start)
+		if defeated_handler_start >= 0
+		else ""
+	)
+	var save_flag_position := defeated_handler.find(
+		"GameState.chapter_9_thotsakan_defeated = true"
+	)
+	var restore_position := defeated_handler.find(
+		"AudioManager.restore_background_music()"
+	)
+	_expect(
+		save_flag_position >= 0 and restore_position > save_flag_position,
+		"Thotsakan defeat is saved before normal music is restored"
+	)
+
 	_finish()
 
 

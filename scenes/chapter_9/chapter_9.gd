@@ -9,8 +9,10 @@ const GameState := preload("res://scenes/core/game_state.gd")
 
 func _ready() -> void:
 	if GameState.chapter_9_thotsakan_defeated:
+		AudioManager.restore_background_music(0.0)
 		_thotsakan.queue_free()
 	elif not _thotsakan.defeated.is_connected(_on_thotsakan_defeated):
+		AudioManager.play_boss_music()
 		_thotsakan.defeated.connect(_on_thotsakan_defeated)
 
 	if GameState.chapter_9_sida_rescued:
@@ -21,6 +23,7 @@ func _ready() -> void:
 
 func _on_thotsakan_defeated(_defeated_thotsakan: CharacterBody2D) -> void:
 	GameState.chapter_9_thotsakan_defeated = true
+	AudioManager.restore_background_music()
 
 
 func show_ending_cutscene() -> void:
