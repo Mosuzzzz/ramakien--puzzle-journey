@@ -3,6 +3,7 @@ extends RefCounted
 const GameState := preload("res://scenes/core/game_state.gd")
 
 const SLOT_COUNT := 3
+const AUTOSAVE_PATH := "user://autosave.json"
 
 const CHAPTER_NAMES := {
 	"res://scenes/prologue/prologue.tscn": "อารัมภบท",
@@ -75,6 +76,35 @@ static func has_any_save() -> bool:
 
 
 static func save_to_slot(slot: int) -> void:
+	_save_to_path(_slot_path(slot))
+
+
+## restores GameState flags and changes to the saved scene/position
+static func load_slot(slot: int) -> void:
+	_load_from_path(_slot_path(slot))
+
+
+static func delete_slot(slot: int) -> void:
+	var path := _slot_path(slot)
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+
+
+## a single reserved slot the game writes to automatically (Settings.auto_save_enabled),
+## separate from the 3 player-chosen save slots so it never overwrites one
+static func save_autosave() -> void:
+	_save_to_path(AUTOSAVE_PATH)
+
+
+static func has_autosave() -> bool:
+	return FileAccess.file_exists(AUTOSAVE_PATH)
+
+
+static func load_autosave() -> void:
+	_load_from_path(AUTOSAVE_PATH)
+
+
+static func _save_to_path(path: String) -> void:
 	var tree := Engine.get_main_loop() as SceneTree
 	var scene := tree.current_scene
 	var player := scene.get_node_or_null("YSortRoot/Player") as Node2D
@@ -97,14 +127,16 @@ static func save_to_slot(slot: int) -> void:
 	var quest := (Engine.get_main_loop() as SceneTree).root.get_node_or_null("Quest")
 	if quest != null:
 		data["quest"] = quest.snapshot()
-	var f := FileAccess.open(_slot_path(slot), FileAccess.WRITE)
+	var f := FileAccess.open(path, FileAccess.WRITE)
 	f.store_string(JSON.stringify(data))
 
 
-## restores GameState flags and changes to the saved scene/position
-static func load_slot(slot: int) -> void:
-	var data := slot_info(slot)
-	if not data.exists:
+static func _load_from_path(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		return
+	var f := FileAccess.open(path, FileAccess.READ)
+	var data = JSON.parse_string(f.get_as_text())
+	if typeof(data) != TYPE_DICTIONARY:
 		return
 	var tree := Engine.get_main_loop() as SceneTree
 	var state_dyn = load("res://scenes/core/game_state.gd")
@@ -122,9 +154,3 @@ static func load_slot(slot: int) -> void:
 	# hand the saved quest to the next gameplay scene to re-apply on _ready
 	GameState.next_quest = data.get("quest", {})
 	tree.change_scene_to_file.call_deferred(data["scene_path"])
-
-
-static func delete_slot(slot: int) -> void:
-	var path := _slot_path(slot)
-	if FileAccess.file_exists(path):
-		DirAccess.remove_absolute(path)

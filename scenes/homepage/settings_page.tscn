@@ -204,7 +204,6 @@ text = "100%"
 horizontal_alignment = 1
 
 [node name="MusicVolumeRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=1090557144]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -232,8 +231,8 @@ size_flags_vertical = 4
 theme_override_styles/slider = SubResource("slider_bg")
 theme_override_styles/grabber_area = SubResource("slider_fill")
 max_value = 1.0
+step = 0.01
 value = 1.0
-editable = false
 
 [node name="ReadoutBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow" unique_id=2085177761]
 layout_mode = 2
@@ -250,7 +249,6 @@ text = "70%"
 horizontal_alignment = 1
 
 [node name="SFXVolumeRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=1881347558]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -278,8 +276,8 @@ size_flags_vertical = 4
 theme_override_styles/slider = SubResource("slider_bg")
 theme_override_styles/grabber_area = SubResource("slider_fill")
 max_value = 1.0
+step = 0.01
 value = 1.0
-editable = false
 
 [node name="ReadoutBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow" unique_id=1962245387]
 layout_mode = 2
@@ -296,7 +294,6 @@ text = "90%"
 horizontal_alignment = 1
 
 [node name="MuteRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=1125799692]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -319,7 +316,6 @@ vertical_alignment = 1
 
 [node name="Check" type="CheckButton" parent="ContentFrame/Margin/VBox/Scroll/Content/MuteRow" unique_id=443840415]
 layout_mode = 2
-disabled = true
 
 [node name="DisplayHeader" type="Label" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=468985354]
 layout_mode = 2
@@ -381,7 +377,6 @@ text = "▶"
 flat = true
 
 [node name="ResolutionRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=519347068]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -402,6 +397,15 @@ theme_override_font_sizes/font_size = 16
 text = "Resolution"
 vertical_alignment = 1
 
+[node name="LeftArrow" type="Button" parent="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow" unique_id=63773269]
+custom_minimum_size = Vector2(28, 26)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "◀"
+flat = true
+
 [node name="ValueBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow" unique_id=63773268]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -415,8 +419,16 @@ theme_override_font_sizes/font_size = 15
 text = "1920 x 1080"
 horizontal_alignment = 1
 
+[node name="RightArrow" type="Button" parent="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow" unique_id=63773270]
+custom_minimum_size = Vector2(28, 26)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "▶"
+flat = true
+
 [node name="BrightnessRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=600011608]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -444,8 +456,8 @@ size_flags_vertical = 4
 theme_override_styles/slider = SubResource("slider_bg")
 theme_override_styles/grabber_area = SubResource("slider_fill")
 max_value = 1.0
+step = 0.01
 value = 1.0
-editable = false
 
 [node name="ReadoutBg" type="PanelContainer" parent="ContentFrame/Margin/VBox/Scroll/Content/BrightnessRow" unique_id=131722513]
 layout_mode = 2
@@ -469,7 +481,6 @@ theme_override_font_sizes/font_size = 16
 text = "◆ GAMEPLAY"
 
 [node name="HintsRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=498775445]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -492,11 +503,9 @@ vertical_alignment = 1
 
 [node name="Check" type="CheckButton" parent="ContentFrame/Margin/VBox/Scroll/Content/HintsRow" unique_id=1939803689]
 layout_mode = 2
-disabled = true
 button_pressed = true
 
 [node name="TutorialRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=853790638]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -519,11 +528,9 @@ vertical_alignment = 1
 
 [node name="Check" type="CheckButton" parent="ContentFrame/Margin/VBox/Scroll/Content/TutorialRow" unique_id=450321253]
 layout_mode = 2
-disabled = true
 button_pressed = true
 
 [node name="AutoSaveRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox/Scroll/Content" unique_id=298350115]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -546,7 +553,6 @@ vertical_alignment = 1
 
 [node name="Check" type="CheckButton" parent="ContentFrame/Margin/VBox/Scroll/Content/AutoSaveRow" unique_id=49193175]
 layout_mode = 2
-disabled = true
 button_pressed = true
 
 [node name="ButtonsRow" type="HBoxContainer" parent="ContentFrame/Margin/VBox" unique_id=1516414166]
@@ -574,7 +580,14 @@ stretch_mode = 5
 [connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/VolumeSlider" to="." method="_on_master_volume_changed"]
 [connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow/VolumeSlider" to="." method="_on_music_volume_changed"]
 [connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow/VolumeSlider" to="." method="_on_sfx_volume_changed"]
+[connection signal="toggled" from="ContentFrame/Margin/VBox/Scroll/Content/MuteRow/Check" to="." method="_on_mute_toggled"]
 [connection signal="pressed" from="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/LeftArrow" to="." method="_on_screen_mode_cycle"]
 [connection signal="pressed" from="ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/RightArrow" to="." method="_on_screen_mode_cycle"]
+[connection signal="pressed" from="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow/LeftArrow" to="." method="_on_resolution_left"]
+[connection signal="pressed" from="ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow/RightArrow" to="." method="_on_resolution_right"]
+[connection signal="value_changed" from="ContentFrame/Margin/VBox/Scroll/Content/BrightnessRow/VolumeSlider" to="." method="_on_brightness_changed"]
+[connection signal="toggled" from="ContentFrame/Margin/VBox/Scroll/Content/HintsRow/Check" to="." method="_on_hints_toggled"]
+[connection signal="toggled" from="ContentFrame/Margin/VBox/Scroll/Content/TutorialRow/Check" to="." method="_on_tutorial_toggled"]
+[connection signal="toggled" from="ContentFrame/Margin/VBox/Scroll/Content/AutoSaveRow/Check" to="." method="_on_auto_save_toggled"]
 [connection signal="pressed" from="ContentFrame/Margin/VBox/ButtonsRow/ResetButton" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="ContentFrame/Margin/VBox/ButtonsRow/BackButton" to="." method="_on_back_pressed"]

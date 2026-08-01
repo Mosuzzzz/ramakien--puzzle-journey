@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
+ScreenDim="*res://scenes/ui/screen_dim.tscn"
 Settings="*res://scenes/ui/settings.gd"
 AudioManager="*res://scenes/core/audio_manager.gd"
 Dialogue="*res://scenes/ui/dialogue_manager.tscn"

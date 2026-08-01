@@ -206,7 +206,6 @@ text = "100%"
 horizontal_alignment = 1
 
 [node name="MusicVolumeRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -231,8 +230,8 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-editable = false
 max_value = 1.0
+step = 0.01
 value = 0.7
 theme_override_styles/slider = SubResource("slider_bg")
 theme_override_styles/grabber_area = SubResource("slider_fill")
@@ -252,7 +251,6 @@ text = "70%"
 horizontal_alignment = 1
 
 [node name="SFXVolumeRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -277,8 +275,8 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-editable = false
 max_value = 1.0
+step = 0.01
 value = 0.9
 theme_override_styles/slider = SubResource("slider_bg")
 theme_override_styles/grabber_area = SubResource("slider_fill")
@@ -298,7 +296,6 @@ text = "90%"
 horizontal_alignment = 1
 
 [node name="MuteRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -321,7 +318,6 @@ vertical_alignment = 1
 
 [node name="Check" type="CheckButton" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content/MuteRow"]
 layout_mode = 2
-disabled = true
 
 [node name="DisplayHeader" type="Label" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
 layout_mode = 2
@@ -383,7 +379,6 @@ text = "▶"
 flat = true
 
 [node name="ResolutionRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -404,6 +399,15 @@ theme_override_font_sizes/font_size = 16
 text = "Resolution"
 vertical_alignment = 1
 
+[node name="LeftArrow" type="Button" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow"]
+custom_minimum_size = Vector2(28, 26)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "◀"
+flat = true
+
 [node name="ValueBg" type="PanelContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -417,8 +421,16 @@ theme_override_font_sizes/font_size = 15
 text = "1920 x 1080"
 horizontal_alignment = 1
 
+[node name="RightArrow" type="Button" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow"]
+custom_minimum_size = Vector2(28, 26)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_sarabun_b")
+theme_override_font_sizes/font_size = 16
+text = "▶"
+flat = true
+
 [node name="BrightnessRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -443,8 +455,8 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-editable = false
 max_value = 1.0
+step = 0.01
 value = 0.6
 theme_override_styles/slider = SubResource("slider_bg")
 theme_override_styles/grabber_area = SubResource("slider_fill")
@@ -471,7 +483,6 @@ theme_override_font_sizes/font_size = 16
 text = "◆ GAMEPLAY"
 
 [node name="HintsRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -495,10 +506,8 @@ vertical_alignment = 1
 [node name="Check" type="CheckButton" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content/HintsRow"]
 layout_mode = 2
 button_pressed = true
-disabled = true
 
 [node name="TutorialRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -522,10 +531,8 @@ vertical_alignment = 1
 [node name="Check" type="CheckButton" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content/TutorialRow"]
 layout_mode = 2
 button_pressed = true
-disabled = true
 
 [node name="AutoSaveRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -549,7 +556,6 @@ vertical_alignment = 1
 [node name="Check" type="CheckButton" parent="Dim/ContentFrame/Margin/VBox/Scroll/Content/AutoSaveRow"]
 layout_mode = 2
 button_pressed = true
-disabled = true
 
 [node name="ButtonsRow" type="HBoxContainer" parent="Dim/ContentFrame/Margin/VBox"]
 layout_mode = 2
@@ -584,8 +590,15 @@ stretch_mode = 5
 [connection signal="value_changed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/MasterVolumeRow/VolumeSlider" to="." method="_on_master_volume_changed"]
 [connection signal="value_changed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/MusicVolumeRow/VolumeSlider" to="." method="_on_music_volume_changed"]
 [connection signal="value_changed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/SFXVolumeRow/VolumeSlider" to="." method="_on_sfx_volume_changed"]
+[connection signal="toggled" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/MuteRow/Check" to="." method="_on_mute_toggled"]
 [connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/LeftArrow" to="." method="_on_screen_mode_cycle"]
 [connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/ScreenModeRow/RightArrow" to="." method="_on_screen_mode_cycle"]
+[connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow/LeftArrow" to="." method="_on_resolution_left"]
+[connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/ResolutionRow/RightArrow" to="." method="_on_resolution_right"]
+[connection signal="value_changed" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/BrightnessRow/VolumeSlider" to="." method="_on_brightness_changed"]
+[connection signal="toggled" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/HintsRow/Check" to="." method="_on_hints_toggled"]
+[connection signal="toggled" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/TutorialRow/Check" to="." method="_on_tutorial_toggled"]
+[connection signal="toggled" from="Dim/ContentFrame/Margin/VBox/Scroll/Content/AutoSaveRow/Check" to="." method="_on_auto_save_toggled"]
 [connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/ButtonsRow/ResetButton" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/ButtonsRow/SaveButton" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Dim/ContentFrame/Margin/VBox/ButtonsRow/BackButton" to="." method="_on_resume_pressed"]
