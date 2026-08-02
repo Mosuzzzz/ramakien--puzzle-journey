@@ -62,6 +62,7 @@ var _last_scene_path := ""
 var _music_tween: Tween
 var _music_request_serial := 0
 var _requested_music_key: StringName = &""
+var _requested_music_gain := MENU_MUSIC_GAIN
 var _boss_music_active := false
 
 
@@ -69,6 +70,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_streams()
 	_create_players()
+	(get_node("Music") as AudioStreamPlayer).finished.connect(_on_music_finished)
 	get_tree().node_added.connect(_on_node_added)
 	_register_buttons_recursive(get_tree().root)
 	_sync_music_for_current_scene.call_deferred()
@@ -167,7 +169,7 @@ func sync_music_for_scene_path(scene_path: String) -> void:
 		BACKGROUND,
 		GAMEPLAY_MUSIC_GAIN if is_gameplay else MENU_MUSIC_GAIN,
 		false,
-		0.0
+		MUSIC_FADE_SECONDS
 	)
 
 
@@ -181,6 +183,7 @@ func _request_music(
 	if not _streams.has(sound_key):
 		push_warning("AudioManager: unknown or missing music '%s'" % sound_key)
 		return
+	_requested_music_gain = target_gain
 	var target_stream := _streams[sound_key] as AudioStream
 	if _requested_music_key == sound_key:
 		if (
@@ -246,6 +249,22 @@ func _music_gain_for_scene(scene_path: String) -> float:
 	)
 
 
+func _on_music_finished() -> void:
+	if _requested_music_key.is_empty() or not _streams.has(_requested_music_key):
+		return
+	_music_request_serial += 1
+	var serial := _music_request_serial
+	if _music_tween != null and _music_tween.is_valid():
+		_music_tween.kill()
+	_swap_and_fade_in(
+		_requested_music_key,
+		_requested_music_gain,
+		true,
+		MUSIC_FADE_SECONDS,
+		serial
+	)
+
+
 func _load_streams() -> void:
 	for key: StringName in SOUND_PATHS:
 		var path := String(SOUND_PATHS[key])
@@ -256,8 +275,8 @@ func _load_streams() -> void:
 		if stream == null:
 			push_warning("AudioManager: failed to load %s" % path)
 			continue
-		if stream is AudioStreamMP3 and key in [BACKGROUND, BOSS_FIGHT, RUN]:
-			stream.loop = true
+		if stream is AudioStreamMP3:
+			stream.loop = key == RUN
 		_streams[key] = stream
 
 

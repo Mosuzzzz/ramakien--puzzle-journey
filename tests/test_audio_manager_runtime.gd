@@ -94,9 +94,11 @@ func _run() -> void:
 			var music := audio.get_node("Music") as AudioStreamPlayer
 			_expect(music.playing, "home page starts music")
 			_expect(
-				is_equal_approx(music.volume_db, linear_to_db(1.0)),
-				"menu music uses full gain"
+				music.volume_db <= audio.SILENT_MUSIC_DB + 0.1,
+				"first menu cycle begins silent"
 			)
+			await create_timer(audio.MUSIC_FADE_SECONDS + 0.1).timeout
+			_expect(is_equal_approx(music.volume_db, linear_to_db(1.0)), "menu music fades to full gain")
 			music.seek(2.0)
 			audio.sync_music_for_scene_path("res://scenes/prologue/prologue.tscn")
 			_expect(music.playing, "prologue keeps music")
@@ -163,8 +165,8 @@ func _run() -> void:
 					"boss track uses gameplay gain"
 				)
 				_expect(
-					music.stream is AudioStreamMP3 and music.stream.loop,
-					"boss MP3 loops"
+					music.stream is AudioStreamMP3 and not music.stream.loop,
+					"boss MP3 uses AudioManager looping"
 				)
 				music.seek(2.0)
 				audio.play_boss_music(0.0)
@@ -184,8 +186,19 @@ func _run() -> void:
 					"restored normal track starts from beginning"
 				)
 				_expect(
-					music.stream is AudioStreamMP3 and music.stream.loop,
-					"normal MP3 still loops"
+					music.stream is AudioStreamMP3 and not music.stream.loop,
+					"normal MP3 uses AudioManager looping"
+				)
+				audio.call("_on_music_finished")
+				_expect(music.playing, "finished music restarts")
+				_expect(
+					music.volume_db <= audio.SILENT_MUSIC_DB + 0.1,
+					"restarted cycle begins silent"
+				)
+				await create_timer(audio.MUSIC_FADE_SECONDS + 0.1).timeout
+				_expect(
+					is_equal_approx(music.volume_db, linear_to_db(0.3)),
+					"restarted gameplay cycle fades to gameplay gain"
 				)
 			audio.sync_music_for_scene_path("res://scenes/ending/ending.tscn")
 			_expect(not music.playing, "unrelated scene stops music")
