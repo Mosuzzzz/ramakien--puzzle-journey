@@ -15,14 +15,34 @@ func _run() -> void:
 	if notice == null:
 		_finish()
 		return
+	_expect(
+		notice.position.y >= button.position.y + button.size.y,
+		"notification sits below quest button"
+	)
+	var notice_default_modulate := notice.modulate
+	var notice_default_scale := notice.scale
 	_expect(not notice.visible, "notification starts hidden")
 	quest.set_quest("เควสแรก", "รายละเอียดแรก")
 	_expect(quest.has_unread_notification() and notice.visible, "new quest notifies")
 	var start_y := notice.position.y
 	await create_timer(0.55).timeout
 	_expect(not is_equal_approx(notice.position.y, start_y), "notification bobs")
+	_expect(
+		notice.position.y >= button.position.y + button.size.y,
+		"notification bob stays below quest button"
+	)
+	_expect(
+		button.scale != Vector2.ONE or button.modulate != Color.WHITE,
+		"unread quest animates button attention"
+	)
+	_expect(
+		notice.modulate == notice_default_modulate and notice.scale == notice_default_scale,
+		"notification arrow only bobs"
+	)
 	button.pressed.emit()
 	_expect(not quest.has_unread_notification() and not notice.visible, "press acknowledges")
+	_expect(button.scale == Vector2.ONE, "acknowledge restores button scale")
+	_expect(button.modulate == Color.WHITE, "acknowledge restores button color")
 	quest.set_quest("เควสแรก", "รายละเอียดแรก")
 	_expect(not quest.has_unread_notification(), "identical refresh stays read")
 	quest.set_quest("เควสแรก", "รายละเอียดใหม่")

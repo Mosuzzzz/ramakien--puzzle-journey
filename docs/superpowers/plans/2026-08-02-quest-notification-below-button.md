@@ -62,7 +62,7 @@ Keep the existing visibility, bobbing, duplicate-refresh, completion, HUD restor
 Run:
 
 ```bash
-sh tests/run_quest_notifications_runtime_tests.sh
+sh tests/run_quest_notification_tests.sh
 ```
 
 Expected: FAIL for `notification sits below quest button` and/or `unread quest animates button attention`, proving that the current fixed-above placement and missing button pulse are detected.
@@ -132,7 +132,7 @@ Update `_set_notification_unread(unread: bool)` so `true` calls `_start_button_a
 Run:
 
 ```bash
-sh tests/run_quest_notifications_runtime_tests.sh
+sh tests/run_quest_notification_tests.sh
 ```
 
 Expected: `PASS: quest notifications runtime`.
@@ -155,4 +155,3 @@ Expected: all test runners print `PASS`, Godot exits with code 0, and `git diff 
 git add tests/test_quest_notifications_runtime.gd scenes/ui/quest_log.gd
 git commit -m "fix: move quest alert below button"
 ```
-
