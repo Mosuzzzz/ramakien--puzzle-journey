@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
 [ext_resource type="Script" uid="uid://cmjt3od7rc72w" path="res://scenes/chapter_6/chapter_6_room_left.gd" id="4_controller"]
 [ext_resource type="PackedScene" path="res://scenes/chapter_6/chapter_6_left_chest_puzzle.tscn" id="5_puzzle"]
+[ext_resource type="Texture2D" uid="uid://dpyyrvqdk82a3" path="res://assets/props/chapter6/pole_left_room.PNG" id="6_y4f8w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4f8w"]
 radius = 27.0
@@ -67,29 +68,29 @@ height = 146.0
 radius = 46.0
 height = 146.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npiw3"]
-radius = 27.0
-height = 186.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvx6d"]
-radius = 27.0
-height = 192.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_awn0p"]
-radius = 27.0
-height = 190.0
+radius = 44.0
+height = 104.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3hqqd"]
-radius = 27.0
-height = 188.0
+radius = 43.0
+height = 104.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4c5b"]
-radius = 42.0
-height = 84.0
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_y4f8w"]
+a = Vector2(75, -6)
+b = Vector2(-97, 150)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wc34q"]
 radius = 6.0
 height = 146.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_l03b2"]
+a = Vector2(75, -6)
+b = Vector2(77, -45)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rajqw"]
+a = Vector2(26, -125)
+b = Vector2(72, -45)
 
 [sub_resource type="CircleShape2D" id="ChestInteractionShape"]
 radius = 105.0
@@ -231,29 +232,17 @@ shape = SubResource("CapsuleShape2D_y4f8w")
 position = Vector2(537, 290)
 shape = SubResource("CapsuleShape2D_y4f8w")
 
-[node name="TopWall26" type="CollisionShape2D" parent="Walls" unique_id=1818294509]
-position = Vector2(847, 428)
-shape = SubResource("CapsuleShape2D_npiw3")
-
-[node name="TopWall27" type="CollisionShape2D" parent="Walls" unique_id=194747210]
-position = Vector2(420, 429)
-shape = SubResource("CapsuleShape2D_nvx6d")
-
 [node name="TopWall28" type="CollisionShape2D" parent="Walls" unique_id=1360214032]
-position = Vector2(420, 717)
+position = Vector2(421, 767)
 shape = SubResource("CapsuleShape2D_awn0p")
 
 [node name="TopWall29" type="CollisionShape2D" parent="Walls" unique_id=2112851131]
-position = Vector2(848, 717)
+position = Vector2(844, 767)
 shape = SubResource("CapsuleShape2D_3hqqd")
 
 [node name="TopWall30" type="CollisionShape2D" parent="Walls" unique_id=772898885]
 position = Vector2(282, 444)
-shape = SubResource("CapsuleShape2D_y4c5b")
-
-[node name="TopWall31" type="CollisionShape2D" parent="Walls" unique_id=430021910]
-position = Vector2(313, 414)
-shape = SubResource("CapsuleShape2D_y4c5b")
+shape = SubResource("SegmentShape2D_y4f8w")
 
 [node name="TopWall32" type="CollisionShape2D" parent="Walls" unique_id=1410619937]
 position = Vector2(464, 252)
@@ -283,20 +272,33 @@ shape = SubResource("CapsuleShape2D_wc34q")
 position = Vector2(555, 316)
 shape = SubResource("CapsuleShape2D_wc34q")
 
+[node name="TopWall31" type="CollisionShape2D" parent="Walls" unique_id=184203613]
+position = Vector2(282, 444)
+shape = SubResource("SegmentShape2D_l03b2")
+
+[node name="TopWall40" type="CollisionShape2D" parent="Walls" unique_id=1247902097]
+position = Vector2(288, 447)
+shape = SubResource("SegmentShape2D_rajqw")
+
+[node name="TopWall41" type="CollisionShape2D" parent="Walls" unique_id=1984547360]
+position = Vector2(420, 478)
+shape = SubResource("CapsuleShape2D_awn0p")
+
+[node name="TopWall42" type="CollisionShape2D" parent="Walls" unique_id=1010475927]
+position = Vector2(845, 478)
+shape = SubResource("CapsuleShape2D_awn0p")
+
 [node name="YSortRoot" type="Node2D" parent="." unique_id=1268694992]
 y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1682981169 instance=ExtResource("2_player")]
 position = Vector2(627, 880)
-display_height = 120.0
-
-[node name="Shadow" parent="YSortRoot/Player" index="0" unique_id=1742627637]
-position = Vector2(0, -7)
-scale = Vector2(0.19242188, 0.06679688)
+display_height = 80.0
 
 [node name="AnimatedSprite2D" parent="YSortRoot/Player" index="1" unique_id=1220771692]
-position = Vector2(1, -42.3)
-scale = Vector2(0.35295, 0.35295)
+position = Vector2(-0.70598245, -28.268164)
+scale = Vector2(0.19265044, 0.19265044)
+animation = &"walk"
 
 [node name="Camera2D" parent="YSortRoot/Player" index="3" unique_id=1180329610]
 limit_left = -3
@@ -332,5 +334,17 @@ text = "กด E เพื่อปลดล็อกกล่อง"
 horizontal_alignment = 1
 
 [node name="LeftChestPuzzle" parent="." unique_id=274586050 instance=ExtResource("5_puzzle")]
+
+[node name="PoleLeftRoom" type="Sprite2D" parent="." unique_id=1527354487]
+position = Vector2(627, 636)
+texture = ExtResource("6_y4f8w")
+region_enabled = true
+region_rect = Rect2(0, 532.6258, 1254, 206.47925)
+
+[node name="PoleLeftRoom2" type="Sprite2D" parent="." unique_id=998243334]
+position = Vector2(627, 223)
+texture = ExtResource("6_y4f8w")
+region_enabled = true
+region_rect = Rect2(0, 0, 1254, 446.8665)
 
 [editable path="YSortRoot/Player"]
