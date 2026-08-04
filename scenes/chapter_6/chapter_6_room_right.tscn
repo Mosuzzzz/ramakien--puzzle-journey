@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dnrgjysrqcnok" path="res://assets/map/chapter_6/ChatGPT Image 27 ก.ค. 2569 20_33_55.png" id="1_background"]
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="3_portal"]
+[ext_resource type="Texture2D" uid="uid://d3s0lhlcc4yj8" path="res://assets/props/chapter6/pole_right_room.PNG" id="3_s67tl"]
 [ext_resource type="Script" uid="uid://voe6lxy1n3ri" path="res://scenes/chapter_6/chapter_6_room_right.gd" id="4_controller"]
 [ext_resource type="PackedScene" uid="uid://cohgpnm1jkjlw" path="res://scenes/chapter_6/chapter_6_right_jar_modal.tscn" id="5_jar_modal"]
 [ext_resource type="PackedScene" uid="uid://k3sg1uur7ong" path="res://scenes/chapter_6/chapter_6_right_code_modal.tscn" id="6_code_modal"]
@@ -69,20 +70,20 @@ radius = 29.0
 height = 98.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o073m"]
-radius = 33.0
-height = 216.0
+radius = 50.0
+height = 134.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_egjvr"]
-radius = 33.0
-height = 220.0
+radius = 47.0
+height = 118.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_devki"]
-radius = 33.0
-height = 214.0
+radius = 49.0
+height = 108.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh0mh"]
-radius = 33.0
-height = 220.0
+radius = 49.0
+height = 112.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cs3iq"]
 radius = 28.0
@@ -252,19 +253,19 @@ position = Vector2(723, 292)
 shape = SubResource("CapsuleShape2D_wv2ok")
 
 [node name="BottomLeftWall23" type="CollisionShape2D" parent="Walls" unique_id=1107019892]
-position = Vector2(863, 450)
+position = Vector2(860, 511)
 shape = SubResource("CapsuleShape2D_o073m")
 
 [node name="BottomLeftWall24" type="CollisionShape2D" parent="Walls" unique_id=379855326]
-position = Vector2(392, 450)
+position = Vector2(389, 512)
 shape = SubResource("CapsuleShape2D_egjvr")
 
 [node name="BottomLeftWall25" type="CollisionShape2D" parent="Walls" unique_id=1360906637]
-position = Vector2(393, 773)
+position = Vector2(393, 836)
 shape = SubResource("CapsuleShape2D_devki")
 
 [node name="BottomLeftWall26" type="CollisionShape2D" parent="Walls" unique_id=1897140196]
-position = Vector2(861, 777)
+position = Vector2(859, 840)
 shape = SubResource("CapsuleShape2D_jh0mh")
 
 [node name="BottomLeftWall27" type="CollisionShape2D" parent="Walls" unique_id=1870637931]
@@ -364,15 +365,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1591154196 instance=ExtResource("2_player")]
 position = Vector2(627, 930)
-display_height = 120.0
-
-[node name="Shadow" parent="YSortRoot/Player" index="0" unique_id=1742627637]
-position = Vector2(0, -7)
-scale = Vector2(0.19242188, 0.06679688)
-
-[node name="AnimatedSprite2D" parent="YSortRoot/Player" index="1" unique_id=1220771692]
-position = Vector2(1, -42.3)
-scale = Vector2(0.35295, 0.35295)
+display_height = 80.0
 
 [node name="ExitPortal" parent="YSortRoot" unique_id=723904788 instance=ExtResource("3_portal")]
 position = Vector2(627, 930)
@@ -382,6 +375,7 @@ prompt_text = "กด E เพื่อออกจากหอคอย"
 interaction_size = Vector2(150, 90)
 
 [node name="JarInteractions" type="Node2D" parent="." unique_id=1978599359]
+visible = false
 
 [node name="JarUpperLeft" type="Area2D" parent="JarInteractions" unique_id=1717094362]
 position = Vector2(245, 390)
@@ -468,9 +462,10 @@ text = "กด E เพื่อค้นหา"
 horizontal_alignment = 1
 
 [node name="RightJarModal" parent="." unique_id=1713914508 instance=ExtResource("5_jar_modal")]
-visible = true
+visible = false
 
 [node name="PedestalInteraction" type="Area2D" parent="." unique_id=670412462]
+visible = false
 position = Vector2(627, 627)
 collision_layer = 0
 collision_mask = 2
@@ -492,6 +487,18 @@ text = "กด E เพื่อใส่รหัส"
 horizontal_alignment = 1
 
 [node name="RightCodeModal" parent="." unique_id=704219975 instance=ExtResource("6_code_modal")]
-visible = true
+visible = false
+
+[node name="PoleRightRoom" type="Sprite2D" parent="." unique_id=1253454165]
+position = Vector2(627, 710)
+texture = ExtResource("3_s67tl")
+region_enabled = true
+region_rect = Rect2(0, 625.6887, 1254, 169.50525)
+
+[node name="PoleRightRoom2" type="Sprite2D" parent="." unique_id=1627075762]
+position = Vector2(627, 233)
+texture = ExtResource("3_s67tl")
+region_enabled = true
+region_rect = Rect2(0, 0, 1254, 466.68726)
 
 [editable path="YSortRoot/Player"]
