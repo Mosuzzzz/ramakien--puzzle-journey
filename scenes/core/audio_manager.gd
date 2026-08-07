@@ -3,6 +3,7 @@ extends Node
 signal sfx_played(sound_key: StringName)
 
 const BACKGROUND := &"background"
+const BOSS_FIGHT := &"boss_fight"
 const ANSWER_CORRECT := &"answer_correct"
 const ANSWER_WRONG := &"answer_wrong"
 const BUTTON_CLICK := &"button_click"
@@ -23,9 +24,12 @@ const DOOR := &"door"
 const SFX_POOL_SIZE := 12
 const MENU_MUSIC_GAIN := 1.0
 const GAMEPLAY_MUSIC_GAIN := 0.3
+const MUSIC_FADE_SECONDS := 1.5
+const SILENT_MUSIC_DB := -80.0
 
 const SOUND_PATHS := {
 	BACKGROUND: "res://assets/audio/music/background.mp3",
+	BOSS_FIGHT: "res://assets/audio/music/boss_fight.mp3",
 	ANSWER_CORRECT: "res://assets/audio/sfx/answer_correct.mp3",
 	ANSWER_WRONG: "res://assets/audio/sfx/answer_wrong.mp3",
 	BUTTON_CLICK: "res://assets/audio/sfx/button_click.mp3",
@@ -54,12 +58,19 @@ var _sfx_players: Array[AudioStreamPlayer] = []
 var _pool_cursor := 0
 var _run_owners: Dictionary[int, WeakRef] = {}
 var _last_scene_id := 0
+var _last_scene_path := ""
+var _music_tween: Tween
+var _music_request_serial := 0
+var _requested_music_key: StringName = &""
+var _requested_music_gain := MENU_MUSIC_GAIN
+var _boss_music_active := false
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_streams()
 	_create_players()
+	(get_node("Music") as AudioStreamPlayer).finished.connect(_on_music_finished)
 	get_tree().node_added.connect(_on_node_added)
 	_register_buttons_recursive(get_tree().root)
 	_sync_music_for_current_scene.call_deferred()
@@ -105,6 +116,16 @@ func stop_run_loop() -> void:
 	(get_node("RunLoop") as AudioStreamPlayer).stop()
 
 
+func play_boss_music(fade_seconds: float = MUSIC_FADE_SECONDS) -> void:
+	_boss_music_active = true
+	_request_music(BOSS_FIGHT, GAMEPLAY_MUSIC_GAIN, true, fade_seconds)
+
+
+func restore_background_music(fade_seconds: float = MUSIC_FADE_SECONDS) -> void:
+	_boss_music_active = false
+	_request_music(BACKGROUND, _music_gain_for_scene(_last_scene_path), true, fade_seconds)
+
+
 func _prune_run_owners() -> void:
 	for owner_id: int in _run_owners.keys():
 		var owner_ref := _run_owners[owner_id] as WeakRef
@@ -125,26 +146,123 @@ func _refresh_run_loop() -> void:
 func sync_music_for_scene_path(scene_path: String) -> void:
 	if scene_path.is_empty():
 		return
+	_last_scene_path = scene_path
 	var is_menu := scene_path.begins_with("res://scenes/homepage/")
 	var is_gameplay := (
 		scene_path == "res://scenes/prologue/prologue.tscn"
 		or scene_path.begins_with("res://scenes/chapter_")
 		or scene_path.begins_with("res://scenes/cutscene/chapter_")
 	)
-	var should_play := (
-		is_menu
-		or is_gameplay
+	if not is_menu and not is_gameplay:
+		_boss_music_active = false
+		_music_request_serial += 1
+		if _music_tween != null and _music_tween.is_valid():
+			_music_tween.kill()
+		_music_tween = null
+		_requested_music_key = &""
+		(get_node("Music") as AudioStreamPlayer).stop()
+		return
+	if _boss_music_active and is_gameplay:
+		return
+	_boss_music_active = false
+	_request_music(
+		BACKGROUND,
+		GAMEPLAY_MUSIC_GAIN if is_gameplay else MENU_MUSIC_GAIN,
+		false,
+		MUSIC_FADE_SECONDS
 	)
+
+
+func _request_music(
+	sound_key: StringName,
+	target_gain: float,
+	restart_from_beginning: bool,
+	fade_seconds: float
+) -> void:
 	var music := get_node("Music") as AudioStreamPlayer
-	if should_play:
-		music.volume_db = linear_to_db(
-			GAMEPLAY_MUSIC_GAIN if is_gameplay else MENU_MUSIC_GAIN
+	if not _streams.has(sound_key):
+		push_warning("AudioManager: unknown or missing music '%s'" % sound_key)
+		return
+	_requested_music_gain = target_gain
+	var target_stream := _streams[sound_key] as AudioStream
+	if _requested_music_key == sound_key:
+		if (
+			_music_tween != null
+			and _music_tween.is_valid()
+			and _music_tween.is_running()
+		):
+			return
+		if music.stream == target_stream and music.playing:
+			music.volume_db = linear_to_db(target_gain)
+			return
+	_requested_music_key = sound_key
+	_music_request_serial += 1
+	var serial := _music_request_serial
+	if _music_tween != null and _music_tween.is_valid():
+		_music_tween.kill()
+	if fade_seconds <= 0.0 or not music.playing:
+		_swap_and_fade_in(
+			sound_key, target_gain, restart_from_beginning, fade_seconds, serial
 		)
-		if not music.playing and _streams.has(BACKGROUND):
-			music.stream = _streams[BACKGROUND]
-			music.play()
-	else:
-		music.stop()
+		return
+	_music_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_music_tween.tween_property(music, "volume_db", SILENT_MUSIC_DB, fade_seconds)
+	_music_tween.tween_callback(
+		_swap_and_fade_in.bind(
+			sound_key, target_gain, restart_from_beginning, fade_seconds, serial
+		)
+	)
+
+
+func _swap_and_fade_in(
+	sound_key: StringName,
+	target_gain: float,
+	restart_from_beginning: bool,
+	fade_seconds: float,
+	serial: int
+) -> void:
+	if serial != _music_request_serial:
+		return
+	var music := get_node("Music") as AudioStreamPlayer
+	var target_stream := _streams[sound_key] as AudioStream
+	var start_position := 0.0
+	if not restart_from_beginning and music.stream == target_stream and music.playing:
+		start_position = music.get_playback_position()
+	music.stream = target_stream
+	music.volume_db = (
+		SILENT_MUSIC_DB if fade_seconds > 0.0 else linear_to_db(target_gain)
+	)
+	music.play(start_position)
+	if fade_seconds <= 0.0:
+		return
+	_music_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_music_tween.tween_property(
+		music, "volume_db", linear_to_db(target_gain), fade_seconds
+	)
+
+
+func _music_gain_for_scene(scene_path: String) -> float:
+	return (
+		MENU_MUSIC_GAIN
+		if scene_path.begins_with("res://scenes/homepage/")
+		else GAMEPLAY_MUSIC_GAIN
+	)
+
+
+func _on_music_finished() -> void:
+	if _requested_music_key.is_empty() or not _streams.has(_requested_music_key):
+		return
+	_music_request_serial += 1
+	var serial := _music_request_serial
+	if _music_tween != null and _music_tween.is_valid():
+		_music_tween.kill()
+	_swap_and_fade_in(
+		_requested_music_key,
+		_requested_music_gain,
+		true,
+		MUSIC_FADE_SECONDS,
+		serial
+	)
 
 
 func _load_streams() -> void:
@@ -157,8 +275,8 @@ func _load_streams() -> void:
 		if stream == null:
 			push_warning("AudioManager: failed to load %s" % path)
 			continue
-		if stream is AudioStreamMP3 and key in [BACKGROUND, RUN]:
-			stream.loop = true
+		if stream is AudioStreamMP3:
+			stream.loop = key == RUN
 		_streams[key] = stream
 
 

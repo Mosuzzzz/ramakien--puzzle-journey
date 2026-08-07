@@ -1,6 +1,7 @@
 extends Area2D
 
 signal activated(portal: Area2D)
+signal locked_interaction(portal: Area2D)
 
 const GameState := preload("res://scenes/core/game_state.gd")
 const SaveGame := preload("res://scenes/core/save_game.gd")
@@ -65,6 +66,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func _use_portal() -> void:
 	if locked:
+		locked_interaction.emit(self)
 		get_viewport().set_input_as_handled()
 		return
 	var current_scene := get_tree().current_scene

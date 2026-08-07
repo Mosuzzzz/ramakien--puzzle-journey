@@ -18,7 +18,7 @@ func _run() -> void:
 		_expect(audio.get_node_or_null("Music") != null, "Music player exists")
 		_expect(audio.get_node_or_null("RunLoop") != null, "RunLoop player exists")
 		var keys: Array[StringName] = [
-			&"answer_correct", &"answer_wrong", &"button_click",
+			&"background", &"boss_fight", &"answer_correct", &"answer_wrong", &"button_click",
 			&"enemy_attacking", &"enemy_hit", &"pickup", &"run",
 			&"sword_attack", &"hurt", &"thrash", &"giant", &"wave",
 			&"jump_throw", &"heal_and_pull", &"giant_attack", &"invite", &"door",
@@ -94,9 +94,11 @@ func _run() -> void:
 			var music := audio.get_node("Music") as AudioStreamPlayer
 			_expect(music.playing, "home page starts music")
 			_expect(
-				is_equal_approx(music.volume_db, linear_to_db(1.0)),
-				"menu music uses full gain"
+				music.volume_db <= audio.SILENT_MUSIC_DB + 0.1,
+				"first menu cycle begins silent"
 			)
+			await create_timer(audio.MUSIC_FADE_SECONDS + 0.1).timeout
+			_expect(is_equal_approx(music.volume_db, linear_to_db(1.0)), "menu music fades to full gain")
 			music.seek(2.0)
 			audio.sync_music_for_scene_path("res://scenes/prologue/prologue.tscn")
 			_expect(music.playing, "prologue keeps music")
@@ -140,6 +142,64 @@ func _run() -> void:
 				is_equal_approx(AudioServer.get_bus_volume_db(sfx_bus), sfx_before),
 				"scene music sync leaves SFX bus unchanged"
 			)
+			_expect(audio.has_method("play_boss_music"), "boss music start API exists")
+			_expect(
+				audio.has_method("restore_background_music"),
+				"background restore API exists"
+			)
+			if (
+				audio.has_method("play_boss_music")
+				and audio.has_method("restore_background_music")
+			):
+				audio.sync_music_for_scene_path("res://scenes/chapter_5/chapter_5.tscn")
+				audio.play_boss_music(0.0)
+				await process_frame
+				_expect(
+					music.stream != null
+					and music.stream.resource_path.ends_with("boss_fight.mp3"),
+					"boss request selects boss track"
+				)
+				_expect(music.playing, "boss track starts playing")
+				_expect(
+					is_equal_approx(music.volume_db, linear_to_db(0.3)),
+					"boss track uses gameplay gain"
+				)
+				_expect(
+					music.stream is AudioStreamMP3 and not music.stream.loop,
+					"boss MP3 uses AudioManager looping"
+				)
+				music.seek(2.0)
+				audio.play_boss_music(0.0)
+				_expect(
+					music.get_playback_position() >= 1.9,
+					"repeated boss request does not restart"
+				)
+				audio.restore_background_music(0.0)
+				await process_frame
+				_expect(
+					music.stream != null
+					and music.stream.resource_path.ends_with("background.mp3"),
+					"restore request selects normal track"
+				)
+				_expect(
+					music.get_playback_position() < 0.5,
+					"restored normal track starts from beginning"
+				)
+				_expect(
+					music.stream is AudioStreamMP3 and not music.stream.loop,
+					"normal MP3 uses AudioManager looping"
+				)
+				audio.call("_on_music_finished")
+				_expect(music.playing, "finished music restarts")
+				_expect(
+					music.volume_db <= audio.SILENT_MUSIC_DB + 0.1,
+					"restarted cycle begins silent"
+				)
+				await create_timer(audio.MUSIC_FADE_SECONDS + 0.1).timeout
+				_expect(
+					is_equal_approx(music.volume_db, linear_to_db(0.3)),
+					"restarted gameplay cycle fades to gameplay gain"
+				)
 			audio.sync_music_for_scene_path("res://scenes/ending/ending.tscn")
 			_expect(not music.playing, "unrelated scene stops music")
 		heard.clear()

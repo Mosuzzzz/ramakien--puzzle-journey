@@ -2,6 +2,10 @@ extends Node2D
 
 const GameState := preload("res://scenes/core/game_state.gd")
 const PHRA_RAM_SCENE := preload("res://scenes/player/player.tscn")
+const QUEST_DEFEAT_NAME := "ปราบไมยราพ"
+const QUEST_DEFEAT_DETAIL := "กำจัดไมยราพเพื่อช่วยพระรามและเปิดเส้นทางไปต่อ"
+const QUEST_TRAVEL_NAME := "เดินทางไปยังกรุงลงกา"
+const QUEST_TRAVEL_DETAIL := "ใช้เส้นทางที่เปิดแล้วเพื่อมุ่งหน้าไปยังกรุงลงกา"
 
 var _post_boss_cutscene_started := false
 var _phra_ram_restored := false
@@ -11,14 +15,22 @@ var _phra_ram_restored := false
 
 
 func _ready() -> void:
+	if not _post_boss_cutscene.finished.is_connected(_on_post_boss_cutscene_finished):
+		_post_boss_cutscene.finished.connect(_on_post_boss_cutscene_finished)
 	var boss := get_node_or_null("YSortRoot/Miyarap")
 	if GameState.chapter_5_post_boss_played:
+		_show_travel_quest()
+		AudioManager.restore_background_music(0.0)
 		if boss != null:
 			boss.queue_free()
 		_chapter6_portal.set_locked(false)
 	elif boss != null:
+		Quest.set_quest(QUEST_DEFEAT_NAME, QUEST_DEFEAT_DETAIL)
+		AudioManager.play_boss_music()
 		boss.tree_exited.connect(_on_miyarap_removed)
 	else:
+		_show_travel_quest()
+		AudioManager.restore_background_music(0.0)
 		_chapter6_portal.set_locked(false)
 
 
@@ -35,6 +47,15 @@ func _show_post_boss_cutscene() -> void:
 	_post_boss_cutscene_started = true
 	GameState.chapter_5_post_boss_played = true
 	_post_boss_cutscene.call("show_cutscene")
+
+
+func _on_post_boss_cutscene_finished() -> void:
+	AudioManager.restore_background_music()
+	_show_travel_quest()
+
+
+func _show_travel_quest() -> void:
+	Quest.set_quest(QUEST_TRAVEL_NAME, QUEST_TRAVEL_DETAIL)
 
 
 func restore_phra_ram_after_cutscene() -> void:

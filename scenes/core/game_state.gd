@@ -41,6 +41,10 @@ static var chapter_6_right_jars_mask := 0
 static var chapter_6_right_pedestal_solved := false
 static var chapter_6_gate_unlocked := false
 
+# late-game quest decisions needed when reconstructing scenes after load
+static var chapter_7_defenders_cleared := false
+static var chapter_8_sida_room_discovered := false
+
 # whether Thotsakan has been defeated in Chapter 9
 static var chapter_9_thotsakan_defeated := false
 
@@ -88,6 +92,8 @@ static func reset_progress() -> void:
 	chapter_6_right_jars_mask = 0
 	chapter_6_right_pedestal_solved = false
 	chapter_6_gate_unlocked = false
+	chapter_7_defenders_cleared = false
+	chapter_8_sida_room_discovered = false
 	chapter_8_intro_played = false
 	chapter_9_thotsakan_defeated = false
 	chapter_9_sida_rescued = false

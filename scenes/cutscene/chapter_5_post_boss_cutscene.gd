@@ -1,5 +1,7 @@
 extends Control
 
+signal finished
+
 const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
 const CutsceneAdvanceInput := preload("res://scenes/ui/cutscene_advance_input.gd")
 
@@ -157,6 +159,7 @@ func _finish_cutscene() -> void:
 		chapter.call("restore_phra_ram_after_cutscene")
 	hide()
 	get_tree().paused = false
+	finished.emit()
 
 
 func _exit_tree() -> void:

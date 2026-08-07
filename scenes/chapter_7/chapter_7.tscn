@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
+[ext_resource type="Script" path="res://scenes/chapter_7/chapter_7.gd" id="92_script"]
 
 [sub_resource type="RectangleShape2D" id="shape_BoundTop"]
 size = Vector2(2172, 90)
@@ -280,6 +281,7 @@ a = Vector2(-166, 44)
 b = Vector2(-205, -618)
 
 [node name="Chapter7" type="Node2D" unique_id=855524503]
+script = ExtResource("92_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1765112964]
 position = Vector2(1086, 814.5)
