@@ -80,4 +80,3 @@ func restore_phra_ram_after_cutscene() -> void:
 		phra_ram.current_health = player_health
 	$YSortRoot.add_child(phra_ram)
 	phra_ram.position = player_position
-
