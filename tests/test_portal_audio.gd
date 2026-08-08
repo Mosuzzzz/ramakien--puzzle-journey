@@ -41,6 +41,24 @@ func _run() -> void:
 	_events.clear()
 	portal.play_transition_sound_for_scene_path("res://scenes/chapter_6/chapter_6.tscn")
 	_expect(_events.is_empty(), "outdoor chapter portal stays silent")
+	_expect(
+		portal.uses_chapter_transition("res://scenes/chapter_6/chapter_6.tscn"),
+		"outdoor chapter portal uses the shared screen transition"
+	)
+
+	portal.target_scene = "res://scenes/chapter_6/chapter_6_room_left.tscn"
+	_expect(
+		not portal.uses_chapter_transition("res://scenes/chapter_6/chapter_6.tscn"),
+		"entering a room keeps the direct door flow"
+	)
+
+	portal.target_scene = "res://scenes/chapter_6/chapter_6.tscn"
+	_expect(
+		not portal.uses_chapter_transition(
+			"res://scenes/chapter_6/chapter_6_room_left.tscn"
+		),
+		"leaving a room keeps the direct door flow"
+	)
 
 	portal.free()
 	_finish()

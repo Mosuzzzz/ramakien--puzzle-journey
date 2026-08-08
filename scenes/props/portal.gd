@@ -69,10 +69,11 @@ func _use_portal() -> void:
 		locked_interaction.emit(self)
 		get_viewport().set_input_as_handled()
 		return
+	if SceneTransition.is_busy():
+		return
 	var current_scene := get_tree().current_scene
-	play_transition_sound_for_scene_path(
-		current_scene.scene_file_path if current_scene != null else ""
-	)
+	var current_scene_path := current_scene.scene_file_path if current_scene != null else ""
+	play_transition_sound_for_scene_path(current_scene_path)
 	activated.emit(self)
 	GameState.next_spawn = target_spawn
 	GameState.next_health = _player.current_health
@@ -80,8 +81,11 @@ func _use_portal() -> void:
 	# the *current* scene, so it must run synchronously, not deferred
 	if Settings.auto_save_enabled:
 		SaveGame.save_autosave()
-	get_tree().change_scene_to_file.call_deferred(target_scene)
 	get_viewport().set_input_as_handled()
+	if uses_chapter_transition(current_scene_path):
+		await SceneTransition.change_chapter(target_scene)
+	else:
+		get_tree().change_scene_to_file.call_deferred(target_scene)
 
 
 func play_transition_sound_for_scene_path(current_scene_path: String) -> void:
@@ -89,6 +93,10 @@ func play_transition_sound_for_scene_path(current_scene_path: String) -> void:
 		return
 	if _is_room_scene_path(current_scene_path) or _is_room_scene_path(target_scene):
 		AudioManager.play_sfx(AudioManager.DOOR)
+
+
+func uses_chapter_transition(current_scene_path: String) -> bool:
+	return not (_is_room_scene_path(current_scene_path) or _is_room_scene_path(target_scene))
 
 
 func _is_room_scene_path(scene_path: String) -> bool:
