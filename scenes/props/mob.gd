@@ -143,11 +143,11 @@ func _uses_shared_run_audio() -> bool:
 
 
 func _update_run_audio(active: bool) -> void:
-	AudioManager.set_run_active(self, active and _uses_shared_run_audio())
+	AudioManager.set_monster_run_active(self, active and _uses_shared_run_audio())
 
 
 func _exit_tree() -> void:
-	AudioManager.set_run_active(self, false)
+	AudioManager.set_monster_run_active(self, false)
 
 
 func _drop_potion() -> void:

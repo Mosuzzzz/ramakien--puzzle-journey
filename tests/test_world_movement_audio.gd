@@ -10,6 +10,7 @@ func _initialize() -> void:
 func _run() -> void:
 	var audio := root.get_node("AudioManager")
 	var run_loop := audio.get_node("RunLoop") as AudioStreamPlayer
+	var monster_loop := audio.get_node_or_null("MonsterRunLoop") as AudioStreamPlayer
 	var stage := Node2D.new()
 	root.add_child(stage)
 	var player := Node2D.new()
@@ -17,7 +18,6 @@ func _run() -> void:
 	stage.add_child(player)
 
 	for scene_path: String in [
-		"res://scenes/props/mob.tscn",
 		"res://scenes/props/sida.tscn",
 		"res://scenes/props/hanuman.tscn",
 		"res://scenes/props/phalak.tscn",
@@ -35,6 +35,21 @@ func _run() -> void:
 		await process_frame
 		_expect(not run_loop.playing, "%s releases run audio on exit" % scene_path)
 
+	var mob := (load("res://scenes/props/mob.tscn") as PackedScene).instantiate()
+	stage.add_child(mob)
+	_expect(monster_loop != null, "ordinary monster loop exists")
+	if monster_loop != null:
+		mob._update_run_audio(true)
+		_expect(monster_loop.playing, "ordinary monster starts monster run loop")
+		_expect(not run_loop.playing, "ordinary monster does not start Rama run loop")
+		mob._update_run_audio(false)
+		_expect(not monster_loop.playing, "ordinary monster stops monster run loop")
+		mob._update_run_audio(true)
+	mob.free()
+	await process_frame
+	if monster_loop != null:
+		_expect(not monster_loop.playing, "ordinary monster releases audio on exit")
+
 	var thosakan := (load("res://scenes/props/thosakan.tscn") as PackedScene).instantiate()
 	stage.add_child(thosakan)
 	_expect(thosakan.has_method("_uses_shared_run_audio"), "Thosakan exposes run-audio policy")
@@ -43,6 +58,8 @@ func _run() -> void:
 	if thosakan.has_method("_update_run_audio"):
 		thosakan._update_run_audio(true)
 		_expect(not run_loop.playing, "Thosakan does not start shared run loop")
+		if monster_loop != null:
+			_expect(not monster_loop.playing, "Thosakan does not start ordinary monster loop")
 	thosakan.free()
 	stage.free()
 	_finish()

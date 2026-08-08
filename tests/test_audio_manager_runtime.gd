@@ -14,12 +14,14 @@ func _run() -> void:
 		_expect(audio.has_signal("sfx_played"), "SFX is observable")
 		_expect(audio.has_method("play_sfx"), "play_sfx API exists")
 		_expect(audio.has_method("set_run_active"), "run-loop API exists")
+		_expect(audio.has_method("set_monster_run_active"), "monster run-loop API exists")
 		_expect(audio.has_method("sync_music_for_scene_path"), "scene music API exists")
 		_expect(audio.get_node_or_null("Music") != null, "Music player exists")
 		_expect(audio.get_node_or_null("RunLoop") != null, "RunLoop player exists")
+		_expect(audio.get_node_or_null("MonsterRunLoop") != null, "MonsterRunLoop player exists")
 		var keys: Array[StringName] = [
 			&"background", &"boss_fight", &"answer_correct", &"answer_wrong", &"button_click",
-			&"enemy_attacking", &"enemy_hit", &"pickup", &"run",
+			&"enemy_attacking", &"enemy_hit", &"pickup", &"run", &"monster_run",
 			&"sword_attack", &"hurt", &"thrash", &"giant", &"wave",
 			&"jump_throw", &"heal_and_pull", &"giant_attack", &"invite", &"door",
 		]
@@ -86,6 +88,40 @@ func _run() -> void:
 		owner_a.free()
 		await process_frame
 		_expect(not audio.get_node("RunLoop").playing, "invalid owner is pruned")
+		var monster_loop := audio.get_node_or_null("MonsterRunLoop") as AudioStreamPlayer
+		if monster_loop != null and audio.has_method("set_monster_run_active"):
+			var monster_a := Node.new()
+			var monster_b := Node.new()
+			root.add_child(monster_a)
+			root.add_child(monster_b)
+			audio.set_monster_run_active(monster_a, true)
+			_expect(monster_loop.playing, "monster run loop starts")
+			_expect(
+				monster_loop.stream != null
+				and monster_loop.stream.resource_path.ends_with("giant_king.mp3"),
+				"monster run loop uses Giant King asset"
+			)
+			audio.set_monster_run_active(monster_b, true)
+			audio.set_monster_run_active(monster_a, false)
+			_expect(monster_loop.playing, "one stopped monster does not silence another")
+			audio.set_monster_run_active(monster_b, false)
+			_expect(not monster_loop.playing, "monster run loop stops after final owner")
+			audio.set_monster_run_active(monster_a, true)
+			monster_a.free()
+			await process_frame
+			_expect(not monster_loop.playing, "invalid monster owner is pruned")
+			monster_b.free()
+			var run_owner := Node.new()
+			var monster_owner := Node.new()
+			root.add_child(run_owner)
+			root.add_child(monster_owner)
+			audio.set_run_active(run_owner, true)
+			audio.set_monster_run_active(monster_owner, true)
+			audio.stop_run_loop()
+			_expect(not audio.get_node("RunLoop").playing, "stop_run_loop stops player footsteps")
+			_expect(not monster_loop.playing, "stop_run_loop stops monster footsteps")
+			run_owner.free()
+			monster_owner.free()
 		owner_b.free()
 		if audio.has_method("sync_music_for_scene_path"):
 			var sfx_bus := AudioServer.get_bus_index(&"SFX")

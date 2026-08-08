@@ -11,6 +11,7 @@ const ENEMY_ATTACKING := &"enemy_attacking"
 const ENEMY_HIT := &"enemy_hit"
 const PICKUP := &"pickup"
 const RUN := &"run"
+const MONSTER_RUN := &"monster_run"
 const SWORD_ATTACK := &"sword_attack"
 const HURT := &"hurt"
 const THRASH := &"thrash"
@@ -37,6 +38,7 @@ const SOUND_PATHS := {
 	ENEMY_HIT: "res://assets/audio/sfx/enemy_hit.mp3",
 	PICKUP: "res://assets/audio/sfx/pickup.mp3",
 	RUN: "res://assets/audio/sfx/run.mp3",
+	MONSTER_RUN: "res://assets/audio/sfx/giant_king.mp3",
 	SWORD_ATTACK: "res://assets/audio/sfx/sword_attack.mp3",
 	HURT: "res://assets/audio/sfx/hurt.mp3",
 	THRASH: "res://assets/audio/sfx/thrash.mp3",
@@ -57,6 +59,7 @@ var _streams: Dictionary = {}
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _pool_cursor := 0
 var _run_owners: Dictionary[int, WeakRef] = {}
+var _monster_run_owners: Dictionary[int, WeakRef] = {}
 var _last_scene_id := 0
 var _last_scene_path := ""
 var _music_tween: Tween
@@ -83,6 +86,7 @@ func _process(_delta: float) -> void:
 		_last_scene_id = scene_id
 		_sync_music_for_current_scene()
 	_prune_run_owners()
+	_prune_monster_run_owners()
 
 
 func has_sound(sound_key: StringName) -> bool:
@@ -111,9 +115,22 @@ func set_run_active(owner: Node, active: bool) -> void:
 	_refresh_run_loop()
 
 
+func set_monster_run_active(owner: Node, active: bool) -> void:
+	if owner == null:
+		return
+	var owner_id := owner.get_instance_id()
+	if active:
+		_monster_run_owners[owner_id] = weakref(owner)
+	else:
+		_monster_run_owners.erase(owner_id)
+	_refresh_monster_run_loop()
+
+
 func stop_run_loop() -> void:
 	_run_owners.clear()
+	_monster_run_owners.clear()
 	(get_node("RunLoop") as AudioStreamPlayer).stop()
+	(get_node("MonsterRunLoop") as AudioStreamPlayer).stop()
 
 
 func play_boss_music(fade_seconds: float = MUSIC_FADE_SECONDS) -> void:
@@ -134,12 +151,29 @@ func _prune_run_owners() -> void:
 	_refresh_run_loop()
 
 
+func _prune_monster_run_owners() -> void:
+	for owner_id: int in _monster_run_owners.keys():
+		var owner_ref := _monster_run_owners[owner_id] as WeakRef
+		if owner_ref.get_ref() == null:
+			_monster_run_owners.erase(owner_id)
+	_refresh_monster_run_loop()
+
+
 func _refresh_run_loop() -> void:
 	var player := get_node("RunLoop") as AudioStreamPlayer
 	if _run_owners.is_empty():
 		player.stop()
 	elif not player.playing and _streams.has(RUN):
 		player.stream = _streams[RUN]
+		player.play()
+
+
+func _refresh_monster_run_loop() -> void:
+	var player := get_node("MonsterRunLoop") as AudioStreamPlayer
+	if _monster_run_owners.is_empty():
+		player.stop()
+	elif not player.playing and _streams.has(MONSTER_RUN):
+		player.stream = _streams[MONSTER_RUN]
 		player.play()
 
 
@@ -276,7 +310,7 @@ func _load_streams() -> void:
 			push_warning("AudioManager: failed to load %s" % path)
 			continue
 		if stream is AudioStreamMP3:
-			stream.loop = key == RUN
+			stream.loop = key in [RUN, MONSTER_RUN]
 		_streams[key] = stream
 
 
@@ -289,6 +323,10 @@ func _create_players() -> void:
 	run_loop.name = "RunLoop"
 	run_loop.bus = &"SFX"
 	add_child(run_loop)
+	var monster_run_loop := AudioStreamPlayer.new()
+	monster_run_loop.name = "MonsterRunLoop"
+	monster_run_loop.bus = &"SFX"
+	add_child(monster_run_loop)
 	for index in SFX_POOL_SIZE:
 		var player := AudioStreamPlayer.new()
 		player.name = "SFX%02d" % index
