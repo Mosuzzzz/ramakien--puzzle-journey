@@ -83,6 +83,14 @@ func start_feather_quest() -> void:
 		call_deferred("_start_resting_quest")
 
 
+func restore_chapter_3_progress() -> void:
+	if GameState.chapter_3_post_battle_played:
+		_chapter4_portal.set_locked(false)
+		Quest.set_quest(EXIT_QUEST_NAME, EXIT_QUEST_DETAIL, _chapter4_portal.global_position)
+		return
+	start_feather_quest()
+
+
 func _spawn_remaining_feathers() -> void:
 	var shuffled_spawns := _spawn_points.duplicate()
 	shuffled_spawns.shuffle()
