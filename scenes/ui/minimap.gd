@@ -13,7 +13,10 @@ func _ready() -> void:
 	call_deferred("_setup")
 
 func _setup() -> void:
-	var scene := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return
+	var scene := tree.current_scene
 	if scene == null:
 		return
 	var background := scene.find_child("Background", true, false) as Sprite2D

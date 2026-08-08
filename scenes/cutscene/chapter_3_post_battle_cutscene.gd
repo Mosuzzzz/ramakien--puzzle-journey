@@ -152,8 +152,11 @@ func _show_dialogue(index: int, animated: bool) -> void:
 func _finish_cutscene() -> void:
 	_active = false
 	hide()
-	get_tree().paused = false
-	var chapter := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return
+	tree.paused = false
+	var chapter := tree.current_scene
 	if chapter != null and chapter.has_method("finish_chapter_3_story"):
 		chapter.call("finish_chapter_3_story")
 

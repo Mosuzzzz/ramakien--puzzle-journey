@@ -62,6 +62,7 @@ static var chapter_3_post_battle_played := false
 
 # whether the Chapter 4 opening cutscene has already played this run
 static var chapter_4_intro_played := false
+static var chapter_4_magic_trail_completed := false
 
 # whether the Chapter 5 post-boss (Miyarap defeat) cutscene has already played
 static var chapter_5_post_boss_played := false
@@ -84,6 +85,7 @@ static func reset_progress() -> void:
 	chapter_3_intro_played = false
 	chapter_3_post_battle_played = false
 	chapter_4_intro_played = false
+	chapter_4_magic_trail_completed = false
 	chapter_5_post_boss_played = false
 	chapter_6_intro_played = false
 	chapter_6_yak_defeated = false

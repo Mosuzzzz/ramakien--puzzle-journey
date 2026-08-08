@@ -115,8 +115,11 @@ func _finish_cutscene() -> void:
 	if _finished:
 		return
 	_finished = true
-	get_tree().paused = false
-	var chapter := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return
+	tree.paused = false
+	var chapter := tree.current_scene
 	if chapter != null and chapter.has_method("start_feather_quest"):
 		chapter.call("start_feather_quest")
 	queue_free()

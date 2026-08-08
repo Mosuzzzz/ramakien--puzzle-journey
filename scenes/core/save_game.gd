@@ -47,6 +47,7 @@ const STATE_KEYS := [
 	"chapter_3_intro_played",
 	"chapter_3_post_battle_played",
 	"chapter_4_intro_played",
+	"chapter_4_magic_trail_completed",
 	"chapter_5_post_boss_played",
 ]
 
@@ -108,7 +109,13 @@ static func load_autosave() -> void:
 
 static func _save_to_path(path: String) -> void:
 	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		push_warning("SaveGame: cannot save without an active SceneTree")
+		return
 	var scene := tree.current_scene
+	if scene == null:
+		push_warning("SaveGame: cannot save without an active scene")
+		return
 	var player := scene.get_node_or_null("YSortRoot/Player") as Node2D
 	var inventory = tree.root.get_node_or_null("Inv")
 	var data := {
@@ -126,7 +133,7 @@ static func _save_to_path(path: String) -> void:
 		data[key] = state_dyn.get(key)
 	# capture the active quest so it survives a load (chapter _ready() logic
 	# often skips re-setting it once its one-time flag is already true)
-	var quest := (Engine.get_main_loop() as SceneTree).root.get_node_or_null("Quest")
+	var quest := tree.root.get_node_or_null("Quest")
 	if quest != null:
 		data["quest"] = quest.snapshot()
 	var f := FileAccess.open(path, FileAccess.WRITE)
@@ -141,6 +148,9 @@ static func _load_from_path(path: String) -> void:
 	if typeof(data) != TYPE_DICTIONARY:
 		return
 	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		push_warning("SaveGame: cannot load without an active SceneTree")
+		return
 	var state_dyn = load("res://scenes/core/game_state.gd")
 	for key in STATE_KEYS:
 		if data.has(key):

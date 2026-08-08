@@ -103,8 +103,11 @@ func _finish_cutscene() -> void:
 		return
 	_finished = true
 	GameState.chapter_6_intro_played = true
-	get_tree().paused = false
-	var chapter := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return
+	tree.paused = false
+	var chapter := tree.current_scene
 	if chapter != null and chapter.has_method("start_key_fragment_quest"):
 		chapter.call("start_key_fragment_quest")
 	var cutscene_layer := get_parent()

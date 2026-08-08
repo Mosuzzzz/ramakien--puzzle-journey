@@ -30,14 +30,20 @@ func _use_portal() -> void:
 		get_viewport().set_input_as_handled()
 		return
 
-	var chapter := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return
+	var chapter := tree.current_scene
 	if chapter != null and chapter.has_method("show_ending_cutscene"):
 		chapter.call("show_ending_cutscene")
 	get_viewport().set_input_as_handled()
 
 
 func _is_sida_at_gate() -> bool:
-	var chapter := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return false
+	var chapter := tree.current_scene
 	if chapter == null:
 		return false
 	var sida := chapter.get_node_or_null("YSortRoot/Sida") as Node2D

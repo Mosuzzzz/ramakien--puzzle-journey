@@ -250,10 +250,13 @@ func _finish_cutscene() -> void:
 	if _finished:
 		return
 	_finished = true
-	var chapter := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return
+	var chapter := tree.current_scene
 	if chapter != null and chapter.has_method("switch_player_to_hanuman"):
 		chapter.call("switch_player_to_hanuman")
-	get_tree().paused = false
+	tree.paused = false
 	var cutscene_layer := get_parent()
 	if cutscene_layer is CanvasLayer:
 		cutscene_layer.queue_free()

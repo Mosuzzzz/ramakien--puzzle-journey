@@ -24,6 +24,7 @@ func _ready() -> void:
 		if boss != null:
 			boss.queue_free()
 		_chapter6_portal.set_locked(false)
+		restore_phra_ram_after_cutscene()
 	elif boss != null:
 		Quest.set_quest(QUEST_DEFEAT_NAME, QUEST_DEFEAT_DETAIL)
 		AudioManager.play_boss_music()
@@ -65,12 +66,18 @@ func restore_phra_ram_after_cutscene() -> void:
 
 	var old_player := get_node_or_null("YSortRoot/Player") as Node2D
 	var player_position := Vector2(65, 574)
+	var player_health := -1
 	if old_player != null:
 		player_position = old_player.position
+		if "current_health" in old_player:
+			player_health = old_player.current_health
 		old_player.get_parent().remove_child(old_player)
 		old_player.queue_free()
 
 	var phra_ram := PHRA_RAM_SCENE.instantiate() as Node2D
 	phra_ram.name = "Player"
+	if player_health >= 0 and "current_health" in phra_ram:
+		phra_ram.current_health = player_health
 	$YSortRoot.add_child(phra_ram)
 	phra_ram.position = player_position
+
