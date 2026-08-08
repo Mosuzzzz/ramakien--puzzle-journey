@@ -1,5 +1,6 @@
 extends Node2D
 
+const GameState := preload("res://scenes/core/game_state.gd")
 const HANUMAN_SCENE := preload("res://scenes/player/hanuman_player.tscn")
 
 const MAGIC_TRAIL_QUESTIONS := [
@@ -77,6 +78,19 @@ func _ready() -> void:
 	_magic_trail_quiz.answered.connect(_on_magic_trail_answered)
 	Quest.clear()
 
+	if GameState.chapter_4_intro_played:
+		if not GameState.chapter_5_post_boss_played:
+			_switch_to_hanuman_on_load()
+		if GameState.chapter_4_magic_trail_completed:
+			_chapter_5_portal.call("set_locked", false)
+			_magic_trail.hide()
+			_magic_trail.process_mode = PROCESS_MODE_DISABLED
+			_start_follow_thosakan_quest()
+		else:
+			# The cutscene normally starts this quest after switching players.
+			# Loading skips the cutscene, so restore the same gameplay state here.
+			start_magic_trail_quest.call_deferred()
+
 
 func switch_player_to_hanuman() -> void:
 	if _hanuman_active:
@@ -85,16 +99,45 @@ func switch_player_to_hanuman() -> void:
 
 	var old_player := get_node_or_null("YSortRoot/Player") as Node2D
 	var player_position := Vector2(691, 863)
+	var player_health := -1
 	if old_player != null:
 		player_position = old_player.position
+		if "current_health" in old_player:
+			player_health = old_player.current_health
 		old_player.get_parent().remove_child(old_player)
 		old_player.queue_free()
 
 	var hanuman := HANUMAN_SCENE.instantiate() as Node2D
 	hanuman.name = "Player"
+	if player_health >= 0 and "current_health" in hanuman:
+		hanuman.current_health = player_health
 	$YSortRoot.add_child(hanuman)
 	hanuman.position = player_position
 	call_deferred("start_magic_trail_quest")
+
+
+func _switch_to_hanuman_on_load() -> void:
+	if _hanuman_active:
+		return
+	_hanuman_active = true
+
+	var old_player := get_node_or_null("YSortRoot/Player") as Node2D
+	var player_position := Vector2(691, 863)
+	var player_health := -1
+	if old_player != null:
+		player_position = old_player.position
+		if "current_health" in old_player:
+			player_health = old_player.current_health
+		old_player.get_parent().remove_child(old_player)
+		old_player.queue_free()
+
+	var hanuman := HANUMAN_SCENE.instantiate() as Node2D
+	hanuman.name = "Player"
+	if player_health >= 0 and "current_health" in hanuman:
+		hanuman.current_health = player_health
+	$YSortRoot.add_child(hanuman)
+	hanuman.position = player_position
+
 
 
 func start_magic_trail_quest() -> void:
@@ -145,6 +188,7 @@ func _on_magic_trail_answered(correct: bool) -> void:
 		_magic_trail_progress += 1
 		_update_magic_trail_quest()
 		if _magic_trail_progress >= MAGIC_TRAIL_QUESTIONS.size():
+			GameState.chapter_4_magic_trail_completed = true
 			_chapter_5_portal.call("set_locked", false)
 			await _magic_trail.call(
 				"move_to",

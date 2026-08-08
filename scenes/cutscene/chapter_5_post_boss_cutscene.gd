@@ -154,11 +154,14 @@ func _finish_cutscene() -> void:
 		return
 	_finished = true
 	_active = false
-	var chapter := get_tree().current_scene
+	var tree := get_tree()
+	if tree == null:
+		return
+	var chapter := tree.current_scene
 	if chapter != null and chapter.has_method("restore_phra_ram_after_cutscene"):
 		chapter.call("restore_phra_ram_after_cutscene")
 	hide()
-	get_tree().paused = false
+	tree.paused = false
 	finished.emit()
 
 
