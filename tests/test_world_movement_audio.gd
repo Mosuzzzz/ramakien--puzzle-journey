@@ -40,7 +40,7 @@ func _run() -> void:
 	_expect(monster_loop != null, "ordinary monster loop exists")
 	if monster_loop != null:
 		mob._update_run_audio(true)
-		_expect(monster_loop.playing, "ordinary monster starts monster run loop")
+		_expect(not monster_loop.playing, "ordinary monster no longer starts continuous loop")
 		_expect(not run_loop.playing, "ordinary monster does not start Rama run loop")
 		mob._update_run_audio(false)
 		_expect(not monster_loop.playing, "ordinary monster stops monster run loop")

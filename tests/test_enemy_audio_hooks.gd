@@ -32,6 +32,47 @@ func _run() -> void:
 	_expect(mob.has_method("_attack_sound_key"), "generic enemy defines attack sound")
 	if mob.has_method("_attack_sound_key"):
 		_expect(mob._attack_sound_key() == &"enemy_attacking", "generic attack key")
+	_expect(mob.has_method("_is_footstep_frame"), "ordinary monster footstep frames defined")
+	if mob.has_method("_is_footstep_frame"):
+		_expect(mob._is_footstep_frame(&"walk", 2), "ordinary monster first foot contact")
+		_expect(mob._is_footstep_frame(&"walk", 8), "ordinary monster second foot contact")
+		_expect(
+			not mob._is_footstep_frame(&"walk", 5),
+			"ordinary monster non-contact frame is silent"
+		)
+		_expect(
+			not mob._is_footstep_frame(&"idle", 2),
+			"ordinary monster idle frame is silent"
+		)
+	_expect(
+		mob.has_method("_on_sprite_frame_changed"),
+		"ordinary monster exposes synchronized frame handler"
+	)
+	if mob.has_method("_on_sprite_frame_changed"):
+		var mob_b := (load("res://scenes/props/mob.tscn") as PackedScene).instantiate()
+		stage.add_child(mob_b)
+		_events.clear()
+		for actor in [mob, mob_b]:
+			var sprite := actor.get_node("Sprite") as AnimatedSprite2D
+			sprite.animation = &"walk"
+			sprite.frame = 2
+			actor.velocity = Vector2.RIGHT * actor.speed
+			actor.call("_on_sprite_frame_changed")
+		_expect(
+			_events == [&"monster_run", &"monster_run"],
+			"two monsters emit overlapping contact cues"
+		)
+		mob.call("_on_sprite_frame_changed")
+		_expect(_events.size() == 2, "same monster contact frame cannot duplicate")
+		var mob_sprite := mob.get_node("Sprite") as AnimatedSprite2D
+		mob_sprite.frame = 5
+		mob_sprite.frame = 2
+		_expect(_events.size() == 3, "next footstep cycle emits one new cue")
+		mob_sprite.frame = 5
+		mob.velocity = Vector2.ZERO
+		mob_sprite.frame = 2
+		_expect(_events.size() == 3, "stationary monster contact frame is silent")
+		mob_b.free()
 	_events.clear()
 	mob.apply_authorized_damage(1)
 	_expect(_events == [&"enemy_hit"], "generic enemy hit plays once")
