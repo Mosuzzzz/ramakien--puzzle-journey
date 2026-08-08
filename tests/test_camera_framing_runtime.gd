@@ -17,6 +17,7 @@ func _initialize() -> void:
 		CameraFraming.cover_zoom(Vector2(1920, 1080), Vector2.ZERO, 1.3) == 1.3,
 		"zero map keeps base zoom"
 	)
+	_check_chapter_9_lifecycle()
 	_finish()
 
 
@@ -26,6 +27,17 @@ func _check_cover(viewport_size: Vector2, map_size: Vector2, base_zoom: float) -
 	_expect(visible_world_size.x <= map_size.x, "camera width stays inside map")
 	_expect(visible_world_size.y <= map_size.y, "camera height stays inside map")
 	_expect(zoom >= base_zoom, "camera does not zoom farther out than normal chapters")
+
+
+func _check_chapter_9_lifecycle() -> void:
+	var source := FileAccess.get_file_as_string("res://scenes/chapter_9/chapter_9.gd")
+	_expect(source.contains("CameraFraming.cover_zoom"), "chapter 9 uses cover zoom")
+	_expect(source.contains("size_changed.connect"), "chapter 9 reacts to viewport resize")
+	_expect(
+		source.contains("call_deferred(\"_configure_chapter_9_camera\")"),
+		"chapter 9 waits until the scene is ready"
+	)
+	_expect(source.contains("camera.limit_bottom"), "chapter 9 applies map bounds")
 
 
 func _expect(condition: bool, message: String) -> void:
