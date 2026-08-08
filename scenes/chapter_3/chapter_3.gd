@@ -200,6 +200,9 @@ func _start_post_battle_cutscene() -> void:
 		return
 	_post_battle_cutscene_started = true
 	GameState.chapter_3_post_battle_played = true
+	if not is_instance_valid(_post_battle_cutscene):
+		push_error("Chapter 3 post-battle cutscene is missing or was freed")
+		return
 	_post_battle_cutscene.call("show_cutscene")
 
 

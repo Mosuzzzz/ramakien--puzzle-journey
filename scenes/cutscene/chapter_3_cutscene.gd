@@ -40,11 +40,7 @@ func _ready() -> void:
 		var chapter := get_tree().current_scene
 		if chapter != null and chapter.has_method("restore_chapter_3_progress"):
 			chapter.call_deferred("restore_chapter_3_progress")
-		var cutscene_layer := get_parent()
-		if cutscene_layer is CanvasLayer:
-			cutscene_layer.queue_free()
-		else:
-			queue_free()
+		queue_free()
 		return
 
 	GameState.chapter_3_intro_played = true

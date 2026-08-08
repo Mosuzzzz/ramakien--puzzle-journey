@@ -28,8 +28,10 @@ class FakeQuiz extends CanvasLayer:
 
 
 class FakePostBattleCutscene extends Control:
+	var show_count := 0
+
 	func show_cutscene() -> void:
-		pass
+		show_count += 1
 
 
 const GameState := preload("res://scenes/core/game_state.gd")
@@ -44,12 +46,31 @@ func _initialize() -> void:
 func _run() -> void:
 	GameState.chapter_3_intro_played = true
 	GameState.chapter_3_post_battle_played = false
+	await _check_shared_layer_preserves_post_battle_cutscene()
 	await _check_feather_reentry(0)
 	await _check_feather_reentry(1)
 	await _check_feather_reentry(2)
 	await _check_rest_quest_reentry()
 	await _check_post_battle_reentry()
 	_finish()
+
+
+func _check_shared_layer_preserves_post_battle_cutscene() -> void:
+	GameState.chapter_3_post_battle_played = false
+	_set_feather_count(3)
+	var chapter := await _enter_chapter()
+	var post := chapter.get_node_or_null(
+		"Chapter3CutsceneLayer/PostBattleCutscene"
+	) as FakePostBattleCutscene
+	_expect(post != null, "re-entry keeps post-battle cutscene in shared layer")
+	if post != null:
+		chapter.call("_start_post_battle_cutscene")
+		await create_timer(0.4).timeout
+		_expect(
+			post.show_count == 1,
+			"great-tree event starts post-battle cutscene after re-entry"
+		)
+	await _remove_chapter(chapter)
 
 
 func _check_feather_reentry(collected: int) -> void:
@@ -95,10 +116,9 @@ func _enter_chapter() -> Node2D:
 	root.add_child(chapter)
 	current_scene = chapter
 	await process_frame
-	var cutscene_layer := CanvasLayer.new()
-	cutscene_layer.name = "ReentryCutsceneLayer"
-	chapter.add_child(cutscene_layer)
+	var cutscene_layer := chapter.get_node("Chapter3CutsceneLayer") as CanvasLayer
 	var cutscene := _build_intro_cutscene()
+	cutscene.name = "Chapter3Cutscene"
 	cutscene_layer.add_child(cutscene)
 	await process_frame
 	await process_frame
