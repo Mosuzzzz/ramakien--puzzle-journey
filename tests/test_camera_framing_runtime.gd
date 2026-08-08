@@ -38,6 +38,18 @@ func _check_chapter_9_lifecycle() -> void:
 		"chapter 9 waits until the scene is ready"
 	)
 	_expect(source.contains("camera.limit_bottom"), "chapter 9 applies map bounds")
+	_expect(
+		source.contains("configure_props_above_characters(_chapter_9_props, _y_sort_root)"),
+		"chapter 9 configures prop layering when ready"
+	)
+	_expect(
+		source.contains("props.z_as_relative = false"),
+		"chapter 9 props use a global drawing layer"
+	)
+	_expect(
+		source.contains("props.z_index = actors.z_index + 1"),
+		"chapter 9 props draw above actors"
+	)
 
 
 func _expect(condition: bool, message: String) -> void:

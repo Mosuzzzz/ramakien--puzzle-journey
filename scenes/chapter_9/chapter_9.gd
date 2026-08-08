@@ -14,9 +14,13 @@ const QUEST_RESCUE_DETAIL := "กลับไปยังพระราชว�
 @onready var _ending_cutscene: Control = $Chapter9EndingCutsceneLayer/Chapter9EndingCutscene
 @onready var _background: Sprite2D = $Background
 @onready var _player: CharacterBody2D = $YSortRoot/Player
+@onready var _chapter_9_props: Node2D = $Chapter9Props
+@onready var _y_sort_root: Node2D = $YSortRoot
 
 
 func _ready() -> void:
+	configure_props_above_characters(_chapter_9_props, _y_sort_root)
+
 	if GameState.chapter_9_thotsakan_defeated:
 		_show_rescue_quest()
 		if GameState.chapter_9_sida_rescued:
@@ -37,6 +41,13 @@ func _ready() -> void:
 	if viewport != null and not viewport.size_changed.is_connected(_on_viewport_size_changed):
 		viewport.size_changed.connect(_on_viewport_size_changed)
 	call_deferred("_configure_chapter_9_camera")
+
+
+static func configure_props_above_characters(props: CanvasItem, actors: CanvasItem) -> void:
+	if props == null or actors == null:
+		return
+	props.z_as_relative = false
+	props.z_index = actors.z_index + 1
 
 
 func _on_viewport_size_changed() -> void:
