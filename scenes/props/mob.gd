@@ -27,7 +27,6 @@ const ANIM_DISPLAY_SCALE := {
 # per-animation sprite offset that keeps the feet on the same baseline
 const ANIM_SPRITE_Y := {"walk": -10.5, "attack": -35.0}
 const ATTACK_HIT_FRAME := 4
-const WALK_FOOTSTEP_FRAMES := {2: true, 8: true}
 
 var _health: int = max_health
 var _hit_cooldown: float = 0.0
@@ -36,7 +35,6 @@ var _face_right := false
 var _attacking := false
 var _defeated := false
 var _hit_flash_tween: Tween
-var _last_footstep_frame := -1
 var damage_gate: Node = null
 
 @onready var _sprite: AnimatedSprite2D = $Sprite
@@ -44,8 +42,6 @@ var damage_gate: Node = null
 func _ready() -> void:
 	_health = max_health
 	_player = get_parent().get_node_or_null("Player")
-	if not _sprite.frame_changed.is_connected(_on_sprite_frame_changed):
-		_sprite.frame_changed.connect(_on_sprite_frame_changed)
 	_sprite.animation = ""
 	_play("idle")
 
@@ -142,34 +138,12 @@ func apply_authorized_damage(amount: int) -> void:
 			queue_free()
 
 
-func _is_footstep_frame(animation: StringName, frame: int) -> bool:
-	return animation == _animation_for(&"walk") and WALK_FOOTSTEP_FRAMES.has(frame)
-
-
-func _on_sprite_frame_changed() -> void:
-	var animation := _sprite.animation
-	var frame := _sprite.frame
-	if (
-		_defeated
-		or _attacking
-		or not can_move
-		or velocity.is_zero_approx()
-		or not _is_footstep_frame(animation, frame)
-	):
-		_last_footstep_frame = -1
-		return
-	if frame == _last_footstep_frame:
-		return
-	_last_footstep_frame = frame
-	AudioManager.play_sfx(AudioManager.MONSTER_RUN)
-
-
 func _uses_shared_run_audio() -> bool:
-	return false
+	return true
 
 
-func _update_run_audio(_active: bool) -> void:
-	AudioManager.set_monster_run_active(self, false)
+func _update_run_audio(active: bool) -> void:
+	AudioManager.set_monster_run_active(self, active and _uses_shared_run_audio())
 
 
 func _exit_tree() -> void:

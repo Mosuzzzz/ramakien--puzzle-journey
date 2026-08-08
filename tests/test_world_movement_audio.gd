@@ -40,15 +40,18 @@ func _run() -> void:
 	_expect(monster_loop != null, "ordinary monster loop exists")
 	if monster_loop != null:
 		mob._update_run_audio(true)
-		_expect(not monster_loop.playing, "ordinary monster no longer starts continuous loop")
+		_expect(monster_loop.playing, "ordinary monster starts shared run loop")
 		_expect(not run_loop.playing, "ordinary monster does not start Rama run loop")
 		mob._update_run_audio(false)
-		_expect(not monster_loop.playing, "ordinary monster stops monster run loop")
+		_expect(not monster_loop.playing, "ordinary monster stops shared run loop")
 		mob._update_run_audio(true)
+		mob.potion_drop_chance = 0.0
+		mob.apply_authorized_damage(mob.max_health)
+		_expect(not monster_loop.playing, "defeated final monster stops shared run loop immediately")
 	mob.free()
 	await process_frame
 	if monster_loop != null:
-		_expect(not monster_loop.playing, "ordinary monster releases audio on exit")
+		_expect(not monster_loop.playing, "removed final monster releases shared run loop")
 
 	var thosakan := (load("res://scenes/props/thosakan.tscn") as PackedScene).instantiate()
 	stage.add_child(thosakan)
