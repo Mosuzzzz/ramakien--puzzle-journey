@@ -11,36 +11,16 @@ func _run() -> void:
 	await process_frame
 	var button := quest.get_node("QuestButton") as TextureButton
 	var notice := quest.get_node_or_null("QuestNotification") as TextureRect
-	_expect(notice != null, "quest notification exists")
-	if notice == null:
-		_finish()
-		return
-	_expect(
-		notice.position.y >= button.position.y + button.size.y,
-		"notification sits below quest button"
-	)
-	var notice_default_modulate := notice.modulate
-	var notice_default_scale := notice.scale
-	_expect(not notice.visible, "notification starts hidden")
 	quest.set_quest("เควสแรก", "รายละเอียดแรก")
-	_expect(quest.has_unread_notification() and notice.visible, "new quest notifies")
-	var start_y := notice.position.y
+	_expect(quest.has_unread_notification(), "new quest notifies")
+	_expect(notice == null or not notice.visible, "quest arrow stays absent for unread quest")
 	await create_timer(0.55).timeout
-	_expect(not is_equal_approx(notice.position.y, start_y), "notification bobs")
-	_expect(
-		notice.position.y >= button.position.y + button.size.y,
-		"notification bob stays below quest button"
-	)
 	_expect(
 		button.scale != Vector2.ONE or button.modulate != Color.WHITE,
 		"unread quest animates button attention"
 	)
-	_expect(
-		notice.modulate == notice_default_modulate and notice.scale == notice_default_scale,
-		"notification arrow only bobs"
-	)
 	button.pressed.emit()
-	_expect(not quest.has_unread_notification() and not notice.visible, "press acknowledges")
+	_expect(not quest.has_unread_notification(), "press acknowledges")
 	_expect(button.scale == Vector2.ONE, "acknowledge restores button scale")
 	_expect(button.modulate == Color.WHITE, "acknowledge restores button color")
 	quest.set_quest("เควสแรก", "รายละเอียดแรก")
@@ -55,9 +35,9 @@ func _run() -> void:
 	_expect(not quest.has_unread_notification(), "same completion stays read")
 	quest.set_quest("เควสซ่อน HUD", "ยังไม่ได้อ่าน")
 	quest.set_hud_visible(false)
-	_expect(not notice.visible and quest.has_unread_notification(), "hidden HUD preserves unread")
+	_expect(quest.has_unread_notification(), "hidden HUD preserves unread")
 	quest.set_hud_visible(true)
-	_expect(notice.visible, "restored HUD restores notification")
+	_expect(quest.has_unread_notification(), "restored HUD preserves unread")
 	quest.clear()
 	_expect(not quest.has_unread_notification(), "clear removes unread")
 	quest.queue_free()

@@ -3,9 +3,6 @@ extends CanvasLayer
 const GameState := preload("res://scenes/core/game_state.gd")
 const DEFAULT_TEXT_COLOR := Color.WHITE
 const COMPLETED_TEXT_COLOR := Color("#67d56b")
-const NOTIFICATION_BOB_DISTANCE := 7.0
-const NOTIFICATION_BOB_SECONDS := 0.45
-const NOTIFICATION_BUTTON_GAP := 6.0
 const BUTTON_DIM_COLOR := Color(0.62, 0.62, 0.62, 1.0)
 const BUTTON_PULSE_SCALE := Vector2(1.10, 1.10)
 const BUTTON_PULSE_HALF_SECONDS := 0.65
@@ -15,8 +12,6 @@ var _hud_allowed := true
 var _has_quest := false
 var _completed := false
 var _notification_unread := false
-var _notification_base_y := 0.0
-var _notification_tween: Tween
 var _button_attention_tween: Tween
 var target_position := Vector2.INF
 var _target_nodes: Array[Node2D] = []
@@ -28,26 +23,13 @@ var _target_markers: Array[Control] = []
 @onready var _detail_name_label: Label = $PageDim/Page/PageMargin/Columns/Detail/DetailNameLabel
 @onready var _detail_text_label: Label = $PageDim/Page/PageMargin/Columns/Detail/PageTextLabel
 @onready var _marker: Control = $QuestMarker
-@onready var _notification: TextureRect = $QuestNotification
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_button.hide()
 	_page.hide()
 	_marker.hide()
-	_notification.hide()
 	_button.pivot_offset = _button.size * 0.5
-	_position_notification_below_button()
-	_notification_base_y = _notification.position.y
-	_notification_tween = create_tween().set_loops()
-	_notification_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	_notification_tween.tween_property(
-		_notification, "position:y", _notification_base_y + NOTIFICATION_BOB_DISTANCE,
-		NOTIFICATION_BOB_SECONDS
-	)
-	_notification_tween.tween_property(
-		_notification, "position:y", _notification_base_y, NOTIFICATION_BOB_SECONDS
-	)
 
 func set_quest(quest_name: String, detail: String = "", target: Vector2 = Vector2.INF) -> void:
 	var changed := (not _has_quest or _name_label.text != quest_name
@@ -127,20 +109,11 @@ func has_unread_notification() -> bool:
 func _set_notification_unread(unread: bool) -> void:
 	var was_unread := _notification_unread
 	_notification_unread = unread
-	_notification.visible = _hud_allowed and _has_quest and unread
 	if unread:
 		if not was_unread:
 			_start_button_attention()
 	else:
 		_stop_button_attention()
-
-
-func _position_notification_below_button() -> void:
-	_notification.position = Vector2(
-		_button.position.x + (_button.size.x - _notification.size.x) * 0.5,
-		_button.position.y + _button.size.y + NOTIFICATION_BUTTON_GAP
-	)
-
 
 func _start_button_attention() -> void:
 	_stop_button_attention()
@@ -191,7 +164,6 @@ func restore_pending() -> void:
 func set_hud_visible(shown: bool) -> void:
 	_hud_allowed = shown
 	_button.visible = shown and _has_quest
-	_notification.visible = shown and _has_quest and _notification_unread
 	if not shown:
 		_page.hide()
 
