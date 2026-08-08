@@ -38,7 +38,10 @@
 
 - [ ] **Step 1: Add the focused headless test**
 
-Create `tests/test_chapter_3_reentry_runtime.gd` with helpers that instantiate `res://scenes/chapter_3/chapter_3.tscn`, set `GameState.chapter_3_intro_played = true`, call `restore_chapter_3_progress()`, and assert:
+Create `tests/test_chapter_3_reentry_runtime.gd` with helpers that enter
+`res://scenes/chapter_3/chapter_3.tscn` through the real `SceneTree`, set
+`GameState.chapter_3_intro_played = true`, allow the skipped-intro branch to
+run, and assert consumer-visible quest and pickup state:
 
 ```gdscript
 extends SceneTree
@@ -55,59 +58,47 @@ func _run() -> void:
 		await _check_feather_progress(collected)
 	await _check_rest_quest()
 	await _check_completed_story()
-	var cutscene_source := FileAccess.get_file_as_string(
-		"res://scenes/cutscene/chapter_3_cutscene.gd"
-	)
-	_expect(
-		cutscene_source.contains('call_deferred("restore_chapter_3_progress")'),
-		"skipped intro defers Chapter 3 restoration"
-	)
 	_finish()
 
 func _check_feather_progress(collected: int) -> void:
-	var chapter := await _make_chapter(collected, false)
+	var chapter := await _enter_chapter(collected, false)
 	var before := Inv.count("jatayu_feather")
-	chapter.call("restore_chapter_3_progress")
-	await process_frame
 	var snapshot: Dictionary = Quest.snapshot()
 	_expect(snapshot.get("name") == "ตามหาขนนกพญาชฎายุ", "feather quest restored")
 	_expect(snapshot.get("detail", "").contains("%d/3" % collected), "saved count restored")
 	_expect(Quest.get_target_count() == 3 - collected, "remaining targets restored")
-	_expect(chapter.call("_active_feathers").size() == 3 - collected, "remaining pickups restored")
+	_expect(_visible_feather_count(chapter) == 3 - collected, "remaining pickups restored")
 	_expect(Inv.count("jatayu_feather") == before, "restoration grants no feather")
-	await _remove_chapter(chapter)
 
 func _check_rest_quest() -> void:
-	var chapter := await _make_chapter(3, false)
-	chapter.call("restore_chapter_3_progress")
-	await process_frame
-	await process_frame
+	await _enter_chapter(3, false)
 	_expect(Quest.snapshot().get("name") == "พักผ่อนใต้ต้นไม้ใหญ่", "rest quest restored")
 	_expect(Inv.count("jatayu_feather") == 3, "completed inventory remains unchanged")
-	await _remove_chapter(chapter)
 
 func _check_completed_story() -> void:
-	var chapter := await _make_chapter(3, true)
-	chapter.call("restore_chapter_3_progress")
-	await process_frame
+	var chapter := await _enter_chapter(3, true)
 	_expect(Quest.snapshot().get("name") == "ตามรอยทศกัณฐ์", "exit quest restored")
 	_expect(not chapter.get_node("YSortRoot/Chapter4Portal").locked, "Chapter 4 portal restored")
 	_expect(Inv.count("jatayu_feather") == 3, "story restoration grants no feather")
-	await _remove_chapter(chapter)
 
-func _make_chapter(collected: int, post_battle: bool) -> Node2D:
+func _enter_chapter(collected: int, post_battle: bool) -> Node2D:
 	Quest.clear()
 	Inv.restore_items({"potion": 3, "jatayu_feather": collected})
 	GameStateScript.chapter_3_intro_played = true
 	GameStateScript.chapter_3_post_battle_played = post_battle
-	var chapter := CHAPTER_SCENE.instantiate()
-	root.add_child(chapter)
+	var error := change_scene_to_packed(CHAPTER_SCENE)
+	_expect(error == OK, "Chapter 3 scene change starts")
 	await process_frame
-	return chapter
+	await process_frame
+	return current_scene
 
-func _remove_chapter(chapter: Node2D) -> void:
-	chapter.queue_free()
-	await process_frame
+func _visible_feather_count(chapter: Node2D) -> int:
+	var visible_count := 0
+	for feather_name in ["Feather1", "Feather2", "Feather3"]:
+		var feather := chapter.get_node("YSortRoot/%s" % feather_name) as Area2D
+		if feather.visible and feather.monitoring:
+			visible_count += 1
+	return visible_count
 
 func _expect(condition: bool, message: String) -> void:
 	if not condition:
@@ -247,4 +238,3 @@ Start a game, finish the Chapter 3 intro, collect zero or some feathers, press E
 Run: `git diff --check HEAD~2..HEAD`
 
 Expected: no whitespace errors or unrelated Chapter/audio changes.
-
