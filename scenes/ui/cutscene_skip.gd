@@ -27,26 +27,11 @@ static func attach(host: Node, on_skip: Callable) -> Button:
 	return b
 
 
-## Fade to black, run the skip, then fade back in. The shade lives on the tree
-## root so it survives the cutscene being freed or the scene changing.
+## Delegate the visual transition to the cutscene's normal finish path so skip
+## and accepted advance use the same shared fade sequence.
 static func _skip_with_fade(b: Button, on_skip: Callable) -> void:
+	var transition := b.get_node_or_null("/root/SceneTransition")
+	if b.disabled or (transition != null and transition.is_busy()):
+		return
 	b.disabled = true
-	var tree := b.get_tree()
-	var layer := CanvasLayer.new()
-	layer.layer = 999
-	layer.process_mode = Node.PROCESS_MODE_ALWAYS
-	var shade := ColorRect.new()
-	shade.color = Color(0, 0, 0, 0)
-	shade.set_anchors_preset(Control.PRESET_FULL_RECT)
-	layer.add_child(shade)
-	tree.root.add_child(layer)
-	var fade_out := layer.create_tween()
-	fade_out.tween_property(shade, "color:a", 1.0, 0.4).set_trans(Tween.TRANS_SINE)
-	await fade_out.finished
 	on_skip.call()
-	await tree.process_frame
-	await tree.process_frame
-	var fade_in := layer.create_tween()
-	fade_in.tween_property(shade, "color:a", 0.0, 0.4).set_trans(Tween.TRANS_SINE)
-	await fade_in.finished
-	layer.queue_free()
