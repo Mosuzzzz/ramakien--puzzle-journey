@@ -14,6 +14,10 @@
 [ext_resource type="Script" path="res://scenes/props/chapter_9_ending_gate.gd" id="chapter_9_ending_gate_script"]
 [ext_resource type="Texture2D" uid="uid://dqb68kn34iqv5" path="res://assets/cutscene/chapter_9/ChatGPT Image 24 ก.ค. 2569 14_44_25.png" id="chapter_9_ending_image"]
 [ext_resource type="Script" path="res://scenes/cutscene/chapter_9_ending_cutscene.gd" id="chapter_9_ending_cutscene_script"]
+[ext_resource type="Texture2D" uid="uid://d3ka3b4pwt385" path="res://assets/props/chapter9/image-removebg-preview.png" id="chapter_9_prop_fire_1"]
+[ext_resource type="Texture2D" uid="uid://b42tpafxo1ffc" path="res://assets/props/chapter9/image-removebg-preview (1).png" id="chapter_9_prop_fire_2"]
+[ext_resource type="Texture2D" uid="uid://cx2o4xhiw4h7b" path="res://assets/props/chapter9/image-removebg-preview (2).png" id="chapter_9_prop_dark_1"]
+[ext_resource type="Texture2D" uid="uid://cuk33p0ss4pgo" path="res://assets/props/chapter9/image-removebg-preview (3).png" id="chapter_9_prop_dark_2"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1448, 299)
@@ -167,6 +171,28 @@ script = ExtResource("chapter_9_script")
 [node name="Background" type="Sprite2D" parent="." unique_id=1043713902]
 position = Vector2(724, 543)
 texture = ExtResource("1_map")
+
+[node name="Chapter9Props" type="Node2D" parent="."]
+
+[node name="FireTowerA" type="Sprite2D" parent="Chapter9Props"]
+position = Vector2(484, 543)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("chapter_9_prop_fire_1")
+
+[node name="FireTowerB" type="Sprite2D" parent="Chapter9Props"]
+position = Vector2(644, 543)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("chapter_9_prop_fire_2")
+
+[node name="DarkTowerA" type="Sprite2D" parent="Chapter9Props"]
+position = Vector2(804, 543)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("chapter_9_prop_dark_1")
+
+[node name="DarkTowerB" type="Sprite2D" parent="Chapter9Props"]
+position = Vector2(964, 543)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("chapter_9_prop_dark_2")
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=388791847]
 
