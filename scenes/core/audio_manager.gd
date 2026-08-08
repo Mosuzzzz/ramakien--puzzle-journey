@@ -310,7 +310,7 @@ func _load_streams() -> void:
 			push_warning("AudioManager: failed to load %s" % path)
 			continue
 		if stream is AudioStreamMP3:
-			stream.loop = key in [RUN, MONSTER_RUN]
+			stream.loop = key == RUN
 		_streams[key] = stream
 
 

@@ -73,6 +73,26 @@ func _run() -> void:
 				is_equal_approx(pickup_player.volume_db, linear_to_db(1.0)),
 				"non-door cues reset pooled player gain"
 			)
+		for child in audio.get_children():
+			if child is AudioStreamPlayer and child.name.begins_with("SFX"):
+				child.stop()
+		audio.play_sfx(&"monster_run")
+		var monster_step_player: AudioStreamPlayer = null
+		for child in audio.get_children():
+			if (
+				child is AudioStreamPlayer
+				and child.stream != null
+				and child.stream.resource_path.ends_with("giant_king.mp3")
+			):
+				monster_step_player = child
+				break
+		_expect(monster_step_player != null, "monster step uses a pooled SFX player")
+		if monster_step_player != null:
+			_expect(
+				monster_step_player.stream is AudioStreamMP3
+					and not monster_step_player.stream.loop,
+				"ordinary monster step is a non-looping one-shot"
+			)
 		var owner_a := Node.new()
 		var owner_b := Node.new()
 		root.add_child(owner_a)
