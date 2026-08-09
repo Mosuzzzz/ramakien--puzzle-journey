@@ -895,27 +895,9 @@ position = Vector2(1020, 543)
 
 [node name="Mob1" parent="YSortRoot" unique_id=2085602222 instance=ExtResource("3_mob")]
 position = Vector2(426, 922)
-speed = null
-aggro_range = null
-contact_damage = null
-max_health = null
-display_height = null
-can_move = null
-attack_range = null
-attack_cooldown = null
-attack_hit_padding = null
 
 [node name="Mob2" parent="YSortRoot" unique_id=388536931 instance=ExtResource("3_mob")]
 position = Vector2(1164, 807)
-speed = null
-aggro_range = null
-contact_damage = null
-max_health = null
-display_height = null
-can_move = null
-attack_range = null
-attack_cooldown = null
-attack_hit_padding = null
 
 [node name="Chapter1Portal" parent="YSortRoot" unique_id=1243868220 instance=ExtResource("5_portal")]
 position = Vector2(730, 143)
@@ -933,15 +915,6 @@ locked_prompt_text = "ยังมีเรื่องสำคัญที่�
 
 [node name="Mob3" parent="YSortRoot" unique_id=1253520576 instance=ExtResource("3_mob")]
 position = Vector2(780, 658)
-speed = null
-aggro_range = null
-contact_damage = null
-max_health = null
-display_height = null
-can_move = null
-attack_range = null
-attack_cooldown = null
-attack_hit_padding = null
 
 [node name="FaceRock" type="Sprite2D" parent="YSortRoot" unique_id=964546435]
 position = Vector2(721, 540)
@@ -1214,7 +1187,6 @@ layer = 100
 
 [node name="Chapter2DeerCutscene" type="Control" parent="Chapter2DeerCutsceneLayer" unique_id=480171026]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

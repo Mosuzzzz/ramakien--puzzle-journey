@@ -4,20 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://dx7q74sr1516b" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/portal.tscn" id="90_portal"]
 [ext_resource type="PackedScene" uid="uid://doorx52srbvl5" path="res://scenes/props/thosakan.tscn" id="91_mob"]
-[ext_resource type="Texture2D" uid="uid://bnumsic1w3gs2" path="res://assets/cutscene/chapter_9/ChatGPT Image 23 ก.ค. 2569 13_33_08.png" id="chapter_9_cutscene_image"]
-[ext_resource type="Script" path="res://scenes/cutscene/chapter_9_cutscene.gd" id="chapter_9_cutscene_script"]
-[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="chapter_9_cutscene_font"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="chapter_9_cutscene_bold"]
-[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="chapter_9_title_banner"]
-[ext_resource type="Script" path="res://scenes/chapter_9/chapter_9.gd" id="chapter_9_script"]
-[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="chapter_9_sida"]
-[ext_resource type="Script" path="res://scenes/props/chapter_9_ending_gate.gd" id="chapter_9_ending_gate_script"]
+[ext_resource type="FontFile" uid="uid://c7je1jbvvhbpy" path="res://assets/fonts/Sarabun-Regular.ttf" id="chapter_9_cutscene_font"]
+[ext_resource type="Texture2D" uid="uid://bnumsic1w3gs2" path="res://assets/cutscene/chapter_9/ChatGPT Image 23 ก.ค. 2569 13_33_08.png" id="chapter_9_cutscene_image"]
+[ext_resource type="Script" uid="uid://iwxw3id2t7wc" path="res://scenes/cutscene/chapter_9_cutscene.gd" id="chapter_9_cutscene_script"]
+[ext_resource type="Script" uid="uid://w5nkr2dvhogb" path="res://scenes/cutscene/chapter_9_ending_cutscene.gd" id="chapter_9_ending_cutscene_script"]
+[ext_resource type="Script" uid="uid://i7pemnej60jt" path="res://scenes/props/chapter_9_ending_gate.gd" id="chapter_9_ending_gate_script"]
 [ext_resource type="Texture2D" uid="uid://dqb68kn34iqv5" path="res://assets/cutscene/chapter_9/ChatGPT Image 24 ก.ค. 2569 14_44_25.png" id="chapter_9_ending_image"]
-[ext_resource type="Script" path="res://scenes/cutscene/chapter_9_ending_cutscene.gd" id="chapter_9_ending_cutscene_script"]
-[ext_resource type="Texture2D" uid="uid://d3ka3b4pwt385" path="res://assets/props/chapter9/image-removebg-preview.png" id="chapter_9_prop_fire_1"]
-[ext_resource type="Texture2D" uid="uid://b42tpafxo1ffc" path="res://assets/props/chapter9/image-removebg-preview (1).png" id="chapter_9_prop_fire_2"]
 [ext_resource type="Texture2D" uid="uid://cx2o4xhiw4h7b" path="res://assets/props/chapter9/image-removebg-preview (2).png" id="chapter_9_prop_dark_1"]
 [ext_resource type="Texture2D" uid="uid://cuk33p0ss4pgo" path="res://assets/props/chapter9/image-removebg-preview (3).png" id="chapter_9_prop_dark_2"]
+[ext_resource type="Texture2D" uid="uid://d3ka3b4pwt385" path="res://assets/props/chapter9/image-removebg-preview.png" id="chapter_9_prop_fire_1"]
+[ext_resource type="Texture2D" uid="uid://b42tpafxo1ffc" path="res://assets/props/chapter9/image-removebg-preview (1).png" id="chapter_9_prop_fire_2"]
+[ext_resource type="Script" uid="uid://bv8vk261am7mc" path="res://scenes/chapter_9/chapter_9.gd" id="chapter_9_script"]
+[ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="chapter_9_sida"]
+[ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="chapter_9_title_banner"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1448, 299)
@@ -50,8 +50,8 @@ radius = 39.0
 height = 102.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lvxv4"]
-a = Vector2(17, 137)
-b = Vector2(-58, 182)
+a = Vector2(91, 113)
+b = Vector2(-156, 228)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_wp21q"]
 a = Vector2(-32, 186)
@@ -90,8 +90,8 @@ radius = 36.0
 height = 102.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jpnx5"]
-a = Vector2(-130, 139)
-b = Vector2(-58, 182)
+a = Vector2(-203, 111)
+b = Vector2(33, 226)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kf86y"]
 a = Vector2(-174, 121)
@@ -172,26 +172,26 @@ script = ExtResource("chapter_9_script")
 position = Vector2(724, 543)
 texture = ExtResource("1_map")
 
-[node name="Chapter9Props" type="Node2D" parent="."]
+[node name="Chapter9Props" type="Node2D" parent="." unique_id=1442088735]
 
-[node name="FireTowerA" type="Sprite2D" parent="Chapter9Props"]
-position = Vector2(484, 543)
-scale = Vector2(0.25, 0.25)
+[node name="FireTowerA" type="Sprite2D" parent="Chapter9Props" unique_id=1211728891]
+position = Vector2(368.875, 853)
+scale = Vector2(0.2612179, 0.25)
 texture = ExtResource("chapter_9_prop_fire_1")
 
-[node name="FireTowerB" type="Sprite2D" parent="Chapter9Props"]
-position = Vector2(644, 543)
-scale = Vector2(0.25, 0.25)
+[node name="FireTowerB" type="Sprite2D" parent="Chapter9Props" unique_id=1013727880]
+position = Vector2(1066.4375, 853)
+scale = Vector2(0.25975704, 0.25)
 texture = ExtResource("chapter_9_prop_fire_2")
 
-[node name="DarkTowerA" type="Sprite2D" parent="Chapter9Props"]
-position = Vector2(804, 543)
-scale = Vector2(0.25, 0.25)
+[node name="DarkTowerA" type="Sprite2D" parent="Chapter9Props" unique_id=1004746914]
+position = Vector2(211.75, 789.00006)
+scale = Vector2(0.43923607, 0.37211546)
 texture = ExtResource("chapter_9_prop_dark_1")
 
-[node name="DarkTowerB" type="Sprite2D" parent="Chapter9Props"]
-position = Vector2(964, 543)
-scale = Vector2(0.25, 0.25)
+[node name="DarkTowerB" type="Sprite2D" parent="Chapter9Props" unique_id=1473761142]
+position = Vector2(1234, 786)
+scale = Vector2(0.29046762, 0.25)
 texture = ExtResource("chapter_9_prop_dark_2")
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=388791847]
@@ -221,11 +221,11 @@ position = Vector2(1110, 993)
 shape = SubResource("RectangleShape2D_5j7er")
 
 [node name="Bottom4" type="CollisionShape2D" parent="Walls" unique_id=1023934578]
-position = Vector2(1069, 860)
+position = Vector2(1070, 944)
 shape = SubResource("CapsuleShape2D_sm2xf")
 
 [node name="Bottom5" type="CollisionShape2D" parent="Walls" unique_id=583716113]
-position = Vector2(1221, 806)
+position = Vector2(1227, 866)
 shape = SubResource("CapsuleShape2D_y6o0t")
 
 [node name="Bottom6" type="CollisionShape2D" parent="Walls" unique_id=171650966]
@@ -237,7 +237,7 @@ position = Vector2(1168, 675)
 shape = SubResource("SegmentShape2D_lvxv4")
 
 [node name="Bottom8" type="CollisionShape2D" parent="Walls" unique_id=1316315922]
-position = Vector2(1319, 604)
+position = Vector2(1318, 604)
 shape = SubResource("SegmentShape2D_wp21q")
 
 [node name="Bottom9" type="CollisionShape2D" parent="Walls" unique_id=520410677]
@@ -269,7 +269,7 @@ position = Vector2(1318, 185)
 shape = SubResource("SegmentShape2D_7niha")
 
 [node name="Bottom16" type="CollisionShape2D" parent="Walls" unique_id=1774734742]
-position = Vector2(371, 861)
+position = Vector2(366, 938)
 shape = SubResource("CapsuleShape2D_7vhbe")
 
 [node name="Bottom17" type="CollisionShape2D" parent="Walls" unique_id=1184853421]
@@ -281,7 +281,7 @@ position = Vector2(222, 610)
 shape = SubResource("SegmentShape2D_kf86y")
 
 [node name="Bottom19" type="CollisionShape2D" parent="Walls" unique_id=347624746]
-position = Vector2(222, 808)
+position = Vector2(197, 861)
 shape = SubResource("CapsuleShape2D_c3fco")
 
 [node name="Bottom20" type="CollisionShape2D" parent="Walls" unique_id=1194756224]
@@ -362,30 +362,31 @@ y_sort_enabled = true
 [node name="Player" parent="YSortRoot" unique_id=643082494 instance=ExtResource("2_player")]
 position = Vector2(718, 1022)
 
-[node name="Sida" parent="YSortRoot" instance=ExtResource("chapter_9_sida")]
+[node name="Sida" parent="YSortRoot" unique_id=119132387 instance=ExtResource("chapter_9_sida")]
 position = Vector2(762, 1022)
 
 [node name="EndingPortal" parent="YSortRoot" unique_id=1366143209 instance=ExtResource("90_portal")]
 position = Vector2(724, 330)
-prompt_text = "กด E - จบภารกิจ"
 script = ExtResource("chapter_9_ending_gate_script")
+sida_arrival_distance = 140.0
+prompt_text = "กด E - จบภารกิจ"
 
 [node name="Chapter8Portal" parent="YSortRoot" unique_id=544627573 instance=ExtResource("90_portal")]
-position = Vector2(718, 1058)
+position = Vector2(723, 1055)
 target_scene = "res://scenes/chapter_8/chapter_8.tscn"
 target_spawn = Vector2(505, 145)
 
 [node name="Thotsakan" parent="YSortRoot" unique_id=1064336537 instance=ExtResource("91_mob")]
-position = Vector2(753, 597)
+position = Vector2(743, 507)
 aggro_range = 300.0
 contact_damage = 20
 max_health = 180
 display_height = 240.0
 
-[node name="Chapter9CutsceneLayer" type="CanvasLayer" parent="."]
+[node name="Chapter9CutsceneLayer" type="CanvasLayer" parent="." unique_id=380529376]
 layer = 100
 
-[node name="Chapter9Cutscene" type="Control" parent="Chapter9CutsceneLayer"]
+[node name="Chapter9Cutscene" type="Control" parent="Chapter9CutsceneLayer" unique_id=479771013]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -395,7 +396,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("chapter_9_cutscene_script")
 
-[node name="CutsceneImage" type="TextureRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene"]
+[node name="CutsceneImage" type="TextureRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene" unique_id=630863038]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -407,7 +408,7 @@ texture = ExtResource("chapter_9_cutscene_image")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="BackgroundDim" type="ColorRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene"]
+[node name="BackgroundDim" type="ColorRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene" unique_id=1266748560]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -417,7 +418,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
 
-[node name="TitleBanner" type="NinePatchRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene"]
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene" unique_id=908529624]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.19
@@ -431,7 +432,7 @@ patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
 
-[node name="Title" type="Label" parent="Chapter9CutsceneLayer/Chapter9Cutscene/TitleBanner"]
+[node name="Title" type="Label" parent="Chapter9CutsceneLayer/Chapter9Cutscene/TitleBanner" unique_id=1915852104]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -447,7 +448,7 @@ text = "ศึกสุดท้ายกับทศกัณฐ์"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter9CutsceneLayer/Chapter9Cutscene"]
+[node name="Dialogue" type="Label" parent="Chapter9CutsceneLayer/Chapter9Cutscene" unique_id=916176510]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.07
@@ -470,7 +471,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ContinuePrompt" type="Label" parent="Chapter9CutsceneLayer/Chapter9Cutscene"]
+[node name="ContinuePrompt" type="Label" parent="Chapter9CutsceneLayer/Chapter9Cutscene" unique_id=1316558721]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -492,7 +493,7 @@ theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
 
-[node name="FadeOverlay" type="ColorRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene"]
+[node name="FadeOverlay" type="ColorRect" parent="Chapter9CutsceneLayer/Chapter9Cutscene" unique_id=2060172844]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -502,10 +503,10 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Chapter9EndingCutsceneLayer" type="CanvasLayer" parent="."]
+[node name="Chapter9EndingCutsceneLayer" type="CanvasLayer" parent="." unique_id=1636120021]
 layer = 110
 
-[node name="Chapter9EndingCutscene" type="Control" parent="Chapter9EndingCutsceneLayer"]
+[node name="Chapter9EndingCutscene" type="Control" parent="Chapter9EndingCutsceneLayer" unique_id=1012950725]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -515,7 +516,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("chapter_9_ending_cutscene_script")
 
-[node name="CutsceneImage" type="TextureRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+[node name="CutsceneImage" type="TextureRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene" unique_id=1055885763]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -527,7 +528,7 @@ texture = ExtResource("chapter_9_ending_image")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="BackgroundDim" type="ColorRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+[node name="BackgroundDim" type="ColorRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene" unique_id=2074076359]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -537,7 +538,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.34)
 
-[node name="TitleBanner" type="NinePatchRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+[node name="TitleBanner" type="NinePatchRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene" unique_id=464647910]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.19
@@ -551,7 +552,7 @@ patch_margin_top = 16
 patch_margin_right = 92
 patch_margin_bottom = 16
 
-[node name="Title" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene/TitleBanner"]
+[node name="Title" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene/TitleBanner" unique_id=836989011]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -567,7 +568,7 @@ text = "ชัยชนะเหนือทศกัณฐ์"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+[node name="Dialogue" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene" unique_id=1682289981]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.07
@@ -590,7 +591,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ContinuePrompt" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+[node name="ContinuePrompt" type="Label" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene" unique_id=28027079]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -612,7 +613,7 @@ theme_override_font_sizes/font_size = 19
 text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
 horizontal_alignment = 1
 
-[node name="FadeOverlay" type="ColorRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene"]
+[node name="FadeOverlay" type="ColorRect" parent="Chapter9EndingCutsceneLayer/Chapter9EndingCutscene" unique_id=130589879]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
