@@ -11,13 +11,18 @@ func _run() -> void:
 	var state_dyn = load("res://scenes/core/game_state.gd")
 	_expect(state_dyn.get("chapter_7_defenders_cleared") == false, "Chapter 7 flag exists")
 	_expect(state_dyn.get("chapter_8_sida_room_discovered") == false, "Chapter 8 flag exists")
+	_expect(state_dyn.get("chapter_9_intro_played") == false, "Chapter 9 intro flag exists")
 	_expect("chapter_7_defenders_cleared" in SaveGame.STATE_KEYS, "Chapter 7 flag saves")
 	_expect("chapter_8_sida_room_discovered" in SaveGame.STATE_KEYS, "Chapter 8 flag saves")
+	_expect("chapter_9_intro_played" in SaveGame.STATE_KEYS, "Chapter 9 intro flag saves")
 	state_dyn.set("chapter_7_defenders_cleared", true)
 	state_dyn.set("chapter_8_sida_room_discovered", true)
+	if state_dyn.get("chapter_9_intro_played") != null:
+		state_dyn.set("chapter_9_intro_played", true)
 	GameStateScript.reset_progress()
 	_expect(not state_dyn.get("chapter_7_defenders_cleared"), "Chapter 7 flag resets")
 	_expect(not state_dyn.get("chapter_8_sida_room_discovered"), "Chapter 8 flag resets")
+	_expect(state_dyn.get("chapter_9_intro_played") == false, "Chapter 9 intro flag resets")
 	var portal := (load("res://scenes/props/portal.tscn") as PackedScene).instantiate()
 	root.add_child(portal)
 	await process_frame

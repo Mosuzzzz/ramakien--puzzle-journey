@@ -23,9 +23,14 @@ var _finished := false
 
 
 func _ready() -> void:
-	if GameState.chapter_9_thotsakan_defeated:
-		queue_free()
+	if GameState.chapter_9_intro_played or GameState.chapter_9_thotsakan_defeated:
+		var cutscene_layer := get_parent()
+		if cutscene_layer is CanvasLayer:
+			cutscene_layer.queue_free()
+		else:
+			queue_free()
 		return
+	GameState.chapter_9_intro_played = true
 	get_tree().paused = true
 	_show_dialogue(0, false)
 	CutsceneSkip.attach(self, _finish_cutscene)
