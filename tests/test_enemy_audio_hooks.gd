@@ -32,6 +32,13 @@ func _run() -> void:
 	_expect(mob.has_method("_attack_sound_key"), "generic enemy defines attack sound")
 	if mob.has_method("_attack_sound_key"):
 		_expect(mob._attack_sound_key() == &"enemy_attacking", "generic attack key")
+	_expect(mob.has_method("_uses_shared_run_audio"), "ordinary monster exposes run-audio policy")
+	if mob.has_method("_uses_shared_run_audio"):
+		_expect(mob._uses_shared_run_audio(), "ordinary monster uses shared run loop")
+	_expect(
+		not mob.has_method("_on_sprite_frame_changed"),
+		"ordinary monster no longer emits pooled frame-contact cues"
+	)
 	_events.clear()
 	mob.apply_authorized_damage(1)
 	_expect(_events == [&"enemy_hit"], "generic enemy hit plays once")

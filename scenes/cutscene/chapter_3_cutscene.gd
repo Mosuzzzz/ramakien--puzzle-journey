@@ -37,11 +37,10 @@ var _finished := false
 
 func _ready() -> void:
 	if GameState.chapter_3_intro_played:
-		var cutscene_layer := get_parent()
-		if cutscene_layer is CanvasLayer:
-			cutscene_layer.queue_free()
-		else:
-			queue_free()
+		var chapter := get_tree().current_scene
+		if chapter != null and chapter.has_method("restore_chapter_3_progress"):
+			chapter.call_deferred("restore_chapter_3_progress")
+		queue_free()
 		return
 
 	GameState.chapter_3_intro_played = true
@@ -62,15 +61,10 @@ func _play_intro_transition() -> void:
 	]
 	for item: CanvasItem in content:
 		item.hide()
-	_fade_overlay.color.a = 0.0
-	var darken := create_tween()
-	darken.tween_property(_fade_overlay, "color:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
-	await darken.finished
-	for item: CanvasItem in content:
-		item.show()
-	var reveal := create_tween()
-	reveal.tween_property(_fade_overlay, "color:a", 0.0, 1.0).set_trans(Tween.TRANS_SINE)
-	await reveal.finished
+	await get_node("/root/SceneTransition").open_cutscene(func() -> void:
+		for item: CanvasItem in content:
+			item.show()
+	)
 	_transitioning = false
 
 
@@ -115,6 +109,11 @@ func _finish_cutscene() -> void:
 	if _finished:
 		return
 	_finished = true
+	_transitioning = true
+	await get_node("/root/SceneTransition").close_cutscene(_complete_cutscene)
+
+
+func _complete_cutscene() -> void:
 	var tree := get_tree()
 	if tree == null:
 		return

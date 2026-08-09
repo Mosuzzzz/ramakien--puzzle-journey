@@ -375,7 +375,6 @@ prompt_text = "กด E เพื่อออกจากหอคอย"
 interaction_size = Vector2(150, 90)
 
 [node name="JarInteractions" type="Node2D" parent="." unique_id=1978599359]
-visible = false
 
 [node name="JarUpperLeft" type="Area2D" parent="JarInteractions" unique_id=1717094362]
 position = Vector2(245, 390)
@@ -465,7 +464,6 @@ horizontal_alignment = 1
 visible = false
 
 [node name="PedestalInteraction" type="Area2D" parent="." unique_id=670412462]
-visible = false
 position = Vector2(627, 627)
 collision_layer = 0
 collision_mask = 2

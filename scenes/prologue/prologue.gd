@@ -80,4 +80,4 @@ func _show_chapter_title() -> void:
 	Dialogue.start_narration(["พระรามถูกเนรเทศ"], "CHAPTER 1")
 
 func _on_finished() -> void:
-	get_tree().change_scene_to_file.call_deferred(NEXT_SCENE)
+	await SceneTransition.change_chapter(NEXT_SCENE)

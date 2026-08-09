@@ -69,14 +69,10 @@ func show_cutscene() -> void:
 
 
 func _play_intro_transition(content: Array[CanvasItem]) -> void:
-	var darken := create_tween()
-	darken.tween_property(_fade_overlay, "color:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
-	await darken.finished
-	for item: CanvasItem in content:
-		item.show()
-	var reveal := create_tween()
-	reveal.tween_property(_fade_overlay, "color:a", 0.0, 1.0).set_trans(Tween.TRANS_SINE)
-	await reveal.finished
+	await get_node("/root/SceneTransition").open_cutscene(func() -> void:
+		for item: CanvasItem in content:
+			item.show()
+	)
 	_transitioning = false
 
 
@@ -150,7 +146,14 @@ func _show_dialogue(index: int, animated: bool) -> void:
 
 
 func _finish_cutscene() -> void:
+	if not _active:
+		return
 	_active = false
+	_transitioning = true
+	await get_node("/root/SceneTransition").close_cutscene(_complete_cutscene)
+
+
+func _complete_cutscene() -> void:
 	hide()
 	var tree := get_tree()
 	if tree == null:

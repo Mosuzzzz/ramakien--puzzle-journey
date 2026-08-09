@@ -136,7 +136,7 @@ func _on_abduction_finished() -> void:
 	# the story returns Rama to the (now empty) ashram
 	GameState.next_spawn = ASHRAM_RETURN_SPAWN
 	GameState.next_health = _player.current_health
-	get_tree().change_scene_to_file.call_deferred("res://scenes/chapter_2/chapter_2.tscn")
+	await SceneTransition.change_chapter("res://scenes/chapter_2/chapter_2.tscn")
 
 
 func _fail_chase() -> void:
@@ -154,7 +154,7 @@ func _fail_chase() -> void:
 func _on_fail_finished() -> void:
 	GameState.next_spawn = ASHRAM_RETURN_SPAWN
 	GameState.next_health = _player.current_health
-	get_tree().change_scene_to_file.call_deferred("res://scenes/chapter_2/chapter_2.tscn")
+	await SceneTransition.change_chapter("res://scenes/chapter_2/chapter_2.tscn")
 
 
 func _exit_tree() -> void:

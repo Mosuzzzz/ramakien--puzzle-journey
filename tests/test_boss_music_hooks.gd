@@ -35,9 +35,15 @@ func _run() -> void:
 		cutscene.connect(&"finished", func(): finish_count[0] += 1)
 		_add_cutscene_children(cutscene)
 		root.add_child(cutscene)
+		var transition := root.get_node("SceneTransition")
+		var original_fade_duration: float = transition.fade_duration
+		transition.fade_duration = 0.01
 		cutscene.call("_finish_cutscene")
 		cutscene.call("_finish_cutscene")
+		while transition.is_busy():
+			await process_frame
 		_expect(finish_count[0] == 1, "post-boss cutscene emits finished exactly once")
+		transition.fade_duration = original_fade_duration
 		cutscene.queue_free()
 
 	var chapter_9_source := FileAccess.get_file_as_string(
