@@ -35,6 +35,10 @@ window/stretch/aspect="expand"
 mouse_cursor/custom_image="res://assets/cursor/cursor_arrow.png"
 mouse_cursor/custom_image_hotspot=Vector2(3, 3)
 
+[gui]
+
+theme/custom_font="res://assets/fonts/Sarabun-Regular.ttf"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
