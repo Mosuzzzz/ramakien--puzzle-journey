@@ -45,7 +45,6 @@ var _question_queue: Array = []
 @onready var _golden_deer: CharacterBody2D = $YSortRoot/GoldenDeer
 @onready var _player: CharacterBody2D = $YSortRoot/Player
 @onready var _quiz: CanvasLayer = $QuestionQuiz
-@onready var _abduction_cutscene: Control = $Chapter2AbductionCutsceneLayer/AbductionCutscene
 @onready var _return_portal := $YSortRoot/ReturnPortal
 
 
@@ -126,14 +125,10 @@ func _catch_deer() -> void:
 	GameState.chapter_2_deer_defeated = true
 	_player.auto_run_velocity = Vector2.ZERO
 	_player.movement_locked = false
-	_return_portal.set_locked(false)
 	_golden_deer.queue_free()
-	_abduction_cutscene.finished.connect(_on_abduction_finished, CONNECT_ONE_SHOT)
-	_abduction_cutscene.call("show_cutscene", "catch")
-
-
-func _on_abduction_finished() -> void:
-	# the story returns Rama to the (now empty) ashram
+	Quest.clear()
+	# A successful chase returns Rama immediately; the portal is only a way
+	# out after a failed chase or when revisiting this scene from a save.
 	GameState.next_spawn = ASHRAM_RETURN_SPAWN
 	GameState.next_health = _player.current_health
 	await SceneTransition.change_chapter("res://scenes/chapter_2/chapter_2.tscn")

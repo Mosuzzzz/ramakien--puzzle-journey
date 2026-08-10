@@ -1,0 +1,46 @@
+name: Package Windows release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  package-windows:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.7
+    env:
+      XDG_DATA_HOME: /root/.local/share
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+
+      - name: Import project
+        run: godot --headless --path . --import
+
+      - name: Export Windows
+        run: mkdir -p build/windows && godot --headless --path . --export-release "Windows"
+
+      - name: Create Windows download
+        run: |
+          mkdir -p dist
+          cd build/windows
+          zip -9 -r ../../dist/ramakien-puzzle-journey-windows.zip .
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ramakien-puzzle-journey-windows
+          path: dist/ramakien-puzzle-journey-windows.zip
+          if-no-files-found: error
+
+      - name: Add Windows download to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/ramakien-puzzle-journey-windows.zip
