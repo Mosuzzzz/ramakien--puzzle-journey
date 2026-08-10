@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scenes/ui/inventory.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/ui/icon/split/icon_bag.png" id="2_bag"]
-[ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="3_cinzel"]
+[ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="3_sarabun_b"]
 [ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="4_page_bg"]
 [ext_resource type="Texture2D" uid="uid://dt2tcug60dxbm" path="res://assets/ui/lable/pieces1/dialog_title_tab.png" id="5_tag"]
 [ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/icon_x_1.png" id="6_close"]
 
 [sub_resource type="LabelSettings" id="page_title_settings"]
-font = ExtResource("3_cinzel")
+font = ExtResource("3_sarabun_b")
 font_size = 22
 font_color = Color(1, 0.9, 0.55, 1)
 shadow_size = 3

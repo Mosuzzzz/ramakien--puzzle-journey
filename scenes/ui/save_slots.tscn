@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/save_slots.gd" id="1_script"]
-[ext_resource type="FontFile" uid="uid://b8c1ov63a0nie" path="res://assets/fonts/Cinzel-Variable.ttf" id="2_cinzel"]
 [ext_resource type="Texture2D" path="res://assets/ui/lable/pieces1/dialog_box_plain.png" id="3_panel_bg"]
 [ext_resource type="FontFile" uid="uid://qhf8k27eetcl" path="res://assets/fonts/Sarabun-Bold.ttf" id="4_sarabun_b"]
 
@@ -58,7 +57,7 @@ theme_override_constants/separation = 16
 
 [node name="Title" type="Label" parent="Dim/Panel/VBox"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cinzel")
+theme_override_fonts/font = ExtResource("4_sarabun_b")
 theme_override_font_sizes/font_size = 24
 text = "บันทึกเกม"
 horizontal_alignment = 1
