@@ -2,17 +2,17 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Replace the Chapter 2 matching puzzle's left-side words with the four supplied illustrations and communicate correct and incorrect matches through persistent pair-colored and flashing red borders.
+**Goal:** Replace the Chapter 2 matching puzzle's left-side words with the four supplied illustrations and communicate matching states through full-card background colors, supported by darker same-hue borders.
 
-**Architecture:** Keep `matching_puzzle.gd` as the reusable controller and extend its input normalization to accept image-backed dictionaries alongside legacy two-item text arrays. Chapter 2 owns the semantic image-to-description data, while focused helpers in the shared component create cards and apply border states consistently.
+**Architecture:** Keep `matching_puzzle.gd` as the reusable controller and extend its input normalization to accept image-backed dictionaries alongside legacy two-item text arrays. Chapter 2 owns the semantic image-to-description data, while focused helpers in the shared component create cards and apply full visual states—background, supporting border, and contrasting text—consistently.
 
 **Tech Stack:** Godot 4.7, GDScript, Godot `Button`/`StyleBoxFlat` theme overrides, headless SceneTree integration tests.
 
 ## Global Constraints
 
 - The four left cards display only the supplied illustrations and never display item-name captions.
-- Correct matches use orange, yellow, blue, and green borders, assigned by stable source-pair index; both cards in a pair use the same color.
-- Incorrect matches flash red three times, ignore overlapping input during feedback, and become selectable again.
+- Correct matches fill both cards orange, yellow, blue, or green by stable source-pair index; a darker same-hue border supports each fill.
+- Incorrect matches flash the full card background red three times, ignore overlapping input during feedback, and become selectable again.
 - Existing answer audio, `solved` signaling, pause behavior, quest flow, shuffled right column, and legacy text-pair support remain intact.
 - Do not modify or include the user's unrelated change in `scenes/chapter_9/chapter_9.tscn` in any commit.
 
@@ -608,3 +608,144 @@ Do not create an empty commit if no files changed in this task.
 - [ ] Review the final diff from the design-spec commit through `HEAD` for accidental captions, green text success styling, asset/path mistakes, or unrelated Chapter 9 changes.
 - [ ] Invoke `superpowers:verification-before-completion` before reporting success.
 - [ ] Invoke `superpowers:requesting-code-review` for a final requirements and quality review before handoff.
+
+---
+
+## Follow-up Amendment: Full-Card State Colors
+
+This amendment supersedes the border-only visual behavior described in Tasks 3-5. The earlier tasks remain as implementation history; Task 6 changes the finished component from colored outlines to colored card fills while retaining supporting darker borders.
+
+### Task 6: Full-Card Selection, Correct, and Wrong Feedback
+
+**Files:**
+- Modify: `tests/test_chapter_2_image_matching_runtime.gd`
+- Modify: `scenes/ui/matching_puzzle.gd:5-166`
+
+**Interfaces:**
+- Consumes: Existing pair-index matching, input lock, three-flash loop, image cards, and text cards.
+- Produces: `_set_card_style(button: Button, fill_color: Color, border_color: Color, text_color: Color, width: int = 4) -> void`, exact pair fill palettes, and readable disabled text colors.
+
+- [ ] **Step 1: Write failing full-card state tests**
+
+Add a helper that reads the normal state's background:
+
+```gdscript
+func _background_color(button: Button) -> Color:
+    var style := button.get_theme_stylebox("normal")
+    if style is StyleBoxFlat:
+        return style.bg_color
+    return Color.TRANSPARENT
+```
+
+Change `_test_selected_border()` to assert that the selected card's background is `Color("e9b949")`. Change `_test_correct_pairs_share_distinct_borders()` so each left and right background equals the exact expected fill array:
+
+```gdscript
+var expected_fills: Array[Color] = [
+    Color("f28c28"), Color("f2c94c"), Color("2f80ed"), Color("27ae60")
+]
+var expected_text: Array[Color] = [
+    Color("3b2108"), Color("3b2108"), Color("ffffff"), Color("ffffff")
+]
+```
+
+For every correct right card, also assert:
+
+```gdscript
+_expect(
+    right.get_theme_color("font_disabled_color").is_equal_approx(expected_text[i]),
+    "correct pair %d uses readable text contrast" % i
+)
+```
+
+In `_test_wrong_pair_flashes_and_retries()`, count red transitions from `_background_color(left) == Color("ef3340")` rather than the supporting border, and assert both cards return to neutral `Color("6f6557")` backgrounds.
+
+- [ ] **Step 2: Run the focused suite and verify RED**
+
+Run: `tests/run_chapter_2_image_matching_tests.sh`
+
+Expected: FAIL for selected, correct, and wrong background assertions because `_set_border()` always leaves every card background at neutral brown.
+
+- [ ] **Step 3: Implement one full visual-state helper**
+
+Replace `_set_border()` with:
+
+```gdscript
+func _set_card_style(
+    button: Button,
+    fill_color: Color,
+    border_color: Color,
+    text_color: Color,
+    width: int = 4
+) -> void:
+    for state in [&"normal", &"hover", &"pressed", &"focus", &"disabled"]:
+        var style := StyleBoxFlat.new()
+        style.bg_color = fill_color
+        style.border_color = border_color
+        style.set_border_width_all(width)
+        style.set_corner_radius_all(8)
+        style.content_margin_left = 12.0
+        style.content_margin_right = 12.0
+        style.content_margin_top = 8.0
+        style.content_margin_bottom = 8.0
+        button.add_theme_stylebox_override(state, style)
+    for color_name in [
+        &"font_color",
+        &"font_hover_color",
+        &"font_pressed_color",
+        &"font_focus_color",
+        &"font_disabled_color",
+    ]:
+        button.add_theme_color_override(color_name, text_color)
+```
+
+Use these exact palettes:
+
+```gdscript
+const NEUTRAL_FILL_COLOR := Color("6f6557")
+const NEUTRAL_BORDER_COLOR := Color("514638")
+const SELECTED_FILL_COLOR := Color("e9b949")
+const SELECTED_BORDER_COLOR := Color("9b6a12")
+const WRONG_FILL_COLOR := Color("ef3340")
+const WRONG_BORDER_COLOR := Color("9e1520")
+const DARK_TEXT_COLOR := Color("3b2108")
+const LIGHT_TEXT_COLOR := Color("ffffff")
+const PAIR_FILL_COLORS: Array[Color] = [
+    Color("f28c28"), Color("f2c94c"), Color("2f80ed"), Color("27ae60")
+]
+const PAIR_BORDER_COLORS: Array[Color] = [
+    Color("a95000"), Color("9b7900"), Color("1555a5"), Color("16723c")
+]
+const PAIR_TEXT_COLORS: Array[Color] = [
+    DARK_TEXT_COLOR, DARK_TEXT_COLOR, LIGHT_TEXT_COLOR, LIGHT_TEXT_COLOR
+]
+```
+
+Apply neutral fill in `_make_base_button()`, selected fill in `_on_left_pressed()`, the fill/border/text palette values in the correct branch, and wrong/neutral fills inside `_flash_wrong_pair()`. Both cards in every state receive the same full style.
+
+- [ ] **Step 4: Run focused and regression suites and verify GREEN**
+
+Run:
+
+```bash
+tests/run_chapter_2_image_matching_tests.sh
+sh tests/run_puzzle_audio_tests.sh
+sh tests/run_chapter_quest_flow_tests.sh
+git diff --check
+```
+
+Expected: All three suites PASS and `git diff --check` emits no output.
+
+- [ ] **Step 5: Render and inspect deterministic states at 1280×720**
+
+Render neutral, selected, correct, and wrong states with a real renderer. Confirm the entire card surface changes color; borders are secondary darker accents; Thai text remains legible; and image cards retain centered illustrations.
+
+- [ ] **Step 6: Commit Task 6**
+
+```bash
+git add scenes/ui/matching_puzzle.gd tests/test_chapter_2_image_matching_runtime.gd
+git commit -m "feat: fill matching cards with state colors"
+```
+
+- [ ] **Step 7: Run final gates**
+
+Run all `tests/run_*_tests.sh` runners, invoke `superpowers:verification-before-completion`, request a read-only code review for the Task 6 commit, then resume `superpowers:finishing-a-development-branch` with `master` as the confirmed base.
