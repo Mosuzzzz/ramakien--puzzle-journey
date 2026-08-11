@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/question_quiz.tscn" id="17_quiz"]
 [ext_resource type="PackedScene" path="res://scenes/props/jatayu_feather.tscn" id="18_feather"]
 [ext_resource type="PackedScene" uid="uid://djdl6e7sagbjf" path="res://scenes/props/mob.tscn" id="91_mob"]
+[ext_resource type="PackedScene" path="res://scenes/ui/cutscene_dialogue_presenter.tscn" id="cutscene_dialogue_presenter"]
 
 [sub_resource type="RectangleShape2D" id="rect_wall_top"]
 size = Vector2(1448, 80)
@@ -978,28 +979,7 @@ text = "เบาะแสจากพญาชฎายุ"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter3CutsceneLayer/Chapter3Cutscene" unique_id=152140912]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("10_cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "พระลักษมณ์: “พี่ราม ดูตรงนั้นสิ! มีนกตัวใหญ่บาดเจ็บอยู่”"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Dialogue" parent="Chapter3CutsceneLayer/Chapter3Cutscene" unique_id=152140912 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="ContinuePrompt" type="Label" parent="Chapter3CutsceneLayer/Chapter3Cutscene" unique_id=364405096]
 layout_mode = 1
@@ -1111,28 +1091,7 @@ text = "ใต้ต้นไม้ใหญ่"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PostBattleDialogue" type="Label" parent="Chapter3CutsceneLayer/PostBattleCutscene" unique_id=981126790]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("10_cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "คำบรรยาย: หลังจากพระรามและพระลักษณ์จัดการพวกยักษ์ระหว่างทางได้ ทั้งสองเดินมาถึงใต้ต้นไม้ใหญ่กลางป่า"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="PostBattleDialogue" parent="Chapter3CutsceneLayer/PostBattleCutscene" unique_id=981126790 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="PostBattlePrompt" type="Label" parent="Chapter3CutsceneLayer/PostBattleCutscene" unique_id=1787329211]
 layout_mode = 1

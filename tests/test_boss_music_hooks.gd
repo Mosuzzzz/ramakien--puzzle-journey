@@ -94,10 +94,14 @@ func _add_cutscene_children(cutscene: Control) -> void:
 	title.name = "Title"
 	title_banner.add_child(title)
 	cutscene.add_child(title_banner)
-	for child_name in ["Dialogue", "ContinuePrompt"]:
-		var label := Label.new()
-		label.name = child_name
-		cutscene.add_child(label)
+	var dialogue := (
+		load("res://scenes/ui/cutscene_dialogue_presenter.tscn") as PackedScene
+	).instantiate()
+	dialogue.name = "Dialogue"
+	cutscene.add_child(dialogue)
+	var continue_prompt := Label.new()
+	continue_prompt.name = "ContinuePrompt"
+	cutscene.add_child(continue_prompt)
 
 
 func _expect(condition: bool, message: String) -> void:

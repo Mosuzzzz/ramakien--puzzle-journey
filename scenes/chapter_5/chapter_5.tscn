@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://qi50m4tnhepd" path="res://assets/cutscene/chapter_5/ChatGPT Image 21 ก.ค. 2569 18_34_46.png" id="post_boss_image"]
 [ext_resource type="Script" uid="uid://cbmt0ofoclhgr" path="res://scenes/cutscene/chapter_5_post_boss_cutscene.gd" id="post_boss_script"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="title_banner"]
+[ext_resource type="PackedScene" path="res://scenes/ui/cutscene_dialogue_presenter.tscn" id="cutscene_dialogue_presenter"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1774, 64)
@@ -161,28 +162,7 @@ text = "ชัยชนะเหนือไมยราพ"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=71654019]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "คำบรรยาย: ไมยราพล้มลงกับพื้น"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Dialogue" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=71654019 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="ContinuePrompt" type="Label" parent="Chapter5CutsceneLayer/Chapter5PostBossCutscene" unique_id=812416024]
 layout_mode = 1

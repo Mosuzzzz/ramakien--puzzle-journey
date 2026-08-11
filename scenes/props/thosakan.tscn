@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://yfe4hirutelh" path="res://assets/character/ThoSaKan/ภาพถ่ายหน้าจอ_2569-07-15_เวลา_11.21.51-removebg-preview.png" id="10_s55cl"]
 [ext_resource type="Texture2D" uid="uid://bx3wp3rf32f56" path="res://assets/character/ThoSaKan/IMG_1799.PNG" id="10_wqbs8"]
 [ext_resource type="Texture2D" uid="uid://h28te1pnr4np" path="res://assets/character/ThoSaKan/ภาพถ่ายหน้าจอ_2569-07-15_เวลา_11.27.47-removebg-preview.png" id="11_txikd"]
+[ext_resource type="FontFile" path="res://assets/fonts/Sarabun-Bold.ttf" id="92_boss_font"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aljkq"]
 atlas = ExtResource("2_s55cl")
@@ -306,13 +307,13 @@ size = Vector2(70, 100)
 
 [node name="ThoSaKan" type="CharacterBody2D" unique_id=1596516181]
 script = ExtResource("1_script")
+speed = 75.0
+attack_range = 130.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1368735828]
 sprite_frames = SubResource("thosakan_frames")
-animation = &"pull attack"
+animation = &"idle"
 autoplay = "idle"
-frame = 8
-frame_progress = 0.33411115
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=218967325]
 position = Vector2(-23, 84)
@@ -340,16 +341,19 @@ value = 100.0
 texture_under = ExtResource("90_boss_bar_empty")
 texture_progress = ExtResource("91_boss_bar_full")
 
-[node name="BossName" type="Label" parent="BossHUD" unique_id=618234907]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -130.0
-offset_top = 46.0
-offset_right = 130.0
-offset_bottom = 68.0
+[node name="BossName" type="Label" parent="BossHUD/BossBar" unique_id=618234907]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 105.0
+offset_top = 26.0
+offset_right = -105.0
+offset_bottom = -15.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 15
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("92_boss_font")
+theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
 theme_override_constants/shadow_offset_x = 1

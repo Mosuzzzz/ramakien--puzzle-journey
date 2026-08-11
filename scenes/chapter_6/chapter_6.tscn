@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dry6tt5pa4gyo" path="res://scenes/cutscene/chapter_6_cutscene.gd" id="chapter_6_cutscene_script"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="chapter_6_title_banner"]
 [ext_resource type="Script" path="res://scenes/chapter_6/chapter_6.gd" id="chapter_6_script"]
+[ext_resource type="PackedScene" path="res://scenes/ui/cutscene_dialogue_presenter.tscn" id="cutscene_dialogue_presenter"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvi4p"]
 size = Vector2(1448, 356)
@@ -663,28 +664,7 @@ text = "ประตูกรุงลงกา"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=1697806717]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("chapter_6_cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "คำบรรยาย: หลังจากหนุมานช่วยพระรามกลับมาจากไมยราพได้สำเร็จ พระรามก็เดินทางต่อไปยังกรุงลงกาเพื่อช่วยนางสีดา"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Dialogue" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=1697806717 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="ContinuePrompt" type="Label" parent="Chapter6CutsceneLayer/Chapter6Cutscene" unique_id=970594358]
 layout_mode = 1
