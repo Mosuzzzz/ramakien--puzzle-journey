@@ -109,24 +109,27 @@ func _test_selected_border() -> void:
 
 func _test_correct_pairs_share_distinct_borders() -> void:
 	var puzzle := _spawn_puzzle()
-	puzzle.open("Match", [["L1", "R1"], ["L2", "R2"]])
+	puzzle.open(
+		"Match", [["L1", "R1"], ["L2", "R2"], ["L3", "R3"], ["L4", "R4"], ["L5", "R5"]]
+	)
 	var left_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/LeftColumn")
 	var right_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/RightColumn")
-	var observed: Array[Color] = []
-	for i in 2:
+	var expected_colors: Array[Color] = [
+		Color("f28c28"), Color("f2c94c"), Color("2f80ed"), Color("27ae60")
+	]
+	for i in 4:
 		var left := left_column.get_child(i) as Button
 		var right := _find_button_with_text(right_column, "R%d" % (i + 1))
 		puzzle._on_left_pressed(left, i)
 		puzzle._on_right_pressed(right, i)
 		_expect(
-			_border_color(left).is_equal_approx(_border_color(right)),
-			"correct pair %d shares one border color" % i
+			_border_color(left).is_equal_approx(expected_colors[i]),
+			"correct pair %d uses its exact stable color" % i
 		)
-		observed.append(_border_color(left))
-	_expect(
-		not observed[0].is_equal_approx(observed[1]),
-		"different correct pairs use distinct colors"
-	)
+		_expect(
+			_border_color(right).is_equal_approx(expected_colors[i]),
+			"correct pair %d shares its exact color on the right" % i
+		)
 	puzzle.free()
 
 
@@ -165,7 +168,20 @@ func _test_wrong_pair_flashes_and_retries() -> void:
 		_border_color(other_left).is_equal_approx(Color("705b43")),
 		"wrong feedback blocks overlapping selection"
 	)
-	await create_timer(0.65).timeout
+	var red_flash_count := 0
+	var was_red := false
+	var lock_held := true
+	var elapsed := 0.0
+	while left.disabled and elapsed < 1.0:
+		var is_red := _border_color(left).is_equal_approx(Color("ef3340"))
+		if is_red and not was_red:
+			red_flash_count += 1
+		was_red = is_red
+		lock_held = lock_held and wrong.disabled
+		await create_timer(0.02).timeout
+		elapsed += 0.02
+	_expect(red_flash_count == 3, "wrong feedback shows exactly three red flashes")
+	_expect(lock_held, "wrong feedback keeps both cards locked throughout all flashes")
 	_expect(not left.disabled and not wrong.disabled, "wrong pair is selectable after feedback")
 	_expect(
 		_border_color(left).is_equal_approx(Color("705b43")),

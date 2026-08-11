@@ -31,7 +31,8 @@ func _ready() -> void:
 	hide()
 
 
-## pairs: Array of [left_text, right_text] — matching left item to its right description.
+## Each pair is either [left_text, right_text] or
+## {"left_image": resource_path, "right_text": description}.
 func open(title: String, pairs: Array) -> void:
 	_pair_count = pairs.size()
 	_matched = 0
