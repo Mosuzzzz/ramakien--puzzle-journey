@@ -25,7 +25,12 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	var quest := (load("res://scenes/ui/quest_log.tscn") as PackedScene).instantiate()
+	var packed := load("res://scenes/ui/quest_log.tscn") as PackedScene
+	_expect(packed != null, "quest-log scene loads after a clean import")
+	if packed == null:
+		_finish()
+		return
+	var quest := packed.instantiate()
 	root.add_child(quest)
 	await process_frame
 	quest.call("_on_quest_button_pressed")

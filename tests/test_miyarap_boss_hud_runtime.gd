@@ -8,7 +8,12 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	var boss := (load("res://scenes/props/miyarap.tscn") as PackedScene).instantiate()
+	var packed := load("res://scenes/props/miyarap.tscn") as PackedScene
+	_expect(packed != null, "Miyarap scene loads after a clean import")
+	if packed == null:
+		_finish()
+		return
+	var boss := packed.instantiate()
 	root.add_child(boss)
 	await process_frame
 
