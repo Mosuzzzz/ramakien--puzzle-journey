@@ -11,6 +11,8 @@ func _initialize() -> void:
 func _run() -> void:
 	_chapter2_script = load("res://scenes/chapter_2/chapter_2.gd") as Script
 	_test_chapter_2_image_pair_data()
+	_test_image_only_left_cards()
+	_test_legacy_text_pairs()
 	_finish()
 
 
@@ -42,6 +44,43 @@ func _test_chapter_2_image_pair_data() -> void:
 				"supply pair %d description" % i
 			)
 		_expect(ResourceLoader.exists(expected_paths[i]), "supply image %d exists" % i)
+
+
+func _test_image_only_left_cards() -> void:
+	var puzzle := _spawn_puzzle()
+	var pair: Dictionary = _chapter2_script.get_script_constant_map().SUPPLY_PAIRS[0]
+	puzzle.open("Match", [pair])
+	var left_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/LeftColumn")
+	_expect(left_column.get_child_count() == 1, "image pair creates one left card")
+	if left_column.get_child_count() != 1:
+		puzzle.free()
+		return
+	var left := left_column.get_child(0) as Button
+	_expect(left.text.is_empty(), "image card has no caption")
+	_expect(left.icon != null, "image card loads its illustration")
+	_expect(left.expand_icon, "image card scales its illustration")
+	puzzle.free()
+
+
+func _test_legacy_text_pairs() -> void:
+	var puzzle := _spawn_puzzle()
+	puzzle.open("Match", [["L1", "R1"]])
+	var left := (
+		puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/LeftColumn").get_child(0) as Button
+	)
+	var right := (
+		puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/RightColumn").get_child(0) as Button
+	)
+	_expect(left.text == "L1", "legacy left text remains supported")
+	_expect(left.icon == null, "legacy left card has no image")
+	_expect(right.text == "R1", "legacy right text remains supported")
+	puzzle.free()
+
+
+func _spawn_puzzle() -> CanvasLayer:
+	var puzzle := (load("res://scenes/ui/matching_puzzle.tscn") as PackedScene).instantiate()
+	root.add_child(puzzle)
+	return puzzle
 
 
 func _expect(condition: bool, message: String) -> void:

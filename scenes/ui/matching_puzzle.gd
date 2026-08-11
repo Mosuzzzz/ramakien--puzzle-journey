@@ -33,14 +33,14 @@ func open(title: String, pairs: Array) -> void:
 		c.queue_free()
 
 	for i in pairs.size():
-		var left_btn := _make_button(pairs[i][0])
+		var left_btn := _make_left_button(pairs[i])
 		_left_column.add_child(left_btn)
 		left_btn.pressed.connect(_on_left_pressed.bind(left_btn, i))
 
 	var right_order: Array = range(pairs.size())
 	right_order.shuffle()
 	for idx in right_order:
-		var right_btn := _make_button(pairs[idx][1])
+		var right_btn := _make_text_button(_pair_right_text(pairs[idx]))
 		_right_column.add_child(right_btn)
 		right_btn.pressed.connect(_on_right_pressed.bind(right_btn, idx))
 
@@ -48,10 +48,33 @@ func open(title: String, pairs: Array) -> void:
 	show()
 
 
-func _make_button(label: String) -> Button:
-	var btn := Button.new()
+func _make_left_button(pair: Variant) -> Button:
+	if pair is Dictionary:
+		var btn := _make_base_button()
+		var image_path := str(pair.get("left_image", ""))
+		if ResourceLoader.exists(image_path):
+			btn.icon = load(image_path) as Texture2D
+			btn.expand_icon = true
+			btn.add_theme_constant_override("icon_max_width", 220)
+		return btn
+	return _make_text_button(str(pair[0]))
+
+
+func _pair_right_text(pair: Variant) -> String:
+	if pair is Dictionary:
+		return str(pair.get("right_text", ""))
+	return str(pair[1])
+
+
+func _make_text_button(label: String) -> Button:
+	var btn := _make_base_button()
 	btn.text = label
-	btn.custom_minimum_size = Vector2(240, 46)
+	return btn
+
+
+func _make_base_button() -> Button:
+	var btn := Button.new()
+	btn.custom_minimum_size = Vector2(240, 92)
 	btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	btn.add_theme_font_override("font", BUTTON_FONT)
 	btn.add_theme_font_size_override("font_size", 16)
