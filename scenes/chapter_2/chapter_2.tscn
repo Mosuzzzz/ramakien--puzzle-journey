@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://d1koq3jwpbgxu" path="res://assets/cutscene/chapter_2/first.png" id="19_first_image"]
 [ext_resource type="Texture2D" uid="uid://cb6clikeugxys" path="res://assets/cutscene/chapter_2/second.png" id="20_second_image"]
 [ext_resource type="Texture2D" uid="uid://5mubkcq2qtbh" path="res://assets/cutscene/chapter_2/deer_chase.png" id="21_deer_chase_image"]
+[ext_resource type="PackedScene" path="res://scenes/ui/cutscene_dialogue_presenter.tscn" id="cutscene_dialogue_presenter"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e8ag2"]
 a = Vector2(-42.53296, -38.313812)
@@ -1000,28 +1001,7 @@ text = "บทที่ 2: กวางทองและการลักพ�
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=1394284863]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("11_cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "คำบรรยาย: พระราม พระลักษมณ์ และนางสีดา สร้างอาศรมเล็ก ๆ อยู่กลางป่าใหญ่ ใช้ชีวิตอย่างเรียบง่ายและสงบสุข"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Dialogue" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=1394284863 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="ContinuePrompt" type="Label" parent="Chapter2IntroCutsceneLayer/Chapter2Cutscene" unique_id=293420770]
 layout_mode = 1
@@ -1124,29 +1104,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Dialogue" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1509547943]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("11_cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "คำบรรยาย: ทันทีที่ศรของพระรามพุ่งเข้าปะทะ กวางทองก็ร้องด้วยความเจ็บปวด ก่อนร่างจะแปรเปลี่ยนกลายเป็นยักษ์มารีศ"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
+[node name="Dialogue" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1509547943 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="ContinuePrompt" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=1927598680]
 layout_mode = 1
@@ -1252,29 +1210,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Dialogue" type="Label" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=1952907396]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("11_cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "คำบรรยาย: วันหนึ่ง มีกวางทองขนสีทองอร่ามวิ่งผ่านหน้าอาศรมไป งดงามจนทุกคนต่างพากันมอง"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
+[node name="Dialogue" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=1952907396 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="ContinuePrompt" type="Label" parent="Chapter2DeerCutsceneLayer/Chapter2DeerCutscene" unique_id=494826897]
 layout_mode = 1

@@ -4,9 +4,15 @@ const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
 const CutsceneAdvanceInput := preload("res://scenes/ui/cutscene_advance_input.gd")
 const ENDING_SCENE := "res://scenes/ending/ending.tscn"
 
-const DIALOGUES: Array[String] = [
-	"คำบรรยาย: หลังการต่อสู้อันดุเดือด พระรามใช้พระแสงพรหมาสตร์เอาชนะทศกัณฐ์ได้สำเร็จ",
-	"คำบรรยาย: เมื่อราชายักษ์สิ้นชีวิต พระรามได้พาตัวนางสีดาที่ถูกคุมขัง ออกมาได้อย่างปลอดภัยและยุติสงครามลงอย่างสมบูรณ์",
+const DIALOGUES: Array[Dictionary] = [
+	{
+		"speaker": "",
+		"text": "หลังการต่อสู้อันดุเดือด พระรามใช้พระแสงพรหมาสตร์เอาชนะทศกัณฐ์ได้สำเร็จ",
+	},
+	{
+		"speaker": "",
+		"text": "เมื่อราชายักษ์สิ้นชีวิต พระรามได้พาตัวนางสีดาที่ถูกคุมขัง ออกมาได้อย่างปลอดภัยและยุติสงครามลงอย่างสมบูรณ์",
+	},
 ]
 
 var _active := false
@@ -17,7 +23,7 @@ var _dialogue_index := 0
 @onready var _cutscene_image: TextureRect = $CutsceneImage
 @onready var _background_dim: ColorRect = $BackgroundDim
 @onready var _title_banner: NinePatchRect = $TitleBanner
-@onready var _dialogue_label: Label = $Dialogue
+@onready var _dialogue_label: CutsceneDialoguePresenter = $Dialogue
 @onready var _prompt_label: Label = $ContinuePrompt
 @onready var _fade_overlay: ColorRect = $FadeOverlay
 
@@ -79,14 +85,14 @@ func _show_dialogue(index: int, animated: bool) -> void:
 	var is_final_line := _dialogue_index == DIALOGUES.size() - 1
 	_prompt_label.text = "กด E เพื่อจบเรื่องราว ▼" if is_final_line else "กด E เพื่อดำเนินเรื่องต่อ ▼"
 	if not animated:
-		_dialogue_label.text = DIALOGUES[_dialogue_index]
+		_dialogue_label.show_line(DIALOGUES[_dialogue_index], _prompt_label)
 		return
 
 	_transitioning = true
 	var fade_out := create_tween()
 	fade_out.tween_property(_dialogue_label, "modulate:a", 0.0, 0.12)
 	await fade_out.finished
-	_dialogue_label.text = DIALOGUES[_dialogue_index]
+	_dialogue_label.show_line(DIALOGUES[_dialogue_index], _prompt_label)
 	var fade_in := create_tween()
 	fade_in.tween_property(_dialogue_label, "modulate:a", 1.0, 0.18)
 	await fade_in.finished

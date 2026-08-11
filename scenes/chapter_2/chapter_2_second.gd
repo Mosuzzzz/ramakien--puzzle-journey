@@ -15,8 +15,8 @@ const WRONG_GAP_STEP := 150.0
 const QUESTION_INTERVAL := 4.0
 
 const FAIL_LINES: Array[String] = [
-	"คำบรรยาย: กวางทองวิ่งลับหายไปในป่าลึก ไม่อาจตามต่อได้ทัน",
-	"คำบรรยาย: พระรามและพระลักษมณ์จำต้องถอยกลับไปยังอาศรมก่อน...",
+	"กวางทองวิ่งลับหายไปในป่าลึก ไม่อาจตามต่อได้ทัน",
+	"พระรามและพระลักษมณ์จำต้องถอยกลับไปยังอาศรมก่อน...",
 ]
 
 # [question, choices, correct index] — each one is only asked once per chase

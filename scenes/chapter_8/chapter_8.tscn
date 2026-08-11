@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://be56ohm3gkcqh" path="res://scenes/chapter_8/chapter_8.gd" id="chapter_8_script"]
 [ext_resource type="PackedScene" uid="uid://cjdl5khb5p7r8" path="res://scenes/props/sida.tscn" id="chapter_8_sida"]
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="chapter_8_title_banner"]
+[ext_resource type="PackedScene" path="res://scenes/ui/cutscene_dialogue_presenter.tscn" id="cutscene_dialogue_presenter"]
 
 [sub_resource type="RectangleShape2D" id="TopWall"]
 size = Vector2(1024, 126.51934)
@@ -480,28 +481,7 @@ text = "ปริศนาแห่งพระราชวังลงกา"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=1864235937]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("chapter_8_cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "คำบรรยาย: หลังจากพระรามฝ่าแนวป้องกันของเหล่าทหารยักษ์ และบุกเข้าสู่พระราชวังลงกาได้สำเร็จ"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Dialogue" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=1864235937 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="ContinuePrompt" type="Label" parent="Chapter8CutsceneLayer/Chapter8Cutscene" unique_id=1969490375]
 layout_mode = 1

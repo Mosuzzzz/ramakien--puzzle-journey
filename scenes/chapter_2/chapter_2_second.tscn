@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://3au27m7j7v4o" path="res://scenes/cutscene/chapter_2_abduction_cutscene.gd" id="9_abduction_script"]
 [ext_resource type="PackedScene" path="res://scenes/ui/question_quiz.tscn" id="10_quiz"]
 [ext_resource type="Texture2D" path="res://assets/cutscene/chapter_2/deer_chase.png" id="11_deer_chase_image"]
+[ext_resource type="PackedScene" path="res://scenes/ui/cutscene_dialogue_presenter.tscn" id="cutscene_dialogue_presenter"]
 
 [sub_resource type="RectangleShape2D" id="rect_forest_top"]
 size = Vector2(5643, 360)
@@ -124,28 +125,7 @@ text = "การลักพาตัวนางสีดา"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dialogue" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=972110679]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.62
-anchor_right = 0.93
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.95)
-theme_override_constants/line_spacing = 6
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("6_cutscene_font")
-theme_override_font_sizes/font_size = 30
-text = "คำบรรยาย: ทันทีที่ศรของพระรามพุ่งเข้าปะทะ กวางทองก็ร้องด้วยความเจ็บปวด ก่อนร่างจะแปรเปลี่ยนกลายเป็นยักษ์มารีศ"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Dialogue" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=972110679 instance=ExtResource("cutscene_dialogue_presenter")]
 
 [node name="ContinuePrompt" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=840619511]
 layout_mode = 1

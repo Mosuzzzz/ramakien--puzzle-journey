@@ -4,52 +4,58 @@ const CutsceneSkip := preload("res://scenes/ui/cutscene_skip.gd")
 const CutsceneAdvanceInput := preload("res://scenes/ui/cutscene_advance_input.gd")
 const GameState := preload("res://scenes/core/game_state.gd")
 
-const DIALOGUES: Array[String] = [
-	"คำบรรยาย: หลังจากหนุมานถวายตัวรับใช้พระราม เขาออกเดินทางไปทั่วผืนป่าและขุนเขา",
-	"คำบรรยาย: หนุมานรวบรวมเหล่าวานรจากทุกสารทิศ ให้มาร่วมเป็นกำลังแก่พระราม",
-	"คำบรรยาย: กองทัพวานรเตรียมสร้างสะพานข้ามมหาสมุทร เพื่อมุ่งหน้าไปยังกรุงลงกา",
+const DIALOGUES: Array[Dictionary] = [
+	{"speaker": "", "text": "หลังจากหนุมานถวายตัวรับใช้พระราม เขาออกเดินทางไปทั่วผืนป่าและขุนเขา"},
+	{"speaker": "", "text": "หนุมานรวบรวมเหล่าวานรจากทุกสารทิศ ให้มาร่วมเป็นกำลังแก่พระราม"},
+	{"speaker": "", "text": "กองทัพวานรเตรียมสร้างสะพานข้ามมหาสมุทร เพื่อมุ่งหน้าไปยังกรุงลงกา"},
 ]
 
-const SECOND_DIALOGUES: Array[String] = [
-	"หนุมาน: “พี่น้องวานรทั้งหลาย!”",
-	"หนุมาน: “ถึงเวลาช่วยพระราม และชิงพระนางสีดากลับคืนมาแล้ว!”",
-	"[เหล่าวานรจากทุกสารทิศเดินทางมารวมตัวกันริมชายฝั่ง]",
-	"หนุมาน: “เบื้องหน้าคือมหาสมุทร”",
-	"หนุมาน: “พวกเราจะสร้างสะพานข้ามไปยังกรุงลงกา!”",
-	"เหล่าวานร: “โอ้โฮ!!”",
-	"พระราม: “ขอบใจทุกคน”",
-	"พระราม: “ข้าจะไม่ลืมความเสียสละของพวกเจ้า”",
+const SECOND_DIALOGUES: Array[Dictionary] = [
+	{"speaker": "หนุมาน", "text": "พี่น้องวานรทั้งหลาย!"},
+	{"speaker": "หนุมาน", "text": "ถึงเวลาช่วยพระราม และชิงพระนางสีดากลับคืนมาแล้ว!"},
+	{"speaker": "", "text": "[เหล่าวานรจากทุกสารทิศเดินทางมารวมตัวกันริมชายฝั่ง]"},
+	{"speaker": "หนุมาน", "text": "เบื้องหน้าคือมหาสมุทร"},
+	{"speaker": "หนุมาน", "text": "พวกเราจะสร้างสะพานข้ามไปยังกรุงลงกา!"},
+	{"speaker": "เหล่าวานร", "text": "โอ้โฮ!!"},
+	{"speaker": "พระราม", "text": "ขอบใจทุกคน"},
+	{"speaker": "พระราม", "text": "ข้าจะไม่ลืมความเสียสละของพวกเจ้า"},
 ]
 
-const THIRD_DIALOGUES: Array[String] = [
-	"คำบรรยาย: หลังจากกองทัพวานรเดินทางข้ามสะพานหินมาถึงฝั่งกรุงลงกา ทุกคนหยุดพักเพื่อเตรียมเปิดศึกในรุ่งเช้า",
-	"คำบรรยาย: เหล่าวานรทยอยหลับพักผ่อนหลังจากเหน็ดเหนื่อยมาทั้งวัน",
-	"คำบรรยาย: พระราม พระลักษมณ์ และหนุมานนั่งมองไปยังกรุงลงกาที่อยู่ไม่ไกล",
-	"พระราม: “อีกเพียงก้าวเดียว... เราก็จะได้พบสีดา”",
-	"หนุมาน: “พรุ่งนี้ พวกเราจะบุกกรุงลงกา”",
+const THIRD_DIALOGUES: Array[Dictionary] = [
+	{
+		"speaker": "",
+		"text": "หลังจากกองทัพวานรเดินทางข้ามสะพานหินมาถึงฝั่งกรุงลงกา ทุกคนหยุดพักเพื่อเตรียมเปิดศึกในรุ่งเช้า",
+	},
+	{"speaker": "", "text": "เหล่าวานรทยอยหลับพักผ่อนหลังจากเหน็ดเหนื่อยมาทั้งวัน"},
+	{"speaker": "", "text": "พระราม พระลักษมณ์ และหนุมานนั่งมองไปยังกรุงลงกาที่อยู่ไม่ไกล"},
+	{"speaker": "พระราม", "text": "อีกเพียงก้าวเดียว... เราก็จะได้พบสีดา"},
+	{"speaker": "หนุมาน", "text": "พรุ่งนี้ พวกเราจะบุกกรุงลงกา"},
 ]
 
-const FOURTH_DIALOGUES: Array[String] = [
-	"คำบรรยาย: เมื่อเข้าสู่ยามดึก...",
-	"คำบรรยาย: หมอกสีดำค่อย ๆ ปกคลุมทั่วค่าย",
-	"คำบรรยาย: เงาร่างของไมยราพปรากฏขึ้นอย่างเงียบงัน",
-	"ไมยราพ: “เมื่อเอาชนะด้วยกำลังไม่ได้... ก็ต้องใช้เล่ห์กล”",
-	"คำบรรยาย: ไมยราพใช้มนตร์สะกด ทำให้เหล่าวานรทั้งหมดหลับใหล",
-	"คำบรรยาย: ก่อนลอบเข้าไปยังที่ประทับของพระราม",
-	"คำบรรยาย: ไมยราพร่ายเวท ห่อหุ้มพระรามด้วยพลังสีดำ แล้วอุ้มพระองค์ขึ้น",
-	"ไมยราพ: “พระราม... เจ้าจะไม่ได้เข้าสู่สงครามครั้งนี้”",
-	"คำบรรยาย: ประตูเวทมนตร์เปิดขึ้นกลางความมืด",
-	"คำบรรยาย: ไมยราพอุ้มพระรามเดินผ่านประตู และหายลับไป",
+const FOURTH_DIALOGUES: Array[Dictionary] = [
+	{"speaker": "", "text": "เมื่อเข้าสู่ยามดึก..."},
+	{"speaker": "", "text": "หมอกสีดำค่อย ๆ ปกคลุมทั่วค่าย"},
+	{"speaker": "", "text": "เงาร่างของไมยราพปรากฏขึ้นอย่างเงียบงัน"},
+	{"speaker": "ไมยราพ", "text": "เมื่อเอาชนะด้วยกำลังไม่ได้... ก็ต้องใช้เล่ห์กล"},
+	{"speaker": "", "text": "ไมยราพใช้มนตร์สะกด ทำให้เหล่าวานรทั้งหมดหลับใหล"},
+	{"speaker": "", "text": "ก่อนลอบเข้าไปยังที่ประทับของพระราม"},
+	{"speaker": "", "text": "ไมยราพร่ายเวท ห่อหุ้มพระรามด้วยพลังสีดำ แล้วอุ้มพระองค์ขึ้น"},
+	{"speaker": "ไมยราพ", "text": "พระราม... เจ้าจะไม่ได้เข้าสู่สงครามครั้งนี้"},
+	{"speaker": "", "text": "ประตูเวทมนตร์เปิดขึ้นกลางความมืด"},
+	{"speaker": "", "text": "ไมยราพอุ้มพระรามเดินผ่านประตู และหายลับไป"},
 ]
 
-const FIFTH_DIALOGUES: Array[String] = [
-	"คำบรรยาย: รุ่งเช้า...",
-	"คำบรรยาย: พระลักษมณ์รีบตื่นขึ้น ก่อนพบว่าพระรามหายตัวไป",
-	"พระลักษมณ์: “พี่พระราม!”",
-	"คำบรรยาย: หนุมานรีบวิ่งเข้ามา เห็นเพียงร่องรอยเวทมนตร์ที่ยังหลงเหลืออยู่บนพื้น",
-	"คำบรรยาย: หนุมานกำหมัดแน่น",
-	"หนุมาน: “ไมยราพ...”",
-	"หนุมาน: “ข้าจะตามพระองค์กลับมาให้ได้!”",
+const FIFTH_DIALOGUES: Array[Dictionary] = [
+	{"speaker": "", "text": "รุ่งเช้า..."},
+	{"speaker": "", "text": "พระลักษมณ์รีบตื่นขึ้น ก่อนพบว่าพระรามหายตัวไป"},
+	{"speaker": "พระลักษมณ์", "text": "พี่พระราม!"},
+	{
+		"speaker": "",
+		"text": "หนุมานรีบวิ่งเข้ามา เห็นเพียงร่องรอยเวทมนตร์ที่ยังหลงเหลืออยู่บนพื้น",
+	},
+	{"speaker": "", "text": "หนุมานกำหมัดแน่น"},
+	{"speaker": "หนุมาน", "text": "ไมยราพ..."},
+	{"speaker": "หนุมาน", "text": "ข้าจะตามพระองค์กลับมาให้ได้!"},
 ]
 
 var _dialogue_index := 0
@@ -65,7 +71,7 @@ var _finished := false
 @onready var _background_dim: ColorRect = $BackgroundDim
 @onready var _title_banner: NinePatchRect = $TitleBanner
 @onready var _title_label: Label = $TitleBanner/Title
-@onready var _dialogue_label: Label = $Dialogue
+@onready var _dialogue_label: CutsceneDialoguePresenter = $Dialogue
 @onready var _prompt_label: Label = $ContinuePrompt
 @onready var _fade_overlay: ColorRect = $FadeOverlay
 
@@ -143,21 +149,21 @@ func _show_dialogue(index: int, animated: bool) -> void:
 	var is_final_dialogue := _dialogue_phase == 4 and _dialogue_index == dialogues.size() - 1
 	_prompt_label.text = "กด E เพื่อเริ่ม Chapter 4 ▼" if is_final_dialogue else "กด E เพื่อดำเนินเรื่องต่อ ▼"
 	if not animated:
-		_dialogue_label.text = dialogues[_dialogue_index]
+		_dialogue_label.show_line(dialogues[_dialogue_index], _prompt_label)
 		return
 
 	_transitioning = true
 	var fade_out := create_tween()
 	fade_out.tween_property(_dialogue_label, "modulate:a", 0.0, 0.12)
 	await fade_out.finished
-	_dialogue_label.text = dialogues[_dialogue_index]
+	_dialogue_label.show_line(dialogues[_dialogue_index], _prompt_label)
 	var fade_in := create_tween()
 	fade_in.tween_property(_dialogue_label, "modulate:a", 1.0, 0.18)
 	await fade_in.finished
 	_transitioning = false
 
 
-func _current_dialogues() -> Array[String]:
+func _current_dialogues() -> Array[Dictionary]:
 	if _dialogue_phase == 0:
 		return DIALOGUES
 	if _dialogue_phase == 1:

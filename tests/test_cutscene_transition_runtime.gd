@@ -110,7 +110,9 @@ func _build_chapter_3_cutscene() -> Control:
 	var title := Label.new()
 	title.name = "Title"
 	banner.add_child(title)
-	var dialogue := Label.new()
+	var dialogue := (
+		load("res://scenes/ui/cutscene_dialogue_presenter.tscn") as PackedScene
+	).instantiate()
 	dialogue.name = "Dialogue"
 	cutscene.add_child(dialogue)
 	var prompt := Label.new()
@@ -139,7 +141,9 @@ func _build_chapter_9_cutscene() -> Control:
 	var title := Label.new()
 	title.name = "Title"
 	banner.add_child(title)
-	var dialogue := Label.new()
+	var dialogue := (
+		load("res://scenes/ui/cutscene_dialogue_presenter.tscn") as PackedScene
+	).instantiate()
 	dialogue.name = "Dialogue"
 	cutscene.add_child(dialogue)
 	var prompt := Label.new()
