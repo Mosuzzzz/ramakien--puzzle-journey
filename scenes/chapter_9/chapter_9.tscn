@@ -176,8 +176,8 @@ texture = ExtResource("1_map")
 [node name="Chapter9Props" type="Node2D" parent="." unique_id=1442088735]
 
 [node name="FireTowerA" type="Sprite2D" parent="Chapter9Props" unique_id=1211728891]
-position = Vector2(368.875, 853)
-scale = Vector2(0.2612179, 0.25)
+position = Vector2(369.875, 853)
+scale = Vector2(0.26549143, 0.25)
 texture = ExtResource("chapter_9_prop_fire_1")
 
 [node name="FireTowerB" type="Sprite2D" parent="Chapter9Props" unique_id=1013727880]

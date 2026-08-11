@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bobkkl4uwe3n0" path="res://assets/ui/lable/pieces1/title_scroll_banner.png" id="8_title_banner"]
 [ext_resource type="Script" uid="uid://3au27m7j7v4o" path="res://scenes/cutscene/chapter_2_abduction_cutscene.gd" id="9_abduction_script"]
 [ext_resource type="PackedScene" path="res://scenes/ui/question_quiz.tscn" id="10_quiz"]
-[ext_resource type="Texture2D" path="res://assets/cutscene/chapter_2/deer_chase.png" id="11_deer_chase_image"]
+[ext_resource type="Texture2D" uid="uid://5mubkcq2qtbh" path="res://assets/cutscene/chapter_2/deer_chase.png" id="11_deer_chase_image"]
 [ext_resource type="PackedScene" path="res://scenes/ui/cutscene_dialogue_presenter.tscn" id="cutscene_dialogue_presenter"]
 
 [sub_resource type="RectangleShape2D" id="rect_forest_top"]
@@ -55,8 +55,8 @@ position = Vector2(45, 395)
 target_scene = "res://scenes/chapter_2/chapter_2.tscn"
 target_spawn = Vector2(1300, 541)
 prompt_text = "กด E เพื่อกลับไปยังอาศรม"
-auto = true
 locked = true
+auto = true
 
 [node name="QuestionQuiz" parent="." unique_id=2134883277 instance=ExtResource("10_quiz")]
 
@@ -126,6 +126,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Dialogue" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=972110679 instance=ExtResource("cutscene_dialogue_presenter")]
+layout_mode = 1
 
 [node name="ContinuePrompt" type="Label" parent="Chapter2AbductionCutsceneLayer/AbductionCutscene" unique_id=840619511]
 layout_mode = 1
