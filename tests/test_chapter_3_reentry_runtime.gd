@@ -181,10 +181,14 @@ func _build_intro_cutscene() -> Control:
 		var control := ColorRect.new()
 		control.name = child_name
 		cutscene.add_child(control)
-	for child_name in ["Dialogue", "ContinuePrompt"]:
-		var label := Label.new()
-		label.name = child_name
-		cutscene.add_child(label)
+	var dialogue := (
+		load("res://scenes/ui/cutscene_dialogue_presenter.tscn") as PackedScene
+	).instantiate()
+	dialogue.name = "Dialogue"
+	cutscene.add_child(dialogue)
+	var continue_prompt := Label.new()
+	continue_prompt.name = "ContinuePrompt"
+	cutscene.add_child(continue_prompt)
 	return cutscene
 
 

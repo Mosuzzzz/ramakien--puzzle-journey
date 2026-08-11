@@ -24,6 +24,21 @@ const PREFIX_SCAN_FILES: Array[String] = CUTSCENE_SCRIPTS + [
 	"res://scenes/chapter_8/chapter_8.tscn",
 	"res://scenes/chapter_9/chapter_9.tscn",
 ]
+const DIALOGUE_CONSTANTS := {
+	"res://scenes/cutscene/chapter_2_cutscene.gd": ["DIALOGUES"],
+	"res://scenes/cutscene/chapter_2_deer_cutscene.gd": ["DIALOGUES"],
+	"res://scenes/cutscene/chapter_2_abduction_cutscene.gd": ["CATCH_OPENING", "SHARED_TAIL"],
+	"res://scenes/cutscene/chapter_3_cutscene.gd": ["DIALOGUES"],
+	"res://scenes/cutscene/chapter_3_post_battle_cutscene.gd": ["DIALOGUES", "FINAL_DIALOGUES"],
+	"res://scenes/cutscene/chapter_4_cutscene.gd": [
+		"DIALOGUES", "SECOND_DIALOGUES", "THIRD_DIALOGUES", "FOURTH_DIALOGUES", "FIFTH_DIALOGUES"
+	],
+	"res://scenes/cutscene/chapter_5_post_boss_cutscene.gd": ["DIALOGUES", "FINAL_DIALOGUES"],
+	"res://scenes/cutscene/chapter_6_cutscene.gd": ["DIALOGUES"],
+	"res://scenes/cutscene/chapter_8_cutscene.gd": ["DIALOGUES"],
+	"res://scenes/cutscene/chapter_9_cutscene.gd": ["DIALOGUES"],
+	"res://scenes/cutscene/chapter_9_ending_cutscene.gd": ["DIALOGUES"],
+}
 
 var _failures: Array[String] = []
 
@@ -34,6 +49,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	_test_no_narration_prefixes()
+	_test_all_dialogue_lines_are_structured()
 	_test_representative_structured_lines()
 	_finish()
 
@@ -45,6 +61,31 @@ func _test_no_narration_prefixes() -> void:
 		if file == null:
 			continue
 		_expect(not file.get_as_text().contains("คำบรรยาย:"), "%s has no narration prefix" % path)
+
+
+func _test_all_dialogue_lines_are_structured() -> void:
+	for path: String in DIALOGUE_CONSTANTS:
+		for constant_name: String in DIALOGUE_CONSTANTS[path]:
+			var lines := _constant(path, constant_name)
+			_expect(not lines.is_empty(), "%s.%s has dialogue lines" % [path, constant_name])
+			for index in lines.size():
+				var line: Variant = lines[index]
+				var label := "%s.%s[%d]" % [path, constant_name, index]
+				_expect(line is Dictionary, "%s uses structured dialogue data" % label)
+				if not line is Dictionary:
+					continue
+				_expect(line.size() == 2, "%s contains only speaker and text" % label)
+				_expect(line.has("speaker") and line.speaker is String, "%s has a speaker string" % label)
+				_expect(line.has("text") and line.text is String, "%s has a text string" % label)
+				if not line.has("text") or not line.text is String:
+					continue
+				var text: String = line.text
+				_expect(not text.is_empty(), "%s preserves a non-empty sentence" % label)
+				_expect(not text.begins_with("คำบรรยาย:"), "%s omits the narration prefix" % label)
+				_expect(
+					not (text.begins_with("“") and text.ends_with("”")),
+					"%s omits presentation-only outer quotation marks" % label
+				)
 
 
 func _test_representative_structured_lines() -> void:

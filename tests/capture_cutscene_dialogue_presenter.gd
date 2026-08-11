@@ -10,10 +10,14 @@ func _initialize() -> void:
 
 
 func _capture() -> void:
-	root.size = Vector2i(1920, 1080)
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(1920, 1080)
+	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	root.add_child(viewport)
+
 	var stage := Control.new()
 	stage.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	root.add_child(stage)
+	viewport.add_child(stage)
 
 	var background := TextureRect.new()
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -53,24 +57,38 @@ func _capture() -> void:
 	}, prompt)
 	for frame in 10:
 		await process_frame
-	root.get_texture().get_image().save_png(SPOKEN_PATH)
+	_save_capture(viewport, SPOKEN_PATH, Vector2i(1920, 1080))
 
 	presenter.show_line({
 		"speaker": "",
 		"text": "วันหนึ่ง มีกวางทองขนสีทองอร่ามวิ่งผ่านหน้าอาศรมไป งดงามจนทุกคนต่างพากันมอง",
 	}, prompt)
 	await process_frame
-	root.get_texture().get_image().save_png(NARRATION_PATH)
+	_save_capture(viewport, NARRATION_PATH, Vector2i(1920, 1080))
 
-	root.size = Vector2i(1024, 768)
+	viewport.size = Vector2i(1024, 768)
 	presenter.show_line({
 		"speaker": "หนุมาน",
 		"text": "ถึงเวลาช่วยพระราม และชิงพระนางสีดากลับคืนมาแล้ว! พวกเราจะสร้างสะพานข้ามไปยังกรุงลงกา!",
 	}, prompt)
 	for frame in 10:
 		await process_frame
-	root.get_texture().get_image().save_png(NARROW_PATH)
+	_save_capture(viewport, NARROW_PATH, Vector2i(1024, 768))
 	print("CAPTURED: %s" % SPOKEN_PATH)
 	print("CAPTURED: %s" % NARRATION_PATH)
 	print("CAPTURED: %s" % NARROW_PATH)
 	quit(0)
+
+
+func _save_capture(viewport: SubViewport, path: String, expected_size: Vector2i) -> void:
+	var image := viewport.get_texture().get_image()
+	if image.get_size() != expected_size:
+		push_error("Capture size mismatch for %s: expected %s, got %s" % [
+			path, expected_size, image.get_size()
+		])
+		quit(1)
+		return
+	var error := image.save_png(path)
+	if error != OK:
+		push_error("Failed to save capture %s (error %d)" % [path, error])
+		quit(1)
