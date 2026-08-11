@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" path="res://assets/ui/life_bar/hp_bar_empty.png" id="7_boss_bar_empty"]
 [ext_resource type="Texture2D" path="res://assets/ui/life_bar/hp_bar_full.png" id="8_boss_bar_full"]
 [ext_resource type="PackedScene" path="res://scenes/ui/question_quiz.tscn" id="9_quiz"]
+[ext_resource type="FontFile" path="res://assets/fonts/Sarabun-Bold.ttf" id="10_boss_font"]
 
 [sub_resource type="AtlasTexture" id="a2"]
 atlas = ExtResource("4_attack")
@@ -381,16 +382,19 @@ value = 100.0
 texture_under = ExtResource("7_boss_bar_empty")
 texture_progress = ExtResource("8_boss_bar_full")
 
-[node name="BossName" type="Label" parent="BossHUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -130.0
-offset_top = 46.0
-offset_right = 130.0
-offset_bottom = 68.0
+[node name="BossName" type="Label" parent="BossHUD/BossBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 105.0
+offset_top = 26.0
+offset_right = -105.0
+offset_bottom = -15.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 15
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_boss_font")
+theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
 theme_override_constants/shadow_offset_x = 1
