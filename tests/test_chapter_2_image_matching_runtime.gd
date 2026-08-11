@@ -15,6 +15,7 @@ func _run() -> void:
 	_test_legacy_text_pairs()
 	_test_selected_border()
 	_test_correct_pairs_share_distinct_borders()
+	await _test_wrong_pair_flashes_and_retries()
 	_finish()
 
 
@@ -134,6 +135,44 @@ func _find_button_with_text(parent: Node, expected_text: String) -> Button:
 		if child.text == expected_text:
 			return child
 	return null
+
+
+func _test_wrong_pair_flashes_and_retries() -> void:
+	var puzzle := _spawn_puzzle()
+	puzzle.open("Match", [["L1", "R1"], ["L2", "R2"]])
+	var left_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/LeftColumn")
+	var right_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/RightColumn")
+	var left := left_column.get_child(0) as Button
+	var other_left := left_column.get_child(1) as Button
+	var wrong := _find_button_with_text(right_column, "R2")
+	puzzle._on_left_pressed(left, 0)
+	puzzle._on_right_pressed(wrong, 1)
+	await process_frame
+	_expect(left.disabled and wrong.disabled, "wrong pair locks both cards during feedback")
+	_expect(
+		_border_color(left).is_equal_approx(Color("ef3340")),
+		"wrong feedback begins with a red border"
+	)
+	puzzle._on_left_pressed(other_left, 1)
+	_expect(
+		_border_color(other_left).is_equal_approx(Color("705b43")),
+		"wrong feedback blocks overlapping selection"
+	)
+	await create_timer(0.65).timeout
+	_expect(not left.disabled and not wrong.disabled, "wrong pair is selectable after feedback")
+	_expect(
+		_border_color(left).is_equal_approx(Color("705b43")),
+		"wrong left border returns to neutral"
+	)
+	_expect(
+		_border_color(wrong).is_equal_approx(Color("705b43")),
+		"wrong right border returns to neutral"
+	)
+	puzzle._on_left_pressed(left, 0)
+	var correct := _find_button_with_text(right_column, "R1")
+	puzzle._on_right_pressed(correct, 0)
+	_expect(left.disabled and correct.disabled, "retry can complete the correct pair")
+	puzzle.free()
 
 
 func _expect(condition: bool, message: String) -> void:

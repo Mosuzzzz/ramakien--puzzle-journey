@@ -12,6 +12,8 @@ const PAIR_BORDER_COLORS: Array[Color] = [
 	Color("2f80ed"),
 	Color("27ae60"),
 ]
+const WRONG_FLASH_COUNT := 3
+const WRONG_FLASH_INTERVAL := 0.10
 
 @onready var _title_label: Label = $Dim/Page/PageMargin/VBox/TitleLabel
 @onready var _left_column: VBoxContainer = $Dim/Page/PageMargin/VBox/Columns/LeftColumn
@@ -21,6 +23,7 @@ var _pair_count := 0
 var _selected_left: Button = null
 var _selected_left_index := -1
 var _matched := 0
+var _feedback_active := false
 
 
 func _ready() -> void:
@@ -34,6 +37,7 @@ func open(title: String, pairs: Array) -> void:
 	_matched = 0
 	_selected_left = null
 	_selected_left_index = -1
+	_feedback_active = false
 	_title_label.text = title
 
 	for c in _left_column.get_children():
@@ -106,7 +110,7 @@ func _set_border(button: Button, color: Color, width: int = 4) -> void:
 
 
 func _on_left_pressed(btn: Button, index: int) -> void:
-	if btn.disabled:
+	if btn.disabled or _feedback_active:
 		return
 	if _selected_left:
 		_set_border(_selected_left, NEUTRAL_BORDER_COLOR, 2)
@@ -116,7 +120,7 @@ func _on_left_pressed(btn: Button, index: int) -> void:
 
 
 func _on_right_pressed(btn: Button, index: int) -> void:
-	if _selected_left == null or btn.disabled:
+	if _selected_left == null or btn.disabled or _feedback_active:
 		return
 
 	if index == _selected_left_index:
@@ -137,13 +141,26 @@ func _on_right_pressed(btn: Button, index: int) -> void:
 		var wrong_left := _selected_left
 		_selected_left = null
 		_selected_left_index = -1
-		wrong_left.modulate = Color(1.0, 0.4, 0.4)
-		btn.modulate = Color(1.0, 0.4, 0.4)
-		await get_tree().create_timer(0.25).timeout
-		if is_instance_valid(wrong_left) and not wrong_left.disabled:
-			wrong_left.modulate = Color.WHITE
-		if is_instance_valid(btn) and not btn.disabled:
-			btn.modulate = Color.WHITE
+		await _flash_wrong_pair(wrong_left, btn)
+
+
+func _flash_wrong_pair(left: Button, right: Button) -> void:
+	_feedback_active = true
+	left.disabled = true
+	right.disabled = true
+	for flash_index in WRONG_FLASH_COUNT:
+		_set_border(left, WRONG_BORDER_COLOR)
+		_set_border(right, WRONG_BORDER_COLOR)
+		await get_tree().create_timer(WRONG_FLASH_INTERVAL).timeout
+		_set_border(left, NEUTRAL_BORDER_COLOR, 2)
+		_set_border(right, NEUTRAL_BORDER_COLOR, 2)
+		if flash_index < WRONG_FLASH_COUNT - 1:
+			await get_tree().create_timer(WRONG_FLASH_INTERVAL).timeout
+	if is_instance_valid(left):
+		left.disabled = false
+	if is_instance_valid(right):
+		right.disabled = false
+	_feedback_active = false
 
 
 func _close_and_solve() -> void:
