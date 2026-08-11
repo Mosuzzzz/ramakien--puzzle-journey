@@ -3,10 +3,22 @@ extends Node2D
 const GameState := preload("res://scenes/core/game_state.gd")
 
 const SUPPLY_PAIRS := [
-	["ฟืน", "สำหรับก่อไฟหุงหาอาหาร"],
-	["น้ำจากลำธาร", "สำหรับดื่มและประกอบอาหาร"],
-	["สมุนไพร", "สำหรับรักษาบาดแผล"],
-	["ใบไม้แห้ง", "สำหรับปูที่นอน"],
+	{
+		"left_image": "res://assets/puzzles/chapter_2/firewood.png",
+		"right_text": "สำหรับก่อไฟหุงหาอาหาร",
+	},
+	{
+		"left_image": "res://assets/puzzles/chapter_2/stream_water.png",
+		"right_text": "สำหรับดื่มและประกอบอาหาร",
+	},
+	{
+		"left_image": "res://assets/puzzles/chapter_2/herbs.png",
+		"right_text": "สำหรับรักษาบาดแผล",
+	},
+	{
+		"left_image": "res://assets/puzzles/chapter_2/dry_leaves.png",
+		"right_text": "สำหรับปูที่นอน",
+	},
 ]
 
 const HOME_RADIUS := 90.0
