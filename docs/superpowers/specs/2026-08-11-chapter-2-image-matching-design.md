@@ -2,7 +2,7 @@
 
 ## Goal
 
-Improve the Chapter 2 ashram-supplies matching puzzle so that the left column uses the four supplied illustrations instead of item names. Correct matches communicate their relationship through a shared, pair-specific border color. Incorrect matches flash red and then become available for another attempt.
+Improve the Chapter 2 ashram-supplies matching puzzle so that the left column uses the four supplied illustrations instead of item names. Correct matches communicate their relationship through a shared, pair-specific full-card color. Incorrect matches flash the full card red and then become available for another attempt.
 
 ## Scope
 
@@ -27,20 +27,20 @@ The matching component continues to accept its current text-only pair representa
 
 Each left item is an image button with a consistent card size. The illustration preserves its aspect ratio and is cropped or contained within the available card area without stretching. The right column remains text buttons, and its order remains shuffled each time the puzzle opens.
 
-Selecting an unmatched left card gives it a thin gold border. Selecting another unmatched left card moves that selection border to the newly selected card.
+Selecting an unmatched left card gives the entire card a light-gold background. Selecting another unmatched left card restores the previous card's neutral brown background and moves the light-gold selection fill to the newly selected card.
 
 When a right card is selected:
 
-- If the pair is correct, both cards become disabled and receive the same persistent border color. The four pair colors are orange, yellow, blue, and green, assigned by the pair's stable source index. Text color is not changed to green.
-- If the pair is incorrect, both cards become temporarily unavailable and their borders flash red three times. After the feedback animation, both borders return to their prior neutral state and the cards become selectable again.
+- If the pair is correct, both cards become disabled and receive the same persistent full-card background color. The four pair colors are orange, yellow, blue, and green, assigned by the pair's stable source index. A slightly darker same-hue border keeps the card silhouette readable; the primary feedback is the filled card, not the border. Text uses a contrasting neutral color—dark brown on orange/yellow and white on blue/green—and is never recolored green as a success indicator.
+- If the pair is incorrect, both cards become temporarily unavailable and their full backgrounds flash red three times. A darker red border accompanies the red fill. After the feedback animation, both cards return to their neutral brown background and become selectable again.
 
 Existing correct-answer and wrong-answer sound effects continue to play. After all four pairs are correct, the puzzle waits briefly, closes, unpauses the scene, and emits its existing `solved` signal.
 
 ## Component Boundaries
 
-`chapter_2.gd` owns the semantic pair definitions and image paths. `matching_puzzle.gd` owns card construction, selection, matching, border-state rendering, temporary input locking, and completion. `matching_puzzle.tscn` owns the static modal layout and visual spacing.
+`chapter_2.gd` owns the semantic pair definitions and image paths. `matching_puzzle.gd` owns card construction, selection, matching, card-state rendering, temporary input locking, and completion. `matching_puzzle.tscn` owns the static modal layout and visual spacing.
 
-Border styles are created through small focused helpers so that neutral, selected, correct, and incorrect states can be applied consistently to both image and text buttons.
+Card styles are created through small focused helpers so that background fill, supporting border, and contrasting text colors for neutral, selected, correct, and incorrect states can be applied consistently to both image and text buttons.
 
 ## Error and Edge-Case Handling
 
@@ -54,8 +54,8 @@ Use test-driven development for each behavior:
 
 1. Verify Chapter 2 supplies four valid image-backed pair definitions in the intended semantic order.
 2. Verify image-backed left entries create image-only cards while legacy text pairs still create text cards.
-3. Verify a correct match gives both cards the same persistent border color and different pairs receive different colors.
-4. Verify an incorrect match enters red-border feedback and returns both cards to a selectable neutral state after the animation.
+3. Verify a correct match gives both cards the same persistent full-card color, all four pairs receive their exact assigned colors, and text contrast follows the orange/yellow versus blue/green rule.
+4. Verify an incorrect match enters full-card red feedback exactly three times and returns both cards to a selectable neutral-brown state after the animation.
 5. Verify correct and incorrect audio hooks still fire and puzzle completion behavior remains intact.
 
 Run the focused matching-puzzle tests first, then the existing puzzle-audio suite and relevant Chapter 2 quest-flow tests. Finally launch or render the Chapter 2 puzzle at the project's supported viewport to visually confirm image cropping, spacing, border visibility, and Thai text layout.
@@ -63,8 +63,10 @@ Run the focused matching-puzzle tests first, then the existing puzzle-audio suit
 ## Acceptance Criteria
 
 - Chapter 2 shows the supplied firewood, stream-water, herb, and dry-leaf illustrations in the left column with no item-name captions.
-- Every correct pair is locked with a matching border on both cards, using a different color for each of the four pairs.
-- Incorrect pairs flash red three times and can be attempted again afterward.
+- Every correct pair is locked with a matching full-card background on both cards, using orange, yellow, blue, and green for the four stable pair indices.
+- Incorrect pairs flash their full card backgrounds red three times and can be attempted again afterward.
+- The selected card uses a light-gold full-card background before a right-side answer is chosen.
+- Supporting borders may use darker shades, but border-only feedback does not satisfy the design.
 - Text is not recolored green to indicate success.
 - All four correct matches complete the existing quest flow without regression.
 - The shared matching component remains compatible with text-only pair data.
