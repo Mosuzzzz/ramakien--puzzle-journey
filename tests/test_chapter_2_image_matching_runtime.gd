@@ -2,6 +2,7 @@ extends SceneTree
 
 var _failures: Array[String] = []
 var _chapter2_script: Script
+var _events: Array[StringName] = []
 
 
 func _initialize() -> void:
@@ -10,12 +11,14 @@ func _initialize() -> void:
 
 func _run() -> void:
 	_chapter2_script = load("res://scenes/chapter_2/chapter_2.gd") as Script
+	root.get_node("AudioManager").sfx_played.connect(func(key: StringName): _events.append(key))
 	_test_chapter_2_image_pair_data()
 	_test_image_only_left_cards()
 	_test_legacy_text_pairs()
 	_test_selected_border()
 	_test_correct_pairs_share_distinct_borders()
 	await _test_wrong_pair_flashes_and_retries()
+	await _test_completion_preserves_signal_audio_and_pause()
 	_finish()
 
 
@@ -62,6 +65,10 @@ func _test_image_only_left_cards() -> void:
 	_expect(left.text.is_empty(), "image card has no caption")
 	_expect(left.icon != null, "image card loads its illustration")
 	_expect(left.expand_icon, "image card scales its illustration")
+	_expect(
+		left.icon_alignment == HORIZONTAL_ALIGNMENT_CENTER,
+		"image card centers its illustration"
+	)
 	puzzle.free()
 
 
@@ -172,6 +179,27 @@ func _test_wrong_pair_flashes_and_retries() -> void:
 	var correct := _find_button_with_text(right_column, "R1")
 	puzzle._on_right_pressed(correct, 0)
 	_expect(left.disabled and correct.disabled, "retry can complete the correct pair")
+	puzzle.free()
+
+
+func _test_completion_preserves_signal_audio_and_pause() -> void:
+	var puzzle := _spawn_puzzle()
+	var solved_state := {"count": 0}
+	puzzle.solved.connect(func(): solved_state.count += 1)
+	puzzle.open("Match", [["L1", "R1"]])
+	var left := (
+		puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/LeftColumn").get_child(0) as Button
+	)
+	var right := (
+		puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/RightColumn").get_child(0) as Button
+	)
+	_events.clear()
+	puzzle._on_left_pressed(left, 0)
+	await puzzle._on_right_pressed(right, 0)
+	_expect(_events == [&"answer_correct"], "completion keeps correct-answer audio")
+	_expect(solved_state.count == 1, "completion emits solved once")
+	_expect(not paused, "completion unpauses the scene tree")
+	_expect(not puzzle.visible, "completion hides the puzzle")
 	puzzle.free()
 
 

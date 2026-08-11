@@ -68,6 +68,7 @@ func _make_left_button(pair: Variant) -> Button:
 		if ResourceLoader.exists(image_path):
 			btn.icon = load(image_path) as Texture2D
 			btn.expand_icon = true
+			btn.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			btn.add_theme_constant_override("icon_max_width", 220)
 		return btn
 	return _make_text_button(str(pair[0]))
