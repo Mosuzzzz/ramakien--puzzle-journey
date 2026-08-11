@@ -123,7 +123,7 @@ func _set_card_style(
 	text_color: Color,
 	width: int = 4
 ) -> void:
-	for state in [&"normal", &"hover", &"pressed", &"focus", &"disabled"]:
+	for state in [&"normal", &"hover", &"pressed", &"hover_pressed", &"focus", &"disabled"]:
 		var style := StyleBoxFlat.new()
 		style.bg_color = fill_color
 		style.border_color = border_color
@@ -138,6 +138,7 @@ func _set_card_style(
 		&"font_color",
 		&"font_hover_color",
 		&"font_pressed_color",
+		&"font_hover_pressed_color",
 		&"font_focus_color",
 		&"font_disabled_color",
 	]:

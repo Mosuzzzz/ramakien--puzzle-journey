@@ -108,6 +108,16 @@ func _test_selected_border() -> void:
 		_background_color(left).is_equal_approx(Color("e9b949")),
 		"selected card uses a light-gold full-card fill"
 	)
+	var hover_pressed_style := left.get_theme_stylebox("hover_pressed")
+	_expect(
+		hover_pressed_style is StyleBoxFlat
+		and hover_pressed_style.bg_color.is_equal_approx(Color("e9b949")),
+		"selected card keeps its fill while hover-pressed"
+	)
+	_expect(
+		left.get_theme_color("font_hover_pressed_color").is_equal_approx(Color("3b2108")),
+		"selected card keeps readable text while hover-pressed"
+	)
 	puzzle.free()
 
 
