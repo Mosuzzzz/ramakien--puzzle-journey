@@ -69,6 +69,10 @@ func _test_image_only_left_cards() -> void:
 		left.icon_alignment == HORIZONTAL_ALIGNMENT_CENTER,
 		"image card centers its illustration"
 	)
+	_expect(
+		left.get_theme_color("icon_disabled_color").is_equal_approx(Color.WHITE),
+		"matched image card preserves the illustration's original color"
+	)
 	puzzle.free()
 
 
@@ -101,8 +105,8 @@ func _test_selected_border() -> void:
 	)
 	puzzle._on_left_pressed(left, 0)
 	_expect(
-		_border_color(left).is_equal_approx(Color("e9b949")),
-		"selected card uses gold border"
+		_background_color(left).is_equal_approx(Color("e9b949")),
+		"selected card uses a light-gold full-card fill"
 	)
 	puzzle.free()
 
@@ -114,8 +118,14 @@ func _test_correct_pairs_share_distinct_borders() -> void:
 	)
 	var left_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/LeftColumn")
 	var right_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/RightColumn")
-	var expected_colors: Array[Color] = [
+	var expected_fills: Array[Color] = [
 		Color("f28c28"), Color("f2c94c"), Color("2f80ed"), Color("27ae60")
+	]
+	var expected_borders: Array[Color] = [
+		Color("a95000"), Color("9b7900"), Color("1555a5"), Color("16723c")
+	]
+	var expected_text: Array[Color] = [
+		Color("3b2108"), Color("3b2108"), Color("ffffff"), Color("ffffff")
 	]
 	for i in 4:
 		var left := left_column.get_child(i) as Button
@@ -123,12 +133,20 @@ func _test_correct_pairs_share_distinct_borders() -> void:
 		puzzle._on_left_pressed(left, i)
 		puzzle._on_right_pressed(right, i)
 		_expect(
-			_border_color(left).is_equal_approx(expected_colors[i]),
-			"correct pair %d uses its exact stable color" % i
+			_background_color(left).is_equal_approx(expected_fills[i]),
+			"correct pair %d fills the entire left card" % i
 		)
 		_expect(
-			_border_color(right).is_equal_approx(expected_colors[i]),
-			"correct pair %d shares its exact color on the right" % i
+			_background_color(right).is_equal_approx(expected_fills[i]),
+			"correct pair %d fills the entire right card" % i
+		)
+		_expect(
+			_border_color(left).is_equal_approx(expected_borders[i]),
+			"correct pair %d uses its supporting darker border" % i
+		)
+		_expect(
+			right.get_theme_color("font_disabled_color").is_equal_approx(expected_text[i]),
+			"correct pair %d uses readable text contrast" % i
 		)
 	puzzle.free()
 
@@ -137,6 +155,13 @@ func _border_color(button: Button) -> Color:
 	var style := button.get_theme_stylebox("normal")
 	if style is StyleBoxFlat:
 		return style.border_color
+	return Color.TRANSPARENT
+
+
+func _background_color(button: Button) -> Color:
+	var style := button.get_theme_stylebox("normal")
+	if style is StyleBoxFlat:
+		return style.bg_color
 	return Color.TRANSPARENT
 
 
@@ -160,12 +185,12 @@ func _test_wrong_pair_flashes_and_retries() -> void:
 	await process_frame
 	_expect(left.disabled and wrong.disabled, "wrong pair locks both cards during feedback")
 	_expect(
-		_border_color(left).is_equal_approx(Color("ef3340")),
-		"wrong feedback begins with a red border"
+		_background_color(left).is_equal_approx(Color("ef3340")),
+		"wrong feedback begins with a full-card red fill"
 	)
 	puzzle._on_left_pressed(other_left, 1)
 	_expect(
-		_border_color(other_left).is_equal_approx(Color("705b43")),
+		_background_color(other_left).is_equal_approx(Color("6f6557")),
 		"wrong feedback blocks overlapping selection"
 	)
 	var red_flash_count := 0
@@ -173,7 +198,7 @@ func _test_wrong_pair_flashes_and_retries() -> void:
 	var lock_held := true
 	var elapsed := 0.0
 	while left.disabled and elapsed < 1.0:
-		var is_red := _border_color(left).is_equal_approx(Color("ef3340"))
+		var is_red := _background_color(left).is_equal_approx(Color("ef3340"))
 		if is_red and not was_red:
 			red_flash_count += 1
 		was_red = is_red
@@ -184,12 +209,12 @@ func _test_wrong_pair_flashes_and_retries() -> void:
 	_expect(lock_held, "wrong feedback keeps both cards locked throughout all flashes")
 	_expect(not left.disabled and not wrong.disabled, "wrong pair is selectable after feedback")
 	_expect(
-		_border_color(left).is_equal_approx(Color("705b43")),
-		"wrong left border returns to neutral"
+		_background_color(left).is_equal_approx(Color("6f6557")),
+		"wrong left card returns to its neutral fill"
 	)
 	_expect(
-		_border_color(wrong).is_equal_approx(Color("705b43")),
-		"wrong right border returns to neutral"
+		_background_color(wrong).is_equal_approx(Color("6f6557")),
+		"wrong right card returns to its neutral fill"
 	)
 	puzzle._on_left_pressed(left, 0)
 	var correct := _find_button_with_text(right_column, "R1")
