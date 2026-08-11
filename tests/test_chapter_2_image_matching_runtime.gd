@@ -13,6 +13,8 @@ func _run() -> void:
 	_test_chapter_2_image_pair_data()
 	_test_image_only_left_cards()
 	_test_legacy_text_pairs()
+	_test_selected_border()
+	_test_correct_pairs_share_distinct_borders()
 	_finish()
 
 
@@ -81,6 +83,57 @@ func _spawn_puzzle() -> CanvasLayer:
 	var puzzle := (load("res://scenes/ui/matching_puzzle.tscn") as PackedScene).instantiate()
 	root.add_child(puzzle)
 	return puzzle
+
+
+func _test_selected_border() -> void:
+	var puzzle := _spawn_puzzle()
+	puzzle.open("Match", [["L1", "R1"]])
+	var left := (
+		puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/LeftColumn").get_child(0) as Button
+	)
+	puzzle._on_left_pressed(left, 0)
+	_expect(
+		_border_color(left).is_equal_approx(Color("e9b949")),
+		"selected card uses gold border"
+	)
+	puzzle.free()
+
+
+func _test_correct_pairs_share_distinct_borders() -> void:
+	var puzzle := _spawn_puzzle()
+	puzzle.open("Match", [["L1", "R1"], ["L2", "R2"]])
+	var left_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/LeftColumn")
+	var right_column := puzzle.get_node("Dim/Page/PageMargin/VBox/Columns/RightColumn")
+	var observed: Array[Color] = []
+	for i in 2:
+		var left := left_column.get_child(i) as Button
+		var right := _find_button_with_text(right_column, "R%d" % (i + 1))
+		puzzle._on_left_pressed(left, i)
+		puzzle._on_right_pressed(right, i)
+		_expect(
+			_border_color(left).is_equal_approx(_border_color(right)),
+			"correct pair %d shares one border color" % i
+		)
+		observed.append(_border_color(left))
+	_expect(
+		not observed[0].is_equal_approx(observed[1]),
+		"different correct pairs use distinct colors"
+	)
+	puzzle.free()
+
+
+func _border_color(button: Button) -> Color:
+	var style := button.get_theme_stylebox("normal")
+	if style is StyleBoxFlat:
+		return style.border_color
+	return Color.TRANSPARENT
+
+
+func _find_button_with_text(parent: Node, expected_text: String) -> Button:
+	for child: Button in parent.get_children():
+		if child.text == expected_text:
+			return child
+	return null
 
 
 func _expect(condition: bool, message: String) -> void:
