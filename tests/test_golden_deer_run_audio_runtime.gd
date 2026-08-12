@@ -19,8 +19,7 @@ func _run() -> void:
 		stage.free()
 		_finish()
 		return
-	var deer := packed.instantiate()
-	stage.add_child(deer)
+	var deer := _spawn_deer(packed, stage)
 	var run_audio := deer.get_node_or_null("RunAudio") as AudioStreamPlayer2D
 	_expect(run_audio != null, "GoldenDeer owns positional run audio")
 	if run_audio != null:
@@ -39,8 +38,27 @@ func _run() -> void:
 		)
 		deer.call("_play", "idle")
 		_expect(not run_audio.playing, "idle animation stops deer audio")
+
+	var dying_deer := _spawn_deer(packed, stage)
+	var dying_audio := dying_deer.get_node("RunAudio") as AudioStreamPlayer2D
+	dying_deer.call("_play", "run")
+	dying_deer.call("_die")
+	_expect(not dying_audio.playing, "death stops deer run audio immediately")
+
+	var exiting_deer := _spawn_deer(packed, stage)
+	var exiting_audio := exiting_deer.get_node("RunAudio") as AudioStreamPlayer2D
+	exiting_deer.call("_play", "run")
+	stage.remove_child(exiting_deer)
+	_expect(not exiting_audio.playing, "tree exit stops deer run audio")
+	exiting_deer.free()
 	stage.free()
 	_finish()
+
+
+func _spawn_deer(packed: PackedScene, stage: Node2D) -> CharacterBody2D:
+	var deer := packed.instantiate() as CharacterBody2D
+	stage.add_child(deer)
+	return deer
 
 
 func _expect(condition: bool, message: String) -> void:

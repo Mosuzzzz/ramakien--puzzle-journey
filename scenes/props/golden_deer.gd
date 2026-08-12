@@ -23,11 +23,15 @@ var _spooked := false
 var _hit_flash_tween: Tween
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _run_audio: AudioStreamPlayer2D = $RunAudio
 
 
 func _ready() -> void:
 	_health = max_health
 	_player = get_parent().get_node_or_null("Player")
+	var loop_stream := _run_audio.stream.duplicate() as AudioStreamMP3
+	loop_stream.loop = true
+	_run_audio.stream = loop_stream
 	_play("idle")
 
 
@@ -77,6 +81,15 @@ func _play(anim: String) -> void:
 		_sprite.scale = Vector2(s, s)
 	_sprite.flip_h = _face_right
 	_sprite.play(anim)
+	_update_run_audio(anim == "run")
+
+
+func _update_run_audio(running: bool) -> void:
+	if running:
+		if not _run_audio.playing:
+			_run_audio.play()
+	else:
+		_run_audio.stop()
 
 
 func take_damage(amount: int) -> void:
@@ -103,9 +116,15 @@ func _flash_hit() -> void:
 func _die() -> void:
 	_dead = true
 	velocity = Vector2.ZERO
+	_update_run_audio(false)
 	hide()
 	set_physics_process(false)
 	# ponytail: no Maricha demon-form art exists yet; the transformation/death
 	# is told through narration instead. Swap in real art + an animated
 	# reveal here if that asset gets made.
 	defeated.emit()
+
+
+func _exit_tree() -> void:
+	if is_instance_valid(_run_audio):
+		_run_audio.stop()
