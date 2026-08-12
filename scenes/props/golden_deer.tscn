@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2ifsn7i14dss"]
+[gd_scene load_steps=15 format=3 uid="uid://d2ifsn7i14dss"]
 
 [ext_resource type="Texture2D" uid="uid://cy4x5uli7n13t" path="res://assets/character/Goldendeer/idle.png" id="1_deer"]
 [ext_resource type="Texture2D" uid="uid://ddngd5agy7gq" path="res://assets/character/Goldendeer/e54baecc-2072-43fc-999f-d47c5df4884f-removebg-preview (1).png" id="2_mbymr"]

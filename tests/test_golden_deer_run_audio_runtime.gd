@@ -35,10 +35,11 @@ func _run() -> void:
 			_expect((run_audio.stream as AudioStreamMP3).loop, "deer run stream loops")
 		deer.call("_play", "run")
 		_expect(run_audio.playing, "run animation starts deer audio")
-		var playback_position := run_audio.get_playback_position()
+		await process_frame
+		run_audio.seek(2.0)
 		deer.call("_play", "run")
 		_expect(
-			run_audio.get_playback_position() >= playback_position,
+			run_audio.get_playback_position() >= 1.9,
 			"repeated run does not restart audio"
 		)
 		deer.call("_play", "idle")
