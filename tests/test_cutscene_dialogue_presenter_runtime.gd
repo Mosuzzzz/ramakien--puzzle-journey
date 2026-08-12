@@ -1,5 +1,12 @@
 extends SceneTree
 
+const SHORT_DIALOGUE := "พี่น้องวานรทั้งหลาย!"
+const LONG_DIALOGUE := (
+	"พระรามและเหล่าวานรจะร่วมแรงร่วมใจกันสร้างสะพานข้ามมหาสมุทร "
+	+ "เพื่อเดินทางไปยังกรุงลงกาและช่วยนางสีดาให้กลับมาอย่างปลอดภัย "
+	+ "แม้หนทางข้างหน้าจะยาวไกลและเต็มไปด้วยอุปสรรคก็ตาม"
+)
+
 var _failures: Array[String] = []
 
 
@@ -28,36 +35,61 @@ func _run() -> void:
 		"narration keeps a light prompt over the cinematic image"
 	)
 
-	presenter.show_line(
-		{"speaker": "หนุมาน", "text": "ข้าจะตามพระองค์กลับมาให้ได้!"}, prompt
-	)
+	prompt.text = "กด E เพื่อดำเนินเรื่องต่อ ▼"
+	presenter.show_line({"speaker": "หนุมาน", "text": SHORT_DIALOGUE}, prompt)
 	await process_frame
 	var name_label := presenter.get_node("Box/NameTag/NameLabel") as Label
 	var name_tag := presenter.get_node("Box/NameTag") as NinePatchRect
-	var text_label := presenter.get_node("Box/Margin/TextLabel") as Label
+	var text_label := presenter.get_node_or_null("Box/Margin/VBox/TextLabel") as Label
+	var internal_prompt := presenter.get_node_or_null("Box/Margin/VBox/ContinueLabel") as Label
 	_expect(not narration.visible, "spoken mode hides the cinematic narration label")
 	_expect(box.visible, "spoken mode shows the Chapter 1 dialogue box")
 	_expect(name_label.text == "หนุมาน", "spoken mode shows the speaker in the name tag")
+	_expect(text_label != null, "spoken box contains a vertical dialogue layout")
+	_expect(internal_prompt != null, "spoken box owns its continue prompt")
+	if text_label != null:
+		_expect(text_label.text == SHORT_DIALOGUE, "spoken mode shows only the sentence")
+		_expect(
+			text_label.vertical_alignment == VERTICAL_ALIGNMENT_TOP,
+			"dialogue body begins below the protruding name tag"
+		)
+		_expect(
+			name_tag.get_global_rect().end.y <= text_label.get_global_rect().position.y,
+			"name tag stays above the dialogue body instead of overlapping it"
+		)
+	_expect(not prompt.visible, "spoken mode hides the external prompt")
+	if internal_prompt != null:
+		_expect(internal_prompt.visible, "spoken mode shows the prompt inside the box")
+		_expect(internal_prompt.text == prompt.text, "internal prompt mirrors dynamic prompt text")
+		_expect(
+			box.get_global_rect().encloses(internal_prompt.get_global_rect()),
+			"spoken prompt stays inside the dialogue box"
+		)
+		_expect(
+			internal_prompt.get_global_rect().end.y <= box.get_global_rect().end.y - 20.0,
+			"spoken prompt keeps safe space above the bottom border"
+		)
+
+	var short_size := box.size
+	presenter.show_line({"speaker": "หนุมาน", "text": LONG_DIALOGUE}, prompt)
+	await process_frame
+	await process_frame
+	var long_size := box.size
+	_expect(short_size.x < long_size.x, "short dialogue uses a narrower box")
+	_expect(short_size.y < long_size.y, "wrapped dialogue uses a taller box")
 	_expect(
-		text_label.text == "ข้าจะตามพระองค์กลับมาให้ได้!",
-		"spoken mode shows only the sentence in the dialogue body"
+		long_size.x <= presenter.size.x * 0.84 + 1.0,
+		"dialogue box respects maximum viewport width"
 	)
 	_expect(
-		text_label.vertical_alignment == VERTICAL_ALIGNMENT_TOP,
-		"dialogue body begins below the protruding name tag"
+		absf(box.position.x + box.size.x * 0.5 - presenter.size.x * 0.5) <= 1.0,
+		"dialogue box stays horizontally centered"
 	)
-	_expect(
-		name_tag.get_global_rect().end.y <= text_label.get_global_rect().position.y,
-		"name tag stays above the dialogue body instead of overlapping it"
-	)
-	_expect(
-		prompt.get_theme_color("font_color").is_equal_approx(Color(0.35, 0.24, 0.13, 0.75)),
-		"spoken mode uses a readable dark prompt over parchment"
-	)
-	_expect(
-		prompt.get_theme_constant("outline_size") == 0,
-		"spoken prompt does not keep the cinematic outline"
-	)
+
+	presenter.show_line({"speaker": "", "text": "คำบรรยาย"}, prompt)
+	_expect(prompt.visible, "narration restores the external prompt")
+	if internal_prompt != null:
+		_expect(not internal_prompt.visible, "narration hides the internal spoken prompt")
 	_expect(presenter.mouse_filter == Control.MOUSE_FILTER_IGNORE, "presenter never consumes cutscene input")
 	presenter.free()
 	prompt.free()
