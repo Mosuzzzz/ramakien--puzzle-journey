@@ -2,6 +2,11 @@ extends SceneTree
 
 var _failures: Array[String] = []
 
+const CHAPTER_2_SCENE_PATHS := [
+	"res://scenes/chapter_2/chapter_2.tscn",
+	"res://scenes/chapter_2/chapter_2_second.tscn",
+]
+
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -51,6 +56,8 @@ func _run() -> void:
 	stage.remove_child(exiting_deer)
 	_expect(not exiting_audio.playing, "tree exit stops deer run audio")
 	exiting_deer.free()
+	for scene_path in CHAPTER_2_SCENE_PATHS:
+		_verify_chapter_scene_run_audio(scene_path, stage)
 	stage.free()
 	_finish()
 
@@ -59,6 +66,35 @@ func _spawn_deer(packed: PackedScene, stage: Node2D) -> CharacterBody2D:
 	var deer := packed.instantiate() as CharacterBody2D
 	stage.add_child(deer)
 	return deer
+
+
+func _verify_chapter_scene_run_audio(scene_path: String, stage: Node2D) -> void:
+	var packed := load(scene_path) as PackedScene
+	_expect(packed != null, "%s loads" % scene_path)
+	if packed == null:
+		return
+	var chapter_scene := packed.instantiate() as Node2D
+	_expect(chapter_scene != null, "%s instantiates" % scene_path)
+	if chapter_scene == null:
+		return
+	chapter_scene.process_mode = Node.PROCESS_MODE_DISABLED
+	stage.add_child(chapter_scene)
+	var deer := chapter_scene.get_node_or_null("YSortRoot/GoldenDeer") as CharacterBody2D
+	_expect(deer != null, "%s embeds GoldenDeer" % scene_path)
+	if deer == null:
+		return
+	var run_audio := deer.get_node_or_null("RunAudio") as AudioStreamPlayer2D
+	_expect(run_audio != null, "%s deer owns RunAudio" % scene_path)
+	if run_audio == null:
+		return
+	_expect(run_audio.bus == &"SFX", "%s deer audio uses SFX bus" % scene_path)
+	_expect(run_audio.stream is AudioStreamMP3, "%s deer uses imported MP3 stream" % scene_path)
+	if run_audio.stream is AudioStreamMP3:
+		_expect((run_audio.stream as AudioStreamMP3).loop, "%s deer run stream loops" % scene_path)
+	deer.call("_play", "run")
+	_expect(run_audio.playing, "%s deer run starts audio" % scene_path)
+	deer.call("_play", "idle")
+	_expect(not run_audio.playing, "%s deer idle stops audio" % scene_path)
 
 
 func _expect(condition: bool, message: String) -> void:
