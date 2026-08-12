@@ -83,6 +83,7 @@ func _test_runtime_wiring(transition: Node) -> void:
 	)
 	_set_abduction_dialogues(cutscene)
 	_expect_narration(cutscene, "Dialogue", 0, "พระรามไล่ตามจนในที่สุด")
+	await _expect_spoken(cutscene, "Dialogue", 1, "พระราม", "ในที่สุด... เจ้าก็หนีไปไม่พ้นแล้ว!")
 	_release_cutscene(cutscene)
 
 	cutscene = await _mount_cutscene(
@@ -90,7 +91,7 @@ func _test_runtime_wiring(transition: Node) -> void:
 		"Chapter2DeerCutsceneLayer/Chapter2DeerCutscene",
 		transition
 	)
-	_expect_spoken(cutscene, "Dialogue", 1, "นางสีดา", "พระสวามี กวางตัวนั้นงดงามนัก")
+	await _expect_spoken(cutscene, "Dialogue", 1, "นางสีดา", "พระสวามี กวางตัวนั้นงดงามนัก")
 	_release_cutscene(cutscene)
 
 	cutscene = await _mount_cutscene(
@@ -100,6 +101,7 @@ func _test_runtime_wiring(transition: Node) -> void:
 	)
 	_set_abduction_dialogues(cutscene)
 	_expect_narration(cutscene, "Dialogue", 0, "พระรามไล่ตามจนในที่สุด")
+	await _expect_spoken(cutscene, "Dialogue", 1, "พระราม", "ในที่สุด... เจ้าก็หนีไปไม่พ้นแล้ว!")
 	_release_cutscene(cutscene)
 
 	GameState.chapter_3_intro_played = false
@@ -108,7 +110,7 @@ func _test_runtime_wiring(transition: Node) -> void:
 		"Chapter3CutsceneLayer/Chapter3Cutscene",
 		transition
 	)
-	_expect_spoken(cutscene, "Dialogue", 0, "พระลักษมณ์", "พี่ราม ดูตรงนั้นสิ!")
+	await _expect_spoken(cutscene, "Dialogue", 0, "พระลักษมณ์", "พี่ราม ดูตรงนั้นสิ!")
 	_release_cutscene(cutscene)
 
 	cutscene = await _mount_cutscene(
@@ -117,7 +119,7 @@ func _test_runtime_wiring(transition: Node) -> void:
 		transition
 	)
 	_expect_narration(cutscene, "PostBattleDialogue", 0, "หลังจากพระรามและพระลักษณ์")
-	_expect_spoken(cutscene, "PostBattleDialogue", 3, "พระลักษณ์", "...ใครอยู่ตรงนั้น?")
+	await _expect_spoken(cutscene, "PostBattleDialogue", 3, "พระลักษณ์", "...ใครอยู่ตรงนั้น?")
 	_release_cutscene(cutscene)
 
 	GameState.chapter_4_intro_played = false
@@ -128,7 +130,7 @@ func _test_runtime_wiring(transition: Node) -> void:
 	)
 	_expect_narration(cutscene, "Dialogue", 0, "หลังจากหนุมานถวายตัวรับใช้พระราม")
 	cutscene.set("_dialogue_phase", 1)
-	_expect_spoken(cutscene, "Dialogue", 0, "หนุมาน", "พี่น้องวานรทั้งหลาย!")
+	await _expect_spoken(cutscene, "Dialogue", 0, "หนุมาน", "พี่น้องวานรทั้งหลาย!")
 	_release_cutscene(cutscene)
 
 	cutscene = await _mount_cutscene(
@@ -137,7 +139,7 @@ func _test_runtime_wiring(transition: Node) -> void:
 		transition
 	)
 	_expect_narration(cutscene, "Dialogue", 0, "ไมยราพล้มลงกับพื้น")
-	_expect_spoken(cutscene, "Dialogue", 3, "พระราม", "หนุมาน...")
+	await _expect_spoken(cutscene, "Dialogue", 3, "พระราม", "หนุมาน...")
 	_release_cutscene(cutscene)
 
 	GameState.chapter_6_intro_played = false
@@ -202,12 +204,18 @@ func _expect_narration(
 	cutscene.call("_show_dialogue", index, false)
 	var presenter := cutscene.get_node(dialogue_path) as CutsceneDialoguePresenter
 	var narration := presenter.get_node("Narration") as Label
+	var internal_prompt := presenter.get_node("Box/Content/ContinueLabel") as Label
+	var external_prompt := _get_external_prompt(cutscene)
 	_expect(narration.visible, "%s line %d uses narration mode" % [cutscene.name, index])
 	_expect(not presenter.get_node("Box").visible, "%s narration hides the box" % cutscene.name)
 	_expect(
 		narration.text.contains(expected_fragment),
 		"%s narration reaches the presenter without its prefix" % cutscene.name
 	)
+	_expect(not internal_prompt.visible, "%s narration hides the internal prompt" % cutscene.name)
+	_expect(external_prompt != null, "%s keeps its external narration prompt" % cutscene.name)
+	if external_prompt != null:
+		_expect(external_prompt.visible, "%s narration restores the external prompt" % cutscene.name)
 
 
 func _expect_spoken(
@@ -218,10 +226,13 @@ func _expect_spoken(
 	expected_fragment: String
 ) -> void:
 	cutscene.call("_show_dialogue", index, false)
+	await process_frame
 	var presenter := cutscene.get_node(dialogue_path) as CutsceneDialoguePresenter
 	var box := presenter.get_node("Box") as NinePatchRect
 	var name_label := presenter.get_node("Box/NameTag/NameLabel") as Label
-	var text_label := presenter.get_node("Box/Margin/TextLabel") as Label
+	var text_label := presenter.get_node("Box/Content/TextLabel") as Label
+	var internal_prompt := presenter.get_node("Box/Content/ContinueLabel") as Label
+	var external_prompt := _get_external_prompt(cutscene)
 	_expect(box.visible, "%s line %d uses spoken mode" % [cutscene.name, index])
 	_expect(not presenter.get_node("Narration").visible, "%s spoken line hides narration" % cutscene.name)
 	_expect(name_label.text == expected_speaker, "%s shows the separate speaker tag" % cutscene.name)
@@ -230,6 +241,40 @@ func _expect_spoken(
 		"%s sends only the spoken sentence to the body" % cutscene.name
 	)
 	_expect(not text_label.text.contains("“"), "%s body has no outer smart quotes" % cutscene.name)
+	_expect(external_prompt != null, "%s keeps its external prompt node" % cutscene.name)
+	if external_prompt != null:
+		_expect(not external_prompt.visible, "%s hides external spoken prompt" % cutscene.name)
+		_expect(
+			internal_prompt.text == external_prompt.text,
+			"%s preserves dynamic prompt text" % cutscene.name
+		)
+	_expect(
+		box.get_global_rect().encloses(internal_prompt.get_global_rect()),
+		"%s keeps prompt inside dialogue frame (presenter=%s/%s box=%s prompt=%s/%s)"
+		% [
+			cutscene.name,
+			presenter.position,
+			presenter.size,
+			box.get_global_rect(),
+			internal_prompt.position,
+			internal_prompt.get_global_rect(),
+		]
+	)
+	_expect(
+		absf(internal_prompt.get_global_rect().end.x - (box.get_global_rect().end.x - 28.0)) <= 1.0,
+		"%s anchors prompt near the right frame edge" % cutscene.name
+	)
+	_expect(
+		absf(internal_prompt.get_global_rect().end.y - (box.get_global_rect().end.y - 22.0)) <= 1.0,
+		"%s anchors prompt at the bottom-right of the frame" % cutscene.name
+	)
+
+
+func _get_external_prompt(cutscene: Control) -> Label:
+	var prompt := cutscene.get_node_or_null("ContinuePrompt") as Label
+	if prompt == null:
+		prompt = cutscene.get_node_or_null("PostBattlePrompt") as Label
+	return prompt
 
 
 func _release_cutscene(cutscene: Control) -> void:

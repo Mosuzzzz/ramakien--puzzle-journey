@@ -15,6 +15,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.size = Vector2i(1280, 720)
 	var packed := load("res://scenes/ui/cutscene_dialogue_presenter.tscn") as PackedScene
 	_expect(packed != null, "cutscene dialogue presenter scene exists")
 	if packed == null:
@@ -40,8 +41,8 @@ func _run() -> void:
 	await process_frame
 	var name_label := presenter.get_node("Box/NameTag/NameLabel") as Label
 	var name_tag := presenter.get_node("Box/NameTag") as NinePatchRect
-	var text_label := presenter.get_node_or_null("Box/Margin/VBox/TextLabel") as Label
-	var internal_prompt := presenter.get_node_or_null("Box/Margin/VBox/ContinueLabel") as Label
+	var text_label := presenter.get_node_or_null("Box/Content/TextLabel") as Label
+	var internal_prompt := presenter.get_node_or_null("Box/Content/ContinueLabel") as Label
 	_expect(not narration.visible, "spoken mode hides the cinematic narration label")
 	_expect(box.visible, "spoken mode shows the Chapter 1 dialogue box")
 	_expect(name_label.text == "หนุมาน", "spoken mode shows the speaker in the name tag")
@@ -69,6 +70,14 @@ func _run() -> void:
 			internal_prompt.get_global_rect().end.y <= box.get_global_rect().end.y - 20.0,
 			"spoken prompt keeps safe space above the bottom border"
 		)
+		_expect(
+			absf(internal_prompt.get_global_rect().end.x - (box.get_global_rect().end.x - 28.0)) <= 1.0,
+			"spoken prompt is anchored 28 px from the right frame edge"
+		)
+		_expect(
+			absf(internal_prompt.get_global_rect().end.y - (box.get_global_rect().end.y - 22.0)) <= 1.0,
+			"spoken prompt is anchored 22 px above the bottom frame edge"
+		)
 
 	var short_size := box.size
 	presenter.show_line({"speaker": "หนุมาน", "text": LONG_DIALOGUE}, prompt)
@@ -84,6 +93,22 @@ func _run() -> void:
 	_expect(
 		absf(box.position.x + box.size.x * 0.5 - presenter.size.x * 0.5) <= 1.0,
 		"dialogue box stays horizontally centered"
+	)
+	_expect(
+		absf(box.get_global_rect().end.y - (presenter.get_global_rect().end.y - 24.0)) <= 1.0,
+		"dialogue box keeps a 24 px bottom gap"
+	)
+
+	root.size = Vector2i(1920, 1080)
+	await process_frame
+	await process_frame
+	_expect(
+		absf(box.position.x + box.size.x * 0.5 - presenter.size.x * 0.5) <= 1.0,
+		"dialogue box remains centered after viewport resize"
+	)
+	_expect(
+		box.get_global_rect().encloses(internal_prompt.get_global_rect()),
+		"spoken prompt remains inside the frame after viewport resize"
 	)
 
 	presenter.show_line({"speaker": "", "text": "คำบรรยาย"}, prompt)

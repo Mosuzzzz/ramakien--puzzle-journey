@@ -5,6 +5,10 @@ const MIN_BOX_WIDTH := 480.0
 const MIN_BOX_HEIGHT := 150.0
 const MAX_BOX_WIDTH_RATIO := 0.84
 const BOTTOM_GAP := 24.0
+const CONTENT_LEFT := 118.0
+const CONTENT_TOP := 42.0
+const PROMPT_RIGHT := 28.0
+const PROMPT_BOTTOM := 22.0
 const HORIZONTAL_CONTENT_PADDING := 236.0
 const VERTICAL_CONTENT_PADDING := 76.0
 const CONTENT_SEPARATION := 8.0
@@ -13,8 +17,8 @@ const DEFAULT_PROMPT := "กด E เพื่อดำเนินเรื่�
 @onready var _narration: Label = $Narration
 @onready var _box: NinePatchRect = $Box
 @onready var _name_label: Label = $Box/NameTag/NameLabel
-@onready var _text_label: Label = $Box/Margin/VBox/TextLabel
-@onready var _continue_label: Label = $Box/Margin/VBox/ContinueLabel
+@onready var _text_label: Label = $Box/Content/TextLabel
+@onready var _continue_label: Label = $Box/Content/ContinueLabel
 
 var _spoken_text := ""
 
@@ -84,7 +88,9 @@ func _fit_spoken_box() -> void:
 		-1,
 		TextServer.BREAK_MANDATORY | TextServer.BREAK_WORD_BOUND
 	)
-	var prompt_height: float = float(prompt_settings.font_size) if prompt_settings != null else 14.0
+	var prompt_height := 14.0
+	if prompt_settings != null and prompt_settings.font != null:
+		prompt_height = prompt_settings.font.get_height(prompt_settings.font_size)
 	var box_height: float = maxf(
 		MIN_BOX_HEIGHT,
 		wrapped_text_size.y + prompt_height + CONTENT_SEPARATION + VERTICAL_CONTENT_PADDING
@@ -94,6 +100,12 @@ func _fit_spoken_box() -> void:
 	_box.offset_right = box_width * 0.5
 	_box.offset_bottom = -BOTTOM_GAP
 	_box.offset_top = -BOTTOM_GAP - box_height
+	_text_label.position = Vector2(CONTENT_LEFT, CONTENT_TOP)
+	_text_label.size = Vector2(content_width, wrapped_text_size.y)
+	_continue_label.position = Vector2(
+		CONTENT_LEFT, box_height - PROMPT_BOTTOM - prompt_height
+	)
+	_continue_label.size = Vector2(box_width - CONTENT_LEFT - PROMPT_RIGHT, prompt_height)
 
 
 func _style_prompt(prompt_label: Label, is_spoken: bool) -> void:
